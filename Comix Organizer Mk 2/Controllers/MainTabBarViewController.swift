@@ -13,12 +13,16 @@ class MainTabBarViewController: UITabBarController {
         
         let vc1 = UINavigationController(rootViewController: AllPublishersViewController())
         let vc2 = UINavigationController(rootViewController: AllComicsViewController())
+        let vc3 = UINavigationController(rootViewController: AllCharactersViewController())
         
         vc1.tabBarItem.image = UIImage(systemName: "list.dash")
         vc2.tabBarItem.image = UIImage(systemName: "list.dash")
+        vc3.tabBarItem.image = UIImage(systemName: "list.dash")
+
 
         vc1.title = "All Publishers"
         vc2.title = "All Comics"
+        vc3.title = "All Characters"
         
         tabBar.tintColor = .label
         

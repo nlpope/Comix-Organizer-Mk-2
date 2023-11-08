@@ -22,7 +22,12 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
     }
+}
 
-
+//MARK: DELEGATE & DATASOURCE METHODS
+extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
 }
 
