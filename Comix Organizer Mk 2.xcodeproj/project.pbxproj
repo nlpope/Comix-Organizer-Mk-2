@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
-		40A83A972AFA5F5B009F80D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* ViewController.swift */; };
+		40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */; };
 		40A83A9A2AFA5F5B009F80D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A83A982AFA5F5B009F80D3 /* Main.storyboard */; };
 		40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */; };
 		40A83A9F2AFA5F5E009F80D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */; };
@@ -17,6 +17,11 @@
 		40A83AAD2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AAC2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift */; };
 		40A83AB72AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AB62AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift */; };
 		40A83AB92AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */; };
+		40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AC92AFA617A009F80D3 /* APICaller.swift */; };
+		40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACB2AFA6187009F80D3 /* Publisher.swift */; };
+		40A83ACE2AFA6192009F80D3 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACD2AFA6192009F80D3 /* Comic.swift */; };
+		40A83AD12AFBB09E009F80D3 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* MainTabBarViewController.swift */; };
+		40A83AD32AFBB2B6009F80D3 /* AllComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +45,7 @@
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		40A83A962AFA5F5B009F80D3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPublishersViewController.swift; sourceTree = "<group>"; };
 		40A83A992AFA5F5B009F80D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40A83A9C2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Comix_Organizer_Mk_2.xcdatamodel; sourceTree = "<group>"; };
 		40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +56,11 @@
 		40A83AB22AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Comix Organizer Mk 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83AB62AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2UITests.swift; sourceTree = "<group>"; };
 		40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		40A83AC92AFA617A009F80D3 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		40A83ACB2AFA6187009F80D3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		40A83ACD2AFA6192009F80D3 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
+		40A83AD02AFBB09E009F80D3 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllComicsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,12 +111,14 @@
 		40A83A912AFA5F5B009F80D3 /* Comix Organizer Mk 2 */ = {
 			isa = PBXGroup;
 			children = (
-				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
 				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
-				40A83A962AFA5F5B009F80D3 /* ViewController.swift */,
+				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
+				40A83AC82AFA616C009F80D3 /* Managers */,
+				40A83AC72AFA5FA0009F80D3 /* Controllers */,
+				40A83AC52AFA5F7D009F80D3 /* Models */,
+				40A83AC62AFA5F99009F80D3 /* Views */,
 				40A83A982AFA5F5B009F80D3 /* Main.storyboard */,
-				40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */,
-				40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */,
+				40A83ACF2AFA697D009F80D3 /* Supporting Files */,
 				40A83AA32AFA5F5E009F80D3 /* Info.plist */,
 				40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */,
 			);
@@ -128,6 +140,49 @@
 				40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */,
 			);
 			path = "Comix Organizer Mk 2UITests";
+			sourceTree = "<group>";
+		};
+		40A83AC52AFA5F7D009F80D3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40A83ACB2AFA6187009F80D3 /* Publisher.swift */,
+				40A83ACD2AFA6192009F80D3 /* Comic.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40A83AC62AFA5F99009F80D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40A83AC72AFA5FA0009F80D3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				40A83AD02AFBB09E009F80D3 /* MainTabBarViewController.swift */,
+				40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */,
+				40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		40A83AC82AFA616C009F80D3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				40A83AC92AFA617A009F80D3 /* APICaller.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		40A83ACF2AFA697D009F80D3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */,
+				40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +316,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A83A972AFA5F5B009F80D3 /* ViewController.swift in Sources */,
+				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
+				40A83AD12AFBB09E009F80D3 /* MainTabBarViewController.swift in Sources */,
+				40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */,
+				40A83ACE2AFA6192009F80D3 /* Comic.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
+				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
+				40A83AD32AFBB2B6009F80D3 /* AllComicsViewController.swift in Sources */,
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
