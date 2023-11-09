@@ -23,6 +23,7 @@
 		40A83AD12AFBB09E009F80D3 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* MainTabBarViewController.swift */; };
 		40A83AD32AFBB2B6009F80D3 /* AllComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */; };
 		40A83AD52AFBBD89009F80D3 /* AllCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */; };
+		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		40A83AD02AFBB09E009F80D3 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllComicsViewController.swift; sourceTree = "<group>"; };
 		40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
+		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				40A83AC92AFA617A009F80D3 /* APICaller.swift */,
+				40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
 				40A83AD32AFBB2B6009F80D3 /* AllComicsViewController.swift in Sources */,
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,
+				40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
