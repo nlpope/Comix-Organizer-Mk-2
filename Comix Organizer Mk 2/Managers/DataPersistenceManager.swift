@@ -19,5 +19,7 @@ class DataPersistenceManager {
     
     static let shared = DataPersistenceManager()
     
-    func 
+    func fetchingPublishersFromDataBase(completion: @escaping (Result<[PublisherItem], Error>) -> Void) {
+        
+    }
 }

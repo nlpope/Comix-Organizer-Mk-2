@@ -15,7 +15,7 @@ import UIKit
 
 class AllPublishersViewController: UIViewController {
     
-    
+
     let tableView: UITableView = {
        let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -24,6 +24,8 @@ class AllPublishersViewController: UIViewController {
     }()
 
     private var publishers = [Publisher]()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,7 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    //should this go in DataPersistenceManager?
     func getAllPublishers() {
         do {
             publishers = try context.fetch(Publisher.fetchRequest())
