@@ -16,6 +16,7 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
     
+    private var publishers = [Publisher]()
 
     let tableView: UITableView = {
        let table = UITableView()
@@ -24,8 +25,6 @@ class AllPublishersViewController: UIViewController {
         return table
     }()
 
-    private var publishers = [Publisher]()
-    
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -37,35 +36,44 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
-        getAllPublishers()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
+        
+        configurePublishers()
+    }
+    
+    private func configurePublishers() {
+        APICaller.shared.getPublishers { [weak self] result in
+            switch result {
+            case .success(let returnedPublishers):
+                self?.publishers.append(contentsOf: returnedPublishers)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     //should this go in DataPersistenceManager?
-    func getAllPublishers() {
-        do {
-            publishers = try context.fetch(Publisher.fetchRequest())
-            
-            DispatchQueue.main.async {
-                //anything ui related do on main thread
-                self.tableView.reloadData()
-                print("reloadData called from getAllPublishers() just now")
-            }
-            
-        } catch {
-            print("there was an error \(error)")
-        }
-        
-    }
+//    func getAllPublishers() {
+//        do {
+//            publishers = try context.fetch(Publisher.fetchRequest())
+//            
+//            DispatchQueue.main.async {
+//                //anything ui related do on main thread
+//                self.tableView.reloadData()
+//                print("reloadData called from getAllPublishers() just now")
+//            }
+//            
+//        } catch {
+//            print("there was an error \(error)")
+//        }
+//        
+//    }
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
 extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -76,5 +84,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         cell.textLabel?.text = "dummy thicc"
         return cell
     }
+    
+    
 }
 
