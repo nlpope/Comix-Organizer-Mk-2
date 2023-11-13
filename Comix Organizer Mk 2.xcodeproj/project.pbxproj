@@ -115,8 +115,8 @@
 		40A83A912AFA5F5B009F80D3 /* Comix Organizer Mk 2 */ = {
 			isa = PBXGroup;
 			children = (
-				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
 				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
+				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
 				40A83AC82AFA616C009F80D3 /* Managers */,
 				40A83AC72AFA5FA0009F80D3 /* Controllers */,
 				40A83AC52AFA5F7D009F80D3 /* Models */,

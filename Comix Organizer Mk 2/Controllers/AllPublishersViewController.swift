@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 //this is the HomeViewController / HomeVC
 //instead of giving access to all metron has to offer
@@ -25,6 +26,7 @@ class AllPublishersViewController: UIViewController {
 
     private var publishers = [Publisher]()
     
+    //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
