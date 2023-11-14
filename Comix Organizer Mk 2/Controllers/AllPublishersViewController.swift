@@ -88,3 +88,18 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
 }
 
+/**
+ > hide/reveal debug area = cmd + shift + Y
+ > hide/reveal console = cmd + shift + C
+ > hide/reveal left pane = cmd + 0
+ > hide/reveal right pane = cmd + shift + 0
+ > hide/reveal preview window = cmd + shift + enter
+ 
+ > edit this boilerplate using: cmd + shift + L
+ > storyboard object lisit: cmd + shift + L
+ 
+ --------------------------
+ NOTES:
+ 
+ --------------------------
+ */
