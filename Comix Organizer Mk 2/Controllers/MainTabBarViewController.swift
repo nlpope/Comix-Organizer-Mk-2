@@ -20,12 +20,14 @@ class MainTabBarViewController: UITabBarController {
         vc3.tabBarItem.image = UIImage(systemName: "list.dash")
 
 
-        vc1.title = "All Publishers"
-        vc2.title = "All Comics"
-        vc3.title = "All Characters"
+        vc1.title = "Publishers"
+        vc2.title = "Comics"
+        vc3.title = "Characters"
         
         tabBar.tintColor = .label
         
-        setViewControllers([vc1, vc2], animated: true)
+        setViewControllers([vc1, vc2, vc3], animated: true)
     }
 }
+
+
