@@ -21,7 +21,6 @@ class AllPublishersViewController: UIViewController {
     let tableView: UITableView = {
        let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
         return table
     }()
 
@@ -44,9 +43,11 @@ class AllPublishersViewController: UIViewController {
     }
     
     private func configurePublishers() {
+        print("calling configurePublishers()")
         APICaller.shared.getPublishers { [weak self] result in
             switch result {
             case .success(let returnedPublishers):
+                print(returnedPublishers)
                 self?.publishers.append(contentsOf: returnedPublishers)
             case .failure(let error):
                 print(error.localizedDescription)
