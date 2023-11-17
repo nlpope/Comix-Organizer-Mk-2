@@ -19,11 +19,8 @@ enum APIError: Error {
 class APICaller {
     static let shared = APICaller()
     
-    func tester() {
-        print("testing 123")
-    }
-    
     func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void) {
+        print("testing 123")
         guard let url = URL(string: "\(Constants.baseURL)/publisher") else {return}
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
