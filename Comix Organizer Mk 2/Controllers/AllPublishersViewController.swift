@@ -106,5 +106,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > creating postman account to pull metron data over
  > https://www.youtube.com/watch?v=VywxIQ2ZXw4
  >> @ 5.37
+ 
+ 11.21.23
+ > Learning postman to sync w Metron & pull publishers
  --------------------------
  */
