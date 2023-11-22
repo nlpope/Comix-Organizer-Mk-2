@@ -109,5 +109,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  11.21.23
  > Learning postman to sync w Metron & pull publishers
+ 
+ 11.22.23
+ > downloading postman app & reviewing postman/metron docs
+ >> do I need Mokkari?
  --------------------------
  */
