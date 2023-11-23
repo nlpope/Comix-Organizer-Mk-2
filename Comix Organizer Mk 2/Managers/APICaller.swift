@@ -8,9 +8,7 @@
 import Foundation
 
 struct Constants {
-  
-    static let API_KEY = "TBD"
-    static let baseURL = "https://metron.cloud/api"
+      static let baseURL = "https://metron.cloud/api"
 }
 
 enum APIError: Error {
@@ -22,7 +20,8 @@ class APICaller {
     
     func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void) {
         print("testing 123")
-        guard let url = URL(string: "\(Constants.baseURL)/publisher") else {return}
+        guard let url = URL(string: "https://metron.cloud/api/publisher/?format=json") else {return}
+//        guard let url = URL(string: "\(Constants.baseURL)/publisher/?format=json") else {return}
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {return}

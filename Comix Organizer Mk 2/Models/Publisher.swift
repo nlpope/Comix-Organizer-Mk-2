@@ -13,8 +13,8 @@ struct MetronPublishersResponse: Codable {
 
 struct Publisher: Codable {
     let id: Int
-    let name: String
-    let modified: Date
+    let name: String?
+    let modified: Date?
     
     
     //how to get array of publisher's comics (type Comic)

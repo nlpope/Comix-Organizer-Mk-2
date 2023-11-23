@@ -47,10 +47,9 @@ class AllPublishersViewController: UIViewController {
         APICaller.shared.getPublishers { [weak self] result in
             switch result {
             case .success(let returnedPublishers):
-                print(returnedPublishers)
                 self?.publishers.append(contentsOf: returnedPublishers)
             case .failure(let error):
-                print(error.localizedDescription)
+                print("configurePublishers() threw an error:", error.localizedDescription)
             }
         }
     }
