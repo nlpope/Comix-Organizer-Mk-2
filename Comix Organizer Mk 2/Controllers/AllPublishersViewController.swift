@@ -114,6 +114,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> do I need Mokkari?
  
  11.24.23
+ > swift docs auth process link
+ >> https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074
  > S.O. auth process link
  >>  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift 
  --------------------------
