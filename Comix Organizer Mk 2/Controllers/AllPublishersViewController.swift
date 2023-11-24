@@ -112,5 +112,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  11.22.23
  > downloading postman app & reviewing postman/metron docs
  >> do I need Mokkari?
+ 
+ 11.24.23
+ > S.O. auth process link
+ >>  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift 
  --------------------------
  */

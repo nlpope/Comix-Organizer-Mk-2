@@ -20,10 +20,17 @@ class APICaller {
     
     func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void) {
         print("testing 123")
+        //S.O. auth process
+        let username = "npope@tutanota.com"
+        let password = "i15325190"
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        
         guard let url = URL(string: "https://metron.cloud/api/publisher/?format=json") else {return}
 //        guard let url = URL(string: "\(Constants.baseURL)/publisher/?format=json") else {return}
         
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
+        var task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {return}
             
             do {
@@ -35,7 +42,8 @@ class APICaller {
                 completion(.failure(APIError.failedToGetData))
             }
         }
-        
+        task.originalRequest?.httpMethod = "GET"
+        task.originalRequest?.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         task.resume()
     }
 
