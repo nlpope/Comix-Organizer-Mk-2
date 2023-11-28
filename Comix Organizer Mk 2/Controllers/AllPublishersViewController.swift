@@ -121,5 +121,6 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  11.28.23
  > reading docs on url authentication challenges
+ > holding off on mokarri download for now til i figure out the above
  --------------------------
  */
