@@ -118,5 +118,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074
  > S.O. auth process link
  >>  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift 
+ 
+ 11.28.23
+ > reading docs on url authentication challenges
  --------------------------
  */
