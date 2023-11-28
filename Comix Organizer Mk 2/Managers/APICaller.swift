@@ -22,7 +22,7 @@ class APICaller {
         print("testing 123")
         //S.O. auth process
         let username = "npope@tutanota.com"
-        let password = "i15325190"
+        let password = ""
         let loginString = String(format: "%@:%@", username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
