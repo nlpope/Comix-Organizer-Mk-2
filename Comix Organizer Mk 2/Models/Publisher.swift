@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MetronPublishersResponse: Codable {
+struct APIPublishersResponse: Codable {
     let results: [Publisher]
 }
 

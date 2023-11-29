@@ -8,7 +8,8 @@
 import Foundation
 
 struct Constants {
-      static let baseURL = "https://metron.cloud/api"
+    static let API_KEY = "b31d5105925e7fd811a07d63e82320578ba699f1"
+    static let baseURL = "https://comicvine.gamespot.com"
 }
 
 enum APIError: Error {
@@ -21,20 +22,15 @@ class APICaller {
     func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void) {
         print("testing 123")
         //S.O. auth process
-        let username = "npope@tutanota.com"
-        let password = ""
-        let loginString = String(format: "%@:%@", username, password)
-        let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
+       
         
-        guard let url = URL(string: "https://metron.cloud/api/publisher/?format=json") else {return}
-//        guard let url = URL(string: "\(Constants.baseURL)/publisher/?format=json") else {return}
+        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)") else {return}
         
         var task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {return}
             
             do {
-                let results = try JSONDecoder().decode(MetronPublishersResponse.self, from: data)
+                let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
                 completion(.success(results.results))
                 print(results)
             } catch {
@@ -42,8 +38,7 @@ class APICaller {
                 completion(.failure(APIError.failedToGetData))
             }
         }
-        task.originalRequest?.httpMethod = "GET"
-        task.originalRequest?.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        
         task.resume()
     }
 
