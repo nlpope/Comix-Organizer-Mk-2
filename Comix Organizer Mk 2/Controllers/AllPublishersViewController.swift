@@ -125,37 +125,40 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  PROJECT NOTES:
  
  11.20.23
- > creating postman account to pull metron data over
+ * creating postman account to pull metron data over
  > https://www.youtube.com/watch?v=VywxIQ2ZXw4
  >> @ 5.37
  
  11.21.23
- > Learning postman to sync w Metron & pull publishers
+ * Learning postman to sync w Metron & pull publishers
  
  11.22.23
- > downloading postman app & reviewing postman/metron docs
- >> do I need Mokkari?
+ * downloading postman app & reviewing postman/metron docs
+ > do I need Mokkari?
  
  11.24.23
- > swift docs auth process link
- >> https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074
- > S.O. auth process link
- >>  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift
+ * swift docs auth process link
+ > https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074
+ * S.O. auth process link
+ >  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift
  
  11.28.23
- > reading docs on url authentication challenges
- > holding off on mokarri download for now til i figure out the above
+ * reading docs on url authentication challenges
+ * holding off on mokarri download for now til i figure out the above
  
  11.30.23
- > swithing to comic vine API in place of metron
- >> metron = mokarri + postman + http auth challenge
- >> comic vine = api key
+ * swithing to comic vine API in place of metron
+ > metron = mokarri + postman + http auth challenge
+ > comic vine = api key
+ 
+ * comic vine api basic walkthrough
+ > https://josephephillips.com/blog/how-to-use-comic-vine-api-part1
  --------------------------
  HARD KNOCKS:
  
- > simulators disappeared?
- >> restart computer
- >> https://developer.apple.com/forums/thread/120250
+ * simulators disappeared?
+ > restart computer
+ > https://developer.apple.com/forums/thread/120250
  
  --------------------------
  */

@@ -14,8 +14,7 @@ struct APIPublishersResponse: Codable {
 struct Publisher: Codable {
     let id: Int
     let name: String?
-    let modified: Date?
-    
+    //incorporate image const later
     
     //how to get array of publisher's comics (type Comic)
     //in here AND in the PublisherItem data model
