@@ -20,9 +20,7 @@ class APICaller {
     static let shared = APICaller()
     
     func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void) {
-        print("testing 123")
-        //S.O. auth process
-       
+        print("inside getPublishers")       
         
         guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {return}
         
@@ -32,7 +30,6 @@ class APICaller {
             do {
                 let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
                 completion(.success(results.results))
-                print(results)
             } catch {
                 //instead of printing the err, we're passing in a failure to handle it directly from home viewcontroller
                 completion(.failure(APIError.failedToGetData))

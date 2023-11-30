@@ -48,6 +48,7 @@ class AllPublishersViewController: UIViewController {
             switch result {
             case .success(let returnedPublishers):
                 self?.publishers.append(contentsOf: returnedPublishers)
+                print(returnedPublishers)
             case .failure(let error):
                 print("configurePublishers() threw an error:", error.localizedDescription)
             }
