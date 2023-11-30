@@ -9,7 +9,7 @@ import Foundation
 
 struct Constants {
     static let API_KEY = "b31d5105925e7fd811a07d63e82320578ba699f1"
-    static let baseURL = "https://comicvine.gamespot.com"
+    static let baseURL = "https://comicvine.gamespot.com/api"
 }
 
 enum APIError: Error {
@@ -24,7 +24,7 @@ class APICaller {
         //S.O. auth process
        
         
-        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)") else {return}
+        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {return}
         
         var task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {return}
