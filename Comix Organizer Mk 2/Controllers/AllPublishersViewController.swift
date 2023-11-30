@@ -89,17 +89,40 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 /**
- > hide/reveal debug area = cmd + shift + Y
- > hide/reveal console = cmd + shift + C
- > hide/reveal left pane = cmd + 0
- > hide/reveal right pane = cmd + shift + 0
- > hide/reveal preview window = cmd + shift + enter
+ --------------------------
+ SHORTCUTS:
+ * edit this boilerplate using: cmd + shift + L
+ * storyboard object lisit: cmd + shift + L
  
- > edit this boilerplate using: cmd + shift + L
- > storyboard object lisit: cmd + shift + L
+ * hide/reveal debug area = cmd + shift + Y
+ * hide/reveal console = cmd + shift + C
+ * hide/reveal left pane = cmd + 0
+ * hide/reveal right pane = cmd + shift + 0
+ * hide/reveal preview window = cmd + shift + enter
  
  --------------------------
- NOTES:
+ GETTING STARTED:
+ * remove storyboard to code interface programmatically
+ > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
+ 
+ * App Icons & LaunchScreens:
+ 
+ > icon
+ 1. delete app icon present in assests folder
+ 2. bake icon
+ 3. drag generated icon directly to assets folder
+ 
+ > launchscreen
+ 1. bake icon
+ 2. drag generated icon to finder (ton of options should appear)
+ 3. drag "appstore1024.png"  image under app icon
+ 4. name it "LaunchScreen"
+ 5. add a new "LaunchScreen" file
+ 6. set an image inside
+ 7. attributes inspector - set image to "LaunchScreen" from assets
+ 
+ --------------------------
+ PROJECT NOTES:
  
  11.20.23
  > creating postman account to pull metron data over
@@ -117,10 +140,22 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > swift docs auth process link
  >> https://developer.apple.com/documentation/foundation/url_loading_system/handling_an_authentication_challenge#2942074
  > S.O. auth process link
- >>  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift 
+ >>  https://stackoverflow.com/questions/24379601/how-to-make-an-http-request-basic-auth-in-swift
  
  11.28.23
  > reading docs on url authentication challenges
  > holding off on mokarri download for now til i figure out the above
+ 
+ 11.30.23
+ > swithing to comic vine API in place of metron
+ >> metron = mokarri + postman + http auth challenge
+ >> comic vine = api key
+ --------------------------
+ HARD KNOCKS:
+ 
+ > simulators disappeared?
+ >> restart computer
+ >> https://developer.apple.com/forums/thread/120250
+ 
  --------------------------
  */
