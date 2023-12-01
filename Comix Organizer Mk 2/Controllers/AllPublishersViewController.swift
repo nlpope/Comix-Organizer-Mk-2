@@ -16,7 +16,7 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
     
-    private var publishers = [Publisher]()
+    private var publishers: [Publisher] = [Publisher]()
 
     let tableView: UITableView = {
        let table = UITableView()
@@ -40,15 +40,16 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
         
         configurePublishers()
+        print(publishers.count)
     }
     
     private func configurePublishers() {
-        print("calling configurePublishers()")
+        print("inside configurePublishers()")
         APICaller.shared.getPublishers { [weak self] result in
             switch result {
             case .success(let returnedPublishers):
-                self?.publishers.append(contentsOf: returnedPublishers)
                 print(returnedPublishers)
+                self?.publishers.append(contentsOf: returnedPublishers)
             case .failure(let error):
                 print("configurePublishers() threw an error:", error.localizedDescription)
             }

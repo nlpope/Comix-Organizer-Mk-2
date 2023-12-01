@@ -13,7 +13,8 @@ struct APIPublishersResponse: Codable {
 
 struct Publisher: Codable {
     let id: Int
-    let name: String?
+    let name: String
+    
     //incorporate image const later
     
     //how to get array of publisher's comics (type Comic)
