@@ -40,7 +40,6 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
         
         configurePublishers()
-        print(publishers.count)
     }
     
     private func configurePublishers() {
@@ -48,8 +47,8 @@ class AllPublishersViewController: UIViewController {
         APICaller.shared.getPublishers { [weak self] result in
             switch result {
             case .success(let returnedPublishers):
-                print(returnedPublishers)
-                self?.publishers.append(contentsOf: returnedPublishers)
+                self?.publishers += returnedPublishers
+                print(self?.publishers)
             case .failure(let error):
                 print("configurePublishers() threw an error:", error.localizedDescription)
             }
@@ -78,12 +77,12 @@ class AllPublishersViewController: UIViewController {
 extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 100
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "dummy thicc"
+        cell.textLabel?.text = publishers[indexPath.row].name
         return cell
     }
     
