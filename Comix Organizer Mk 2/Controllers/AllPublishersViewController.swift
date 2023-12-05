@@ -40,6 +40,7 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
         
         configurePublishers()
+        print(publishers)
     }
     
     private func configurePublishers() {
@@ -121,6 +122,16 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  5. add a new "LaunchScreen" file
  6. set an image inside
  7. attributes inspector - set image to "LaunchScreen" from assets
+ 
+ * Delegate & Datasource Methods
+ * Delegate & Datasource Methods
+ > list of mandatory methods
+ > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
+ 
+ > The datasource supplies the data,
+ > the delegate supplies the behavior
+ > https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
+ 
  
  --------------------------
  PROJECT NOTES:
