@@ -168,6 +168,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  * comic vine api basic walkthrough
  > https://josephephillips.com/blog/how-to-use-comic-vine-api-part1
+ 
+ 12.07.23
+ * seeing if planting call in async solves the "not being filled outside of closure" problem
+ > read below two before contin.
+ >> https://stackoverflow.com/questions/70962534/swift-await-async-how-to-wait-synchronously-for-an-async-task-to-complete
+ >> https://stackoverflow.com/questions/48713427/how-to-make-async-await-in-swift
  --------------------------
  HARD KNOCKS:
  
