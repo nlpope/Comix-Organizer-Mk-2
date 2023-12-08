@@ -26,6 +26,7 @@ class AllPublishersViewController: UIViewController {
 
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let group = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,22 +40,28 @@ class AllPublishersViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
         
-        DispatchQueue.main.async(execute: configurePublishers)
-//        configurePublishers()
+//        DispatchQueue.main.async(execute: configurePublishers)
+//        group.enter()
+        configurePublishers()
+//        group.leave()
         print("viewdidload pub array after config:\n \(self.publishers)")
     }
     
     private func configurePublishers() {
+//        let group = DispatchGroup()
+        
         print("inside configurePublishers()")
+//        group.enter()
         APICaller.shared.getPublishers { [weak self] result in
             switch result {
             case .success(let returnedPublishers):
-                self?.publishers.append(contentsOf: returnedPublishers)
-//                self.publishers += returnedPublishers
+//                self?.publishers.append(contentsOf: returnedPublishers)
+                self?.publishers += returnedPublishers
                 print("publishers array = \(self?.publishers)")
             case .failure(let error):
                 print("configurePublishers() threw an error:", error.localizedDescription)
             }
+//            group.leave()
         }
     }
     

@@ -3,4 +3,54 @@
    uuid = "D4E2C865-6F32-4524-9EFB-51FBD3F29F08"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB962FD2-9544-4778-845A-8D0B626D3870"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Comix Organizer Mk 2/Controllers/AllPublishersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EB962FD2-9544-4778-845A-8D0B626D3870 - 8f0f23e54e66da18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.AllPublishersViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Controllers/AllPublishersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "1749">
+               </Location>
+               <Location
+                  uuid = "EB962FD2-9544-4778-845A-8D0B626D3870 - 8f0f23e54e66da18"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.AllPublishersViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Controllers/AllPublishersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "1686">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
