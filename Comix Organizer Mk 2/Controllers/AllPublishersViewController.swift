@@ -181,6 +181,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > read below two before contin.
  >> https://stackoverflow.com/questions/70962534/swift-await-async-how-to-wait-synchronously-for-an-async-task-to-complete
  >> https://stackoverflow.com/questions/48713427/how-to-make-async-await-in-swift
+ 
+ 12.08.23
+ * DispatchGroup() not working as expected
+ > tinkering w async / await next
+ >> https://medium.com/@gianlucaannina_34907/api-calls-using-swift-async-await-and-error-handling-c8efcb000e63 
  --------------------------
  HARD KNOCKS:
  
