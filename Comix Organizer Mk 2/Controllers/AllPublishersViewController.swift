@@ -188,9 +188,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://medium.com/@gianlucaannina_34907/api-calls-using-swift-async-await-and-error-handling-c8efcb000e63
  
  12.11.23
- * researching async vs escaping closures
+ * researching async vs escaping closures - may need to switch to async?
  > Sidharth Juyal article
  >> https://medium.com/@chunkyguy/swift-async-await-vs-closures-6d9b1b86cba5#:~:text=Swift%20await%20works%20by%20capturing%20the%20context%20and%20suspending%20the,as%20equivalent%20to%20escaping%20closure.
+ > swift docs (async funcs)
+ >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/ 
  --------------------------
  HARD KNOCKS:
  
