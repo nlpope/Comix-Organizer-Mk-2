@@ -185,7 +185,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.08.23
  * DispatchGroup() not working as expected
  > tinkering w async / await next
- >> https://medium.com/@gianlucaannina_34907/api-calls-using-swift-async-await-and-error-handling-c8efcb000e63 
+ >> https://medium.com/@gianlucaannina_34907/api-calls-using-swift-async-await-and-error-handling-c8efcb000e63
+ 
+ 12.11.23
+ * researching async vs escaping closures
+ > Sidharth Juyal article
+ >> https://medium.com/@chunkyguy/swift-async-await-vs-closures-6d9b1b86cba5#:~:text=Swift%20await%20works%20by%20capturing%20the%20context%20and%20suspending%20the,as%20equivalent%20to%20escaping%20closure.
  --------------------------
  HARD KNOCKS:
  
