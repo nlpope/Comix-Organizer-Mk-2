@@ -192,7 +192,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > Sidharth Juyal article
  >> https://medium.com/@chunkyguy/swift-async-await-vs-closures-6d9b1b86cba5#:~:text=Swift%20await%20works%20by%20capturing%20the%20context%20and%20suspending%20the,as%20equivalent%20to%20escaping%20closure.
  > swift docs (async funcs)
- >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/ 
+ >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+ 
+ 12.12.23
+ * switching to async
+ > helpful links:
+ >> https://developer.apple.com/forums/thread/712303
+ >> https://www.avanderlee.com/swift/async-await/
  --------------------------
  HARD KNOCKS:
  
