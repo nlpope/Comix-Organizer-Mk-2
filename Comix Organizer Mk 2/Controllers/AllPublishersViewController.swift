@@ -199,6 +199,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > helpful links:
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
+ >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
  --------------------------
  HARD KNOCKS:
  
@@ -208,3 +209,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  --------------------------
  */
+
+
+
+
+
