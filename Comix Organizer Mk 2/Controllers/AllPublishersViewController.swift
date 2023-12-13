@@ -37,19 +37,22 @@ class AllPublishersViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
         
-        configurePublishers()
-        print("viewdidload pub array after config:\n \(self.publishers)")
+        Task {
+            await configurePublishers()
+            print("viewdidload pub array after config:\n \(self.publishers)")
+        }
     }
     
-    private func configurePublishers() {
+    private func configurePublishers() async {
         print("inside configurePublishers()")
-        Task {
-            if let results = try? await APICaller.shared.getPublishers() {
-                self.publishers += results
-            } else {
-                print("sumn' went wrong")
-            }
+        
+        if let results = try? await APICaller.shared.getPublishers() {
+            self.publishers += results
+            print("publishers arr after config call: \(self.publishers)")
+        } else {
+            print("sumn' went wrong")
         }
+        
     }
 }
 
@@ -129,6 +132,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
+ 1. just set up the APICaller using the "async throws" method (first link above)
+ 2. ... then, when calling it in the VC, mark the func alling the async method as "async" as well
+ 3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
+ 3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
  --------------------------
  PROJECT NOTES:
  
@@ -186,9 +193,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
- >> just set up the APICaller using the "async throws" method (first link above)
- >> ... then, when calling it in the VC, instead of marking yet another func as "async", just wrap the API call in a Task {...}
- >> ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
+ 
  --------------------------
  HARD KNOCKS:
  
