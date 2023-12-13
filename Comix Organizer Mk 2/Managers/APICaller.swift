@@ -13,6 +13,7 @@ struct Constants {
 }
 
 enum APIError: Error {
+    case invalidURL
     case failedToGetData
 }
 
@@ -23,21 +24,14 @@ class APICaller {
     func getPublishers() async throws -> [Publisher] {
         print("inside getPublishers()")
         //below used to be guard let w an else, but func now returns non-void
-        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {exit(0)}
-        
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
-            guard let data = data, error == nil else {return}
-            
-            do {
-                let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
-//                completion(.success(results.results))
-            } catch {
-                //instead of printing the err, we're passing in a failure to handle it directly from Home/AllPublisherVC
-                completion(.failure(APIError.failedToGetData))
-            }
+        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {
+            throw APIError.invalidURL
         }
+        //async variant of urlsession - may suspend code, hence the await
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
         
-        task.resume()
+        return results.results
     }
 
 }

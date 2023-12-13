@@ -9,21 +9,18 @@ import UIKit
 import CoreData
 
 //this is the HomeViewController / HomeVC
-//instead of giving access to all metron has to offer
-//try adding a search bar to pull specific publishers
-//then list all of user's picks
 //dont forget to add logic for when publisher cant be found/pulled
 
 class AllPublishersViewController: UIViewController {
     
     private var publishers: [Publisher] = [Publisher]()
-
+    
     let tableView: UITableView = {
-       let table = UITableView()
+        let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-
+    
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let group = DispatchGroup()
@@ -40,60 +37,33 @@ class AllPublishersViewController: UIViewController {
         tableView.dataSource = self
         tableView.frame = view.bounds
         
-//        DispatchQueue.main.async(execute: configurePublishers)
-//        group.enter()
         configurePublishers()
-//        group.leave()
         print("viewdidload pub array after config:\n \(self.publishers)")
     }
     
     private func configurePublishers() {
-//        let group = DispatchGroup()
-        
         print("inside configurePublishers()")
-//        group.enter()
-        APICaller.shared.getPublishers { [weak self] result in
-            switch result {
-            case .success(let returnedPublishers):
-//                self?.publishers.append(contentsOf: returnedPublishers)
-                self?.publishers += returnedPublishers
-                print("publishers array = \(self?.publishers)")
-            case .failure(let error):
-                print("configurePublishers() threw an error:", error.localizedDescription)
+        Task {
+            if let results = try? await APICaller.shared.getPublishers() {
+                self.publishers += results
+            } else {
+                print("sumn' went wrong")
             }
-//            group.leave()
         }
     }
-    
-    //should this go in DataPersistenceManager?
-//    func getAllPublishers() {
-//        do {
-//            publishers = try context.fetch(Publisher.fetchRequest())
-//            
-//            DispatchQueue.main.async {
-//                //anything ui related do on main thread
-//                self.tableView.reloadData()
-//                print("reloadData called from getAllPublishers() just now")
-//            }
-//            
-//        } catch {
-//            print("there was an error \(error)")
-//        }
-//        
-//    }
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
 extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return publishers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = "dummy thicc"
-//        cell.textLabel?.text = publishers[indexPath.row].name
+        //        cell.textLabel?.text = publishers[indexPath.row].name
         return cell
     }
     
@@ -143,6 +113,22 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
  
  
+ * Network & API Calls
+ > default = async await
+ > be wary of AlamoFire, it does not support async await (see senpai link below)
+ .
+ > why is async await (structured concurrency) preferred over new swift 5.5 completion handlers?
+ >> note: most probs below are contributed to new "Result" enum
+ >> avoids deep nesting (pyramid of doom) that completion handlers are prone to
+ >> more readable
+ >> "Switch"ing through the results & weak references no longer needed
+ >> transition from sync to asyncy context is clearer
+ >> opens up world of Swift Actors (helps avoid data races & concurrency problems)
+ .
+ > helpful links + how ot convert:
+ >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
+ >> https://developer.apple.com/forums/thread/712303
+ >> https://www.avanderlee.com/swift/async-await/
  --------------------------
  PROJECT NOTES:
  
@@ -173,7 +159,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > metron = mokarri + postman + http auth challenge
  > comic vine = api key
  
- * comic vine api basic walkthrough
+ * comic vine api basic walkthrough (country hat guy)
  > https://josephephillips.com/blog/how-to-use-comic-vine-api-part1
  
  12.07.23
@@ -197,9 +183,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.12.23
  * switching to async
  > helpful links:
+ >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
- >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
+ >> just set up the APICaller using the "async throws" method (first link above)
+ >> ... then, when calling it in the VC, instead of marking yet another func as "async", just wrap the API call in a Task {...}
+ >> ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
  --------------------------
  HARD KNOCKS:
  
