@@ -39,7 +39,7 @@ class AllPublishersViewController: UIViewController {
         
         Task {
             await configurePublishers()
-            print("viewdidload pub array after config:\n \(self.publishers)")
+            print("viewdidload pub array after config (\(publishers.count)):\n \(publishers)")
         }
     }
     
@@ -48,7 +48,6 @@ class AllPublishersViewController: UIViewController {
         
         if let results = try? await APICaller.shared.getPublishers() {
             self.publishers += results
-            print("publishers arr after config call: \(self.publishers)")
         } else {
             print("sumn' went wrong")
         }
