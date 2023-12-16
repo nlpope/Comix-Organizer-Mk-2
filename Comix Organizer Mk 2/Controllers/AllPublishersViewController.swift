@@ -33,14 +33,15 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
-        
         Task {
             await configurePublishers()
             print("viewdidload pub array after config (\(publishers.count)):\n \(publishers)")
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
         }
+        
+       
     }
     
     private func configurePublishers() async {
@@ -59,13 +60,13 @@ class AllPublishersViewController: UIViewController {
 extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("inside tableview-numOfRowsInSect. - publisher array count: \(publishers.count)")
         return publishers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "dummy thicc"
-        //        cell.textLabel?.text = publishers[indexPath.row].name
+        cell.textLabel?.text = publishers[indexPath.row].name
         return cell
     }
     
