@@ -87,11 +87,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  * hide/reveal preview window = cmd + shift + enter
  
  --------------------------
- GETTING STARTED:
- * remove storyboard to code interface programmatically
+ HOW TO REMOVE STORYBOARD TO CODE INTERFACE PROGRAMMATICALLY
+ 
  > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
  
- * App Icons & LaunchScreens:
+ --------------------------
+ APP ICON & LAUNCH SCREEN
  
  > icon
  1. delete app icon present in assests folder
@@ -107,17 +108,33 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  6. set an image inside
  7. attributes inspector - set image to "LaunchScreen" from assets
  
- * Delegate & Datasource Methods
- * Delegate & Datasource Methods
+ --------------------------
+ DELEGATE & DATASOURCE METHODS
+ 
+ > wrap your "tableView.delegate/datasource = self" in a Task (see below sect.) after your API call
+ >> this will ensure there is a "count" in your array to both generate cells & fill them w names
+ 
  > list of mandatory methods
  > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
  
  > The datasource supplies the data,
  > the delegate supplies the behavior
  > https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
+ --------------------------
+ GUARD LET - WHEN YOUR FUNC RETURNS NON-ZERO
+ > just set up an enum contianing APIError, then throw it in the else statement:
  
+ 1. enum APIError: Error {
+     case invalidURL
+     case failedToGetData
+   }
  
- * Network & API Calls
+  2. guard let url = URL(string: ...) else {
+     throw APIError.invalidURL
+    }
+ 
+ --------------------------
+ * Network & API Calls + Tasks {...}
  > default = async await
  > be wary of AlamoFire, it does not support async await (see senpai link below)
  .
@@ -137,6 +154,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  2. ... then, when calling it in the VC, mark the func alling the async method as "async" as well
  3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
  3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
+ 
  --------------------------
  PROJECT NOTES:
  
@@ -194,6 +212,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
+ 
+ 12.16
+ > there's a split second where the Publishers VC is on display w/out the tables present
+ >> they pop in a few seconds later, but how do I make it so the Publishers VC doesn't display til table is populated?
  
  --------------------------
  HARD KNOCKS:
