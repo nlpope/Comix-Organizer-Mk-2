@@ -31,7 +31,7 @@ class APICaller {
         let (data, _) = try await URLSession.shared.data(from: url)
         let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
         
-        return results.results
+        return results.results.sorted(by: {$1.name > $0.name})
     }
 
 }

@@ -35,7 +35,6 @@ class AllPublishersViewController: UIViewController {
         
         Task {
             await configurePublishers()
-            print("viewdidload pub array after config (\(publishers.count)):\n \(publishers)")
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
@@ -44,13 +43,11 @@ class AllPublishersViewController: UIViewController {
        
     }
     
-    private func configurePublishers() async {
-        print("inside configurePublishers()")
-        
+    private func configurePublishers() async {        
         if let results = try? await APICaller.shared.getPublishers() {
             self.publishers += results
         } else {
-            print("sumn' went wrong")
+            print("something went wrong in configurePublishers()")
         }
         
     }
@@ -58,9 +55,8 @@ class AllPublishersViewController: UIViewController {
 
 //MARK: DELEGATE & DATASOURCE METHODS
 extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
-    
+    //datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("inside tableview-numOfRowsInSect. - publisher array count: \(publishers.count)")
         return publishers.count
     }
     
@@ -68,6 +64,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = publishers[indexPath.row].name
         return cell
+    }
+    
+    //delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(publishers[indexPath.row].name)")
     }
     
     
