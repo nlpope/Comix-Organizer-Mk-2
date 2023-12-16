@@ -63,6 +63,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = publishers[indexPath.row].name
+        
         return cell
     }
     
@@ -216,6 +217,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.16
  > there's a split second where the Publishers VC is on display w/out the tables present
  >> they pop in a few seconds later, but how do I make it so the Publishers VC doesn't display til table is populated?
+ 
+ > think i got it - deallocate memory by only loading the cells displayed
+ >> maybe it'll load faster under Publishers title
  
  --------------------------
  HARD KNOCKS:
