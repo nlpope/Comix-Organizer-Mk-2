@@ -159,8 +159,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  --------------------------
  PROJECT NOTES:
  
- full url for api calls (api key + json formatting)
+ API CALL URLs (api key + json formatting + name-field-only for simple testing [to be removed])
+ 
+ publishers url (
  > https://comicvine.gamespot.com/api/publishers/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&sort=name&field_list=name,id&format=json
+ characters url (spider-man)
+ > https://comicvine.gamespot.com/api/characters/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&filter=name:spider-man&field_list=name&format=json
  
  11.20.23
  * creating postman account to pull metron data over
