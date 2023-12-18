@@ -24,7 +24,8 @@ class APICaller {
     func getPublishers() async throws -> [Publisher] {
         print("inside getPublishers()")
         //below used to be guard let w an else, but func now returns non-void
-        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&field_list=name,id&format=json") else {
+        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {
+            //&field_list=name,id
             throw APIError.invalidURL
         }
         //async variant of urlsession - may suspend code, hence the await
@@ -32,8 +33,7 @@ class APICaller {
         let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
         
         //find a way to sort alpha-numerically in comic vine or just sort here again. not sure it's even that costly
-        return results.results
-        //sorted(by: {$1.name > $0.name})
+        return results.results.sorted(by: {$1.name > $0.name})
     }
 
 }

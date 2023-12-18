@@ -224,6 +224,15 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > think i got it - deallocate memory by only loading the cells displayed
  >> maybe it'll load faster under Publishers title
  
+ 12.18
+ > pagination: that's what needs to happen next (lazy loading as you scroll)
+ >> next comicvine article should help
+ 
+ > ok, now it's time for:
+ >> pagination
+ >> CharacterSelectViewCell setup (configure(with:...) func - see Netflix)
+ >> importing character images from comic vine & populating each cell w the OG url @bottom of each call
+ 
  --------------------------
  HARD KNOCKS:
  
