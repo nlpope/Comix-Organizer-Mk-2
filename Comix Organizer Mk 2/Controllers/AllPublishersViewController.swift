@@ -160,7 +160,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  PROJECT NOTES:
  
  full url for api calls (api key + json formatting)
- > https://comicvine.gamespot.com/api/publishers/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&format=json
+ > https://comicvine.gamespot.com/api/publishers/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&sort=name&field_list=name,id&format=json
  
  11.20.23
  * creating postman account to pull metron data over
