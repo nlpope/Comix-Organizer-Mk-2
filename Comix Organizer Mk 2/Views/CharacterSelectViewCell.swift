@@ -12,6 +12,7 @@ class CharacterSelectViewCell: UITableViewCell {
     static let identifier = "CharacterSelectViewCell"
     
     private func configureWith(character: String) {
-        
+        //should contain character image & checkbox
+        //pagination in todoey should help w specifics - see udemy
     }
 }

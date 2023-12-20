@@ -23,7 +23,6 @@ class AllPublishersViewController: UIViewController {
     
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let group = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +139,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  --------------------------
  * Network & API Calls + Tasks {...}
  > default = async await
- > be wary of AlamoFire, it does not support async await (see senpai link below)
+ > > be wary of AlamoFire, it does not support async await (see senpai link below)
  .
  > why is async await (structured concurrency) preferred over new swift 5.5 completion handlers?
  >> note: most probs below are contributed to new "Result" enum
@@ -155,9 +154,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
  1. just set up the APICaller using the "async throws" method (first link above)
- 2. ... then, when calling it in the VC, mark the func alling the async method as "async" as well
+ 2. ... then, when calling it in the VC, mark the (configure) func calling the async method as "async" as well
+ 2a. Also, this configure func is where you will handle your filtering should it be necessary
  3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
  3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
+ 
  
  --------------------------
  PROJECT NOTES:

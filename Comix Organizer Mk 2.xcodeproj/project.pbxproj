@@ -25,6 +25,7 @@
 		40A83AD52AFBBD89009F80D3 /* AllCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */; };
 		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
 		40D7D3012B331E0B00B040CE /* AllTeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */; };
+		40D7D3032B331F1E00B040CE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3022B331F1E00B040CE /* Character.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
 		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamsViewController.swift; sourceTree = "<group>"; };
+		40D7D3022B331F1E00B040CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				40A83ACB2AFA6187009F80D3 /* Publisher.swift */,
+				40D7D3022B331F1E00B040CE /* Character.swift */,
 				40A83ACD2AFA6192009F80D3 /* Comic.swift */,
 			);
 			path = Models;
@@ -169,9 +172,9 @@
 			children = (
 				40A83AD02AFBB09E009F80D3 /* MainTabBarViewController.swift */,
 				40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */,
-				40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */,
 				40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */,
 				40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */,
+				40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
+				40D7D3032B331F1E00B040CE /* Character.swift in Sources */,
 				40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */,
 				40A83AD32AFBB2B6009F80D3 /* AllComicsViewController.swift in Sources */,
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,

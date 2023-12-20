@@ -32,12 +32,19 @@ class APICaller {
         let (data, _) = try await URLSession.shared.data(from: url)
         let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
         
-        //find a way to sort alpha-numerically in comic vine or just sort here again. not sure it's even that costly
         return results.results.sorted(by: {$1.name > $0.name})
     }
     
     func getCharacters() async throws -> [Character] {
+        guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
+            throw APIError.invalidURL
+        }
         
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+        
+        
+        return results.results.sorted(by: {$1.name > $0.name})
     }
 
 }
