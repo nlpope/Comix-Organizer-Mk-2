@@ -24,7 +24,7 @@ class APICaller {
     func getPublishers() async throws -> [Publisher] {
         print("inside getPublishers()")
         //below used to be guard let w an else, but func now returns non-void
-        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {
+        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json&field_list=name,id,publisher") else {
             //&field_list=name,id
             throw APIError.invalidURL
         }
@@ -34,6 +34,10 @@ class APICaller {
         
         //find a way to sort alpha-numerically in comic vine or just sort here again. not sure it's even that costly
         return results.results.sorted(by: {$1.name > $0.name})
+    }
+    
+    func getCharacters() async throws -> [Character] {
+        
     }
 
 }

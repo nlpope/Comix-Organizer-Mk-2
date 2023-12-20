@@ -70,6 +70,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(publishers[indexPath.row].name)")
+        
+        
     }
     
     
@@ -111,16 +113,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  --------------------------
  DELEGATE & DATASOURCE METHODS
+ > delegate = what to do when row is clicked (supplies behavior)
+ > datasource = book rows & populate (supplies data)
+ > despite the order in the naming, the datasource method usually comes first
+ >> https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
  
  > wrap your "tableView.delegate/datasource = self" in a Task (see below sect.) after your API call
  >> this will ensure there is a "count" in your array to both generate cells & fill them w names
  
  > list of mandatory methods
  > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
- 
- > The datasource supplies the data,
- > the delegate supplies the behavior
- > https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
+  
  --------------------------
  GUARD LET - WHEN YOUR FUNC RETURNS NON-ZERO
  > just set up an enum contianing APIError, then throw it in the else statement:
@@ -162,9 +165,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  API CALL URLs (api key + json formatting + name-field-only for simple testing [to be removed])
  
  publishers url (
- > https://comicvine.gamespot.com/api/publishers/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&sort=name&field_list=name,id&format=json
+ > https://comicvine.gamespot.com/api/publishers/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&sort=name&format=json&field_list=name,publisher,id,origin,image,deck,birth,api_detail_url,aliases
  characters url (spider-man)
- > https://comicvine.gamespot.com/api/characters/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&filter=name:spider-man&field_list=name&format=json
+ > https://comicvine.gamespot.com/api/characters/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&formate=json&filter=name:spider-man&field_list=name,publisher,id,origin,image,deck,birth,api_detail_url,aliases
  
  11.20.23
  * creating postman account to pull metron data over
@@ -233,6 +236,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> next comicvine article should help
  
  > ok, now it's time for:
+ >> figuring out call for list of comix under selectedPublisher (view)
  >> pagination
  >> CharacterSelectViewCell setup (configure(with:...) func - see Netflix)
  >> importing character images from comic vine & populating each cell w the OG url @bottom of each call

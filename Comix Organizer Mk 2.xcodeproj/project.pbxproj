@@ -24,6 +24,7 @@
 		40A83AD32AFBB2B6009F80D3 /* AllComicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */; };
 		40A83AD52AFBBD89009F80D3 /* AllCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */; };
 		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
+		40D7D3012B331E0B00B040CE /* AllTeamsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllComicsViewController.swift; sourceTree = "<group>"; };
 		40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCharactersViewController.swift; sourceTree = "<group>"; };
 		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTeamsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */,
 				40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */,
 				40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */,
+				40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				40A83AD12AFBB09E009F80D3 /* MainTabBarViewController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */,
 				40A83ACE2AFA6192009F80D3 /* Comic.swift in Sources */,
+				40D7D3012B331E0B00B040CE /* AllTeamsViewController.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,

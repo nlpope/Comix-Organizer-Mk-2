@@ -14,6 +14,7 @@ class MainTabBarViewController: UITabBarController {
         let vc1 = UINavigationController(rootViewController: AllPublishersViewController())
         let vc2 = UINavigationController(rootViewController: AllComicsViewController())
         let vc3 = UINavigationController(rootViewController: AllCharactersViewController())
+        let vc4 = UINavigationController(rootViewController: AllTeamsViewController())
         
         vc1.tabBarItem.image = UIImage(systemName: "list.dash")
         vc2.tabBarItem.image = UIImage(systemName: "list.dash")
