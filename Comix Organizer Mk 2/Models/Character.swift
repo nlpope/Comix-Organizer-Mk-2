@@ -14,5 +14,6 @@ struct APICharactersResponse: Codable {
 struct Character: Codable {
     let id: Int
     let name: String
+    let publisher: String
     //how to get image in here? UIImage throws error for codable protocol
 }

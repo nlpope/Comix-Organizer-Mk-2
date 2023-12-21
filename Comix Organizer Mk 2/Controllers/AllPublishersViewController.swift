@@ -42,7 +42,8 @@ class AllPublishersViewController: UIViewController {
        
     }
     
-    private func configurePublishers() async {        
+    //should i re-add "private" to below? benefit?
+    func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishers() {
             self.publishers += results
         } else {
@@ -69,6 +70,16 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(publishers[indexPath.row].name)")
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let publisher = publishers[indexPath.row].name
+        let vc = AllCharactersViewController()
+        Task {
+            await vc.configureCharacters(with: publisher)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
         
         
     }
@@ -241,6 +252,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> pagination
  >> CharacterSelectViewCell setup (configure(with:...) func - see Netflix)
  >> importing character images from comic vine & populating each cell w the OG url @bottom of each call
+ 
+ 12.21
+ > I want to replace the generic cells in AllCharactersVC w eventual custom characterViewCell
+ > read up on below line, more specifically, URLSesson via docs + all the tangent articles @ the begining
+ >>  let (data, _) = try await URLSession.shared.data(from: url)
+
  
  --------------------------
  HARD KNOCKS:
