@@ -14,26 +14,11 @@
             filePath = "Comix Organizer Mk 2/Managers/APICaller.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "getCharacters()"
             landmarkType = "7">
             <Locations>
-               <Location
-                  uuid = "DC3760A4-C430-46CC-85F2-45DAB1DCCE96 - fa502be4273d4592"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for Comix_Organizer_Mk_2.APICaller.getCharacters() async throws -&gt; Swift.Array&lt;Comix_Organizer_Mk_2.Character&gt;"
-                  moduleName = "Comix Organizer Mk 2"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Managers/APICaller.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "47"
-                  endingLineNumber = "47"
-                  offsetFromSymbolStart = "425">
-               </Location>
                <Location
                   uuid = "DC3760A4-C430-46CC-85F2-45DAB1DCCE96 - fa502be4273d45ad"
                   shouldBeEnabled = "Yes"
@@ -47,6 +32,21 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "46"
                   endingLineNumber = "46"
+                  offsetFromSymbolStart = "337">
+               </Location>
+               <Location
+                  uuid = "DC3760A4-C430-46CC-85F2-45DAB1DCCE96 - fa502be4273d454c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Comix_Organizer_Mk_2.APICaller.getCharacters() async throws -&gt; Swift.Array&lt;Comix_Organizer_Mk_2.Character&gt;"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Managers/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
                   offsetFromSymbolStart = "236">
                </Location>
             </Locations>

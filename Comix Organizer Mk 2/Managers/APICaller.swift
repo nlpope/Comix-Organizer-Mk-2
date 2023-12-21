@@ -37,12 +37,11 @@ class APICaller {
     
     func getCharacters() async throws -> [Character] {
         print("inside getCharacters()")
-        guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json&field_list=name,id,publisher") else {
+        guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
         
         let (data, _) = try await URLSession.shared.data(from: url)
-        
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
         print("RESULTS FROM GETCHARACTERS(): \(results)")
