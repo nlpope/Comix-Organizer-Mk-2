@@ -45,7 +45,7 @@ class AllCharactersViewController: UIViewController {
     
     func configureCharacters(with publisher: String) async {
         if let results = try? await APICaller.shared.getCharacters() {
-            let filteredResults = results.filter {$0.publisher == publisher}
+            let filteredResults = results.filter {$0.publisher.name == publisher}
             self.characters += filteredResults
         } else {
             print("something went wrong in configureCharacters()")

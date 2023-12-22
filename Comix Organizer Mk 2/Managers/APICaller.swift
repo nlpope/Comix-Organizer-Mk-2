@@ -37,16 +37,25 @@ class APICaller {
     
     func getCharacters() async throws -> [Character] {
         print("inside getCharacters()")
+//        var results = APICharactersResponse()
+        
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
-        
         let (data, _) = try await URLSession.shared.data(from: url)
+        //problem child = below
+        //do catch block for testing only then pull out & remove dummy return
+//        do {
+//            let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+//
+//            return results.results.sorted(by: {$1.name > $0.name})
+//
+//        } catch {
+//            print("specific json decoder error: \(error)")
+//        }
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+        return results.results
         
-        print("RESULTS FROM GETCHARACTERS(): \(results)")
-        
-        return results.results.sorted(by: {$1.name > $0.name})
     }
 
 }
