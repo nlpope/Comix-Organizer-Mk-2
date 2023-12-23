@@ -35,12 +35,6 @@ class AllCharactersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
-//        Task {
-//            await configureCharacters(with: )
-//            tableView.delegate = self
-//            tableView.dataSource = self
-//            tableView.frame = view.bounds
-//        }
     }
     
     func configureCharacters(with publisher: String) async {

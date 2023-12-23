@@ -256,9 +256,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  12.21 ?
  > I want to replace the generic cells in AllCharactersVC w eventual custom characterViewCell
- > 1st line = problem chiled; 2nd line = necessary reading - read up on URLSesson via docs + all the tangent articles @ the begining
+ > 1st line = problem child; 2nd line = necessary reading - read up on URLSesson via docs + all the tangent articles @ the begining
  >>  let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
  >>  let (data, _) = try await URLSession.shared.data(from: url)
+ 
+ 12.23
+ > researching server-side encodaable & decodable protocols
+ >> https://www.youtube.com/watch?v=yL5Ff5p1hyc
 
  
  --------------------------
