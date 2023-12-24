@@ -263,14 +263,18 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.23
  > researching server-side encodaable & decodable protocols
  >> https://www.youtube.com/watch?v=yL5Ff5p1hyc
+ 
+ 12.24
+ > still tweaking Character model
+ >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
 
  
  --------------------------
  HARD KNOCKS:
  
- * simulators disappeared?
- > restart computer
- > https://developer.apple.com/forums/thread/120250
+ > simulators disappeared?
+ >> restart computer
+ >>  https://developer.apple.com/forums/thread/120250
  
  --------------------------
  */
