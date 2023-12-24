@@ -17,16 +17,28 @@ struct APICharactersResponse: Decodable {
 struct Character: Decodable {
        
     let id: Int
+    //testing enum coding keys
     let characterName: String
-    let publisher: Dictionary<String, Any>
+    let publisherID: Int
+    let publisherName: String
+//    let publisher: Dictionary<String, Any>
     
     enum CodingKeys: String, CodingKey {
-        case id, publisher
+        case id
         case characterName = "name"
+        case publisher
+    }
+    
+    enum PublisherKeys: String, CodingKey {
+        case publisherID = "id"
+        case publisherName = "name"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
         
 //        let dictionary: [String: Any] = try container.decode([String: Any].self, forKey: key)
     }

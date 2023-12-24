@@ -266,7 +266,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  12.24
  > still tweaking Character model
+ > you're done, just initialize your props inside decoder's init()
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
+ >> @ Coordinate structure is extended to conform to the Decodable protocol by implementing its required initializer
+ 
+ ?? when are enums accessed? automatically when decoding/encoding?
 
  
  --------------------------

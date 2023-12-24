@@ -39,7 +39,7 @@ class AllCharactersViewController: UIViewController {
     
     func configureCharacters(with publisher: String) async {
         if let results = try? await APICaller.shared.getCharacters() {
-            let filteredResults = results.filter {$0.publisher.name == publisher}
+            let filteredResults = results.filter {$0.publisherName == publisher}
             self.characters += filteredResults
         } else {
             print("something went wrong in configureCharacters()")
@@ -58,14 +58,14 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = characters[indexPath.row].name
+        cell.textLabel?.text = characters[indexPath.row].characterName
         
         return cell
     }
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(characters[indexPath.row].name)")
+        print("\(characters[indexPath.row].publisherName)")
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
