@@ -38,9 +38,18 @@ class AllCharactersViewController: UIViewController {
     }
     
     func configureCharacters(with publisher: String) async {
+        //works! publisher is coming through
+        print("inside configureCharacters & publisher = \(publisher)")
         if let results = try? await APICaller.shared.getCharacters() {
+
+            //works up to this point, if publisher is replaced w "DC Comics" || hard coded string value
             let filteredResults = results.filter {$0.publisherName == publisher}
+//            {$0.publisherName == "DC Comics"}
+            
+            //this is where I get an empty array
+            print("filtered result: \(filteredResults)")
             self.characters += filteredResults
+            print("characters stuffed in filtered results = \(characters)")
         } else {
             print("something went wrong in configureCharacters()")
         }

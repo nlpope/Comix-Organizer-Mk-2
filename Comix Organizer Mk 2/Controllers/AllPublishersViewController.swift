@@ -73,9 +73,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
 //        tableView.deselectRow(at: indexPath, animated: true)
         
         let publisher = publishers[indexPath.row].name
+        print("didSelect publisher var : \(publisher)")
         let vc = AllCharactersViewController()
         
         Task {
+            print("about to configure with: \(publisher)")
             await vc.configureCharacters(with: publisher)
             self.navigationController?.pushViewController(vc, animated: true)
         }

@@ -54,7 +54,7 @@ class APICaller {
 //        }
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
 
-        return results.results.sorted(by: {$1.publisherName > $0.publisherName})
+        return results.results.sorted(by: {$1.characterName > $0.characterName})
 
     }
 
