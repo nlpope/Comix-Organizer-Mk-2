@@ -270,7 +270,18 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
  >> @ Coordinate structure is extended to conform to the Decodable protocol by implementing its required initializer
  
+ ENUMS
  ?? when are enums accessed? automatically when decoding/encoding?
+ >>  got it, it's triggered in the init
+ let values = try decoder.container(keyedBy: CodingKeys.self)
+ >> then, you can go deeper into nest by linking enums:
+ 
+ let publisherNest = try values.nestedContainer(keyedBy: PublisherKeys.self, forKey: .publisher)
+ 
+ //then, reach into that nested container and decode the final vars you want
+ publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
+ 
+ >> so is it right to be setting up all that decoding logic in the Character model?
 
  
  --------------------------

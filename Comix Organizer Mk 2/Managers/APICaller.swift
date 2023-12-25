@@ -53,8 +53,9 @@ class APICaller {
 //            print("specific json decoder error: \(error)")
 //        }
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-        return results.results
-        
+
+        return results.results.sorted(by: {$1.publisherName > $0.publisherName})
+
     }
 
 }
