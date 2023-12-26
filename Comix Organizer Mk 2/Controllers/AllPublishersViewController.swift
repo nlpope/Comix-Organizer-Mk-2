@@ -288,7 +288,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > filtering works, but losing publisher contents after await...API...getCharacters() call in AllCharactersVC
  
  12.26
- > researching pagination
+ > researching pagination & comicvine docs for multiple calls
+ >> https://comicvine.gamespot.com/forums/api-developers-2334/api-rate-limiting-1746419/
 
  
  --------------------------
