@@ -286,6 +286,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  ?? so is it right to be setting up all that decoding logic in the Character model?
  
  > filtering works, but losing publisher contents after await...API...getCharacters() call in AllCharactersVC
+ 
+ 12.26
+ > researching pagination
 
  
  --------------------------

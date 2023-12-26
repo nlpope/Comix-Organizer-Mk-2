@@ -62,6 +62,7 @@ class AllCharactersViewController: UIViewController {
 //MARK: DELEGATE & DATASOURCE METHODS
 extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSource {
     //datasource
+    //I want 14 results per page (pagination)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characters.count
     }
