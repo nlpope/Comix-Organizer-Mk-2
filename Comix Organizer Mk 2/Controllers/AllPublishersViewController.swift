@@ -151,7 +151,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     }
  
  --------------------------
- * Network & API Calls + Tasks {...}
+ NETWORK & API CALLS + TASKS {...}
  > default = async await
  > > be wary of AlamoFire, it does not support async await (see senpai link below)
  .
@@ -172,7 +172,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  2a. Also, this configure func is where you will handle your filtering should it be necessary
  3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
  3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
- 
+ .
+ > encoding & decoding nested dictionaries & arrays
+ >> just decode for the fianl, primitive value & navigate levels using enums
+ >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
  
  --------------------------
  PROJECT NOTES:
@@ -290,6 +293,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.26
  > researching pagination & comicvine docs for multiple calls
  >> https://comicvine.gamespot.com/forums/api-developers-2334/api-rate-limiting-1746419/
+ > ... then making character view cell, complete w image & details  of hero & didSelect delegate that takes you to a (yet uncreated) SelectedCharacterVC.
+ ?? how to paginate (comicvine docs above) + create SelectedCharacterVC (1 of many CharacterSelectViewCells will take you there)
 
  
  --------------------------
