@@ -283,7 +283,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  //then, reach into that nested container and decode the final vars you want
  publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
  
- >> so is it right to be setting up all that decoding logic in the Character model?
+ ?? so is it right to be setting up all that decoding logic in the Character model?
+ 
+ > filtering works, but losing publisher contents after await...API...getCharacters() call in AllCharactersVC
 
  
  --------------------------
