@@ -21,7 +21,6 @@ struct Character: Decodable {
     var characterName: String
     var publisherID: Int
     var publisherName: String
-//    let publisher: Dictionary<String, Any>
     
     //enum prop doesn't have to be declared up top
     enum CodingKeys: String, CodingKey {
@@ -30,6 +29,7 @@ struct Character: Decodable {
         case publisher
     }
     
+    //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
     enum PublisherKeys: String, CodingKey {
         case publisherID = "id"
         case publisherName = "name"
