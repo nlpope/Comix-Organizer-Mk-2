@@ -296,6 +296,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > ... then making character view cell, complete w image & details  of hero & didSelect delegate that takes you to a (yet uncreated) SelectedCharacterVC.
  ?? how to paginate (comicvine docs above) + create SelectedCharacterVC (1 of many CharacterSelectViewCells will take you there)
 
+ 12.27
+ > scratch pagination, work on infinite scrolling
+ >>  https://www.kodeco.com/5786-uitableview-infinite-scrolling-tutorial
  
  --------------------------
  HARD KNOCKS:
