@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */; };
 		40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */; };
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCharacterViewController.swift; sourceTree = "<group>"; };
 		40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewCell.swift; sourceTree = "<group>"; };
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */,
 				40D7D3002B331E0B00B040CE /* AllTeamsViewController.swift */,
 				40A83AD22AFBB2B6009F80D3 /* AllComicsViewController.swift */,
+				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				40D7D3012B331E0B00B040CE /* AllTeamsViewController.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
+				409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
 				40D7D3032B331F1E00B040CE /* Character.swift in Sources */,
 				40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */,
