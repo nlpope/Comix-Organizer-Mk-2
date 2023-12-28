@@ -316,6 +316,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
  >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
  
+ >> nvmd, sticking w mvc architecture for simplicity - I'll use mvcvm (mvvm) on a later project
  --------------------------
  
  */

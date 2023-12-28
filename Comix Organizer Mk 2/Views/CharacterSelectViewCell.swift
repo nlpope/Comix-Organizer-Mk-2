@@ -11,9 +11,24 @@ import UIKit
 class CharacterSelectViewCell: UITableViewCell {
     static let identifier = "CharacterSelectViewCell"
     
-    private func configureWith(character: String) {
-        //should contain character image & checkbox
-        //pagination in todoey should help w specifics - see udemy
+    //giving CharacterSelectVC label & image
+    private let characterLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let characterThumbnailUIImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
+    public func configureWith(character: String) {
+        //should contain character image
+        
         
         
     }
