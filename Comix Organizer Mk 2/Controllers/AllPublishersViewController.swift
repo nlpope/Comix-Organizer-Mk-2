@@ -300,6 +300,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > scratch pagination, work on infinite scrolling
  >>  https://www.kodeco.com/5786-uitableview-infinite-scrolling-tutorial
  
+ 12.28
+ > researching / considering MVVM approach for the SelectedCharacter portion
+ 
  --------------------------
  HARD KNOCKS:
  

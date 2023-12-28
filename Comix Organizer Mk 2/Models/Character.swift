@@ -17,19 +17,20 @@ struct APICharactersResponse: Decodable {
 struct Character: Decodable {
        
     var id: Int
-    //testing enum coding keys
+    //enum coding keys
     var characterName: String
     var publisherID: Int
     var publisherName: String
     
     //enum prop doesn't have to be declared up top
+    //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
+
     enum CodingKeys: String, CodingKey {
         case id
         case characterName = "name"
         case publisher
     }
     
-    //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
     enum PublisherKeys: String, CodingKey {
         case publisherID = "id"
         case publisherName = "name"
