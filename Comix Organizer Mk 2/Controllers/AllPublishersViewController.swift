@@ -178,6 +178,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
  
  --------------------------
+ HARD KNOCKS:
+ 
+ > simulators disappeared?
+ >> restart computer
+ >>  https://developer.apple.com/forums/thread/120250
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  PROJECT NOTES:
  
  API CALL URLs (api key + json formatting + name-field-only for simple testing [to be removed])
@@ -302,15 +313,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  12.28
  > researching / considering MVVM approach for the SelectedCharacter portion
+ >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
+ >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
  
  --------------------------
- HARD KNOCKS:
  
- > simulators disappeared?
- >> restart computer
- >>  https://developer.apple.com/forums/thread/120250
- 
- --------------------------
  */
 
 
