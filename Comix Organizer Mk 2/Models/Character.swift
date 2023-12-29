@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct APICharactersResponse: Decodable {
     let results: [Character]
@@ -16,19 +17,31 @@ struct APICharactersResponse: Decodable {
 //Codable protocol throws error after new init
 struct Character: Decodable {
        
-    var id: Int
+    var characterID: Int
     //enum coding keys
     var characterName: String
+    var characterAbbreviatedBio: String
+    var characterDetailedBio: String
+    //below = nested
+    var characterThumbnail: URL
     var publisherID: Int
     var publisherName: String
     
-    //enum prop doesn't have to be declared up top
+    //for nested items: enum prop doesn't have to be declared up top
     //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
 
     enum CodingKeys: String, CodingKey {
         case id
         case characterName = "name"
+        case characterAbbreviatedBio = "deck"
+        case characterDetailedBio = "description"
+        //below = nested
+        case image
         case publisher
+    }
+    
+    enum ImageKeys: String, CodingKey {
+        case characterThumbnail = "thumb_url"
     }
     
     enum PublisherKeys: String, CodingKey {
@@ -41,14 +54,21 @@ struct Character: Decodable {
         
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        id = try values.decode(Int.self, forKey: .id)
+        characterID = try values.decode(Int.self, forKey: .id)
         
         characterName = try values.decode(String.self, forKey: .characterName)
         
+        characterAbbreviatedBio = try values.decode(String.self, forKey: .characterAbbreviatedBio)
+        
+        characterDetailedBio = try values.decode(String.self, forKey: .characterDetailedBio)
+        
         //link the 1st level key containing the nested container
+        let imageNest = try values.nestedContainer(keyedBy: ImageKeys.self, forKey: .image)
         let publisherNest = try values.nestedContainer(keyedBy: PublisherKeys.self, forKey: .publisher)
         
         //then, reach into that nested container and decode the final vars you want
+        characterThumbnail = try imageNest.decode(URL.self, forKey: .characterThumbnail)
+        
         publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
         
         publisherName = try publisherNest.decode(String.self, forKey: .publisherName)

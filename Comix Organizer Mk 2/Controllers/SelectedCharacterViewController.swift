@@ -12,9 +12,9 @@ class SelectedCharacterViewController: UIViewController {
     
     private var character: String
     
-    init(selectedCharacter: String) {
-        self.character = selectedCharacter
-    }
+//    init(selectedCharacter: String) {
+//        self.character = selectedCharacter
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -176,6 +176,16 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > encoding & decoding nested dictionaries & arrays
  >> just decode for the fianl, primitive value & navigate levels using enums
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
+ --------------------------
+ ENUMS (see comix organizer mk 2 [Character model, AllCharactersVC, CharacterSelectViewCell ]+ docs on encoding & decoding containers)
+ > enums are accessed/triggered in he init(from decoder: Decoder) just below the enums
+ let values = try decoder.container(keyedBy: CodingKeys.self)
+ 
+ > then, you can go deeper into nest by linking enums:
+ let publisherNest = try values.nestedContainer(keyedBy: PublisherKeys.self, forKey: .publisher)
+ 
+ //then, reach into that nested container and decode the final vars you want
+ publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
  
  --------------------------
  HARD KNOCKS:
@@ -288,10 +298,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  ENUMS
  ?? when are enums accessed? automatically when decoding/encoding?
- >>  got it, it's triggered in the init
+ >>  got it, it's triggered in the init(from decoder: Decoder) just below the enums
  let values = try decoder.container(keyedBy: CodingKeys.self)
- >> then, you can go deeper into nest by linking enums:
  
+ >> then, you can go deeper into nest by linking enums:
  let publisherNest = try values.nestedContainer(keyedBy: PublisherKeys.self, forKey: .publisher)
  
  //then, reach into that nested container and decode the final vars you want

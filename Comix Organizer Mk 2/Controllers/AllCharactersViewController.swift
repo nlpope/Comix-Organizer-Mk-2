@@ -62,14 +62,21 @@ class AllCharactersViewController: UIViewController {
 //MARK: DELEGATE & DATASOURCE METHODS
 extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSource {
     //datasource
-    //I want 14 results per page (pagination)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = characters[indexPath.row].characterName
+        //"as! CharacterSelectViewCell" gives access to iboutlets in CharacterSelectViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterSelectViewCell", for: indexPath) as! CharacterSelectViewCell
+        
+        let theCharacter = characters[indexPath.row]
+        //below = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
+        cell.characterName?.text = theCharacter.characterName
+        cell.characterAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
+        cell.characterDetailedBio?.text = theCharacter.characterDetailedBio
+        //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
+        cell.characterThumbnail?.image = theCharacter.characterThumbnail
         
         return cell
     }
