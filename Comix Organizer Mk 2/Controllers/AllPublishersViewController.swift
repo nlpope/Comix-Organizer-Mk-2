@@ -317,6 +317,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
  
  >> nvmd, sticking w mvc architecture for simplicity - I'll use mvcvm (mvvm) on a later project
+ 
+ 12.29
+ > researching UITableViewCell type for CharacterSelectViewCell
  --------------------------
  
  */
