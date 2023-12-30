@@ -30,7 +30,7 @@ struct Character: Decodable {
     //for nested items: enum prop doesn't have to be declared up top
     //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
 
-    enum CodingKeys: String, CodingKey {
+    enum CharacterKey: String, CodingKey {
         case id
         case characterName = "name"
         case characterAbbreviatedBio = "deck"
@@ -40,11 +40,11 @@ struct Character: Decodable {
         case publisher
     }
     
-    enum ImageKeys: String, CodingKey {
+    enum ImageKey: String, CodingKey {
         case characterThumbnail = "thumb_url"
     }
     
-    enum PublisherKeys: String, CodingKey {
+    enum PublisherKey: String, CodingKey {
         case publisherID = "id"
         case publisherName = "name"
     }
@@ -52,7 +52,7 @@ struct Character: Decodable {
     init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let values = try decoder.container(keyedBy: CharacterKey.self)
         
         characterID = try values.decode(Int.self, forKey: .id)
         
@@ -63,8 +63,8 @@ struct Character: Decodable {
         characterDetailedBio = try values.decode(String.self, forKey: .characterDetailedBio)
         
         //link the 1st level key containing the nested container
-        let imageNest = try values.nestedContainer(keyedBy: ImageKeys.self, forKey: .image)
-        let publisherNest = try values.nestedContainer(keyedBy: PublisherKeys.self, forKey: .publisher)
+        let imageNest = try values.nestedContainer(keyedBy: ImageKey.self, forKey: .image)
+        let publisherNest = try values.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
         
         //then, reach into that nested container and decode the final vars you want
         characterThumbnail = try imageNest.decode(URL.self, forKey: .characterThumbnail)

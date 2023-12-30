@@ -71,10 +71,10 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterSelectViewCell", for: indexPath) as! CharacterSelectViewCell
         
         let theCharacter = characters[indexPath.row]
-        cell.characterName?.text = theCharacter.characterName
-        cell.characterAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
-        cell.characterDetailedBio?.text = theCharacter.characterDetailedBio
-        cell.characterThumbnail?.image = theCharacter.characterThumbnail
+        cell.characterViewCellName?.text = theCharacter.characterName
+        cell.characterViewCellAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
+        cell.characterViewCellDetailedBio?.text = theCharacter.characterDetailedBio
+        cell.characterViewCellThumbnail?.image = theCharacter.characterThumbnail
         //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
 

@@ -9,31 +9,12 @@ import Foundation
 import UIKit
 
 class CharacterSelectViewCell: UITableViewCell {
-    @IBOutlet var characterName: UILabel?
-    @IBOutlet var characterAbbreviatedBio: UILabel?
-    @IBOutlet var characterDetailedBio: UILabel?
-    @IBOutlet var characterThumbnail: UIImageView?
+    @IBOutlet var characterViewCellName: UILabel?
+    @IBOutlet var characterViewCellAbbreviatedBio: UILabel?
+    @IBOutlet var characterViewCellDetailedBio: UILabel?
+    @IBOutlet var characterViewCellThumbnail: UIImageView?
     //Add outlets to your subclass and connect those outlets to the corresponding views in your prototype cell
     
     static let identifier = "CharacterSelectViewCell"
-    
-    
-    
-    //giving CharacterSelectVC label & image
-    private let characterLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private let characterThumbnailUIImageView: UIImageView = {
-        let imageView = UIImageView()
-        //not sure if the below is right
-        //read docs @ "Configure a cell with custom views"
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.clipsToBounds = true
-        return imageView
-    }()
     
 }
