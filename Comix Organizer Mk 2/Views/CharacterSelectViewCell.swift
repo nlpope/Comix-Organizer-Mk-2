@@ -13,6 +13,7 @@ class CharacterSelectViewCell: UITableViewCell {
     @IBOutlet var characterAbbreviatedBio: UILabel?
     @IBOutlet var characterDetailedBio: UILabel?
     @IBOutlet var characterThumbnail: UIImageView?
+    //Add outlets to your subclass and connect those outlets to the corresponding views in your prototype cell
     
     static let identifier = "CharacterSelectViewCell"
     
