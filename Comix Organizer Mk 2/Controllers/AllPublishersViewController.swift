@@ -464,6 +464,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> doesn't work, in fact I think I put that in the Task {} because assigning the delegate before the API call completed was giving me issues, moving back.
  
  > moving UIImageView's extended load func to CharacterSelectViewCell - where it makes more sense
+ 
+ > PROBLEM : [Character] not getting read, problem = Character struct, but I'm not sure where
+ >> GOAL: Get characters populated on AllCharactersVC (confirm image)
  --------------------------
  
  */
