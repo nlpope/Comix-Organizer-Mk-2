@@ -40,6 +40,7 @@ class AllCharactersViewController: UIViewController {
     func configureCharacters(with publisher: String) async {
         //works! publisher is coming through
         print("inside configureCharacters & publisher = \(publisher)")
+        //PROBLEM CHILD
         if let results = try? await APICaller.shared.getCharacters() {
             //raw results coming through, but I lose it below
             //works up to this point, if publisher is replaced w "DC Comics" || hard coded string value
@@ -74,7 +75,8 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         cell.characterViewCellName?.text = theCharacter.characterName
         cell.characterViewCellAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
         cell.characterViewCellDetailedBio?.text = theCharacter.characterDetailedBio
-        cell.characterViewCellThumbnail?.image = theCharacter.characterThumbnail
+        cell.characterViewCellThumbnail?.load(withURL: theCharacter.characterThumbnailURL)
+        //NEEDS A UIIMAGE INSIDE, LOAD IT
         //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
 

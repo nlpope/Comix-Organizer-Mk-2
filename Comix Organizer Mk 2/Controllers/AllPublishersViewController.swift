@@ -34,11 +34,11 @@ class AllPublishersViewController: UIViewController {
         
         Task {
             await configurePublishers()
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.frame = view.bounds
         }
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.frame = view.bounds
        
     }
     
@@ -212,6 +212,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  --------------------------
  UIIMAGEVIEW & UIIMAGE
  > UIImageView = stores UIImage
+ >> houses a ".image" property
+
  > UIImage = raw image
  >> https://stackoverflow.com/questions/8070805/difference-between-uiimage-and-uiimageview
  
@@ -451,6 +453,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > reviewing difference btwn UIImageView & UIImage
  >> https://stackoverflow.com/questions/8070805/difference-between-uiimage-and-uiimageview
+ 
+ 12.30
+ > next up, pull UIImage from url by putting extension from below link in the Character model for now
+ >> https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
  --------------------------
  
  */

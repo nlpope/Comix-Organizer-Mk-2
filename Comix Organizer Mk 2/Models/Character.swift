@@ -23,7 +23,7 @@ struct Character: Decodable {
     var characterAbbreviatedBio: String
     var characterDetailedBio: String
     //below = nested
-    var characterThumbnail: UIImageView
+    var characterThumbnailURL: URL
     var publisherID: Int
     var publisherName: String
     
@@ -41,7 +41,9 @@ struct Character: Decodable {
     }
     
     enum ImageKey: String, CodingKey {
-        case characterThumbnail = "thumb_url"
+        case characterThumbnailURL = "thumb_url"
+        // i wanna grab this url
+        //2. dump it in new load() func in extension
     }
     
     enum PublisherKey: String, CodingKey {
@@ -67,8 +69,7 @@ struct Character: Decodable {
         let publisherNest = try values.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
         
         //then, reach into that nested container and decode the final vars you want
-        characterThumbnail = try imageNest.decode(URL.self, forKey: .characterThumbnail)
-        
+        characterThumbnailURL = try imageNest.decode(URL.self, forKey: .characterThumbnailURL)
         publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
         
         publisherName = try publisherNest.decode(String.self, forKey: .publisherName)
@@ -77,5 +78,19 @@ struct Character: Decodable {
 
         
 //        let dictionary: [String: Any] = try container.decode([String: Any].self, forKey: key)
+    }
+}
+
+extension UIImageView {
+    func load(withURL url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
