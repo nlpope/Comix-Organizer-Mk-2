@@ -125,6 +125,50 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  7. attributes inspector - set image to "LaunchScreen" from assets
  
  --------------------------
+ INITS
+ > initialize parameters defined in a struct,  class or extension
+ >> classes = mandatory
+ >> structs = don't need them / swift auto adds them @ compile time
+ 
+ STANDARD INITS
+ > most straightforward - initialize the values you define @ runtime
+ >> failable, so put a "!" after the final parenthesis of the init if need be
+ > example (set up)
+ class Hero {
+    codeName: String
+    publisher: String
+    age: Int
+    init(codeName: String, publisher: String, age: Int) {
+        self.codeName = codeName
+        self.publisher = publisher
+        self.age = age
+    }
+ }
+ 
+ > example (execution)
+ var clint: Hero(codeName: "Hawkeye", publisher: "Marvel", age: 38)
+ >> just put the class/struct name in front of the init, that's all
+ 
+ CONVENIENCE INITS
+ > ?
+ > example (set up)
+ extension UIImage {
+     enum AssetIdentifier: String {
+         case Search = "Search"
+         case Menu = "Menu"
+     }
+     convenience init(assetIdentifier: AssetIdentifier) {
+         self.init(named: assetIdentifier.rawValue)!
+     }
+ }
+ 
+ > example (execution)
+ UIImage(assetIdentifier: .Search)
+
+ HELPFUL LINKS
+ > https://stackoverflow.com/questions/32544366/swift-uiimage-extension
+ 
+ --------------------------
  DELEGATE & DATASOURCE METHODS
  > delegate = what to do when row is clicked (supplies behavior)
  > datasource = book rows & populate (supplies data)
@@ -177,7 +221,24 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> just decode for the fianl, primitive value & navigate levels using enums
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
  --------------------------
- ENUMS (see comix organizer mk 2 [Character model, AllCharactersVC, CharacterSelectViewCell ]+ docs on encoding & decoding containers)
+ ENUMS
+ > the point (problem) = mistakes can be made when setting up vars
+ var selectedDay = "Monday"
+ selectedDay = "Tuesday"
+ selectedDay = "January" - oops, that's a month, but still compiles
+ or how about...
+ selectedDay = "Friday " - oops, extra space, but still compiles
+ 
+ > the point (sltn) = we wanna set up a CUSTOM TYPE so typos / invalid values aren't possible
+ enum Day {
+    case monday
+    case tuesday
+    case wednesday
+    ...
+ }
+ >> NOW, like a boolean, this new custom type "Day" only holds a small range of possible values
+ 
+ HOW TO WIRE IT UP
  > enums are accessed/triggered in he init(from decoder: Decoder) just below the enums
  let values = try decoder.container(keyedBy: CodingKeys.self)
  
@@ -187,6 +248,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  //then, reach into that nested container and decode the final vars you want
  publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
  
+ HELPFUL LINKS
+ > Paul Hudson YT explanation
+ >> https://www.youtube.com/watch?v=bwqbf-1_7gE
+ > see comix organizer mk 2 [Character model, AllCharactersVC, CharacterSelectViewCell ]+ docs on encoding & decoding containers
  --------------------------
  HARD KNOCKS:
  
