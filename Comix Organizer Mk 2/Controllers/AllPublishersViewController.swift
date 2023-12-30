@@ -103,13 +103,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  * hide/reveal preview window = cmd + shift + enter
  
  --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  HOW TO REMOVE STORYBOARD TO CODE INTERFACE PROGRAMMATICALLY
- 
  > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
  
  --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  APP ICON & LAUNCH SCREEN
- 
  > icon
  1. delete app icon present in assests folder
  2. bake icon
@@ -124,6 +128,24 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  6. set an image inside
  7. attributes inspector - set image to "LaunchScreen" from assets
  
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ MVC & MVVM ARCHITECTURES
+ > MVC
+ >> low complexity apps, simple arch. w plenty of documentation/support; most common
+ > MVVM (or MVCVM)
+ >> more complex apps that need reusable view models
+ >> I'll research more on this come ComixOrganizer Mk. 3
+ 
+ >  HELPFUL LINKS
+ >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
+ >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  INITS
  > initialize parameters defined in a struct,  class or extension
@@ -169,6 +191,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > https://stackoverflow.com/questions/32544366/swift-uiimage-extension
  
  --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  DELEGATE & DATASOURCE METHODS
  > delegate = what to do when row is clicked (supplies behavior)
  > datasource = book rows & populate (supplies data)
@@ -181,6 +206,22 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > list of mandatory methods
  > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
   
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ UIIMAGEVIEW & UIIMAGE
+ > UIImageView = stores UIImage
+ > UIImage = raw image
+ >> https://stackoverflow.com/questions/8070805/difference-between-uiimage-and-uiimageview
+ 
+ > pulling a UIImage from a url
+ >> ?
+ >> https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  GUARD LET - WHEN YOUR FUNC RETURNS NON-ZERO
  > just set up an enum contianing APIError, then throw it in the else statement:
@@ -195,10 +236,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     }
  
  --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  NETWORK & API CALLS + TASKS {...}
  > default = async await
  > > be wary of AlamoFire, it does not support async await (see senpai link below)
- .
+ 
  > why is async await (structured concurrency) preferred over new swift 5.5 completion handlers?
  >> note: most probs below are contributed to new "Result" enum
  >> avoids deep nesting (pyramid of doom) that completion handlers are prone to
@@ -206,8 +250,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> "Switch"ing through the results & weak references no longer needed
  >> transition from sync to asyncy context is clearer
  >> opens up world of Swift Actors (helps avoid data races & concurrency problems)
- .
- > helpful links + how ot convert:
+ 
+ HELPFUL LINKS + HOW TO CONVERT
  >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
  >> https://developer.apple.com/forums/thread/712303
  >> https://www.avanderlee.com/swift/async-await/
@@ -216,10 +260,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  2a. Also, this configure func is where you will handle your filtering should it be necessary
  3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
  3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
- .
+ 
  > encoding & decoding nested dictionaries & arrays
  >> just decode for the fianl, primitive value & navigate levels using enums
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  ENUMS
  > the point (problem) = mistakes can be made when setting up vars
@@ -253,11 +301,15 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://www.youtube.com/watch?v=bwqbf-1_7gE
  > see comix organizer mk 2 [Character model, AllCharactersVC, CharacterSelectViewCell ]+ docs on encoding & decoding containers
  --------------------------
- HARD KNOCKS:
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ HARD KNOCKS
  
  > simulators disappeared?
  >> restart computer
- >>  https://developer.apple.com/forums/thread/120250
+ >> https://developer.apple.com/forums/thread/120250
+
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
