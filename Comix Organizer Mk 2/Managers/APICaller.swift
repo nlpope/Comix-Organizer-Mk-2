@@ -35,6 +35,7 @@ class APICaller {
         return results.results.sorted(by: {$1.name > $0.name})
     }
     
+    //12.30 PROBLEM CHILD
     func getCharacters() async throws -> [Character] {
         print("inside getCharacters()")
         
@@ -42,16 +43,19 @@ class APICaller {
             throw APIError.invalidURL
         }
         let (data, _) = try await URLSession.shared.data(from: url)
-        //problem child = below
-        //do catch block for testing only then pull out & remove dummy return
-//        do {
-//            let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-//
-//            return results.results.sorted(by: {$1.name > $0.name})
-//
-//        } catch {
-//            print("specific json decoder error: \(error)")
-//        }
+        //do catch block for testing only then pull out along w dummy return
+        //BEGIN TEST
+        //LEADS TO PROBLEM CHILD
+        do {
+            let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+
+            return results.results.sorted(by: {$1.characterName > $0.characterName})
+
+        } catch {
+            print("specific json decoder error: \(error)")
+        }
+        //END TEST
+        
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
 
         return results.results.sorted(by: {$1.characterName > $0.characterName})

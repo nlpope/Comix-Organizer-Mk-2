@@ -17,20 +17,22 @@ struct APICharactersResponse: Decodable {
 //Codable protocol throws error after new init
 struct Character: Decodable {
        
-    var characterID: Int
+    var characterID: Int?
     //enum coding keys
     var characterName: String
-    var characterAbbreviatedBio: String
-    var characterDetailedBio: String
+    var characterAbbreviatedBio: String?
+    var characterDetailedBio: String?
     //below = nested
     var characterThumbnailURL: URL
-    var publisherID: Int
-    var publisherName: String
+    var publisherID: Int?
+    var publisherName: String?
     
     //for nested items: enum prop doesn't have to be declared up top
     //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
 
-    enum CharacterKey: String, CodingKey {
+    //get it working, then rename "CharacterKey" singular = preferred, I thought
+    //but docs use below (plural) for some reason
+    enum CodingKeys: String, CodingKey {
         case id
         case characterName = "name"
         case characterAbbreviatedBio = "deck"
@@ -42,8 +44,6 @@ struct Character: Decodable {
     
     enum ImageKey: String, CodingKey {
         case characterThumbnailURL = "thumb_url"
-        // i wanna grab this url
-        //2. dump it in new load() func in extension
     }
     
     enum PublisherKey: String, CodingKey {
@@ -52,9 +52,9 @@ struct Character: Decodable {
     }
     
     init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        let container = try decoder.container(keyedBy: CharacterKey.self)
         
-        let values = try decoder.container(keyedBy: CharacterKey.self)
+        let values = try decoder.container(keyedBy: CodingKeys.self)
         
         characterID = try values.decode(Int.self, forKey: .id)
         

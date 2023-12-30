@@ -38,9 +38,8 @@ class AllCharactersViewController: UIViewController {
     }
     
     func configureCharacters(with publisher: String) async {
-        //works! publisher is coming through
         print("inside configureCharacters & publisher = \(publisher)")
-        //PROBLEM CHILD
+        //12.30 LEADS TO PROBLEM CHILD
         if let results = try? await APICaller.shared.getCharacters() {
             //raw results coming through, but I lose it below
             //works up to this point, if publisher is replaced w "DC Comics" || hard coded string value

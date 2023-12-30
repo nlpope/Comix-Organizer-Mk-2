@@ -34,11 +34,12 @@ class AllPublishersViewController: UIViewController {
         
         Task {
             await configurePublishers()
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
         }
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
+       
        
     }
     
@@ -460,6 +461,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > changing characterThumbnail to characterThumbnailURL to account for IBOutlet UIImageView container's new "load(withURL: ) extended method
  > now what happens when I put viewDidLoad > tableView's delegate & datasource definitions outside the task - does it load faster @ boot?
+ >> doesn't work, in fact I think I put that in the Task {} because assigning the delegate before the API call completed was giving me issues, moving back.
+ 
+ > moving UIImageView's extended load func to CharacterSelectViewCell - where it makes more sense
  --------------------------
  
  */
