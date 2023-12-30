@@ -457,6 +457,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.30
  > next up, pull UIImage from url by putting extension from below link in the Character model for now
  >> https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
+ 
+ > changing characterThumbnail to characterThumbnailURL to account for IBOutlet UIImageView container's new "load(withURL: ) extended method
+ > now what happens when I put viewDidLoad > tableView's delegate & datasource definitions outside the task - does it load faster @ boot?
  --------------------------
  
  */
