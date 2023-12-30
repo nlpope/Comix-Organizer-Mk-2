@@ -23,7 +23,7 @@ struct Character: Decodable {
     var characterAbbreviatedBio: String
     var characterDetailedBio: String
     //below = nested
-    var characterThumbnail: URL
+    var characterThumbnail: UIImageView
     var publisherID: Int
     var publisherName: String
     

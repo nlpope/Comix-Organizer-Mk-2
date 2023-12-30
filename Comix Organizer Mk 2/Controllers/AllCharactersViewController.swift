@@ -74,9 +74,10 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         cell.characterName?.text = theCharacter.characterName
         cell.characterAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
         cell.characterDetailedBio?.text = theCharacter.characterDetailedBio
-        //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
         cell.characterThumbnail?.image = theCharacter.characterThumbnail
         //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
+        //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
+
 
         
         return cell

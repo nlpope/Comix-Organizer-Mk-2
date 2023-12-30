@@ -331,6 +331,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.29
  > researching UITableViewCell type for CharacterSelectViewCell
  > docs = stopped @ " method of your data source, use your cell’s outlets to assign values to any views" in "configuring the cells for your table"
+ 
+ > reviewing difference btwn UIImageView & UIImage
+ >> https://stackoverflow.com/questions/8070805/difference-between-uiimage-and-uiimageview
  --------------------------
  
  */
