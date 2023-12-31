@@ -273,14 +273,15 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  ENUMS
- > the point (problem) = mistakes can be made when setting up vars
+ > "I only want a certain range of options available here wrapped in a custom type to avoid mispelling or putting "North" where "Monday" should go
+ >  the problem = mistakes can be made when setting up vars
  var selectedDay = "Monday"
  selectedDay = "Tuesday"
  selectedDay = "January" - oops, that's a month, but still compiles
  or how about...
  selectedDay = "Friday " - oops, extra space, but still compiles
  
- > the point (sltn) = we wanna set up a CUSTOM TYPE so typos / invalid values aren't possible
+ > the sltn = we wanna set up a CUSTOM TYPE so typos / invalid values aren't possible
  enum Day {
     case monday
     case tuesday
@@ -298,6 +299,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  //then, reach into that nested container and decode the final vars you want
  publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
+ 
+ IMPORTANT RULES
+ > always start w plural "CodingKeys", then as you reach into nested containers, use singular naming convention
  
  HELPFUL LINKS
  > Paul Hudson YT explanation
@@ -470,6 +474,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  12.31
  > thinkin i wired my enums up incorrectly
+ 
+ > GOT IT, there's no value (null) for the deck of some of the characters, but i thought i already accounted for that? do even the enum vals need to be optional?
+ 
+ >> no, enums don't need optionals. the problem was w the values in each key "deck" & "description" being "null" in some places
+ >> so I used method container.decodIfPresent instead of container.deode for each prop's init in the Character model
+ >>> BUT NOW I'm running into an old issue where I lose the selected publisher in AllCharactersVC @ just after "let filteredResults = ..."
+ >>> BUT TODAY WAS STILL A SUCCESS, b/c I accounted for one of my CodingKeys missing an assoc. value with the .decodIfPresent property in my model
  --------------------------
  
  */

@@ -29,9 +29,8 @@ struct Character: Decodable {
     
     //for nested items: enum prop doesn't have to be declared up top
     //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
-
-    //get it working, then rename "CharacterKey" singular = preferred, I thought
-    //but docs use below (plural) for some reason
+    
+    //(a) start w plural "CodingKeys" always...
     enum CodingKeys: String, CodingKey {
         case id
         case characterName = "name"
@@ -42,6 +41,7 @@ struct Character: Decodable {
         case publisher
     }
     
+    //(a) then move to singular naming convention - docs
     enum ImageKey: String, CodingKey {
         case characterThumbnailURL = "thumb_url"
     }
@@ -53,21 +53,21 @@ struct Character: Decodable {
     
     //12.31 PROBLEM CHILD?
     init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CharacterKey.self)
         
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        characterID = try values.decode(Int.self, forKey: .id)
+        characterID = try container.decode(Int.self, forKey: .id)
         
-        characterName = try values.decode(String.self, forKey: .characterName)
+        characterName = try container.decode(String.self, forKey: .characterName)
         
-        characterAbbreviatedBio = try values.decode(String.self, forKey: .characterAbbreviatedBio)
+        characterAbbreviatedBio = try container.decodeIfPresent(String.self, forKey: .characterAbbreviatedBio)
         
-        characterDetailedBio = try values.decode(String.self, forKey: .characterDetailedBio)
+        characterDetailedBio = try container.decodeIfPresent(String.self, forKey: .characterDetailedBio)
         
         //link the 1st level key containing the nested container
-        let imageNest = try values.nestedContainer(keyedBy: ImageKey.self, forKey: .image)
-        let publisherNest = try values.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
+        let imageNest = try container.nestedContainer(keyedBy: ImageKey.self, forKey: .image)
+        //12.31 PROBLEM CHILD?
+        let publisherNest = try container.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
         
         //then, reach into that nested container and decode the final vars you want
         characterThumbnailURL = try imageNest.decode(URL.self, forKey: .characterThumbnailURL)
@@ -75,10 +75,12 @@ struct Character: Decodable {
         
         publisherName = try publisherNest.decode(String.self, forKey: .publisherName)
         
+        //        print("""
+        //              character name = \(characterName),
+        //              \npublisher name = \(publisherName)
+        //              \ncharacter deck = \(characterAbbreviatedBio!)
+        //              """)
         
-
-        
-//        let dictionary: [String: Any] = try container.decode([String: Any].self, forKey: key)
     }
 }
 

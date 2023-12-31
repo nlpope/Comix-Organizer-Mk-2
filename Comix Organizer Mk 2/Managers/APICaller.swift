@@ -20,6 +20,7 @@ enum APIError: Error {
 class APICaller {
     static let shared = APICaller()
     
+    
 //    func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void)
     func getPublishers() async throws -> [Publisher] {
         print("inside getPublishers()")
@@ -38,7 +39,7 @@ class APICaller {
     //12.30 PROBLEM CHILD
     func getCharacters() async throws -> [Character] {
         print("inside getCharacters()")
-        
+        var results: APICharactersResponse?
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
@@ -47,22 +48,20 @@ class APICaller {
         //BEGIN TEST
         do {
             //LEADS TO PROBLEM CHILD
-            let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+            results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
 
-            return results.results.sorted(by: {$1.characterName > $0.characterName})
+//            return results.results.sorted(by: {$1.characterName > $0.characterName})
 
         } catch {
             print("specific json decoder error: \(error)")
         }
         //END TEST
         
-        let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+//        let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
 
-        return results.results.sorted(by: {$1.characterName > $0.characterName})
+        return (results?.results.sorted(by: {$1.characterName > $0.characterName}))!
 
     }
 
 }
 
-//MARK: ADD GIST EXTENSIONS HERE
-//source: https://stackoverflow.com/questions/44603248/how-to-decode-a-property-with-type-of-json-dictionary-in-swift-45-decodable-pr

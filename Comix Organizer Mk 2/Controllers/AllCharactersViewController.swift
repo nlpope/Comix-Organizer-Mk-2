@@ -44,7 +44,7 @@ class AllCharactersViewController: UIViewController {
             //raw results coming through, but I lose it below
             //works up to this point, if publisher is replaced w "DC Comics" || hard coded string value
             print("just about to filter & publisher = \(publisher)")
-            let filteredResults = results.filter {$0.publisherName == publisher}
+            let filteredResults = results.filter {$0.publisherName == "\(publisher)"}
 //            {$0.publisherName == "DC Comics"}
             
             //this is where I get an empty array
@@ -71,11 +71,12 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterSelectViewCell", for: indexPath) as! CharacterSelectViewCell
         
         let theCharacter = characters[indexPath.row]
+        
         cell.characterViewCellName?.text = theCharacter.characterName
         cell.characterViewCellAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
         cell.characterViewCellDetailedBio?.text = theCharacter.characterDetailedBio
+        
         cell.characterViewCellThumbnail?.load(withURL: theCharacter.characterThumbnailURL)
-        //NEEDS A UIIMAGE INSIDE, LOAD IT
         //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
 
@@ -86,7 +87,8 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(characters[indexPath.row].publisherName)")
-        tableView.deselectRow(at: indexPath, animated: true)
+        //12.31 PROBLEM CHILD?
+//        print("\(characters[indexPath.row].publisherName)")
+//        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
