@@ -16,13 +16,13 @@ struct APICharactersResponse: Decodable {
 //changing to just Decodable
 //Codable protocol throws error after new init
 struct Character: Decodable {
-       
+    //to be initialized w enums just after enum declarations
     var characterID: Int?
     //enum coding keys
     var characterName: String
     var characterAbbreviatedBio: String?
     var characterDetailedBio: String?
-    //below = nested
+    //nested coding keys
     var characterThumbnailURL: URL
     var publisherID: Int?
     var publisherName: String?
@@ -51,6 +51,7 @@ struct Character: Decodable {
         case publisherName = "name"
     }
     
+    //12.31 PROBLEM CHILD?
     init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CharacterKey.self)
         

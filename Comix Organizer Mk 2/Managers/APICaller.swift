@@ -43,10 +43,10 @@ class APICaller {
             throw APIError.invalidURL
         }
         let (data, _) = try await URLSession.shared.data(from: url)
-        //do catch block for testing only then pull out along w dummy return
+        //CONFIRMED ABOVE WORKS
         //BEGIN TEST
-        //LEADS TO PROBLEM CHILD
         do {
+            //LEADS TO PROBLEM CHILD
             let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
 
             return results.results.sorted(by: {$1.characterName > $0.characterName})

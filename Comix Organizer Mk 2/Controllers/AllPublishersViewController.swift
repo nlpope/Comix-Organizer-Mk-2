@@ -467,6 +467,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > PROBLEM : [Character] not getting read, problem = Character struct, but I'm not sure where
  >> GOAL: Get characters populated on AllCharactersVC (confirm image)
+ 
+ 12.31
+ > thinkin i wired my enums up incorrectly
  --------------------------
  
  */
