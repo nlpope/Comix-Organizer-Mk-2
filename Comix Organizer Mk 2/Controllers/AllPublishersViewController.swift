@@ -300,10 +300,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  //then, reach into that nested container and decode the final vars you want
  publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
  
- IMPORTANT RULES
+ ERROR SLTNS & IMPORTANT RULES
  > always start w plural "CodingKeys", then as you reach into nested containers, use singular naming convention
+ > ERROR = nested container contains a null / nil value?
+ >> in the OG model, just decode using .decodeIfPresent instead of .decode
+ >> https://stackoverflow.com/questions/55183539/ignore-null-object-in-array-when-parse-with-codable-swift
  
- HELPFUL LINKS
+ MISCELLANEOUS LINKS
  > Paul Hudson YT explanation
  >> https://www.youtube.com/watch?v=bwqbf-1_7gE
  > see comix organizer mk 2 [Character model, AllCharactersVC, CharacterSelectViewCell ]+ docs on encoding & decoding containers
@@ -481,6 +484,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> so I used method container.decodIfPresent instead of container.deode for each prop's init in the Character model
  >>> BUT NOW I'm running into an old issue where I lose the selected publisher in AllCharactersVC @ just after "let filteredResults = ..."
  >>> BUT TODAY WAS STILL A SUCCESS, b/c I accounted for one of my CodingKeys missing an assoc. value with the .decodIfPresent property in my model
+ 
+ > GOALS
+ >> get filtered results to stop dissappearing
+ >> see if decodIfPresent, keeps that "null" error from throwing - done
+ >> populate the AllCharactersVC w data that is for sure coming in, but getting lost @ the filter stage
  --------------------------
  
  */
