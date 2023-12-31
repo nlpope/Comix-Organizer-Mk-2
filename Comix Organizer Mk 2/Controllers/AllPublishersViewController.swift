@@ -486,9 +486,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >>> BUT TODAY WAS STILL A SUCCESS, b/c I accounted for one of my CodingKeys missing an assoc. value with the .decodIfPresent property in my model
  
  > GOALS
+ >> search: "results dissapearing after filtering swift stack overflow"
  >> get filtered results to stop dissappearing
  >> see if decodIfPresent, keeps that "null" error from throwing - done
  >> populate the AllCharactersVC w data that is for sure coming in, but getting lost @ the filter stage
+ 
  --------------------------
  
  */

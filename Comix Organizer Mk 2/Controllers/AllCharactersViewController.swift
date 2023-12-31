@@ -41,10 +41,11 @@ class AllCharactersViewController: UIViewController {
         print("inside configureCharacters & publisher = \(publisher)")
         //12.30 LEADS TO PROBLEM CHILD
         if let results = try? await APICaller.shared.getCharacters() {
-            //raw results coming through, but I lose it below
-            //works up to this point, if publisher is replaced w "DC Comics" || hard coded string value
+            
             print("just about to filter & publisher = \(publisher)")
-            let filteredResults = results.filter {$0.publisherName == "\(publisher)"}
+            //raw results coming through, but I lose it below
+            //works up to this point. I lose the array after filtering, but if publisher is replaced w "DC Comics" || hard coded string value
+            let filteredResults = results.filter {$0.publisherName == publisher}
 //            {$0.publisherName == "DC Comics"}
             
             //this is where I get an empty array
