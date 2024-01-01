@@ -23,7 +23,7 @@ class APICaller {
     
 //    func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void)
     func getPublishersAPI() async throws -> [Publisher] {
-        print("inside getPublishers()")
+        print("inside getPublishersAPI()")
         //below used to be guard let w an else, but func now returns non-void
         guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json&field_list=name,id,publisher") else {
             //&field_list=name,id
@@ -38,29 +38,22 @@ class APICaller {
     
     //12.30 PROBLEM CHILD
     func getCharactersAPI() async throws -> [Character] {
-        print("inside getCharacters()")
+        print("inside getCharactersAPI()")
         var results: APICharactersResponse
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
-        let (data, _) = try await URLSession.shared.data(from: url)
-        //CONFIRMED ABOVE WORKS
-        //BEGIN TEST
-        do {
-            //LEADS TO PROBLEM CHILD
+        print("got the url: \(url)")
+        Task {
+            let (data, _) = try await URLSession.shared.data(from: url)
             results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+            print("about to return results: \(results.results)")
 
-//            return results.results.sorted(by: {$1.characterName > $0.characterName})
 
-        } catch {
-            //12.31 this is good, im not hitting this error, thanks to decodeIfPresent
-            print("specific json decoder error: \(error)")
         }
-        //END TEST
+        //CONFIRMED ABOVE & BELOW WORKS
+        //defining results above for previous do catch test, i'll move it back once it gets workin
         
-//        let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-
-        print("results got out of do block, about to return")
         return (results.results.sorted(by: {$1.characterName > $0.characterName}))
 
     }

@@ -144,7 +144,28 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >  HELPFUL LINKS
  >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
  >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ REFERENCE TYPES VS VALUE TYPES (CLASSES VS STRUCTS)
+ > REFERENCE TYPES
+ >> shares a single copy of (pointer to) the object's data
+ >>> see chicket on a boat: https://developer.apple.com/videos/play/wwdc2022/110351/
+ >> e.g.  classes
+ >> DOES  require init
+ >> IS NOT conformable to SENDABLE protocol
+ >>> unless all of its props are NON-MUTABLE / NOT CHANGEABLE
+
  
+ > VALUE TYPES
+ >> shares a unique COPY of the obecjt's data
+ >>> see pineapple on a boat: https://developer.apple.com/videos/play/wwdc2022/110351/
+ >> e.g. structs & enums
+ >> DOES NOT require init
+ >> conformable to SENDABLE protocol
+ >>> unless one of its props is of type class / not sendable conforming
+
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -244,6 +265,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  NETWORK & API CALLS + TASKS {...}
+ NETWORK & API CALLS
  > default = async await
  > > be wary of AlamoFire, it does not support async await (see senpai link below)
  
@@ -255,18 +277,26 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> transition from sync to asyncy context is clearer
  >> opens up world of Swift Actors (helps avoid data races & concurrency problems)
  
+ TASKS
+ > closures that only accepts values conforming to the @Sendable protocol
+ 
  HELPFUL LINKS + HOW TO CONVERT
- >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
- >> https://developer.apple.com/forums/thread/712303
- >> https://www.avanderlee.com/swift/async-await/
+ > https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
+ > https://developer.apple.com/forums/thread/712303
+ > https://www.avanderlee.com/swift/async-await/
  1. just set up the APICaller using the "async throws" method (first link above)
  2. ... then, when calling it in the VC, mark the (configure) func calling the async method as "async" as well
  2a. Also, this configure func is where you will handle your filtering should it be necessary
  3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
  3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
  
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ ENCODING & DECODING NESTED JSON DATA
  > encoding & decoding nested dictionaries & arrays
- >> just decode for the fianl, primitive value & navigate levels using enums
+ >> just decode for the fianl, primitive value & navigate levels using enums (see below)
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
  
  --------------------------
@@ -491,6 +521,15 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> get filtered results to stop dissappearing
  >> see if decodIfPresent, keeps that "null" error from throwing - done
  >> populate the AllCharactersVC w data that is for sure coming in, but getting lost @ the filter stage
+ 
+ > quick detour to stack overflow > apple conference vid
+ >> need to research mutating a var right way so I can get rid of that "in concurrently executing code" error
+ >> get rid of error (via actors (?) ?) > print results.results > fill CharactersVC
+ >> https://stackoverflow.com/questions/74372835/mutation-of-captured-var-in-concurrently-executing-code
+ 
+ 01.01.24
+ > researching concurrentcy > researching actors (for passing mutating reference type vars) > get rid of error via actors > print results.results > fill CharactersVC
+ >> https://developer.apple.com/videos/play/wwdc2022/110350
  
  --------------------------
  
