@@ -528,8 +528,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://stackoverflow.com/questions/74372835/mutation-of-captured-var-in-concurrently-executing-code
  
  01.01.24
- > researching concurrentcy > researching actors (for passing mutating reference type vars) > get rid of error via actors > print results.results > fill CharactersVC
- >> https://developer.apple.com/videos/play/wwdc2022/110350
+ > researching concurrentcy (try docs 1st) > researching actors (for passing mutating reference type vars | try docs 1st)) > get rid of error via actors > print results.results > fill CharactersVC
+ >> (concurrency WWDC vid) https://developer.apple.com/videos/play/wwdc2022/110350
+ >> (concurrency docs) https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+ 
+ >> (actor WWDC vid) https://developer.apple.com/videos/play/wwdc2022/110351/
+ >> (actor docs? check if this is right) https://developer.apple.com/documentation/swift/anyactor
  
  --------------------------
  
