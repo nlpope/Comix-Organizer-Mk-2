@@ -48,6 +48,7 @@ class APICaller {
             let (data, _) = try await URLSession.shared.data(from: url)
             results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
             print("about to return results: \(results.results)")
+            //researching concurrency to solve this
 
 
         }
