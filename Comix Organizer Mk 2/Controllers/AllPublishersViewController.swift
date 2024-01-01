@@ -45,7 +45,7 @@ class AllPublishersViewController: UIViewController {
     
     //should i re-add "private" to below? benefit?
     func configurePublishers() async {
-        if let results = try? await APICaller.shared.getPublishers() {
+        if let results = try? await APICaller.shared.getPublishersAPI() {
             self.publishers += results
         } else {
             print("something went wrong in configurePublishers()")
@@ -79,7 +79,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         
         Task {
             print("about to configure with: \(publisher)")
-            await vc.configureCharacters(with: publisher)
+            await vc.configureCharacters(withPublisher: publisher)
+            //how to navigate/light up the characters tab, - see Task > configure(with... note in AllCharactersVC
             self.navigationController?.pushViewController(vc, animated: true)
         }
         
@@ -478,7 +479,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  12.31
  > thinkin i wired my enums up incorrectly
  
- > GOT IT, there's no value (null) for the deck of some of the characters, but i thought i already accounted for that? do even the enum vals need to be optional?
+ > GOT IT, there's no value (null) for the 'deck' of some of the characters, but i thought i already accounted for that? do even the enum vals need to be optional?
  
  >> no, enums don't need optionals. the problem was w the values in each key "deck" & "description" being "null" in some places
  >> so I used method container.decodIfPresent instead of container.deode for each prop's init in the Character model

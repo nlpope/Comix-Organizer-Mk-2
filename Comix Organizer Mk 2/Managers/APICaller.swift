@@ -22,7 +22,7 @@ class APICaller {
     
     
 //    func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void)
-    func getPublishers() async throws -> [Publisher] {
+    func getPublishersAPI() async throws -> [Publisher] {
         print("inside getPublishers()")
         //below used to be guard let w an else, but func now returns non-void
         guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json&field_list=name,id,publisher") else {
@@ -37,9 +37,9 @@ class APICaller {
     }
     
     //12.30 PROBLEM CHILD
-    func getCharacters() async throws -> [Character] {
+    func getCharactersAPI() async throws -> [Character] {
         print("inside getCharacters()")
-        var results: APICharactersResponse?
+        var results: APICharactersResponse
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
@@ -53,13 +53,15 @@ class APICaller {
 //            return results.results.sorted(by: {$1.characterName > $0.characterName})
 
         } catch {
+            //12.31 this is good, im not hitting this error, thanks to decodeIfPresent
             print("specific json decoder error: \(error)")
         }
         //END TEST
         
 //        let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
 
-        return (results?.results.sorted(by: {$1.characterName > $0.characterName}))!
+        print("results got out of do block, about to return")
+        return (results.results.sorted(by: {$1.characterName > $0.characterName}))
 
     }
 

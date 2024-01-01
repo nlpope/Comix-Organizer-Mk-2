@@ -26,6 +26,7 @@ class AllCharactersViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(tableView)
         
+        //task > await configureCharacters(with publisher: ...)? - eventually
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
@@ -37,10 +38,11 @@ class AllCharactersViewController: UIViewController {
         
     }
     
-    func configureCharacters(with publisher: String) async {
+    func configureCharacters(withPublisher publisher: String) async {
         print("inside configureCharacters & publisher = \(publisher)")
         //12.30 LEADS TO PROBLEM CHILD
-        if let results = try? await APICaller.shared.getCharacters() {
+        if let results = try? await APICaller.shared.getCharactersAPI() {
+            
             
             print("just about to filter & publisher = \(publisher)")
             //raw results coming through, but I lose it below
