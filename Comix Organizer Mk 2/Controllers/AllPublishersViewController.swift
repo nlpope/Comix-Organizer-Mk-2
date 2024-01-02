@@ -300,7 +300,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  METHOD 1
  > call async funcs w "async let" (parallel work) = "Faster. Since value's not needed on next line,I'll knock these out at the same time, just "await" me on the line you'll use this value on. The code carries on while I do this"
- >>> example
+ >> 'async let' implicitly creates a child task
+ >> example
  async let firstPhoto = downloadPhoto(named: photoNames[0])
  async let secondPhoto = downloadPhoto(named: photoNames[1])
  async let thirdPhoto = downloadPhoto(named: photoNames[2])
@@ -310,7 +311,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  METHOD 2
  > calling async funcs w "await" (sequential work) = "Slower. Since value IS needed on next line, I'll knock these out 1 at a time, sequentially. The code carries on while I do this, but only one call to the async func is made @ a time"
- >>> example
+ >> example
  let firstPhoto = await downloadPhoto(named: photoNames[0])
  let secondPhoto = await downloadPhoto(named: photoNames[1])
  let thirdPhoto = await downloadPhoto(named: photoNames[2])
