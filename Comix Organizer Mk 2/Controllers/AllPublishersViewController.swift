@@ -129,13 +129,45 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  5. add a new "LaunchScreen" file
  6. set an image inside
  7. attributes inspector - set image to "LaunchScreen" from assets
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ SYNTAX & TAGS
+ > GENERIC FUNCTIONS
+ >> "I accept this type/placeholder type"
+ >> used when a function's accepted type(s) are subject to change
  
+ >> example (1st = non-generic, 2nd = generic):
+ func swapTwoInts(_ a: inout Int, _ b: inout Int)
+ func swapTwoValues<T>(_ a: inout T, _ b: inout T)
+ >> where arbitrary placeholder <T> = "my accepted type can change based on my params, but those params better have the same type
+ 
+ >> example 2:
+ func withTaskGroup<ChildTaskResult, GroupResult>(
+     of childTaskResultType: ChildTaskResult.Type,
+     returning returnType: GroupResult.Type = GroupResult.self,
+     body: (inout TaskGroup<ChildTaskResult>) async -> GroupResult
+ ) async -> GroupResult where ChildTaskResult : Sendable
+ >> where ChildTaskResult & GroupResult = placeholders who's types are to be determined in func body
+ >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/
+ 
+ > IN-OUT FUNC PARAMETERS
+ >> "I wanna mutate a func's params & have that change persist when the func exits"
+ >> params are 'let' constants by default
+ >> so trying to change param values in body of funcs = compile time error
+ >> if you want changes to persist outside of func, define parameter as in-out
+ 
+ >> example:
+ func swapTwoInts(_ a: inout Int, _ b: inout Int)
+ >> where a & b can now be mutated
+ >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/#In-Out-Parameters
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- MVC & MVVM ARCHITECTURES
- > MVC
+ MVC & MV(C)VM ARCHITECTURES
+ > MVC = default / preferred
  >> low complexity apps, simple arch. w plenty of documentation/support; most common
  > MVVM (or MVCVM)
  >> more complex apps that need reusable view models
@@ -556,9 +588,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://stackoverflow.com/questions/74372835/mutation-of-captured-var-in-concurrently-executing-code
  
  01.01.24
- > researching concurrentcy (try docs 1st) > researching actors (for passing mutating reference type vars | try docs 1st)) > get rid of error via actors > print results.results > fill CharactersVC
+ > researching concurrency (try docs 1st) [research generics simult.]> researching actors (for passing mutating reference type vars; try docs 1st)) > get rid of error via actors > print results.results > fill CharactersVC
  >> (concurrency WWDC vid) https://developer.apple.com/videos/play/wwdc2022/110350
  >> (concurrency docs) https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+ 
+ >> (generics docs) https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/
  
  >> (actor WWDC vid) https://developer.apple.com/videos/play/wwdc2022/110351/
  >> (actor docs? check if this is right) https://developer.apple.com/documentation/swift/anyactor
