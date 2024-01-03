@@ -109,24 +109,32 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  ACTORS
+ > safely share information between concurrent code
+ >> pineapples, chickens, boats & islands (UIslands)
  > like classes, actors are reference types
  >> meaning they require an init
  >> though, unlike classes, actors allow only one task to access their mutable state at a time, which makes it safe for code in mult. tasks to interact w the same instance of an actor
- > example:
+ >> when you access a prop or method of an actor, you use "await" to mark the potential suspension point.
+ > example (set up):
  actor TemperatureLogger {
      let label: String
      var measurements: [Int]
-     **private(set) var max: Int
+     private(set) var max: Int
 
 
-     init(label: String, measurement: Int) {
+     *init(label: String, measurement: Int) {
          self.label = label
          self.measurements = [measurement]
          self.max = measurement
      }
  }
  
+ let logger = TemperatureLogger(label: "Outdoors", measurement: 25)
+ *print(await logger.max)
+ // Prints "25"
+ 
  > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors
+ > (wwdc video) https://developer.apple.com/videos/play/wwdc2022/110351/
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
