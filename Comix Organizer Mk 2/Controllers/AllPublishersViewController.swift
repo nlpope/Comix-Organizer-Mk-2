@@ -108,9 +108,32 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- HOW TO REMOVE STORYBOARD TO CODE INTERFACE PROGRAMMATICALLY
- > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
+ API CALLS & NETWORK + TASKS {...}
+ > API CALLS & NETWORK
+ >> default = async await
+ >> be wary of AlamoFire, it does not support async await (see senpai link below)
  
+ >> why is async await (structured concurrency) preferred over new swift 5.5 completion handlers?
+ >>> note: most probs below are contributed to new "Result" enum
+ >>> avoids deep nesting (pyramid of doom) that completion handlers are prone to
+ >>> more readable
+ >>> "Switch"ing through the results & weak references no longer needed
+ >>> transition from sync to asyncy context is clearer
+ >>> opens up world of Swift Actors (helps avoid data races & concurrency problems)
+ 
+ > TASKS
+ >> closures that only accepts values conforming to the @Sendable protocol
+ >> see "Tasks" sect.
+ 
+ > HELPFUL LINKS + HOW TO CONVERT
+ >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
+ >> https://developer.apple.com/forums/thread/712303
+ >> https://www.avanderlee.com/swift/async-await/
+ 1. just set up the APICaller using the "async throws" method (first link above)
+ 2. ... then, when calling it in the VC, mark the (configure) func calling the async method as "async" as well
+ 2a. Also, this configure func is where you will handle your filtering should it be necessary
+ 3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
+ 3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -129,177 +152,16 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  5. add a new "LaunchScreen" file
  6. set an image inside
  7. attributes inspector - set image to "LaunchScreen" from assets
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- SYNTAX & TAGS
- > GENERIC FUNCTIONS
- >> "I accept this type/placeholder type"
- >> used when a function's accepted type(s) are subject to change
- 
- >> example (1st = non-generic, 2nd = generic):
- func swapTwoInts(_ a: inout Int, _ b: inout Int)
- func swapTwoValues<T>(_ a: inout T, _ b: inout T)
- >> where arbitrary placeholder <T> = "my accepted type can change based on my params, but those params better have the same type
- 
- >> example 2:
- func withTaskGroup<ChildTaskResult, GroupResult>(
-     of childTaskResultType: ChildTaskResult.Type,
-     returning returnType: GroupResult.Type = GroupResult.self,
-     body: (inout TaskGroup<ChildTaskResult>) async -> GroupResult
- ) async -> GroupResult where ChildTaskResult : Sendable
- >> where ChildTaskResult & GroupResult = placeholders who's types are to be determined in func body
- >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/
- 
- > IN-OUT FUNC PARAMETERS
- >> "I wanna mutate a func's params & have that change persist when the func exits"
- >> params are 'let' constants by default
- >> so trying to change param values in body of funcs = compile time error
- >> if you want changes to persist outside of func, define parameter as in-out
- 
- >> example:
- func swapTwoInts(_ a: inout Int, _ b: inout Int)
- >> where a & b can now be mutated
- >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/#In-Out-Parameters
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- MVC & MV(C)VM ARCHITECTURES
- > MVC = default / preferred
- >> low complexity apps, simple arch. w plenty of documentation/support; most common
- > MVVM (or MVCVM)
- >> more complex apps that need reusable view models
- >> I'll research more on this come ComixOrganizer Mk. 3
- 
- >  HELPFUL LINKS
- >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
- >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- REFERENCE TYPES VS VALUE TYPES (CLASSES VS STRUCTS)
- > REFERENCE TYPES
- >> shares a single copy of (pointer to) the object's data
- >>> see chicket on a boat: https://developer.apple.com/videos/play/wwdc2022/110351/
- >> e.g.  classes
- >> DOES  require init
- >> IS NOT conformable to SENDABLE protocol
- >>> unless all of its props are NON-MUTABLE / NOT CHANGEABLE
-
- 
- > VALUE TYPES
- >> shares a unique COPY of the obecjt's data
- >>> see pineapple on a boat: https://developer.apple.com/videos/play/wwdc2022/110351/
- >> e.g. structs & enums
- >> DOES NOT require init
- >> conformable to SENDABLE protocol
- >>> unless one of its props is of type class / not sendable conforming
-
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- INITS
- > initialize parameters defined in a struct,  class or extension
- >> classes = mandatory
- >> structs = don't need them / swift auto adds them @ compile time
- 
- STANDARD INITS
- > most straightforward - initialize the values you define @ runtime
- >> failable, so put a "!" after the final parenthesis of the init if need be
- > example (set up)
- class Hero {
-    codeName: String
-    publisher: String
-    age: Int
-    init(codeName: String, publisher: String, age: Int) {
-        self.codeName = codeName
-        self.publisher = publisher
-        self.age = age
-    }
- }
- 
- > example (execution)
- var clint: Hero(codeName: "Hawkeye", publisher: "Marvel", age: 38)
- >> just put the class/struct name in front of the init, that's all
- 
- CONVENIENCE INITS
- > ?
- > example (set up)
- extension UIImage {
-     enum AssetIdentifier: String {
-         case Search = "Search"
-         case Menu = "Menu"
-     }
-     convenience init(assetIdentifier: AssetIdentifier) {
-         self.init(named: assetIdentifier.rawValue)!
-     }
- }
- 
- > example (execution)
- UIImage(assetIdentifier: .Search)
-
- HELPFUL LINKS
- > https://stackoverflow.com/questions/32544366/swift-uiimage-extension
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- DELEGATE & DATASOURCE METHODS
- > delegate = what to do when row is clicked (supplies behavior)
- > datasource = book rows & populate (supplies data)
- > despite the order in the naming, the datasource method usually comes first
- >> https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
- 
- > wrap your "tableView.delegate/datasource = self" in a Task (see below sect.) after your API call
- >> this will ensure there is a "count" in your array to both generate cells & fill them w names
- 
- > list of mandatory methods
- > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
-  
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- UIIMAGEVIEW & UIIMAGE
- > UIImageView = stores UIImage
- >> houses a ".image" property
-
- > UIImage = raw image
- >> https://stackoverflow.com/questions/8070805/difference-between-uiimage-and-uiimageview
- 
- > pulling a UIImage from a url
- >> ?
- >> https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
- 
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- GUARD LET - WHEN YOUR FUNC RETURNS NON-ZERO
- > just set up an enum contianing APIError, then throw it in the else statement:
- 
- 1. enum APIError: Error {
-     case invalidURL
-     case failedToGetData
-   }
- 
-  2. guard let url = URL(string: ...) else {
-     throw APIError.invalidURL
-    }
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- ASYNCHRONOUS CALLS & CONCURRENCY
+ ASYNC / ASYNCHRONOUS CALLS & CONCURRENCY
  > await  = suspension point (execution will pause) on isolated thread til code carries out completely. Though, non-async code around it carries on
  
  METHOD 1
- > call async funcs w "async let" (parallel work) = "Faster. Since value's not needed on next line,I'll knock these out at the same time, just "await" me on the line you'll use this value on. The code carries on while I do this"
+ > store async funcs in constants marked w "async let" (parallel work) = "Faster. I'll download all three at the same time. Write "await" each time you use said constant. The code carries on while I do this"
  >> 'async let' implicitly creates a child task
  >> example
  async let firstPhoto = downloadPhoto(named: photoNames[0])
@@ -325,41 +187,18 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- NETWORK & API CALLS + TASKS {...}
- NETWORK & API CALLS
- > default = async await
- > > be wary of AlamoFire, it does not support async await (see senpai link below)
+ DELEGATE & DATASOURCE METHODS
+ > delegate = what to do when row is clicked (supplies behavior)
+ > datasource = book rows & populate (supplies data)
+ > despite the order in the naming, the datasource method usually comes first
+ >> https://stackoverflow.com/questions/2232147/whats-the-difference-between-data-source-and-delegate
  
- > why is async await (structured concurrency) preferred over new swift 5.5 completion handlers?
- >> note: most probs below are contributed to new "Result" enum
- >> avoids deep nesting (pyramid of doom) that completion handlers are prone to
- >> more readable
- >> "Switch"ing through the results & weak references no longer needed
- >> transition from sync to asyncy context is clearer
- >> opens up world of Swift Actors (helps avoid data races & concurrency problems)
+ > wrap your "tableView.delegate/datasource = self" in a Task (see below sect.) after your API call
+ >> this will ensure there is a "count" in your array to both generate cells & fill them w names
  
- TASKS
- > closures that only accepts values conforming to the @Sendable protocol
- 
- HELPFUL LINKS + HOW TO CONVERT
- > https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
- > https://developer.apple.com/forums/thread/712303
- > https://www.avanderlee.com/swift/async-await/
- 1. just set up the APICaller using the "async throws" method (first link above)
- 2. ... then, when calling it in the VC, mark the (configure) func calling the async method as "async" as well
- 2a. Also, this configure func is where you will handle your filtering should it be necessary
- 3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
- 3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
- 
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- ENCODING & DECODING NESTED JSON DATA
- > encoding & decoding nested dictionaries & arrays
- >> just decode for the fianl, primitive value & navigate levels using enums (see below)
- >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
- 
+ > list of mandatory methods
+ > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
+  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -406,8 +245,184 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- HARD KNOCKS
+ GENERIC FUNCTIONS
+ > "I accept this type/placeholder type"
+ > used when a function's accepted type(s) are subject to change
  
+ > example (1st = non-generic, 2nd = generic):
+ func swapTwoInts(_ a: inout Int, _ b: inout Int)
+ func swapTwoValues<T>(_ a: inout T, _ b: inout T)
+ >> where arbitrary placeholder <T> = "my accepted type can change based on my params, but those params better have the same type
+ 
+ >> example 2:
+ func withTaskGroup<ChildTaskResult, GroupResult>(
+     of childTaskResultType: ChildTaskResult.Type,
+     returning returnType: GroupResult.Type = GroupResult.self,
+     body: (inout TaskGroup<ChildTaskResult>) async -> GroupResult
+ ) async -> GroupResult where ChildTaskResult : Sendable
+ > where ChildTaskResult & GroupResult = placeholders who's types are to be determined in func body
+ > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ GUARD LET - WHEN YOUR FUNC RETURNS NON-ZERO
+ > just set up an enum contianing APIError, then throw it in the else statement:
+ 
+ 1. enum APIError: Error {
+     case invalidURL
+     case failedToGetData
+   }
+ 
+  2. guard let url = URL(string: ...) else {
+     throw APIError.invalidURL
+    }
+
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ IN-OUT FUNC PARAMETERS
+ > "I wanna mutate a func's params & have that change persist when the func exits"
+ > params are 'let' constants by default
+ > so trying to change param values in body of funcs = compile time error
+ > if you want changes to persist outside of func, define parameter as in-out
+ 
+ >> example:
+ func swapTwoInts(_ a: inout Int, _ b: inout Int)
+ >> where a & b can now be mutated
+ >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/#In-Out-Parameters
+
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ INITS
+ > initialize parameters defined in a struct,  class or extension
+ >> classes = mandatory
+ >> structs = don't need them / swift auto adds them @ compile time
+ 
+ STANDARD INITS
+ > most straightforward - initialize the values you define @ runtime
+ >> failable, so put a "!" after the final parenthesis of the init if need be
+ 
+ > classes = mandatory
+ > structs = free init (not mandatory)
+ 
+ > example (set up)
+ class Hero {
+    codeName: String
+    publisher: String
+    age: Int
+    init(codeName: String, publisher: String, age: Int) {
+        self.codeName = codeName
+        self.publisher = publisher
+        self.age = age
+    }
+ }
+ 
+ > example (execution)
+ var clint: Hero(codeName: "Hawkeye", publisher: "Marvel", age: 38)
+ >> just put the class/struct name in front of the init, that's all
+ 
+ CONVENIENCE INITS
+ > ?
+ > example (set up)
+ extension UIImage {
+     enum AssetIdentifier: String {
+         case Search = "Search"
+         case Menu = "Menu"
+     }
+     convenience init(assetIdentifier: AssetIdentifier) {
+         self.init(named: assetIdentifier.rawValue)!
+     }
+ }
+ 
+ > example (execution)
+ UIImage(assetIdentifier: .Search)
+
+ HELPFUL LINKS
+ > https://stackoverflow.com/questions/32544366/swift-uiimage-extension
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ JSON DATA IS NESTED: ENCODING & DECODING HOW TO
+ > encoding & decoding nested dictionaries & arrays
+ >> just decode for the final, primitive value & navigate levels using enums (see below)
+ >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ MVC & MV(C)VM ARCHITECTURES
+ > MVC = default / preferred
+ >> low complexity apps, simple arch. w plenty of documentation/support; most common
+ > MVVM (or MVCVM)
+ >> more complex apps that need reusable view models
+ >> I'll research more on this come ComixOrganizer Mk. 3
+ 
+ >  HELPFUL LINKS
+ >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
+ >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ REFERENCE TYPES VS VALUE TYPES (CLASSES VS STRUCTS)
+ > REFERENCE TYPES
+ >> shares a single copy of (pointer to) the object's data
+ >>> see chicket on a boat: https://developer.apple.com/videos/play/wwdc2022/110351/
+ >> e.g.  classes
+ >> DOES  require init
+ >> IS NOT conformable to SENDABLE protocol
+ >>> unless all of its props are NON-MUTABLE / NOT CHANGEABLE
+ >> SPECIAL NOTE: ACTORS ARE ALSO REFERENCE TYPES: SEE ACTORS SECT.
+
+ 
+ > VALUE TYPES
+ >> shares a unique COPY of the obecjt's data
+ >>> see pineapple on a boat: https://developer.apple.com/videos/play/wwdc2022/110351/
+ >> e.g. structs & enums
+ >> DOES NOT require init
+ >> conformable to SENDABLE protocol
+ >>> unless one of its props is of type class / not sendable conforming
+
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ STORYBOARD: HOW TO REMOVE IT TO CODE INTERFACE PROGRAMMATICALLY
+ > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ TASKS {...}
+ > closures that only accepts values conforming to the @Sendable protocol
+
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ UIIMAGEVIEW & UIIMAGE
+ > UIImageView = stores UIImage
+ >> houses a ".image" property
+ 
+ > UIImage = raw image
+ >> https://stackoverflow.com/questions/8070805/difference-between-uiimage-and-uiimageview
+ 
+ > pulling a UIImage from a url
+ >> ?
+ >> https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
+
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ COMMON ERROR SLTNS
  > simulators disappeared?
  >> restart computer
  >> https://developer.apple.com/forums/thread/120250
