@@ -108,6 +108,29 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
+ ACTORS
+ > like classes, actors are reference types
+ >> meaning they require an init
+ >> though, unlike classes, actors allow only one task to access their mutable state at a time, which makes it safe for code in mult. tasks to interact w the same instance of an actor
+ > example:
+ actor TemperatureLogger {
+     let label: String
+     var measurements: [Int]
+     **private(set) var max: Int
+
+
+     init(label: String, measurement: Int) {
+         self.label = label
+         self.measurements = [measurement]
+         self.max = measurement
+     }
+ }
+ 
+ > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  API CALLS & NETWORK + TASKS {...}
  > API CALLS & NETWORK
  >> default = async await
@@ -366,6 +389,32 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >  HELPFUL LINKS
  >> https://scottlydon.medium.com/the-differences-between-mvc-and-mvvm-swift-f1936b0bab14
  >> https://stackoverflow.com/questions/667781/what-is-the-difference-between-mvc-and-mvvm/58796188#58796188
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ PRIVATE(SET) & PRIVATE(GET) - OR ACCESS CONTROL
+ > PRIVATE(SET)
+ >> only code inside the class/struct/actor/scope can update this prop
+ >> in the init( ), you cannot set private(set)'s. The best you can do is give this prop an initial value or, in the internal init( ), set this prop equal to one of your non-private, "init-able" props
+ >> example:
+ actor TemperatureLogger {
+     let label: String
+     var measurements: [Int]
+     **private(set) var max: Int
+
+
+     init(label: String, measurement: Int) {
+         self.label = label
+         self.measurements = [measurement]
+         self.max = measurement
+     }
+ }
+ 
+ > PRIVATE(GET)
+ >> ?
+ 
+ > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/accesscontrol/#Getters-and-Setters
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
