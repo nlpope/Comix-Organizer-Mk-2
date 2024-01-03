@@ -114,7 +114,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > like classes, actors are reference types
  >> meaning they require an init
  >> though, unlike classes, actors allow only one task to access their mutable state at a time, which makes it safe for code in mult. tasks to interact w the same instance of an actor
- >> when you access a prop or method of an actor, you use "await" to mark the potential suspension point.
+ >> when you access a MUTABLE prop (VAR NOT LET) or method of an actor, you use "await" to mark the potential suspension point.
  > example (set up):
  actor TemperatureLogger {
      let label: String
@@ -129,7 +129,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
      }
  }
  
+ //separate file
  let logger = TemperatureLogger(label: "Outdoors", measurement: 25)
+ //why not 'async let' here? becuse TemperatureLogger is an actor not an async func. This would contain 'async let' if the value after the '=' were instead an async func within TemperatureLogger() (?)
  *print(await logger.max)
  // Prints "25"
  
@@ -169,30 +171,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- APP ICON & LAUNCH SCREEN
- > icon
- 1. delete app icon present in assests folder
- 2. bake icon
- 3. drag generated icon directly to assets folder
- 
- > launchscreen
- 1. bake icon
- 2. drag generated icon to finder (ton of options should appear)
- 3. drag "appstore1024.png"  image under app icon
- 4. name it "LaunchScreen"
- 5. add a new "LaunchScreen" file
- 6. set an image inside
- 7. attributes inspector - set image to "LaunchScreen" from assets
- 
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
  ASYNC / ASYNCHRONOUS CALLS & CONCURRENCY
  > await  = suspension point (execution will pause) on isolated thread til code carries out completely. Though, non-async code around it carries on
  
  METHOD 1
- > store async funcs in constants marked w "async let" (parallel work) = "Faster. I'll download all three at the same time. Write "await" each time you use said constant. The code carries on while I do this"
+ > store async funcs in constants (not mutable) marked w "async let" (parallel work) = "Faster. I'll download all three at the same time. Write 'await' each time you use said constant. The code carries on while I do this"
  >> 'async let' implicitly creates a child task
  >> example
  async let firstPhoto = downloadPhoto(named: photoNames[0])
@@ -383,6 +366,26 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > encoding & decoding nested dictionaries & arrays
  >> just decode for the final, primitive value & navigate levels using enums (see below)
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
+
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ LAUNCH SCREEN & APP ICON
+ > icon
+ 1. delete app icon present in assests folder
+ 2. bake icon
+ 3. drag generated icon directly to assets folder
+ 
+ > launchscreen
+ 1. bake icon
+ 2. drag generated icon to finder (ton of options should appear)
+ 3. drag "appstore1024.png"  image under app icon
+ 4. name it "LaunchScreen"
+ 5. add a new "LaunchScreen" file
+ 6. set an image inside
+ 7. attributes inspector - set image to "LaunchScreen" from assets
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -676,7 +679,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  researching actors (for passing mutating reference type vars; try docs 1st)) > get rid of error via actors > print results.results > fill CharactersVC
  > reviewing actor docs
  >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors
- >> @ In this example, accessing logger.max is a possible suspension point.
+ >> @ In contrast, code that’s part of the actor doesn’t write await
  --------------------------
  
  */
