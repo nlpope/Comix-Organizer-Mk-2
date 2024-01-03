@@ -671,6 +671,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> (actor docs? check if this is right) https://developer.apple.com/documentation/swift/anyactor
  
  > see above steps. reading concurrency docs @ "You can also mix both of these approaches in the same code."
+ 
+ 01.03.24
+ researching actors (for passing mutating reference type vars; try docs 1st)) > get rid of error via actors > print results.results > fill CharactersVC
+ > reviewing actor docs
+ >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors
+ >> @ In this example, accessing logger.max is a possible suspension point.
  --------------------------
  
  */
