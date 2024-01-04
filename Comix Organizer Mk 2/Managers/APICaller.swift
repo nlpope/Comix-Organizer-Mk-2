@@ -44,6 +44,7 @@ class APICaller {
             throw APIError.invalidURL
         }
         print("got the url: \(url)")
+        //error disappears when i remove task, but i think the problem of character list not populating stems from not stuffing the decoder into a task
         Task {
             let (data, _) = try await URLSession.shared.data(from: url)
             results = try JSONDecoder().decode(APICharactersResponse.self, from: data)

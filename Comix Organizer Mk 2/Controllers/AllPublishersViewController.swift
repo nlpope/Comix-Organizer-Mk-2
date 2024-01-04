@@ -33,7 +33,8 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
     
         //consider making this a detached task to get it off the Main Actor thread into a top-level background thread
-        Task.detached(priority: .background) {
+        //Task.detached(priority: .background)
+        Task {
             await configurePublishers()
             tableView.delegate = self
             tableView.dataSource = self
@@ -681,6 +682,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > reviewing actor docs
  >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors
  >> @ In contrast, code that’s part of the actor doesn’t write await
+ 
+ 01.04.24
+ > considering making Task in AllPublishersVC's viewDidLoad a detached Task to see if that speeds things up
  --------------------------
  
  */
