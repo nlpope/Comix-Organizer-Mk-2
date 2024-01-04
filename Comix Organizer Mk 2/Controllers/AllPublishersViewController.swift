@@ -31,8 +31,9 @@ class AllPublishersViewController: UIViewController {
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        Task {
+    
+        //consider making this a detached task to get it off the Main Actor thread into a top-level background thread
+        Task.detached(priority: .background) {
             await configurePublishers()
             tableView.delegate = self
             tableView.dataSource = self
