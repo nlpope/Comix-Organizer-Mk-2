@@ -685,6 +685,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.04.24
  > considering making Task in AllPublishersVC's viewDidLoad a detached Task to see if that speeds things up
+ 
+ > still a bit fuzzy on Actors and Concurrency
+ >> I'll go a bit deeper and start using 'cmd + i' swift instruments tool after setting up an Actor for the results variable in the API Caller
+ >> get rid of error via actors or detaching the task (?) > print results.results > fill CharactersVC > use swift instruments tool to see where lags are most prominent (this will take time to learn) > address lags using concurrency & task studies >
+ > reviewing actor docs
  --------------------------
  
  */
