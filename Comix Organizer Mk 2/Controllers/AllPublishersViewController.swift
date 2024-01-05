@@ -139,8 +139,24 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
+ CLOSURES
+ > Group code that executes together, without creating a named function.
+ 
+ > example (syntax):
+ { (parameters) -> (return Type) in
+    statements
+ }
+ 
+ > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  CONCURRENCY (ACTORS, ASYNC, SENDABLE, TASKS)
  > concurrency = code running at the same time / parallel to each other while suspending operations that are waiting for an external system (like an API call)
+ 
+ > alternative to (deeply nested) completion handlers / closures
  --------------------------
  CONCURRENCY - ACTORS
  > safely share information between concurrent code
@@ -173,10 +189,32 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > (wwdc video) https://developer.apple.com/videos/play/wwdc2022/110351/
  --------------------------
  CONCURRENCY - ASYNC / ASYNCHRONOUS CALLS
- > synchronous (blocking architecture) = sequential: "i'll wait for the last guy to finish before I begin"
- > asynchronous (non-blocking architecture) = non-sequential: "i'll run at the same time as the other guy"
+ > synchronous (blocking architecture) = sequential funcs: "i'll wait for the last guy to finish before I begin"
+ > asynchronous (non-blocking architecture) = non-sequential funcs that can be suspended partway through: "i'll run at the same time as the other guy and can be suspended / resumed partway through"
  > await  = suspension point (execution will pause) on isolated thread til code carries out completely. Though, non-async code around it carries on
  
+ > example (before async / using deeply nested completion handler):
+ listPhotos(inGallery: "Summer Vacation") { photoNames in
+     let sortedNames = photoNames.sorted()
+     let name = sortedNames[0]
+     downloadPhoto(named: name) { photo in
+         show(photo)
+     }
+ }
+ 
+ > example (after async):
+ func listPhotos(inGallery name: String) async -> [String] {
+     let result = // ... some asynchronous networking code ...
+     return result
+ }
+ 
+ let photoNames = await listPhotos(inGallery: "Summer Vacation")
+ let sortedNames = photoNames.sorted()
+ let name = sortedNames[0]
+ let photo = await downloadPhoto(named: name)
+ show(photo)
+ 
+ ASYNC CALL METHODS
  METHOD 1
  > store async funcs in constants (not mutable) marked w "async let" (parallel work) = "Faster. I'll download all three at the same time. Write 'await' each time you use said constant. The code carries on while I do this"
  >> 'async let' implicitly creates a child task
@@ -692,6 +730,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.05.24
  > reviewing actor & concurrency docs
+ >> left off at concurrency docs @ "Because the listPhotos(inGallery:) and downloadPhoto(named:)"
  --------------------------
  
  */
