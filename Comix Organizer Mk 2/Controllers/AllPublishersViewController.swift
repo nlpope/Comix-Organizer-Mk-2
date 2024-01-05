@@ -690,6 +690,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> I'll go a bit deeper and start using 'cmd + i' swift instruments tool after setting up an Actor for the results variable in the API Caller
  >> get rid of error via actors or detaching the task (?) > print results.results > fill CharactersVC > use swift instruments tool to see where lags are most prominent (this will take time to learn) > address lags using concurrency & task studies >
  > reviewing actor docs
+ 
+ 01.05.24
+ > reviewing actor & concurrency docs
  --------------------------
  
  */
