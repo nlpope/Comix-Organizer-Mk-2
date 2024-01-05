@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct APICharactersResponse: Decodable {
+actor APICharactersResponse: Decodable {
     let results: [Character]
 }
 

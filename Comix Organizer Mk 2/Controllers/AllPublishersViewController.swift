@@ -140,7 +140,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  CONCURRENCY (ACTORS, ASYNC, SENDABLE, TASKS)
- > concurrency = parallel code / running at the same time (see "concurrency - async")
+ > concurrency = code running at the same time / parallel to each other while suspending operations that are waiting for an external system (like an API call)
  --------------------------
  CONCURRENCY - ACTORS
  > safely share information between concurrent code
