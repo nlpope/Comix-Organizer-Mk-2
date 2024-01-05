@@ -110,7 +110,39 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- ACTORS
+ API CALLS & NETWORK - also see "concurrency"
+ > API CALLS & NETWORK
+ >> default = async await
+ >> be wary of AlamoFire, it does not support async await (see senpai link below)
+ 
+ --------------------------
+ >> why is async await (structured concurrency - see "concurrency") preferred over new swift 5.5 completion handlers?
+ >>> note: most probs below are contributed to new "Result" enum
+ >>> avoids deep nesting (pyramid of doom) that completion handlers are prone to
+ >>> more readable
+ >>> "Switch"ing through the results & weak references no longer needed
+ >>> transition from sync to asyncy context is clearer
+ >>> opens up world of Swift Actors (helps avoid data races & concurrency problems)
+ 
+ --------------------------
+ > HELPFUL LINKS + HOW TO CONVERT
+ >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
+ >> https://developer.apple.com/forums/thread/712303
+ >> https://www.avanderlee.com/swift/async-await/
+ 1. just set up the APICaller using the "async throws" method (first link above)
+ 2. ... then, when calling it in the VC, mark the (configure) func calling the async method as "async" as well
+ 2a. Also, this configure func is where you will handle your filtering should it be necessary
+ 3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
+ 3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ CONCURRENCY (ACTORS, ASYNC, SENDABLE, TASKS)
+ > concurrency = parallel code / running at the same time (see "concurrency - async")
+ --------------------------
+ CONCURRENCY - ACTORS
  > safely share information between concurrent code
  >> pineapples, chickens, boats & islands (UIslands)
  > like classes, actors are reference types
@@ -140,40 +172,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors
  > (wwdc video) https://developer.apple.com/videos/play/wwdc2022/110351/
  --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- API CALLS & NETWORK + TASKS {...}
- > API CALLS & NETWORK
- >> default = async await
- >> be wary of AlamoFire, it does not support async await (see senpai link below)
- 
- >> why is async await (structured concurrency) preferred over new swift 5.5 completion handlers?
- >>> note: most probs below are contributed to new "Result" enum
- >>> avoids deep nesting (pyramid of doom) that completion handlers are prone to
- >>> more readable
- >>> "Switch"ing through the results & weak references no longer needed
- >>> transition from sync to asyncy context is clearer
- >>> opens up world of Swift Actors (helps avoid data races & concurrency problems)
- 
- > TASKS
- >> closures that only accepts values conforming to the @Sendable protocol
- >> see "Tasks" sect.
- 
- > HELPFUL LINKS + HOW TO CONVERT
- >> https://swiftsenpai.com/swift/async-await-network-requests/ (start here)
- >> https://developer.apple.com/forums/thread/712303
- >> https://www.avanderlee.com/swift/async-await/
- 1. just set up the APICaller using the "async throws" method (first link above)
- 2. ... then, when calling it in the VC, mark the (configure) func calling the async method as "async" as well
- 2a. Also, this configure func is where you will handle your filtering should it be necessary
- 3. up in the ViewDidLoad, wrap the final reference in a Task {...} so things get hashed out in order
- 3. ... this task should contain a "try? await" statement wrapped in a results var where the "shared" func is finally called
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- ASYNC / ASYNCHRONOUS CALLS & CONCURRENCY
+ CONCURRENCY - ASYNC / ASYNCHRONOUS CALLS
+ > synchronous (blocking architecture) = sequential: "i'll wait for the last guy to finish before I begin"
+ > asynchronous (non-blocking architecture) = non-sequential: "i'll run at the same time as the other guy"
  > await  = suspension point (execution will pause) on isolated thread til code carries out completely. Though, non-async code around it carries on
  
  METHOD 1
@@ -198,6 +199,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  show(photos)
 
  > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+ 
+ --------------------------
+ CONCURRENCY - TASKS {...}
+ > closures that only accepts values conforming to the @Sendable protocol
+ > executes code inside in order / sequentially
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -457,13 +463,6 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  --------------------------
  STORYBOARD: HOW TO REMOVE IT TO CODE INTERFACE PROGRAMMATICALLY
  > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
- 
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- TASKS {...}
- > closures that only accepts values conforming to the @Sendable protocol
 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
