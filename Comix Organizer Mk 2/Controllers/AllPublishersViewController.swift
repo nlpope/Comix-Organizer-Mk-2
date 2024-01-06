@@ -155,8 +155,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  --------------------------
  CONCURRENCY (ACTORS, ASYNC, SENDABLE, TASKS)
  > concurrency = code running at the same time / parallel to each other while suspending operations that are waiting for an external system (like an API call)
- 
- > alternative to (deeply nested) completion handlers / closures
+ >> alternative to (deeply nested) completion handlers / closures
  --------------------------
  CONCURRENCY - ACTORS
  > safely share information between concurrent code
@@ -190,7 +189,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  --------------------------
  CONCURRENCY - ASYNC / ASYNCHRONOUS CALLS
  > synchronous (blocking architecture) = sequential funcs: "i'll wait for the last guy to finish before I begin"
- > asynchronous (non-blocking architecture) = non-sequential funcs that can be suspended partway through: "i'll run at the same time as the other guy and can be suspended / resumed partway through"
+ > asynchronous (non-blocking architecture) = non-sequential funcs that suspend execution of lines below it until a value is returned. This also lets concurrently running code (usually elsewhere) keep running while this code waits for the func's result to be ready: "i'll run at the same time as the other guy and can be suspended / resumed partway through"
  > await  = suspension point (execution will pause) on isolated thread til code carries out completely. Though, non-async code around it carries on
  
  > example (before async / using deeply nested completion handler):
@@ -216,6 +215,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  ASYNC CALL METHODS
  METHOD 1
+ > await = "leave this block of code alone and go do other things, when the thing behind the await returns a value, the rest of the code under the await can continue to run"
  > store async funcs in constants (not mutable) marked w "async let" (parallel work) = "Faster. I'll download all three at the same time. Write 'await' each time you use said constant. The code carries on while I do this"
  >> 'async let' implicitly creates a child task
  >> example
@@ -236,7 +236,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  let photos = [firstPhoto, secondPhoto, thirdPhoto]
  show(photos)
 
- > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/
+ > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Defining-and-Calling-Asynchronous-Functions
  
  --------------------------
  CONCURRENCY - TASKS {...}
