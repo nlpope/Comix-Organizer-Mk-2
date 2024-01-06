@@ -735,6 +735,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.05.24
  > reviewing actor & concurrency docs
  >> left off at concurrency docs @ "Because the listPhotos(inGallery:) and downloadPhoto(named:)"
+ 
+ 01.06.24
+ > getting rid of the task in APICaller.getCharactersAPI
+ >> ... so I can configure AllCharactersVC in the viewDidLoad rather than outside the VC like the AllPublishersVC (only successful one so far), but having issues w the inits for both - why didn't any errors get flagged for not having them in my classes
+ >> ... anything to do w my init(from decoder) thing? where is that anyways?
  --------------------------
  
  */
