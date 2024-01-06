@@ -22,10 +22,10 @@ class APICaller {
     
     
 //    func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void)
+    //removing &field_list=name,id,publisher from url - move back if probs
     func getPublishersAPI() async throws -> [Publisher] {
         print("inside getPublishersAPI()")
-        //below used to be guard let w an else, but func now returns non-void
-        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json&field_list=name,id,publisher") else {
+        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json") else {
             //&field_list=name,id
             throw APIError.invalidURL
         }
@@ -39,25 +39,16 @@ class APICaller {
     //12.30 PROBLEM CHILD
     func getCharactersAPI() async throws -> [Character] {
         print("inside getCharactersAPI()")
-        var results: APICharactersResponse
+//        var results: APICharactersResponse
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
-        print("got the url: \(url)")
-        //error disappears when i remove task, but i think the problem of character list not populating stems from not stuffing the decoder into a task
-        Task {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-            print("about to return results: \(results.results)")
-            //researching concurrency to solve this
-
-
-        }
-        //CONFIRMED ABOVE & BELOW WORKS
-        //defining results above for previous do catch test, i'll move it back once it gets workin
         
-        return (results.results.sorted(by: {$1.characterName > $0.characterName}))
-
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+        
+        return results.results.sorted(by: {$1.characterName > $0.characterName})
+              
     }
 
 }

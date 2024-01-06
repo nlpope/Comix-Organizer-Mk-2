@@ -8,10 +8,9 @@
 import UIKit
 import CoreData
 
+//where is the init for this?
 class AllCharactersViewController: UIViewController {
-    
-    
-    
+    var selectedPublisher: String = ""
     private var characters: [Character] = [Character]()
     
     let tableView: UITableView = {
@@ -21,20 +20,29 @@ class AllCharactersViewController: UIViewController {
     }()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    init(selectedPublisher: String) {
+        self.selectedPublisher = selectedPublisher
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        
-        //task > await configureCharacters(with publisher: ...)? - eventually
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
-        
         view.backgroundColor = .systemBackground
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+
+        //task > await configureCharacters(with publisher: ...) & default val = nil?
+        Task {
+            await configureCharacters(withPublisher: "Marvel")
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
+        }
+       
+        
+      
         
     }
     

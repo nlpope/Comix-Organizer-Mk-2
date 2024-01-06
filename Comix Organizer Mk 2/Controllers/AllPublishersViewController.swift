@@ -74,7 +74,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(publishers[indexPath.row].name)")
 //        tableView.deselectRow(at: indexPath, animated: true)
-        
+        let allCharactersVC = AllCharactersViewController
         let publisher = publishers[indexPath.row].name
         print("didSelect publisher var : \(publisher)")
         let vc = AllCharactersViewController()
@@ -188,6 +188,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > (wwdc video) https://developer.apple.com/videos/play/wwdc2022/110351/
  --------------------------
  CONCURRENCY - ASYNC / ASYNCHRONOUS CALLS
+ > await = "leave this block of code alone and go do other things, when the thing behind the await returns a value, the rest of the code under the await can continue to run"
+ >> This is also called yielding the thread because, behind the scenes, Swift suspends the execution of your code on the current thread and runs some other code on that thread instead.
+ 
  > synchronous (blocking architecture) = sequential funcs: "i'll wait for the last guy to finish before I begin"
  > asynchronous (non-blocking architecture) = non-sequential funcs that suspend execution of lines below it until a value is returned. This also lets concurrently running code (usually elsewhere) keep running while this code waits for the func's result to be ready: "i'll run at the same time as the other guy and can be suspended / resumed partway through"
  > await  = suspension point (execution will pause) on isolated thread til code carries out completely. Though, non-async code around it carries on
@@ -215,7 +218,6 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  ASYNC CALL METHODS
  METHOD 1
- > await = "leave this block of code alone and go do other things, when the thing behind the await returns a value, the rest of the code under the await can continue to run"
  > store async funcs in constants (not mutable) marked w "async let" (parallel work) = "Faster. I'll download all three at the same time. Write 'await' each time you use said constant. The code carries on while I do this"
  >> 'async let' implicitly creates a child task
  >> example
@@ -240,6 +242,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  --------------------------
  CONCURRENCY - TASKS {...}
+ > use (in conjunction w 'await') whenever you call an async func
+ >> not always dependant on 'Task' keyword - 'async let' also produces Tasks
  > closures that only accepts values conforming to the @Sendable protocol
  > executes code inside in order / sequentially
  
