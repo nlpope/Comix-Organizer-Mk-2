@@ -389,7 +389,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  var clint: Hero(codeName: "Hawkeye", publisher: "Marvel", age: 38)
  >> just put the class/struct name in front of the init, that's all
  
- CONVENIENCE INITS
+ INITS - REQUIRED INITS
+ > required = every subclass of the class must implement that initializer
+ >> how is this different from the standard init
+ 
+ INITS - OVERRIDE INITS
+ > ?
+ 
+ INITS - CONVENIENCE INITS
  > ?
  > example (set up)
  extension UIImage {
@@ -740,6 +747,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > getting rid of the task in APICaller.getCharactersAPI
  >> ... so I can configure AllCharactersVC in the viewDidLoad rather than outside the VC like the AllPublishersVC (only successful one so far), but having issues w the inits for both - why didn't any errors get flagged for not having them in my classes
  >> ... anything to do w my init(from decoder) thing? where is that anyways?
+ 
+ 01.08.24
+ > reviewing init docs
+ >>  https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Optional-Property-Types
+ >> @ If your custom type has a stored property that’s logically allowed to have “no value”
  --------------------------
  
  */

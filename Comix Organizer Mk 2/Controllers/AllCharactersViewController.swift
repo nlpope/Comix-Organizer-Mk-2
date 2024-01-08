@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreData
+import CoreData 
 
 //where is the init for this?
 class AllCharactersViewController: UIViewController {
