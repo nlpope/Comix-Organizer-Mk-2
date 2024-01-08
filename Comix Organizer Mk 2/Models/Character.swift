@@ -17,15 +17,15 @@ actor APICharactersResponse: Decodable {
 //Codable protocol throws error after new init
 struct Character: Decodable {
     //to be initialized w enums just after enum declarations
-    var characterID: Int?
+    var characterID: Int
     //enum coding keys
     var characterName: String
     var characterAbbreviatedBio: String?
     var characterDetailedBio: String?
     //nested coding keys
-    var characterThumbnailURL: URL
-    var publisherID: Int?
-    var publisherName: String?
+    var characterThumbnailURL: URL?
+    var publisherID: Int
+    var publisherName: String
     
     //for nested items: enum prop doesn't have to be declared up top
     //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums

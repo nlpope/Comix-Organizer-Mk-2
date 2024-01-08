@@ -750,8 +750,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.08.24
  > reviewing init docs
- >>  https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Optional-Property-Types
- >> @ If your custom type has a stored property that’s logically allowed to have “no value”
+ >>  https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Default-Initializers
+ >> @ Default initializers
  --------------------------
  
  */
