@@ -365,6 +365,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > initialize parameters defined in a struct,  class or extension
  >> classes = mandatory
  >> structs = don't need them / swift auto adds them @ compile time
+ >> ... though, Swift provides a default initializer for any structure or class that provides default values for all of its properties and doesn’t provide at least one initializer itself
  
  STANDARD INITS
  > most straightforward - initialize the values you define @ runtime
