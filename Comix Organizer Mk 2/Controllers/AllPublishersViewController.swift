@@ -74,24 +74,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(publishers[indexPath.row].name)")
 //        tableView.deselectRow(at: indexPath, animated: true)
-        let allCharactersVC = AllCharactersViewController
-        let publisher = publishers[indexPath.row].name
-        print("didSelect publisher var : \(publisher)")
-        let vc = AllCharactersViewController()
-        
-        Task {
-            print("about to configure with: \(publisher)")
-            await vc.configureCharacters(withPublisher: publisher)
-            //how to navigate/light up the characters tab, - see Task > configure(with... note in AllCharactersVC
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        
-        
-        
-        
+        let selectedPublisher = publishers[indexPath.row].name
+        let allCharactersVC = AllCharactersViewController(selectedPublisher: selectedPublisher)
+        self.navigationController?.tabBarController?.selectedIndex = 1
+//        self.navigationController?.pushViewController(allCharactersVC, animated: true)
     }
-    
-    
 }
 
 /**
@@ -390,12 +377,36 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  var clint: Hero(codeName: "Hawkeye", publisher: "Marvel", age: 38)
  >> just put the class/struct name in front of the init, that's all
  
+ INITS - MEMBERWISE INITS (STRUCTS)
+ > structs only
+ > auto-initializers that structs get when a custom init is not specified
+ > Unlike a default initializer, memberwise inits in structs generate even for props without default values
+ > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Default-Initializers
+ 
  INITS - REQUIRED INITS
  > required = every subclass of the class must implement that initializer
  >> how is this different from the standard init
  
  INITS - OVERRIDE INITS
  > ?
+ 
+ INITS - SUPER.INITS
+ > When you inherit a class and implement a new init function or override its own init function you should (almost) always call super.init.
+ > example:
+ class ViewController: UIViewController {
+     var button: UIButton?
+
+     init(button: UIButton) {
+         self.button = button
+         super.init(nibName: nil, bundle: nil)
+     }
+
+     required init?(coder aDecoder: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
+
+ }
+ > https://stackoverflow.com/questions/53463685/swift-super-init-isnt-called-on-all-paths-before-returning-from-initializer
  
  INITS - CONVENIENCE INITS
  > ?
@@ -751,8 +762,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.08.24
  > reviewing init docs
- >>  https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Default-Initializers
- >> @ Default initializers
+ >>  https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Designated-Initializers-and-Convenience-Initializers
+ >> @ designated & convenience inits
  --------------------------
  
  */

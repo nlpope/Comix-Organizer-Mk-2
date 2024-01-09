@@ -8,23 +8,30 @@
 import UIKit
 import CoreData 
 
-//where is the init for this?
 class AllCharactersViewController: UIViewController {
-    var selectedPublisher: String = ""
-    private var characters: [Character] = [Character]()
-    
+    //move to data persistence manager? - create data persistence manager?
+//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//
+    var selectedPublisher = ""
+    private var characters = [Character]()
+    let shared = AllPublishersViewController()
+
     let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+  
     init(selectedPublisher: String) {
         self.selectedPublisher = selectedPublisher
-    }
+        super.init(nibName: nil, bundle: nil)
 
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -35,15 +42,17 @@ class AllCharactersViewController: UIViewController {
 
         //task > await configureCharacters(with publisher: ...) & default val = nil?
         Task {
-            await configureCharacters(withPublisher: "Marvel")
+            await configureCharacters(withPublisher: selectedPublisher)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
         }
-       
-        
       
-        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
     
     func configureCharacters(withPublisher publisher: String) async {
@@ -87,7 +96,7 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         cell.characterViewCellAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
         cell.characterViewCellDetailedBio?.text = theCharacter.characterDetailedBio
         
-        cell.characterViewCellThumbnail?.load(withURL: theCharacter.characterThumbnailURL)
+        cell.characterViewCellThumbnail?.load(withURL: theCharacter.characterThumbnailURL!)
         //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
 
