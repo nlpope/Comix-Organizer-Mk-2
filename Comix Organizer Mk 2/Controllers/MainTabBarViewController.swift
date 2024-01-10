@@ -12,7 +12,7 @@ class MainTabBarViewController: UITabBarController {
         super.viewDidLoad()
         
         let vc1 = UINavigationController(rootViewController: AllPublishersViewController())
-        let vc2 = UINavigationController(rootViewController: AllCharactersViewController(selectedPublisher: <#T##String#>))
+        let vc2 = UINavigationController(rootViewController: AllCharactersViewController())
         let vc3 = UINavigationController(rootViewController: AllTeamsViewController())
         let vc4 = UINavigationController(rootViewController: AllComicsViewController())
         

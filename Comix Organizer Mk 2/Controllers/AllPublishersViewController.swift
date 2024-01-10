@@ -75,8 +75,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         print("\(publishers[indexPath.row].name)")
 //        tableView.deselectRow(at: indexPath, animated: true)
         let selectedPublisher = publishers[indexPath.row].name
-        let allCharactersVC = AllCharactersViewController(selectedPublisher: selectedPublisher)
-        self.navigationController?.tabBarController?.selectedIndex = 1
+        let allCharactersVC = AllCharactersViewController()
+        Task {
+            await allCharactersVC.configureCharacters(withPublisher: selectedPublisher)
+            self.navigationController?.tabBarController?.selectedIndex = 1
+//                .selectedIndex = 1
+        }
+       
 //        self.navigationController?.pushViewController(allCharactersVC, animated: true)
     }
 }
