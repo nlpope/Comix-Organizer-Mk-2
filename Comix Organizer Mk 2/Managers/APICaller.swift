@@ -36,10 +36,8 @@ class APICaller {
         return results.results.sorted(by: {$1.name > $0.name})
     }
     
-    //12.30 PROBLEM CHILD
     func getCharactersAPI() async throws -> [Character] {
         print("inside getCharactersAPI()")
-//        var results: APICharactersResponse
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
@@ -47,7 +45,8 @@ class APICaller {
         let (data, _) = try await URLSession.shared.data(from: url)
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
-        return results.results.sorted(by: {$1.characterName > $0.characterName})
+        return results.results
+        //.sorted(by: {$1.characterName > $0.characterName})
               
     }
 

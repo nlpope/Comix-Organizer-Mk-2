@@ -9,10 +9,9 @@ import UIKit
 import CoreData
 
 class AllCharactersViewController: UIViewController {
-    //move to data persistence manager? - create data persistence manager?
-    //    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    //work on context & data persistence manager next
     
-    //    var selectedPublisher = ""
+    public var selectedPublisher = ""
     private var characters = [Character]()
     let shared = AllPublishersViewController()
     
@@ -22,16 +21,6 @@ class AllCharactersViewController: UIViewController {
         return table
     }()
     
-    //    init(selectedPublisher: String) {
-    //        self.selectedPublisher = selectedPublisher
-    //        super.init(nibName: nil, bundle: nil)
-    //
-    //    }
-    
-    //    required init?(coder: NSCoder) {
-    //        fatalError("init(coder:) has not been implemented")
-    //    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -39,10 +28,14 @@ class AllCharactersViewController: UIViewController {
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
+        Task {
+            await configureCharacters(withPublisher: selectedPublisher)
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
+        }
+        
+       
     }
     
     override func viewDidLayoutSubviews() {
@@ -50,16 +43,14 @@ class AllCharactersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+   
+    
     func configureCharacters(withPublisher publisher: String) async {
         print("inside configureCharacters & publisher = \(publisher)")
 
         if let results = try? await APICaller.shared.getCharactersAPI() {
-            
-            
-            print("just about to filter & publisher = \(publisher)")
           
-            let filteredResults = results.filter {$0.publisherName == "DC Comics"}
-            //            {$0.publisherName == "DC Comics"}
+            let filteredResults = results.filter {$0.publisherName == publisher}
             
             self.characters += filteredResults
         } else {
@@ -103,3 +94,20 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         //        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+
+
+
+
+
+
+
+//OG INIT METHODS
+//    init(selectedPublisher: String) {
+//        self.selectedPublisher = selectedPublisher
+//        super.init(nibName: nil, bundle: nil)
+//
+//    }
+
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }

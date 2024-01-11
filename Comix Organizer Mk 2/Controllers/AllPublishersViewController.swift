@@ -32,20 +32,20 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
     
-        //consider making this a detached task to get it off the Main Actor thread into a top-level background thread
-        //Task.detached(priority: .background)
         Task {
             await configurePublishers()
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
         }
-        
-       
-       
     }
     
-    //should i re-add "private" to below? benefit?
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+
     func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishersAPI() {
             self.publishers += results
@@ -72,19 +72,23 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var secondTab = self.tabBarController?.viewControllers?[1] as! AllCharactersViewController
-        let selectedPublisher = publishers[indexPath.row].name
-        let allCharactersVC = AllCharactersViewController()
-        Task {
-            await secondTab.configureCharacters(withPublisher: selectedPublisher)
-//            await allCharactersVC.configureCharacters(withPublisher: selectedPublisher)
-            self.navigationController?.tabBarController?.selectedIndex = 1
-//                .selectedIndex = 1
-        }
-       
-//        self.navigationController?.pushViewController(allCharactersVC, animated: true)
+        let charactersVC = tabBarController?.viewControllers![1] as? AllCharactersViewController
+        charactersVC?.selectedPublisher = publishers[indexPath.row].name
+        self.navigationController?.tabBarController?.selectedIndex = 1
     }
 }
+
+//OG DIDSELECT METHOD
+//var secondTab = self.tabBarController?.viewControllers?[1] as! AllCharactersViewController
+//        let selectedPublisher = publishers[indexPath.row].name
+//        let allCharactersVC = AllCharactersViewController()
+//        Task {
+//            await secondTab.configureCharacters(withPublisher: selectedPublisher)
+////            await allCharactersVC.configureCharacters(withPublisher: selectedPublisher)
+//            self.navigationController?.tabBarController?.selectedIndex = 1
+//        }
+
+
 
 /**
  --------------------------
