@@ -775,6 +775,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > reviewing init docs
  >>  https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/#Designated-Initializers-and-Convenience-Initializers
  >> @ designated & convenience inits
+ 
+ 01.11
+ > AllPublishersVC: adding print statement to see if selectedPublisher is being read - initial cast to charactersVC var seems like the main issue
  --------------------------
  
  */
