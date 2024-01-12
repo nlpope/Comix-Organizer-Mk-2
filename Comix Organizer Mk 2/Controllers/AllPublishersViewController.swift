@@ -776,6 +776,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.11
  > AllPublishersVC: adding print statement to see if selectedPublisher is being read - initial cast to charactersVC var seems like the main issue
+ 
+ 01.12
+ > restructuring AllCharactersVC's viewDidLoad & adding viewDidAppear to acct for selectedPublisher prop
+
  --------------------------
  
  */
