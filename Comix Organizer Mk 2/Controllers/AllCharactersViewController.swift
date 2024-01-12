@@ -24,16 +24,14 @@ class AllCharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.frame = view.bounds
+        
         view.backgroundColor = .systemBackground
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        Task {
-            await configureCharacters(withPublisher: selectedPublisher)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.frame = view.bounds
-        }
         
        
     }
@@ -43,15 +41,23 @@ class AllCharactersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Task {
+            await self.configureCharacters(withPublisher: selectedPublisher)
+        }
+    }
+    
    
     
     func configureCharacters(withPublisher publisher: String) async {
         print("inside configureCharacters & publisher = \(publisher)")
 
         if let results = try? await APICaller.shared.getCharactersAPI() {
-          
+            let rawResults = results
             let filteredResults = results.filter {$0.publisherName == publisher}
             
+            self.characters += rawResults
             self.characters += filteredResults
         } else {
             print("something went wrong in configureCharacters()")

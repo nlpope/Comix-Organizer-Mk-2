@@ -16,6 +16,7 @@ class MainTabBarViewController: UITabBarController {
         let vc3 = UINavigationController(rootViewController: AllTeamsViewController())
         let vc4 = UINavigationController(rootViewController: AllComicsViewController())
         
+        
         vc1.tabBarItem.image = UIImage(systemName: "list.dash")
         vc2.tabBarItem.image = UIImage(systemName: "list.dash")
         vc3.tabBarItem.image = UIImage(systemName: "list.dash")
@@ -28,7 +29,7 @@ class MainTabBarViewController: UITabBarController {
         vc4.title = "Comics"
         
         tabBar.tintColor = .label
-        
+
         setViewControllers([vc1, vc2, vc3, vc4], animated: true)
     }
 }
