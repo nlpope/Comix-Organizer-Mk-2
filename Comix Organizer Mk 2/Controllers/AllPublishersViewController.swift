@@ -784,6 +784,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.12
  > restructuring AllCharactersVC's viewDidLoad & adding viewDidAppear to acct for selectedPublisher prop
+ 
+ >  AllPublishersVC: pushing the AllCharactersVC onto stack instead of setting index but not getting past "inside getCharactersAPI()" - so the call is getting triggered to configure on the viewDidAppear
 
  --------------------------
  
