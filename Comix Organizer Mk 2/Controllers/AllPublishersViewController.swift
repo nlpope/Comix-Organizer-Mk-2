@@ -72,7 +72,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let charactersVC = tabBarController?.viewControllers?[1]
+        let charactersVC = AllCharactersViewController()
+        let selectedPublisher = publishers[indexPath.row].name
+        print(selectedPublisher)
+        charactersVC.selectedPublisher = selectedPublisher
+        self.navigationController?.pushViewController(charactersVC, animated: true)
+        
         //get to selectedPublisher which is set in AllCharactersVC's viewDidAppear
       
     }
