@@ -786,6 +786,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > restructuring AllCharactersVC's viewDidLoad & adding viewDidAppear to acct for selectedPublisher prop
  
  >  AllPublishersVC: pushing the AllCharactersVC onto stack instead of setting index but not getting past "inside getCharactersAPI()" - so the call is getting triggered to configure on the viewDidAppear
+ 
+ 01.15
+ > research UINavigationController THAT's what's nested in the UITabBarController, allowing the tab to b visible @ the bottom @ all times as we navigate,
+ >> I just need to figure how to pass data through UINavigationController
 
  --------------------------
  

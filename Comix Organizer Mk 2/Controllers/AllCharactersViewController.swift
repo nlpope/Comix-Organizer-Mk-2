@@ -40,10 +40,10 @@ class AllCharactersViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Task {
+            print("inside AllCharactersVC'S viewDidAppear")
             await self.configureCharacters(withPublisher: selectedPublisher)
         }
     }
