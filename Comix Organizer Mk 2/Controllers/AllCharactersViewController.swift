@@ -52,9 +52,10 @@ class AllCharactersViewController: UIViewController {
 
         if let results = try? await APICaller.shared.getCharactersAPI() {
             let rawResults = results
+            print("inside configureCharacters & got a raw result to filter. FIRST RESULT = \(String(describing: rawResults.first))")
+            //PROBLEM CHILD
             let filteredResults = results.filter {$0.publisherName == publisher}
-            
-            print("raw results = \(rawResults)")
+            print("inside configureCharacters & was able to filter the results via Character instance's publisherName prop. FIRST RESULT = \(String(describing: filteredResults.first))")
             
             self.characters += rawResults
             self.characters += filteredResults
@@ -87,14 +88,11 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
         
-        
-        
         return cell
     }
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //12.31 PROBLEM CHILD?
         //        print("\(characters[indexPath.row].publisherName)")
         //        tableView.deselectRow(at: indexPath, animated: true)
     }

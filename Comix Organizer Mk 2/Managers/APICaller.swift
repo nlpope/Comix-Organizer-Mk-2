@@ -41,10 +41,13 @@ class APICaller {
         guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
-        
+        //ARE WE EVEN GETTING HERE?
+        print("The guard let threw no error. About to start URLSession to pull data for decoder")
         let (data, _) = try await URLSession.shared.data(from: url)
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
+//        print("THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(results.results.first!)")
+//        print("inside getCharactersAPI() & results.results = \(results.results)")
         return results.results
         //.sorted(by: {$1.characterName > $0.characterName})
               

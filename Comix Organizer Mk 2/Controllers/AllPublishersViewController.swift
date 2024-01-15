@@ -101,6 +101,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  * edit this boilerplate using: cmd + shift + L
  * storyboard object lisit: cmd + shift + L
  
+ * duplicate a line = cmd + D
  * hide/reveal debug area = cmd + shift + Y
  * hide/reveal console = cmd + shift + C
  * hide/reveal left pane = cmd + 0

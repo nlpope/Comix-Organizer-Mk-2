@@ -51,7 +51,6 @@ struct Character: Decodable {
         case publisherName = "name"
     }
     
-    //12.31 PROBLEM CHILD?
     init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -66,7 +65,6 @@ struct Character: Decodable {
         
         //link the 1st level key containing the nested container
         let imageNest = try container.nestedContainer(keyedBy: ImageKey.self, forKey: .image)
-        //12.31 PROBLEM CHILD?
         let publisherNest = try container.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
         
         //then, reach into that nested container and decode the final vars you want
