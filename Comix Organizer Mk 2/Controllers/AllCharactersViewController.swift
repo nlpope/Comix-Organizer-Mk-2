@@ -32,14 +32,13 @@ class AllCharactersViewController: UIViewController {
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-       
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Task {
@@ -48,14 +47,14 @@ class AllCharactersViewController: UIViewController {
         }
     }
     
-   
-    
     func configureCharacters(withPublisher publisher: String) async {
         print("inside configureCharacters & publisher = \(publisher)")
 
         if let results = try? await APICaller.shared.getCharactersAPI() {
             let rawResults = results
             let filteredResults = results.filter {$0.publisherName == publisher}
+            
+            print("raw results = \(rawResults)")
             
             self.characters += rawResults
             self.characters += filteredResults
