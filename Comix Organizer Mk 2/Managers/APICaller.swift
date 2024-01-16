@@ -36,9 +36,11 @@ class APICaller {
         return results.results.sorted(by: {$1.name > $0.name})
     }
     
+    //PROBLEM CHILD = API CALL DOESN'T ALWAYS INCLUDE WHAT USER SELECTS,
+    //BEST TO SEARCH VIA SPECIFIC PUBLISHER & RETURN THE CHARACTERS IN THAT ARRAY
     func getCharactersAPI() async throws -> [Character] {
         print("inside getCharactersAPI()")
-        guard let url = URL(string: "\(Constants.baseURL)/characters/?api_key=\(Constants.API_KEY)&format=json") else {
+        guard let url = URL(string: "\(Constants.baseURL)/publisher/\()/?api_key=\(Constants.API_KEY)&format=json") else {
             throw APIError.invalidURL
         }
         //ARE WE EVEN GETTING HERE?

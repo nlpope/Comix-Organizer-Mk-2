@@ -17,6 +17,7 @@ struct APICharactersResponse: Decodable {
 //Codable protocol throws error after new init
 struct Character: Decodable {
     //to be initialized w enums just after enum declarations
+    var api_detail_url: URL?
     var characterID: Int
     //enum coding keys
     var characterName: String
@@ -41,7 +42,7 @@ struct Character: Decodable {
         case publisher
     }
     
-    //(a) then move to singular naming convention - docs
+    //(b) then move to singular naming convention - docs
     enum ImageKey: String, CodingKey {
         case characterThumbnailURL = "thumb_url"
     }

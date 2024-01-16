@@ -51,14 +51,8 @@ class AllCharactersViewController: UIViewController {
         print("inside configureCharacters & publisher = \(publisher)")
 
         if let results = try? await APICaller.shared.getCharactersAPI() {
-            let rawResults = results
-            print("inside configureCharacters & got a raw result to filter. FIRST RESULT = \(String(describing: rawResults.first))")
-            //PROBLEM CHILD
-            let filteredResults = results.filter {$0.publisherName == publisher}
-            print("inside configureCharacters & was able to filter the results via Character instance's publisherName prop. FIRST RESULT = \(String(describing: filteredResults.first))")
-            
-            self.characters += rawResults
-            self.characters += filteredResults
+            self.characters += results
+           
         } else {
             print("something went wrong in configureCharacters()")
         }
@@ -114,3 +108,11 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
+
+//OG FILTER METHOD - BEFORE SEARCHING PUBLISHER/{PUBLISHER}
+//not working when right side of '==' isn't hard coded
+//i see, returning nil b/c first call doesn't incl. all publishers, so no 'selectedPublisher' in some cases
+//so, nothing wrong w code, sumn' wrong w calling for spec. publisher calls in comic vine API
+//but what if i dont need to filter, what if the characters come in filtered?
+//            let filtertedResults = results.filter {$0.publisherName == "Malibu"}
+//            print("inside configureCharacters & was able to filter the results via Character instance's publisherName prop. FIRST RESULT = \(String(describing: filtertedResults.first))")
