@@ -7,16 +7,29 @@
 
 import Foundation
 
-struct APIPublishersResponse: Codable {
+struct APIPublishersResponse: Decodable {
     let results: [Publisher]
 }
 
-struct Publisher: Codable {
-    let id: Int
-    let name: String
+//PROBLEM CHILD
+//source of dictonary type mismatch 
+struct Publisher: Decodable {
+    var publisherDetailsURL: String
+    var id: Int
+    var publisherName: String
     
-    //incorporate image const later
+    enum CodingKeys: String, CodingKey {
+        case publisherDetailsURL = "api_detail_url"
+        case id
+        case publisherName = "name"
+    }
     
-    //how to get array of publisher's comics (type Comic)
-    //in here AND in the PublisherItem data model
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self.publisherDetailsURL = try container.decodeIfPresent(URL.self, forKey: .publisherDetailsURL)
+//        self.id = try container.decode(Int.self, forKey: .id)
+//        self.publisherName = try container.decode(String.self, forKey: .publisherName)
+//    }
 }
+
+

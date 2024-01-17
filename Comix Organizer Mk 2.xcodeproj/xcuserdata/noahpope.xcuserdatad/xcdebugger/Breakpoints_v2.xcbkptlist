@@ -7,17 +7,236 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9000B7C1-8F7C-441F-A9C9-3029F2786D79"
+            uuid = "99EACFCB-567C-41D8-AD08-C6B0162FFFBD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Comix Organizer Mk 2/Managers/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "getCharactersAPI(withPublisherDetailsURL:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF687EC0-B400-4919-B56D-AD1F9E9AAF8B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Comix Organizer Mk 2/Controllers/AllPublishersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FF687EC0-B400-4919-B56D-AD1F9E9AAF8B - b0da842685fe330b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Comix_Organizer_Mk_2.AllPublishersViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Controllers/AllPublishersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  uuid = "FF687EC0-B400-4919-B56D-AD1F9E9AAF8B - a835b85b26af8a88"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in Comix_Organizer_Mk_2.AllPublishersViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Controllers/AllPublishersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "34">
+               </Location>
+               <Location
+                  uuid = "FF687EC0-B400-4919-B56D-AD1F9E9AAF8B - ee1d415edd1df309"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Comix_Organizer_Mk_2.AllPublishersViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Controllers/AllPublishersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "39">
+               </Location>
+               <Location
+                  uuid = "FF687EC0-B400-4919-B56D-AD1F9E9AAF8B - ee1d415edd1df309"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in Comix_Organizer_Mk_2.AllPublishersViewController.tableView(_: __C.UITableView, didSelectRowAt: Foundation.IndexPath) -&gt; ()"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Controllers/AllPublishersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "80"
+                  endingLineNumber = "80"
+                  offsetFromSymbolStart = "58">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB93B191-1CFC-4A6A-A2AA-8D95CC289C8C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Comix Organizer Mk 2/Managers/APICaller.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "getCharactersAPI(withPublisherDetailsURL:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "EB93B191-1CFC-4A6A-A2AA-8D95CC289C8C - 12627423e226da98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.APICaller.getCharactersAPI(withPublisherDetailsURL: Swift.String) async throws -&gt; Swift.Array&lt;Comix_Organizer_Mk_2.Character&gt;"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Managers/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "329">
+               </Location>
+               <Location
+                  uuid = "EB93B191-1CFC-4A6A-A2AA-8D95CC289C8C - fce25265338d51e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Comix_Organizer_Mk_2.APICaller.getCharactersAPI(withPublisherDetailsURL: Swift.String) async throws -&gt; Swift.Array&lt;Comix_Organizer_Mk_2.Character&gt;"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Managers/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "195">
+               </Location>
+               <Location
+                  uuid = "EB93B191-1CFC-4A6A-A2AA-8D95CC289C8C - 12627423e226da98"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.APICaller.getCharactersAPI(withPublisherDetailsURL: Swift.String) async throws -&gt; Swift.Array&lt;Comix_Organizer_Mk_2.Character&gt;"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Managers/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "305">
+               </Location>
+               <Location
+                  uuid = "EB93B191-1CFC-4A6A-A2AA-8D95CC289C8C - fce25265338d51e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Comix_Organizer_Mk_2.APICaller.getCharactersAPI(withPublisherDetailsURL: Swift.String) async throws -&gt; Swift.Array&lt;Comix_Organizer_Mk_2.Character&gt;"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Managers/APICaller.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "474684EF-E54A-48CB-9C96-E73601068249"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Comix Organizer Mk 2/Models/Character.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "init(from:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "474684EF-E54A-48CB-9C96-E73601068249 - 2b9ea7b8cb0de6bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.Character.PublisherKey.rawValue.getter : Swift.String"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Models/Character.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "75">
+               </Location>
+               <Location
+                  uuid = "474684EF-E54A-48CB-9C96-E73601068249 - 751464082b5fc0b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.Character.init(from: Swift.Decoder) throws -&gt; Comix_Organizer_Mk_2.Character"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Models/Character.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "226">
+               </Location>
+               <Location
+                  uuid = "474684EF-E54A-48CB-9C96-E73601068249 - 751464082b5fc0b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Comix_Organizer_Mk_2.Character.init(from: Swift.Decoder) throws -&gt; Comix_Organizer_Mk_2.Character"
+                  moduleName = "Comix Organizer Mk 2"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/noahpope/Developer/ios%20&amp;%20swift/PopeSolutions/Comix%20Organizer%20Mk%202/Comix%20Organizer%20Mk%202/Models/Character.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "1171">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

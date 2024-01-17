@@ -13,6 +13,7 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
     
+    public var publisherDetailURL = ""
     private var publishers: [Publisher] = [Publisher]()
     
     let tableView: UITableView = {
@@ -31,7 +32,7 @@ class AllPublishersViewController: UIViewController {
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-    
+        
         Task {
             await configurePublishers()
             tableView.delegate = self
@@ -45,7 +46,7 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-
+    
     func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishersAPI() {
             self.publishers += results
@@ -65,21 +66,31 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = publishers[indexPath.row].name
+        cell.textLabel?.text = publishers[indexPath.row].publisherName
         
         return cell
     }
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let charactersVC = AllCharactersViewController()
-        let selectedPublisher = publishers[indexPath.row].name
-        print("inside AllPublisherVC's didSelectRowAt & selectedPublisher to pass to charactersVC's selectedPublisher prop = \(selectedPublisher)")
-        charactersVC.selectedPublisher = selectedPublisher
-        self.navigationController?.pushViewController(charactersVC, animated: true)
+        let allCharactersVC = AllCharactersViewController()
+        let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
+        //detail URL format: https://comicvine.gamespot.com/api/publisher/4010-101/
+        Task {
+            await allCharactersVC.configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
+            
+            self.navigationController?.pushViewController(allCharactersVC, animated: true)
+
+        }
         
-        //get to selectedPublisher which is set in AllCharactersVC's viewDidAppear
-      
+        
+        
+       
+        
+        
+        
+        //        self.navigationController?.pushViewController(charactersVC, animated: true)
+        
     }
 }
 
@@ -146,7 +157,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > example (syntax):
  { (parameters) -> (return Type) in
-    statements
+ statements
  }
  
  > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/
@@ -168,16 +179,16 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> when you access a MUTABLE prop (VAR NOT LET) or method of an actor, you use "await" to mark the potential suspension point.
  > example (set up):
  actor TemperatureLogger {
-     let label: String
-     var measurements: [Int]
-     private(set) var max: Int
-
-
-     *init(label: String, measurement: Int) {
-         self.label = label
-         self.measurements = [measurement]
-         self.max = measurement
-     }
+ let label: String
+ var measurements: [Int]
+ private(set) var max: Int
+ 
+ 
+ *init(label: String, measurement: Int) {
+ self.label = label
+ self.measurements = [measurement]
+ self.max = measurement
+ }
  }
  
  //separate file
@@ -199,17 +210,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > example (before async / using deeply nested completion handler):
  listPhotos(inGallery: "Summer Vacation") { photoNames in
-     let sortedNames = photoNames.sorted()
-     let name = sortedNames[0]
-     downloadPhoto(named: name) { photo in
-         show(photo)
-     }
+ let sortedNames = photoNames.sorted()
+ let name = sortedNames[0]
+ downloadPhoto(named: name) { photo in
+ show(photo)
+ }
  }
  
  > example (after async):
  func listPhotos(inGallery name: String) async -> [String] {
-     let result = // ... some asynchronous networking code ...
-     return result
+ let result = // ... some asynchronous networking code ...
+ return result
  }
  
  let photoNames = await listPhotos(inGallery: "Summer Vacation")
@@ -236,10 +247,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  let firstPhoto = await downloadPhoto(named: photoNames[0])
  let secondPhoto = await downloadPhoto(named: photoNames[1])
  let thirdPhoto = await downloadPhoto(named: photoNames[2])
-
+ 
  let photos = [firstPhoto, secondPhoto, thirdPhoto]
  show(photos)
-
+ 
  > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Defining-and-Calling-Asynchronous-Functions
  
  --------------------------
@@ -264,7 +275,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > list of mandatory methods
  > https://stackoverflow.com/questions/5831813/delegate-and-datasource-methods-for-uitableview
-  
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -280,10 +291,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > the sltn = we wanna set up a CUSTOM TYPE so typos / invalid values aren't possible
  enum Day {
-    case monday
-    case tuesday
-    case wednesday
-    ...
+ case monday
+ case tuesday
+ case wednesday
+ ...
  }
  >> NOW, like a boolean, this new custom type "Day" only holds a small range of possible values
  
@@ -322,9 +333,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  >> example 2:
  func withTaskGroup<ChildTaskResult, GroupResult>(
-     of childTaskResultType: ChildTaskResult.Type,
-     returning returnType: GroupResult.Type = GroupResult.self,
-     body: (inout TaskGroup<ChildTaskResult>) async -> GroupResult
+ of childTaskResultType: ChildTaskResult.Type,
+ returning returnType: GroupResult.Type = GroupResult.self,
+ body: (inout TaskGroup<ChildTaskResult>) async -> GroupResult
  ) async -> GroupResult where ChildTaskResult : Sendable
  > where ChildTaskResult & GroupResult = placeholders who's types are to be determined in func body
  > https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/
@@ -336,14 +347,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > just set up an enum contianing APIError, then throw it in the else statement:
  
  1. enum APIError: Error {
-     case invalidURL
-     case failedToGetData
-   }
+ case invalidURL
+ case failedToGetData
+ }
  
-  2. guard let url = URL(string: ...) else {
-     throw APIError.invalidURL
-    }
-
+ 2. guard let url = URL(string: ...) else {
+ throw APIError.invalidURL
+ }
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -358,7 +369,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  func swapTwoInts(_ a: inout Int, _ b: inout Int)
  >> where a & b can now be mutated
  >> https://docs.swift.org/swift-book/documentation/the-swift-programming-language/functions/#In-Out-Parameters
-
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -378,14 +389,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  > example (set up)
  class Hero {
-    codeName: String
-    publisher: String
-    age: Int
-    init(codeName: String, publisher: String, age: Int) {
-        self.codeName = codeName
-        self.publisher = publisher
-        self.age = age
-    }
+ codeName: String
+ publisher: String
+ age: Int
+ init(codeName: String, publisher: String, age: Int) {
+ self.codeName = codeName
+ self.publisher = publisher
+ self.age = age
+ }
  }
  
  > example (execution)
@@ -409,17 +420,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > When you inherit a class and implement a new init function or override its own init function you should (almost) always call super.init.
  > example:
  class ViewController: UIViewController {
-     var button: UIButton?
-
-     init(button: UIButton) {
-         self.button = button
-         super.init(nibName: nil, bundle: nil)
-     }
-
-     required init?(coder aDecoder: NSCoder) {
-         fatalError("init(coder:) has not been implemented")
-     }
-
+ var button: UIButton?
+ 
+ init(button: UIButton) {
+ self.button = button
+ super.init(nibName: nil, bundle: nil)
+ }
+ 
+ required init?(coder aDecoder: NSCoder) {
+ fatalError("init(coder:) has not been implemented")
+ }
+ 
  }
  > https://stackoverflow.com/questions/53463685/swift-super-init-isnt-called-on-all-paths-before-returning-from-initializer
  
@@ -427,18 +438,18 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > ?
  > example (set up)
  extension UIImage {
-     enum AssetIdentifier: String {
-         case Search = "Search"
-         case Menu = "Menu"
-     }
-     convenience init(assetIdentifier: AssetIdentifier) {
-         self.init(named: assetIdentifier.rawValue)!
-     }
+ enum AssetIdentifier: String {
+ case Search = "Search"
+ case Menu = "Menu"
+ }
+ convenience init(assetIdentifier: AssetIdentifier) {
+ self.init(named: assetIdentifier.rawValue)!
+ }
  }
  
  > example (execution)
  UIImage(assetIdentifier: .Search)
-
+ 
  HELPFUL LINKS
  > https://stackoverflow.com/questions/32544366/swift-uiimage-extension
  
@@ -450,7 +461,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > encoding & decoding nested dictionaries & arrays
  >> just decode for the final, primitive value & navigate levels using enums (see below)
  >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
-
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -494,16 +505,16 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> in the init( ), you cannot set private(set)'s. The best you can do is give this prop an initial value or, in the internal init( ), set this prop equal to one of your non-private, "init-able" props
  >> example:
  actor TemperatureLogger {
-     let label: String
-     var measurements: [Int]
-     **private(set) var max: Int
-
-
-     init(label: String, measurement: Int) {
-         self.label = label
-         self.measurements = [measurement]
-         self.max = measurement
-     }
+ let label: String
+ var measurements: [Int]
+ **private(set) var max: Int
+ 
+ 
+ init(label: String, measurement: Int) {
+ self.label = label
+ self.measurements = [measurement]
+ self.max = measurement
+ }
  }
  
  > PRIVATE(GET)
@@ -523,7 +534,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> IS NOT conformable to SENDABLE protocol
  >>> unless all of its props are NON-MUTABLE / NOT CHANGEABLE
  >> SPECIAL NOTE: ACTORS ARE ALSO REFERENCE TYPES: SEE ACTORS SECT.
-
+ 
  
  > VALUE TYPES
  >> shares a unique COPY of the obecjt's data
@@ -532,14 +543,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> DOES NOT require init
  >> conformable to SENDABLE protocol
  >>> unless one of its props is of type class / not sendable conforming
-
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  STORYBOARD: HOW TO REMOVE IT TO CODE INTERFACE PROGRAMMATICALLY
  > https://medium.com/@yatimistark/removing-storyboard-from-app-xcode-14-swift-5-2c707deb858
-
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -554,7 +565,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > pulling a UIImage from a url
  >> ?
  >> https://www.hackingwithswift.com/example-code/uikit/how-to-load-a-remote-image-url-into-uiimageview
-
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -563,7 +574,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > simulators disappeared?
  >> restart computer
  >> https://developer.apple.com/forums/thread/120250
-
+ 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -687,7 +698,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> https://comicvine.gamespot.com/forums/api-developers-2334/api-rate-limiting-1746419/
  > ... then making character view cell, complete w image & details  of hero & didSelect delegate that takes you to a (yet uncreated) SelectedCharacterVC.
  ?? how to paginate (comicvine docs above) + create SelectedCharacterVC (1 of many CharacterSelectViewCells will take you there)
-
+ 
  12.27
  > scratch pagination, work on infinite scrolling
  >>  https://www.kodeco.com/5786-uitableview-infinite-scrolling-tutorial
@@ -791,7 +802,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.15
  > research UINavigationController THAT's what's nested in the UITabBarController, allowing the tab to b visible @ the bottom @ all times as we navigate,
  >> I just need to figure how to pass data through UINavigationController
-
+ 
+ 01.16
+ > adding comments & removing filtering method from configureCharacters(withPublsiher) - a func which may be unnecessary
+ 
  --------------------------
  
  */

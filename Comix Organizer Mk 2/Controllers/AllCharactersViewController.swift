@@ -11,7 +11,7 @@ import CoreData
 class AllCharactersViewController: UIViewController {
     //work on context & data persistence manager next
     
-    public var selectedPublisher = ""
+    public var characterDetailURL = ""
     private var characters = [Character]()
     let shared = AllPublishersViewController()
     
@@ -39,22 +39,23 @@ class AllCharactersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        Task {
-            print("inside AllCharactersVC'S viewDidAppear")
-            await self.configureCharacters(withPublisher: selectedPublisher)
-        }
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        Task {
+//            print("inside AllCharactersVC'S viewDidAppear")
+//            await self.configureCharacters(withPublisher: selectedPublisher)
+//        }
+//    }
     
-    func configureCharacters(withPublisher publisher: String) async {
-        print("inside configureCharacters & publisher = \(publisher)")
+    
+    
+    func configureCharacters(withPublisherDetailsURL publisherDetailsURL: String) async {
 
-        if let results = try? await APICaller.shared.getCharactersAPI() {
+        if let results = try? await APICaller.shared.getCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {
             self.characters += results
            
         } else {
-            print("something went wrong in configureCharacters()")
+            print("something went wrong in configureCharacters().")
         }
         
     }
@@ -74,20 +75,16 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         
         let theCharacter = characters[indexPath.row]
         
+        //configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
+        //more to come (including images & detailed bios)
         cell.characterViewCellName?.text = theCharacter.characterName
-        cell.characterViewCellAbbreviatedBio?.text = theCharacter.characterAbbreviatedBio
-        cell.characterViewCellDetailedBio?.text = theCharacter.characterDetailedBio
-        
-        cell.characterViewCellThumbnail?.load(withURL: theCharacter.characterThumbnailURL!)
-        //above = configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
-        //how to convert url (in Character model) to type uiimageView (in characterselectviewcell)?
-        
+       
         return cell
     }
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        print("\(characters[indexPath.row].publisherName)")
+        print("\(characters[indexPath.row].characterName)")
         //        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -31,27 +31,42 @@ class APICaller {
         }
         //async variant of urlsession - may suspend code, hence the await
         let (data, _) = try await URLSession.shared.data(from: url)
-        let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
         
-        return results.results.sorted(by: {$1.name > $0.name})
+        let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
+                
+        return results.results.sorted(by: {$1.publisherName > $0.publisherName})
     }
     
-    //PROBLEM CHILD = API CALL DOESN'T ALWAYS INCLUDE WHAT USER SELECTS,
+    //FORMER PROBLEM CHILD
+    //API CALL DOESN'T ALWAYS INCLUDE WHAT USER SELECTS,
     //BEST TO SEARCH VIA SPECIFIC PUBLISHER & RETURN THE CHARACTERS IN THAT ARRAY
-    func getCharactersAPI() async throws -> [Character] {
-        print("inside getCharactersAPI()")
-        guard let url = URL(string: "\(Constants.baseURL)/publisher/\()/?api_key=\(Constants.API_KEY)&format=json") else {
+    func getCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Character] {
+        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=characters") else {
             throw APIError.invalidURL
         }
-        //ARE WE EVEN GETTING HERE?
-        print("The guard let threw no error. About to start URLSession to pull data for decoder")
+        print("inside getCharactersAPI & the guard let threw no error. About to start URLSession to pull data for decoder. URL = \(url)")
         let (data, _) = try await URLSession.shared.data(from: url)
+        print("inside getCharactersAPI & the data was pulled from the URL. about to decode")
+
+        //LEADS TO PROBLEM CHILD
+        //DELETE THIS AFTER PROBLEM CHILD ERR IS DEALT WITH
+        do {
+            let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+            
+            print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(results.results.first!)")
+            return results.results
+            //.sorted(by: {$1.characterName > $0.characterName})
+
+        } catch {
+            print("ISSUE DECODING. ERROR = \(error)")
+        }
+    
         let results = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
-//        print("THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(results.results.first!)")
-//        print("inside getCharactersAPI() & results.results = \(results.results)")
+        print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(results.results.first!)")
         return results.results
-        //.sorted(by: {$1.characterName > $0.characterName})
+        
+        
               
     }
 

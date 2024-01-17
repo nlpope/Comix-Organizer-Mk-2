@@ -8,78 +8,72 @@
 import Foundation
 import UIKit
 
+//PROBLEM CHILD
+//GETTING TYPE MISMATCH DICTIONARY ERROR FOR RESULTS VAR IN APICHARACTERSRESPONSE
+//got it, results in FAILING characters response followed by dict. {} while the WORKING publisher results are followed by array []
 struct APICharactersResponse: Decodable {
     let results: [Character]
 }
 
 
-//changing to just Decodable
-//Codable protocol throws error after new init
+//FORMER PROBLEM CHILD
+//new 'publisher/pub-id' API Call didn't align w old vars, changed em to match
 struct Character: Decodable {
-    //to be initialized w enums just after enum declarations
-    var api_detail_url: URL?
-    var characterID: Int
-    //enum coding keys
-    var characterName: String
-    var characterAbbreviatedBio: String?
-    var characterDetailedBio: String?
+    //top level coding keys
+//    var publisherDetailsURL: String
     //nested coding keys
-    var characterThumbnailURL: URL?
-    var publisherID: Int
-    var publisherName: String
+    var characterDetailsURL: String
+    var characterID: Int
+    var characterName: String
     
     //for nested items: enum prop doesn't have to be declared up top
     //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
     
-    //(a) start w plural "CodingKeys" always...
+    //(a) start w plural "CodingKeys" for top level enums & expected nest name cases...
     enum CodingKeys: String, CodingKey {
-        case id
-        case characterName = "name"
-        case characterAbbreviatedBio = "deck"
-        case characterDetailedBio = "description"
+//        case publisherDetailsURL = "api_detail_url"
         //below = nested
-        case image
-        case publisher
+        case characters
     }
     
     //(b) then move to singular naming convention - docs
-    enum ImageKey: String, CodingKey {
-        case characterThumbnailURL = "thumb_url"
-    }
-    
-    enum PublisherKey: String, CodingKey {
-        case publisherID = "id"
-        case publisherName = "name"
+    enum CharacterKey: String, CodingKey {
+        case characterDetailsURL = "api_detail_url"
+        case characterID = "id"
+        case characterName = "name"
     }
     
     init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        characterID = try container.decode(Int.self, forKey: .id)
+//        publisherDetailsURL = try container.decode(String.self, forKey: .publisherDetailsURL)
         
-        characterName = try container.decode(String.self, forKey: .characterName)
+        //(c) link the top level key containing the nested container using the corresp. top level case
+        let characterNest = try container.nestedContainer(keyedBy: CharacterKey.self, forKey: .characters)
         
-        characterAbbreviatedBio = try container.decodeIfPresent(String.self, forKey: .characterAbbreviatedBio)
+        characterDetailsURL = try characterNest.decode(String.self, forKey: .characterDetailsURL)
+       
+        characterID = try characterNest.decode(Int.self, forKey: .characterID)
         
-        characterDetailedBio = try container.decodeIfPresent(String.self, forKey: .characterDetailedBio)
-        
-        //link the 1st level key containing the nested container
-        let imageNest = try container.nestedContainer(keyedBy: ImageKey.self, forKey: .image)
-        let publisherNest = try container.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
-        
-        //then, reach into that nested container and decode the final vars you want
-        characterThumbnailURL = try imageNest.decode(URL.self, forKey: .characterThumbnailURL)
-        publisherID = try publisherNest.decode(Int.self, forKey: .publisherID)
-        
-        publisherName = try publisherNest.decode(String.self, forKey: .publisherName)
-        
-        //        print("""
-        //              character name = \(characterName),
-        //              \npublisher name = \(publisherName)
-        //              \ncharacter deck = \(characterAbbreviatedBio!)
-        //              """)
+        characterName = try characterNest.decode(String.self, forKey: .characterName)
         
     }
+    
 }
 
+//OLD ENUM LAYERS & (IFPRESENT) DECODING FROM CONTAINER
+//enum ImageKey: String, CodingKey {
+//    case characterThumbnailURL = "thumb_url"
+//}
+//
+//enum PublisherKey: String, CodingKey {
+//    case publisherID = "id"
+//    case publisherName = "name"
+//}
+
+//characterAbbreviatedBio = try container.decodeIfPresent(String.self, forKey: .characterAbbreviatedBio)
+//
+//characterDetailedBio = try container.decodeIfPresent(String.self, forKey: .characterDetailedBio)
+//let imageNest = try container.nestedContainer(keyedBy: ImageKey.self, forKey: .image)
+//let publisherNest = try container.nestedContainer(keyedBy: PublisherKey.self, forKey: .publisher)
