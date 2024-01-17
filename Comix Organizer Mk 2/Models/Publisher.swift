@@ -11,8 +11,8 @@ struct APIPublishersResponse: Decodable {
     let results: [Publisher]
 }
 
-//PROBLEM CHILD
-//source of dictonary type mismatch 
+//FORMER PROBLEM CHILD
+//source of dictonary type mismatch
 struct Publisher: Decodable {
     var publisherDetailsURL: String
     var id: Int

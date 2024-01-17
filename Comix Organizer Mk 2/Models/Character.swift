@@ -13,6 +13,7 @@ import UIKit
 //got it, results in FAILING characters response followed by dict. {} while the WORKING publisher results are followed by array []
 struct APICharactersResponse: Decodable {
     let results: [Character]
+//    let results: Dictionary<String, [Character]>
 }
 
 
@@ -20,6 +21,7 @@ struct APICharactersResponse: Decodable {
 //new 'publisher/pub-id' API Call didn't align w old vars, changed em to match
 struct Character: Decodable {
     //top level coding keys
+    var results: Dictionary<String, [Character]>
 //    var publisherDetailsURL: String
     //nested coding keys
     var characterDetailsURL: String
@@ -31,12 +33,14 @@ struct Character: Decodable {
     
     //(a) start w plural "CodingKeys" for top level enums & expected nest name cases...
     enum CodingKeys: String, CodingKey {
-//        case publisherDetailsURL = "api_detail_url"
+        case results
         //below = nested
         case characters
     }
     
     //(b) then move to singular naming convention - docs
+   
+                        
     enum CharacterKey: String, CodingKey {
         case characterDetailsURL = "api_detail_url"
         case characterID = "id"
@@ -61,6 +65,46 @@ struct Character: Decodable {
     }
     
 }
+
+struct CodableDictionary<Key : Hashable, Value : Codable> : Codable where Key : CodingKey {
+
+    let decoded: [Key: Value]
+
+    init(_ decoded: [Key: Value]) {
+        self.decoded = decoded
+    }
+
+    init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: Key.self)
+
+        decoded = Dictionary(uniqueKeysWithValues:
+            try container.allKeys.lazy.map {
+                (key: $0, value: try container.decode(Value.self, forKey: $0))
+            }
+        )
+    }
+
+    func encode(to encoder: Encoder) throws {
+
+        var container = encoder.container(keyedBy: Key.self)
+
+        for (key, value) in decoded {
+            try container.encode(value, forKey: key)
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 //OLD ENUM LAYERS & (IFPRESENT) DECODING FROM CONTAINER
 //enum ImageKey: String, CodingKey {

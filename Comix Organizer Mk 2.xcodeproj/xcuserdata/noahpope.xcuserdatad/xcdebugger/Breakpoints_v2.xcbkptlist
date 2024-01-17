@@ -186,10 +186,10 @@
             filePath = "Comix Organizer Mk 2/Models/Character.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "init(from:)"
-            landmarkType = "7">
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "CharacterKey"
+            landmarkType = "13">
             <Locations>
                <Location
                   uuid = "474684EF-E54A-48CB-9C96-E73601068249 - 2b9ea7b8cb0de6bd"

@@ -806,6 +806,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.16
  > adding comments & removing filtering method from configureCharacters(withPublsiher) - a func which may be unnecessary
  
+ 01.17
+ >  using codableDictionary sltn from https://stackoverflow.com/questions/44725202/swift-4-decodable-dictionary-with-enum-as-key
+ 
  --------------------------
  
  */
