@@ -809,6 +809,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.17
  >  using codableDictionary sltn from https://stackoverflow.com/questions/44725202/swift-4-decodable-dictionary-with-enum-as-key
  
+ 01.18
+ > next up, try filtering the query and access it (now w the expected ARRAY type in results) using the &filter=field:value method
  --------------------------
  
  */
