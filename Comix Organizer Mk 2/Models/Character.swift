@@ -12,35 +12,34 @@ import UIKit
 //GETTING TYPE MISMATCH DICTIONARY ERROR FOR RESULTS VAR IN APICHARACTERSRESPONSE
 //got it, results in FAILING characters response followed by dict. {} while the WORKING publisher results are followed by array []
 struct APICharactersResponse: Decodable {
-    let results: [Character]
-//    let results: Dictionary<String, [Character]>
+    let results: Dictionary<String, [Character]>
 }
 
 
 //FORMER PROBLEM CHILD
 //new 'publisher/pub-id' API Call didn't align w old vars, changed em to match
+//instead of decoding dictionary (impossible), just decode the final, nested primitive type(s) & access outter "wrapper" using Enums
 struct Character: Decodable {
     //top level coding keys
-    var results: Dictionary<String, [Character]>
-//    var publisherDetailsURL: String
+    var results: Dictionary<String, [Any]>
     //nested coding keys
     var characterDetailsURL: String
     var characterID: Int
     var characterName: String
-    
-    //for nested items: enum prop doesn't have to be declared up top
-    //instead of decoding dictionary (impossible), just decode the final primitive type(s) & access outter "wrapper" using Enums
-    
+        
     //(a) start w plural "CodingKeys" for top level enums & expected nest name cases...
+    //for nested items: enum prop doesn't have to be declared up top
     enum CodingKeys: String, CodingKey {
         case results
-        //below = nested
-        case characters
+//        case characters
     }
     
     //(b) then move to singular naming convention - docs
-   
-                        
+    enum ResultsKey: String, CodingKey {
+        case characters
+        //PROBLEM CHILD, LEFT OFF HERE 01.18.24
+    }
+    
     enum CharacterKey: String, CodingKey {
         case characterDetailsURL = "api_detail_url"
         case characterID = "id"

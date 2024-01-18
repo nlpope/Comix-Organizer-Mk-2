@@ -8,6 +8,8 @@
 import Foundation
 
 struct APIPublishersResponse: Decodable {
+    //below must be named 'results'
+    //b/c it mimics JSON's 'results'
     let results: [Publisher]
 }
 
