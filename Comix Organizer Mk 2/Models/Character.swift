@@ -20,12 +20,10 @@ struct APICharactersResponse: Decodable {
 //new 'publisher/pub-id' API Call didn't align w old vars, changed em to match
 //instead of decoding dictionary (impossible), just decode the final, nested primitive type(s) & access outter "wrapper" using Enums
 struct Character: Decodable {
-    //top level coding keys
-    var results: Dictionary<String, [Any]>
     //nested coding keys
-    var characterDetailsURL: String
-    var characterID: Int
-    var characterName: String
+//    var characterDetailsURL: String
+//    var characterID: Int
+//    var characterName: String
         
     //(a) start w plural "CodingKeys" for top level enums & expected nest name cases...
     //for nested items: enum prop doesn't have to be declared up top
@@ -52,14 +50,14 @@ struct Character: Decodable {
         
 //        publisherDetailsURL = try container.decode(String.self, forKey: .publisherDetailsURL)
         
-        //(c) link the top level key containing the nested container using the corresp. top level case
-        let characterNest = try container.nestedContainer(keyedBy: CharacterKey.self, forKey: .characters)
-        
-        characterDetailsURL = try characterNest.decode(String.self, forKey: .characterDetailsURL)
-       
-        characterID = try characterNest.decode(Int.self, forKey: .characterID)
-        
-        characterName = try characterNest.decode(String.self, forKey: .characterName)
+//        //(c) link the top level key containing the nested container using the corresp. top level case
+//        let characterNest = try container.nestedContainer(keyedBy: CharacterKey.self, forKey: .characters)
+//        
+//        characterDetailsURL = try characterNest.decode(String.self, forKey: .characterDetailsURL)
+//       
+//        characterID = try characterNest.decode(Int.self, forKey: .characterID)
+//        
+//        characterName = try characterNest.decode(String.self, forKey: .characterName)
         
     }
     

@@ -811,6 +811,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.18
  > next up, try filtering the query and access it (now w the expected ARRAY type in results) using the &filter=field:value method
+ 
+ 01.19
+ > comic vine api not cooperating w filtering characters via selected publisher (for the time being); So I'll change the app's setup to lead the user to a list of issues related to the selected publisher and maybe I'll include a search function that filters the issues based on characters or sumn'
  --------------------------
  
  */

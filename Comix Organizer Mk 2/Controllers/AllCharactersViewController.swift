@@ -52,7 +52,7 @@ class AllCharactersViewController: UIViewController {
     func configureCharacters(withPublisherDetailsURL publisherDetailsURL: String) async {
 
         if let results = try? await APICaller.shared.getCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {
-            self.characters += results
+//            self.characters += results
            
         } else {
             print("something went wrong in configureCharacters().")
@@ -77,14 +77,14 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
         
         //configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //more to come (including images & detailed bios)
-        cell.characterViewCellName?.text = theCharacter.characterName
+//        cell.characterViewCellName?.text = theCharacter.characterName
        
         return cell
     }
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(characters[indexPath.row].characterName)")
+//        print("\(characters[indexPath.row].characterName)")
         //        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
