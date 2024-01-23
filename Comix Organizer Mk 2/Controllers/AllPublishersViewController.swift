@@ -839,6 +839,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> let results: [String: [Character]]
  >> no nested keys/enums necessary past the CodingKeys
  > return decodedJSON.results["characters"]!
+ 
+ > changing APICharactersResponse from var back to const
  --------------------------
  
  */
