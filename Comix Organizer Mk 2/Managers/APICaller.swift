@@ -53,21 +53,12 @@ class APICaller {
         print("inside getCharactersAPI & the data was pulled from the URL. about to decode")
 
         //DELETE THIS AFTER PROBLEM CHILD ERR IS DEALT WITH
-        do {
-            //01.23 PROBLEM CHILD
-            let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-            print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results.first!)")
-            return decodedJSON.results["results"]!
-            //.sorted(by: {$1.characterName > $0.characterName})
-
-        } catch {
-            print("ISSUE DECODING. ERROR = \(error)")
-        }
+       
     
         let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
-        print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results.first!)")
-        return decodedJSON.results["results"]!
+        print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results["characters"]!)")
+        return decodedJSON.results["characters"]!
         
         
               

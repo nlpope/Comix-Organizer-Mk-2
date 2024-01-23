@@ -123,12 +123,34 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- API CALLS & NETWORK - also see "concurrency"
- > API CALLS & NETWORK
- >> default = async await
- >> be wary of AlamoFire, it does not support async await (see senpai link below)
+ API CALLS: JSON, ASYC AWAIT, & NETWORK - see also "concurrency"
+ 
+ API CALLS - NETWORK
+ > default = async await
+ > be wary of AlamoFire, it does not support async await (see senpai link below)
+ --------------------------
+ API CALLS - JSON DATA
+ 
+ DECODING NESTED JSON PT. 1 (DICTIONARIES)
+ > source: https://www.hackingwithswift.com/forums/swiftui/building-the-structs-for-api/7156
+ > Set up your response to be of type Dictionary
+ let results: [String: [CustomType]]
+ 
+ > Next, no nested coding keys necessary past the initial CodingKeys enum; just call the result appropriately after it's decoded
+ let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
+ 
+ return decodedJSON.results["characters"]!
+ >> where "characters" is the key for your desired ARRAY of values
+ --------------------------
+ DECODING NESTED JSON PT. 2 (ENUM LEVEL JUMPING / HOPPING)
+ > just decode for the final, primitive value & navigate levels using enums (see below)
+ >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
+ --------------------------
+ DECODING NESTED JSON - FLATTENING DATA W DYNAMIC KEYS
+ > https://swiftsenpai.com/swift/decode-dynamic-keys-json/
  
  --------------------------
+ API CALLS - ASYNC AWAIT LOGIC
  >> why is async await (structured concurrency - see "concurrency") preferred over new swift 5.5 completion handlers?
  >>> note: most probs below are contributed to new "Result" enum
  >>> avoids deep nesting (pyramid of doom) that completion handlers are prone to
@@ -452,15 +474,6 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  HELPFUL LINKS
  > https://stackoverflow.com/questions/32544366/swift-uiimage-extension
- 
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- JSON DATA IS NESTED: ENCODING & DECODING HOW TO
- > encoding & decoding nested dictionaries & arrays
- >> just decode for the final, primitive value & navigate levels using enums (see below)
- >> https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
@@ -818,6 +831,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.20
  > but there's still the matter of the payload's result housing a dictionary instead of an array
  > so the real question is - how do I decode a Dictionary<String, [Any]> when enums can only accept a raw value type 
+ 
+ 01.23
+ > GOT IT!!!
+ >> after reading https://www.hackingwithswift.com/forums/swiftui/building-the-structs-for-api/7156
+ > changed APICharactersResponse result type to hold a dictionary w one key of type String and an array of type Character as the value:
+ >> let results: [String: [Character]]
+ >> no nested keys/enums necessary past the CodingKeys
+ > return decodedJSON.results["characters"]!
  --------------------------
  
  */

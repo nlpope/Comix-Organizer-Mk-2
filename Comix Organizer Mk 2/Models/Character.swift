@@ -10,9 +10,7 @@ import UIKit
 
 struct APICharactersResponse: Decodable {
     //Dictionary shorthand
-    //where String = characters
-    var results: [String: [Character]]
-//    var characters: [Character]
+    let results: [String: [Character]]
     
   
 }
