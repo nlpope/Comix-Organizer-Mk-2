@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class AllCharactersViewController: UIViewController {
-    //work on context & data persistence manager next
     
     public var characterDetailURL = ""
     private var characters = [Character]()
@@ -52,7 +51,8 @@ class AllCharactersViewController: UIViewController {
     func configureCharacters(withPublisherDetailsURL publisherDetailsURL: String) async {
 
         if let results = try? await APICaller.shared.getCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {
-//            self.characters += results
+            
+            self.characters += results
            
         } else {
             print("something went wrong in configureCharacters().")

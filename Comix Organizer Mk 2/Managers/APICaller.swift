@@ -43,24 +43,21 @@ class APICaller {
         return results.results.sorted(by: {$1.publisherName > $0.publisherName})
     }
     
-    //FORMER PROBLEM CHILD
-    //API CALL DOESN'T ALWAYS INCLUDE WHAT USER SELECTS,
-    //BEST TO SEARCH VIA SPECIFIC PUBLISHER & RETURN THE CHARACTERS IN THAT ARRAY
-    func getCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> Dictionary<String, [Character]> {
+    func getCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Character] {
+        
         guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=characters") else {
             throw APIError.invalidURL
         }
-        print("inside getCharactersAPI & the guard let threw no error. About to start URLSession to pull data for decoder. URL = \(url)")
+        
         let (data, _) = try await URLSession.shared.data(from: url)
         print("inside getCharactersAPI & the data was pulled from the URL. about to decode")
 
-        //LEADS TO PROBLEM CHILD
         //DELETE THIS AFTER PROBLEM CHILD ERR IS DEALT WITH
         do {
+            //01.23 PROBLEM CHILD
             let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-            
-            print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results.first!)")
-            return decodedJSON.results
+            print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results.first!)")
+            return decodedJSON.results["results"]!
             //.sorted(by: {$1.characterName > $0.characterName})
 
         } catch {
@@ -70,7 +67,7 @@ class APICaller {
         let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
         print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results.first!)")
-        return decodedJSON.results
+        return decodedJSON.results["results"]!
         
         
               
@@ -78,3 +75,15 @@ class APICaller {
 
 }
 
+
+/**
+ ARCHIVED CODE
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ func getCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> Dictionary<String, [Character]>
+ 
+ --------------------------
+ print("inside getCharactersAPI & the guard let threw no error. About to start URLSession to pull data for decoder. URL = \(url)")
+ */

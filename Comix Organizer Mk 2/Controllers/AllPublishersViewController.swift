@@ -78,7 +78,6 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         //detail URL format: https://comicvine.gamespot.com/api/publisher/4010-101/
         Task {
             await allCharactersVC.configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
-            
             self.navigationController?.pushViewController(allCharactersVC, animated: true)
 
         }
@@ -109,7 +108,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
 /**
  --------------------------
  SHORTCUTS:
- * edit this boilerplate using: cmd + shift + L
+ * create new code snippets: right click + "create code snippet"
+ * edit this code snippet: cmd + shift + L
  * storyboard object lisit: cmd + shift + L
  
  * duplicate a line = cmd + D
@@ -814,6 +814,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.19
  > comic vine api not cooperating w filtering characters via selected publisher (for the time being); So I'll change the app's setup to lead the user to a list of issues related to the selected publisher and maybe I'll include a search function that filters the issues based on characters or sumn'
+ 
+ 01.20
+ > but there's still the matter of the payload's result housing a dictionary instead of an array
+ > so the real question is - how do I decode a Dictionary<String, [Any]> when enums can only accept a raw value type 
  --------------------------
  
  */

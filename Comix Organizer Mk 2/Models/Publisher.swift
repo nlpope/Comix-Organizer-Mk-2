@@ -8,18 +8,20 @@
 import Foundation
 
 struct APIPublishersResponse: Decodable {
-    //below must be named 'results'
-    //b/c it mimics JSON's 'results'
+    //below must be named 'results' as it "maps" to JSON's 'results'
     let results: [Publisher]
 }
 
-//FORMER PROBLEM CHILD
-//source of dictonary type mismatch
+//for nested items, start w final dest. then declare wrapper prop(s) in enum(s)
 struct Publisher: Decodable {
     var publisherDetailsURL: String
     var id: Int
     var publisherName: String
     
+    //(a) start w plural "CodingKeys" for top level enums & expected nest name cases...
+    //(b) then move to singular naming convention if nest delves even deeper - docs
+    //(c) finally, after the enum setup, in your init(from decoder) - ...
+    //link the top level key containing the nested container using the corresp. top level case - docs
     enum CodingKeys: String, CodingKey {
         case publisherDetailsURL = "api_detail_url"
         case id
