@@ -10,7 +10,7 @@ import CoreData
 
 class AllCharactersViewController: UIViewController {
     
-    public var characterDetailURL = ""
+    public var selectedPublisherDetailsURL = ""
     private var characters = [Character]()
     let shared = AllPublishersViewController()
     
@@ -31,6 +31,10 @@ class AllCharactersViewController: UIViewController {
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        //NEWLY ADDED AFTER IT WAS WORKING
+        Task {
+            await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,11 +76,11 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
-
-        //"as! CharacterSelectViewCell" gives access to iboutlets in CharacterSelectViewCell
+//"as! CharacterSelectViewCell" gives access to iboutles in CharacterSelectViewCell
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterSelectViewCell", for: indexPath) as! CharacterSelectViewCell
         
         let theCharacter = characters[indexPath.row]
+        cell.textLabel?.text = theCharacter.characterName
         
         //configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
         //more to come (including images & detailed bios)
@@ -87,8 +91,11 @@ extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("\(characters[indexPath.row].characterName)")
-        //        tableView.deselectRow(at: indexPath, animated: true)
+//        let selectedCharacterVC
+        //make selectedcharacter VCb
+        let selectedCharacterDetailsURL = characters[indexPath.row].characterDetailsURL
+        print(selectedCharacterDetailsURL)
+
     }
 }
 

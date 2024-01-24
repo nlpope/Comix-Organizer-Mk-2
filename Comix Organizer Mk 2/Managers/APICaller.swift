@@ -57,8 +57,9 @@ class APICaller {
     
         let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
         
-        print("INSIDE GETCHARACTERSAPI & THE DECODER WORKED - DATA DECODED & ABOUT TO RETURN RESULTS.RESULTS TO ALLCHARACTERSVC'S CONFIGURECHARACTERS FUNC. FIRST RESULT = \(decodedJSON.results["characters"]!)")
-        return decodedJSON.results["characters"]!
+        print("inside getCharactersAPI & JSON was successfully decoded")
+        
+        return decodedJSON.results["characters"]!.sorted(by: {$1.characterName > $0.characterName})
         
         
               

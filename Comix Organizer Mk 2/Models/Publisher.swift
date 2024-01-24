@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIPublishersResponse: Decodable {
-    //below must be named 'results' as it "maps" to JSON's 'results'
+    //below must be named 'results' as it "maps" to JSON's 'results'(?)
     let results: [Publisher]
 }
 

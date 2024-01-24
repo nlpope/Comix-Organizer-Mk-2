@@ -13,7 +13,6 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
     
-    public var publisherDetailURL = ""
     private var publishers: [Publisher] = [Publisher]()
     
     let tableView: UITableView = {
@@ -27,14 +26,17 @@ class AllPublishersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
         view.backgroundColor = .systemBackground
+        
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+      
         
         Task {
             await configurePublishers()
+            //get empty table when below is moved out of Task. why?
+            view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
@@ -75,9 +77,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let allCharactersVC = AllCharactersViewController()
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        //detail URL format: https://comicvine.gamespot.com/api/publisher/4010-101/
+        print(selectedPublisherDetailsURL)
+        print(self.tabBarController?.viewControllers!)
         Task {
             await allCharactersVC.configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
+            self.tabBarController?.selectedIndex = 1
             self.navigationController?.pushViewController(allCharactersVC, animated: true)
 
         }
@@ -841,6 +845,18 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > return decodedJSON.results["characters"]!
  
  > changing APICharactersResponse from var back to const
+ 
+ 01.24
+ > AllPublishersVC
+ >> FIXED the "cells won't populate until I scroll" problem by putting the view.addSubview(tableView) line in the task with its accompanying delegate/datasource/frame logic
+ 
+ Task {
+     await configurePublishers()
+     view.addSubview(tableView)
+     tableView.delegate = self
+     tableView.dataSource = self
+     tableView.frame = view.bounds
+ }
  --------------------------
  
  */
