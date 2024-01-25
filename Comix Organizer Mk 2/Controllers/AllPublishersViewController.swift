@@ -27,7 +27,6 @@ class AllPublishersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
@@ -75,16 +74,15 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let allCharactersVC = AllCharactersViewController()
+        let selectedPublisher = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        print(selectedPublisherDetailsURL)
-        print(self.tabBarController?.viewControllers!)
-        Task {
-            await allCharactersVC.configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
-            self.tabBarController?.selectedIndex = 1
-            self.navigationController?.pushViewController(allCharactersVC, animated: true)
-
-        }
+        let tabBar = tabBarController as! MainTabBarViewController
+        
+        tabBar.selectedPublisher = selectedPublisher
+        tabBar.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        
+        
+        self.tabBarController?.selectedIndex = 1
         
         
         
@@ -385,6 +383,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
+ IBOUTLETS
+ > use these on UILabels and other user interface objects if you'd like their values to be updated based on a button press (e.g. incrementing an Int)
+ > https://www.youtube.com/watch?v=GL8-eM93EvQ&t=941s
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  IN-OUT FUNC PARAMETERS
  > "I wanna mutate a func's params & have that change persist when the func exits"
  > params are 'let' constants by default
@@ -406,7 +411,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> structs = don't need them / swift auto adds them @ compile time
  >> ... though, Swift provides a default initializer for any structure or class that provides default values for all of its properties and doesn’t provide at least one initializer itself
  
- STANDARD INITS
+ INITS - STANDARD INITS
  > most straightforward - initialize the values you define @ runtime
  >> failable, so put a "!" after the final parenthesis of the init if need be
  
@@ -857,6 +862,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
      tableView.dataSource = self
      tableView.frame = view.bounds
  }
+ 
+ 01.25
+ > so i dont need an IBOUTLET to transfer the data from tab to tab, but instead i need just a normal prop within allcharacttersVC, but how would I access that prop? also, lastly, selectedPublisherDetailsURL in allcharactersVC is not a computed prop
  --------------------------
  
  */

@@ -10,7 +10,7 @@ import CoreData
 
 class AllCharactersViewController: UIViewController {
     
-    public var selectedPublisherDetailsURL = ""
+    public var selectedPublisherDetailsURL: String
     private var characters = [Character]()
     let shared = AllPublishersViewController()
     
@@ -20,20 +20,29 @@ class AllCharactersViewController: UIViewController {
         return table
     }()
     
+    init(selectedPublisherDetailsURL: String) {
+        self.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
-        
         view.backgroundColor = .systemBackground
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
         //NEWLY ADDED AFTER IT WAS WORKING
         Task {
             await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
+            view.addSubview(tableView)
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
         }
     }
     
@@ -41,6 +50,7 @@ class AllCharactersViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
     
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
