@@ -10,9 +10,9 @@ import CoreData
 
 class AllCharactersViewController: UIViewController {
     
-    public var selectedPublisherDetailsURL: String
+    public var selectedPublisherName = ""
+    public var selectedPublisherDetailsURL = ""
     private var characters = [Character]()
-    let shared = AllPublishersViewController()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -20,14 +20,14 @@ class AllCharactersViewController: UIViewController {
         return table
     }()
     
-    init(selectedPublisherDetailsURL: String) {
-        self.selectedPublisherDetailsURL = selectedPublisherDetailsURL
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(selectedPublisherDetailsURL: String) {
+//        self.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +35,15 @@ class AllCharactersViewController: UIViewController {
         title = "Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        //NEWLY ADDED AFTER IT WAS WORKING
+                
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         Task {
             await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
             view.addSubview(tableView)
@@ -44,11 +51,6 @@ class AllCharactersViewController: UIViewController {
             tableView.dataSource = self
             tableView.frame = view.bounds
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
     }
     
     
