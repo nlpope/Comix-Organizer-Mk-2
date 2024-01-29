@@ -34,7 +34,7 @@ class AllPublishersViewController: UIViewController {
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        //try in here w/out the task next
+        //get simulator back up then move this to vieWillAppear
         Task {
             await configurePublishers()
             //get empty table when below is moved out of Task. why?
@@ -406,6 +406,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.26
  > removing initializer from AllCharactersVC in favor of handling setup in said VC instead of the MainTabBarVC
+ 
+ 01.29
+ > Netflix clone not running on simulator either (black screen) must be the sim. try restarting comp (?) then  look up sltns on S.O. after
+ >> after that, move the API call into a viewWillAppear (best place)
  --------------------------
  
  */
