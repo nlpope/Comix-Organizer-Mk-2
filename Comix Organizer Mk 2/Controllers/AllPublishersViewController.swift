@@ -24,37 +24,45 @@ class AllPublishersViewController: UIViewController {
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    override func viewWillAppear(_ animated: Bool) {
+        //triggered EVERY TIME window opens, not just the 1st like VDLoad
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-      
-        
+        //try in here w/out the task next
         Task {
             await configurePublishers()
             //get empty table when below is moved out of Task. why?
+            print("VDLoad: configurePublishers worked! about to add tableView")
+            
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
+           
         }
+        
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+        print("VDLSubviews: tableView laid")
     }
     
     
     func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishersAPI() {
+            print("got results from getPublishersAPI")
             self.publishers += results
         } else {
             print("something went wrong in configurePublishers()")
         }
-        
     }
 }
 
@@ -76,6 +84,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
+        let destinationVC = tabBarController?.viewControllers![1] as! AllCharactersViewController
+        
+        destinationVC.selectedPublisherName = selectedPublisherName
+        destinationVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
         self.tabBarController?.selectedIndex = 1
         

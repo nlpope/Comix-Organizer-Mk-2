@@ -28,22 +28,17 @@ class AllCharactersViewController: UIViewController {
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
 //    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = "Characters"
+        title = "\(selectedPublisherName) Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-                
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         Task {
             await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
             view.addSubview(tableView)
@@ -51,16 +46,13 @@ class AllCharactersViewController: UIViewController {
             tableView.dataSource = self
             tableView.frame = view.bounds
         }
+                
     }
     
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        Task {
-//            print("inside AllCharactersVC'S viewDidAppear")
-//            await self.configureCharacters(withPublisher: selectedPublisher)
-//        }
-//    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
     
     
     

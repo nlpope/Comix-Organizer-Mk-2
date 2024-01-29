@@ -31,16 +31,11 @@ class APICaller {
         }
         //async variant of urlsession - may suspend code, hence the await
         let (data, _) = try await URLSession.shared.data(from: url)
-        do {
-            let decodedJSON = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
-                    
-            return decodedJSON.results.sorted(by: {$1.publisherName > $0.publisherName})
-        } catch {
-            print("\(error)")
-        }
-        let results = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
+        
+        print("json decoded")
+        let decodedJSON = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
                 
-        return results.results.sorted(by: {$1.publisherName > $0.publisherName})
+        return decodedJSON.results.sorted(by: {$1.publisherName > $0.publisherName})
     }
     
     func getCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Character] {
