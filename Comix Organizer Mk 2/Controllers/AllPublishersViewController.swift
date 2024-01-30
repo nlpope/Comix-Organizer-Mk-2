@@ -85,12 +85,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        let destinationVC = tabBarController?.viewControllers![1] as! AllCharactersViewController
+        let navigationVC = tabBarController?.viewControllers![1] as! UINavigationController
+        let destinationVC = navigationVC.viewControllers[1] as! AllCharactersViewController
         
         destinationVC.selectedPublisherName = selectedPublisherName
         destinationVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
-        self.tabBarController?.selectedIndex = 1
+        tabBarController?.selectedIndex = 1
         
         
         
@@ -411,6 +412,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.29
  > Netflix clone not running on simulator either (black screen) must be the sim. try restarting comp (?) then  look up sltns on S.O. after
  >> after that, move the API call into a viewWillAppear (best place)
+ 
+ 01.30
+ > closest I ever got to a sltn for passing the data...
+ >> see https://developer.apple.com/documentation/uikit/uitabbarcontroller/1621185-viewcontrollers
+ >> @ the new view controllers are displayed immediately and are not animated into position
  --------------------------
  
  */
