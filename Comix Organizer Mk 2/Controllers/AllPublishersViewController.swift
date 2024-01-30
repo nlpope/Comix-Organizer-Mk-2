@@ -26,6 +26,16 @@ class AllPublishersViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         //triggered EVERY TIME window opens, not just the 1st like VDLoad
+        Task {
+            await configurePublishers()
+            view.addSubview(tableView)
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
+            //get empty table when below is moved out of Task. why?
+            print("VDLoad: configurePublishers worked & tableview subview added")
+           
+        }
     }
     
     override func viewDidLoad() {
@@ -34,18 +44,9 @@ class AllPublishersViewController: UIViewController {
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        //get simulator back up then move this to vieWillAppear
-        Task {
-            await configurePublishers()
-            //get empty table when below is moved out of Task. why?
-            print("VDLoad: configurePublishers worked! about to add tableView")
-            
-            view.addSubview(tableView)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.frame = view.bounds
-           
-        }
+
+       
+        
         
     }
     
