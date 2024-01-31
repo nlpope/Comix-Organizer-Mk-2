@@ -20,15 +20,6 @@ class AllCharactersViewController: UIViewController {
         return table
     }()
     
-    init(selectedPublisherDetailsURL: String) {
-        self.selectedPublisherDetailsURL = selectedPublisherDetailsURL
-        super.init(nibName: nil, bundle: nil)
-    }
-    //?
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         
     }
@@ -36,12 +27,16 @@ class AllCharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = "\(selectedPublisherName) Characters"
+        //adding "navigationItem" before "title" changes title of VC w/out touching the icon
+        navigationItem.title = "\(selectedPublisherName) Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
+        print("in allcharactersVC & selectedPublisher = \(selectedPublisherName)")
+        
         Task {
             await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
+            print("configureCharacters was successful. about to add subview")
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self

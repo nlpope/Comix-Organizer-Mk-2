@@ -83,22 +83,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //NEW GOAL = RE-SETVIEWCONTROLLERS W NEW INIT VALUE 
-        let mainTabBarVC = self.tabBarController as! MainTabBarViewController
+               
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-       
-        let destinationVC = tabBarController.viewControllers[1] as! AllCharactersViewController
+    //PASS DATA BETWEEN VCs
+        let navVC = tabBarController?.viewControllers![1] as! UINavigationController
+        let allcharactersVC = navVC.topViewController as! AllCharactersViewController
         
-        destinationVC.selectedPublisherName = selectedPublisherName
-        destinationVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        allcharactersVC.selectedPublisherName = selectedPublisherName
+        allcharactersVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
         tabBarController?.selectedIndex = 1
-        
-        
-        
-       
-        
         
         
         //        self.navigationController?.pushViewController(charactersVC, animated: true)
@@ -421,6 +416,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> @ the new view controllers are displayed immediately and are not animated into position
  
  >> also see https://forums.developer.apple.com/forums/thread/119037
+ 
+ 01.31
+ > SUCCESS - characters are populating table in allcharactersVC after selection in allpublishersVC; also changed VC title behavior to match selection
+ > link that turned the tide (developer forums): https://forums.developer.apple.com/forums/thread/119037
  --------------------------
  
  */
