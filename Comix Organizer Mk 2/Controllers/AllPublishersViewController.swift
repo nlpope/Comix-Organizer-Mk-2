@@ -83,10 +83,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //NEW GOAL = RE-SETVIEWCONTROLLERS W NEW INIT VALUE 
+        let mainTabBarVC = self.tabBarController as! MainTabBarViewController
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        let navigationVC = tabBarController?.viewControllers![1] as! UINavigationController
-        let destinationVC = navigationVC.viewControllers[1] as! AllCharactersViewController
+       
+        let destinationVC = tabBarController.viewControllers[1] as! AllCharactersViewController
         
         destinationVC.selectedPublisherName = selectedPublisherName
         destinationVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
@@ -417,6 +419,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > closest I ever got to a sltn for passing the data...
  >> see https://developer.apple.com/documentation/uikit/uitabbarcontroller/1621185-viewcontrollers
  >> @ the new view controllers are displayed immediately and are not animated into position
+ 
+ >> also see https://forums.developer.apple.com/forums/thread/119037
  --------------------------
  
  */

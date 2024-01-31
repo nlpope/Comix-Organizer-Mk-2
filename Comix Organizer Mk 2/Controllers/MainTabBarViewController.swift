@@ -10,6 +10,8 @@ import UIKit
 class MainTabBarViewController: UITabBarController {
     //think this is still empty when the configureCharacters call is made. how to update this / make it a computed prop? do computed props work for UITabBarControllers?
     
+    var selectedPublisherDeta
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
