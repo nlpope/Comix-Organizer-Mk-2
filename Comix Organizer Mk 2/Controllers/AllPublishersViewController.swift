@@ -420,7 +420,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  02.01
  > NEW GOALS:
  >> make initial VC a dummy splash screen identical to the real splash screen & remove (push) it from the stack to reveal the publishers table only AFTER it's populated
- >> change this to a marvel comics app? comic vine is a bit restrictive
+ >> figure how to keep user from switching tabs during a Task (e.g. publishers still loading and hits a null error when i switch to charactersVC prematurely
  --------------------------
  
  */
