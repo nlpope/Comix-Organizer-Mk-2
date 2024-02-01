@@ -44,10 +44,7 @@ class AllPublishersViewController: UIViewController {
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-
-       
-        
-        
+  
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,7 +52,6 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
         print("VDLSubviews: tableView laid")
     }
-    
     
     func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishersAPI() {
@@ -420,6 +416,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  01.31
  > SUCCESS - characters are populating table in allcharactersVC after selection in allpublishersVC; also changed VC title behavior to match selection
  > link that turned the tide (developer forums): https://forums.developer.apple.com/forums/thread/119037
+ 
+ 02.01
+ > NEW GOALS:
+ >> make initial VC a dummy splash screen identical to the real splash screen & remove (push) it from the stack to reveal the publishers table only AFTER it's populated
+ >> change this to a marvel comics app? comic vine is a bit restrictive
  --------------------------
  
  */
