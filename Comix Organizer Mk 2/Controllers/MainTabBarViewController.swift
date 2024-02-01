@@ -25,11 +25,11 @@ class MainTabBarViewController: UITabBarController {
         vc3.tabBarItem.image = UIImage(systemName: "person.3.fill")
         vc4.tabBarItem.image = UIImage(systemName: "book.fill")
 
-        //wanna put the Publisher in front of VCs 2-4
         vc1.title = "Publishers"
         vc2.title = "Characters"
-        vc3.title = "Teams"
-        vc4.title = "Issues"
+        //group by volume event.
+        vc3.title = "Issues"
+        vc4.title = "Series"
         
         tabBar.tintColor = .label
 

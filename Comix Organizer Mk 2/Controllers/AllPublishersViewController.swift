@@ -421,6 +421,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > NEW GOALS:
  >> make initial VC a dummy splash screen identical to the real splash screen & remove (push) it from the stack to reveal the publishers table only AFTER it's populated
  >> figure how to keep user from switching tabs during a Task (e.g. publishers still loading and hits a null error when i switch to charactersVC prematurely
+ >> remove teams from the tabs & replace it w series - just include a "Teams" field on the selected character's pushed window if they were on one
  --------------------------
  
  */
