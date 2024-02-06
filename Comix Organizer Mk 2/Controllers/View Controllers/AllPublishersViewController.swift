@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 //this is the HomeViewController / HomeVC
-//dont forget to add logic for when publisher cant be found/pulled
+//match API results agains list of most popular publishers (another API?) then display that
 
 class AllPublishersViewController: UIViewController {
     
@@ -50,7 +50,6 @@ class AllPublishersViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-        print("VDLSubviews: tableView laid")
     }
     
     func configurePublishers() async {
@@ -82,16 +81,15 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        //NEW - making navVC bridge to send properties to allChar..VC
-        let navVC = tabBarController?.viewControllers![1] as! UINavigationController
-        let comicBoxVC = navVC.topViewController as! ComicBoxViewController
-        
-        allcharactersVC.selectedPublisherName = selectedPublisherName
-        allcharactersVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
-        
-        tabBarController?.selectedIndex = 1
+        //send upper info to publishertitlesVC to be configured then push titlescharacterstabbarccontroller | skip navVC & just set up a represent. of titlescharacterstabBarController then set the Titles tab's slectedPub. prop via tabBar from inside w below:
+        /**
+         let navVC = tabBarController?.viewControllers![1] as! UINavigationController
+         
+         let publisherTitlesVC = navVC.topViewController as! PublisherTitlesViewController
+         */
         
         
+        //can i push  like below but w a titlescharacterstabbarcontroller?
         //        self.navigationController?.pushViewController(charactersVC, animated: true)
         
     }

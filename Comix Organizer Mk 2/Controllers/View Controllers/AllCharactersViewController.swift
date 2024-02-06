@@ -50,8 +50,6 @@ class AllCharactersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    
-    
     func configureCharacters(withPublisherDetailsURL publisherDetailsURL: String) async {
 
         if let results = try? await APICaller.shared.getCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {

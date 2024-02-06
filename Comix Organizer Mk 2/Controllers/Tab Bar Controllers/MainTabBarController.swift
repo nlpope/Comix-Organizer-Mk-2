@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController {
      
 
         vc1.title = "Publishers"
-        vc2.title = "Collection"
+        vc2.title = "Comic Box"
         
         tabBar.tintColor = .label
 
