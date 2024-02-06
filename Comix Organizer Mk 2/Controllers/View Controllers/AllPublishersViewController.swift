@@ -82,9 +82,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-    //PASS DATA BETWEEN VCs
+        //NEW - making navVC bridge to send properties to allChar..VC
         let navVC = tabBarController?.viewControllers![1] as! UINavigationController
-        let allcharactersVC = navVC.topViewController as! AllCharactersViewController
+        let comicBoxVC = navVC.topViewController as! ComicBoxViewController
         
         allcharactersVC.selectedPublisherName = selectedPublisherName
         allcharactersVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
@@ -424,8 +424,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> remove teams from the tabs & replace it w series - just include a "Teams" field on the selected character's pushed window if they were on one
  >> overall id like to speed things up - maybe lighten the payload w comicvine's fiilters?
  
- 02.2
+ 02.02
  > whiteboarding new layout
+ 
+ 02.03
+ > adding TitlesCharactersTabBarVC - to be pushed onto stack after being configured from publisher's didSelect method
+
  --------------------------
  
  */
