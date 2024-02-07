@@ -81,6 +81,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
+        let titlesCharactersTabBC = TitlesCharactersTabBarController()
+        
+        self.navigationController?.pushViewController(titlesCharactersTabBC, animated: true)
+        
+        
+        
+        
+        
+        
+        
+        
         //send upper info to publishertitlesVC to be configured then push titlescharacterstabbarccontroller | skip navVC & just set up a represent. of titlescharacterstabBarController then set the Titles tab's slectedPub. prop via tabBar from inside w below:
         /**
          let navVC = tabBarController?.viewControllers![1] as! UINavigationController
@@ -427,6 +438,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  02.03
  > adding TitlesCharactersTabBarVC - to be pushed onto stack after being configured from publisher's didSelect method
+ 
+ 02.06
+ > split up VCs & TabBarCs successfullly, just figure a way to push the secondary TabBarC from allpublishersVC
+ > next work on deallocating via a de-initializer (?) saving the data to context before we proceed?
 
  --------------------------
  

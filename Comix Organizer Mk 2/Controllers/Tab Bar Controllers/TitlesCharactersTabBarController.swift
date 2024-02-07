@@ -9,5 +9,11 @@ import UIKit
 
 class TitlesCharactersTabBarController: UITabBarController {
     
-    let vc1 = UINavigationController(rootViewController: <#T##UIViewController#>)
+    let vc1 = UINavigationController(rootViewController: PublisherTitlesViewController())
+    
+    let vc2 = UINavigationController(rootViewController: AllCharactersViewController())
+        
+        
+   
+    setViewCon
 }
