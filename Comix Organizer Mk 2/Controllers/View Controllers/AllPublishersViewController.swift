@@ -443,6 +443,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > split up VCs & TabBarCs successfullly, just figure a way to push the secondary TabBarC from allpublishersVC
  > next work on deallocating via a de-initializer (?) saving the data to context before we proceed?
 
+ 02.07
+ > reviewing docs & articles on tab bar controllers & passing info btwn them before continuing w setting up the V2 wireframe
  --------------------------
  
  */
