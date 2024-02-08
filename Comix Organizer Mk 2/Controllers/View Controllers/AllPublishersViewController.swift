@@ -83,7 +83,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
         let titlesCharactersTabBC = TitlesCharactersTabBarController()
         
-        self.navigationController?.pushViewController(titlesCharactersTabBC, animated: true)
+        let tbvc = TitlesCharactersTabBarController()
+//        self.navigationController?.pushViewController(titlesCharactersTabBC, animated: true)
         
         
         
@@ -445,6 +446,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
 
  02.07
  > reviewing docs & articles on tab bar controllers & passing info btwn them before continuing w setting up the V2 wireframe
+ 
+ > next up, work on changing the appdelegate to match what's in this article
+ >> https://makeapppie.com/2014/09/09/swift-swift-using-tab-bar-controllers-in-swift/ 
+ >> push before you begin
  --------------------------
  
  */
