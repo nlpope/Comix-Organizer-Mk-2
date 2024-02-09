@@ -453,6 +453,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  02.09
  > setting up home office
+ > whiteboarding: reworking wireframe (possibly switching back to one tab bar vc)
  --------------------------
  
  */
