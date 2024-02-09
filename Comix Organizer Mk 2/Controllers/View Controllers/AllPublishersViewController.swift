@@ -448,8 +448,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > reviewing docs & articles on tab bar controllers & passing info btwn them before continuing w setting up the V2 wireframe
  
  > next up, work on changing the appdelegate to match what's in this article
- >> https://makeapppie.com/2014/09/09/swift-swift-using-tab-bar-controllers-in-swift/ 
- >> push before you begin
+ >> https://makeapppie.com/2014/09/09/swift-swift-using-tab-bar-controllers-in-swift/
+ >> already pushed bookmark - proceed
+ 
+ 02.09
+ > setting up home office
  --------------------------
  
  */
