@@ -12,7 +12,7 @@ import CoreData
 class PublisherTitlesViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-   
+    
     private var titles = [Volume]()
     
     let tableView: UITableView = {
@@ -41,6 +41,6 @@ class PublisherTitlesViewController: UIViewController {
     }
     
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
-        if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: publisherDetailsURL)
+        
     }
 }

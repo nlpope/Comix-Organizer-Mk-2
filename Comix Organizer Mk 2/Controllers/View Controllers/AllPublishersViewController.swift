@@ -12,7 +12,7 @@ import CoreData
 //match API results agains list of most popular publishers (another API?) then display that
 
 class AllPublishersViewController: UIViewController {
-    
+    private var tbvc = MainTabBarController()
     private var publishers: [Publisher] = [Publisher]()
     
     let tableView: UITableView = {
@@ -40,6 +40,8 @@ class AllPublishersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //get the reference to the shared model (Publisher)
+        tbvc
         view.backgroundColor = .systemBackground
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -81,9 +83,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        let titlesCharactersTabBC = TitlesCharactersTabBarController()
-        
-        let tbvc = TitlesCharactersTabBarController()
+    
 //        self.navigationController?.pushViewController(titlesCharactersTabBC, animated: true)
         
         
@@ -457,6 +457,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  02.10
  > whiteboarding v3 wireframe. this one makes more sense. will implement next session
+ 
+ 02.12
+ > not gonna touch the app delegate - think that step is unnecessary since all that setup was successfully done in MainTBController
+ > instead gonna share the publisher model in the MainTBController
  --------------------------
  
  */

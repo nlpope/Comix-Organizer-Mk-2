@@ -9,5 +9,29 @@ import Foundation
 import UIKit
 
 class TitleCharacterSearchViewController: UIViewController {
-    //add selector up top - if it reads "titles", the search will return volumes from selectedPublisher; if "Characters", the search will return characters from selectedPublisher
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let searchToggler = UISwitch(
+            frame: CGRect(
+                x: self.view.center.x,
+                y: self.view.center.y,
+                width: 100,
+                height: 100)
+        )
+        searchToggler.addTarget(self, action: #selector(self.switchStateDidChange(_ :)), for: .valueChanged)
+        searchToggler.setOn(true, animated: false)
+        
+        self.view.addSubview(searchToggler)
+    }
+    
+    @objc func switchStateDidChange(_ sender: UISwitch!) {
+        if sender.isOn {
+            print("UISwitch state is now ON")
+        } else {
+            print("UISwitch state is now OFF")
+        }
+    }
+    
 }
+
+//add selector up top - if it reads "titles", the search will return volumes from selectedPublisher; if "Characters", the search will return characters from selectedPublisher
