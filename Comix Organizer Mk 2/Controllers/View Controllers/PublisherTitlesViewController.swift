@@ -24,9 +24,9 @@ class PublisherTitlesViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewWillAppear(_ animated: Bool) {
-        Task {
-            
-        }
+//        Task {
+//        }
+        print("viewWillAppear was triggered")
     }
     
     override func viewDidLoad() {

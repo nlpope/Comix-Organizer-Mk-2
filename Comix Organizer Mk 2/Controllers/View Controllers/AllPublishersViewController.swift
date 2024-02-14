@@ -12,7 +12,7 @@ import CoreData
 //match API results agains list of most popular publishers (another API?) then display that
 
 class AllPublishersViewController: UIViewController {
-    private var tbvc = MainTabBarController()
+//    private var tbvc = MainTabBarController()
     private var publishers: [Publisher] = [Publisher]()
     
     let tableView: UITableView = {
@@ -41,7 +41,6 @@ class AllPublishersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //get the reference to the shared model (Publisher)
-        tbvc
         view.backgroundColor = .systemBackground
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true

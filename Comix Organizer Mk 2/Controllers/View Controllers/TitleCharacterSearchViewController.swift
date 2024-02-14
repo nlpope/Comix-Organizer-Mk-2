@@ -11,6 +11,10 @@ import UIKit
 class TitleCharacterSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        title = "Search"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         let searchToggler = UISwitch(
             frame: CGRect(
                 x: self.view.center.x,

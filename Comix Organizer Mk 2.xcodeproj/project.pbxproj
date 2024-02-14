@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		404BA7532B7C586C00238FC9 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */; };
 		409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */; };
 		40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */; };
 		40A1A1C82B6EF93400DDF311 /* ComicBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCharacterViewController.swift; sourceTree = "<group>"; };
 		40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewCell.swift; sourceTree = "<group>"; };
 		40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBoxViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		404BA7572B7C5BE600238FC9 /* Main Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */,
+				40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */,
+				40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */,
+				404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */,
+			);
+			name = "Main Tabs";
+			sourceTree = "<group>";
+		};
 		40A1A1CF2B72548000DDF311 /* Tab Bar Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,12 +126,10 @@
 		40A1A1D02B72549A00DDF311 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */,
-				40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */,
-				40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */,
-				40A1A1D12B7255CC00DDF311 /* PublisherTitlesViewController.swift */,
+				404BA7572B7C5BE600238FC9 /* Main Tabs */,
 				40A83AD42AFBBD89009F80D3 /* AllCharactersViewController.swift */,
 				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
+				40A1A1D12B7255CC00DDF311 /* PublisherTitlesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -359,6 +370,7 @@
 				40A1A1CC2B6EFB8500DDF311 /* Volume.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* MainTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */,
+				404BA7532B7C586C00238FC9 /* UserProfileViewController.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */,
