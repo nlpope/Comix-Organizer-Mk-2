@@ -18,8 +18,10 @@ class TitleCharacterSearchViewController: UIViewController {
                 width: 100,
                 height: 100)
         )
+       
         searchToggler.addTarget(self, action: #selector(self.switchStateDidChange(_ :)), for: .valueChanged)
         searchToggler.setOn(true, animated: false)
+        
         
         self.view.addSubview(searchToggler)
     }
