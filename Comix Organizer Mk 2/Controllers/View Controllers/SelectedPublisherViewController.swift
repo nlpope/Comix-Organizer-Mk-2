@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 //Titles = Volumes in API
-class PublisherTitlesViewController: UIViewController {
+class selectedPublisherViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     
@@ -32,7 +32,7 @@ class PublisherTitlesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        title = "\(selectedPublisherName) Titles"
+        title = "\(selectedPublisherName) Comix"
     }
     
     override func viewDidLayoutSubviews() {
