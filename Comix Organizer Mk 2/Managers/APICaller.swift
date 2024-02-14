@@ -39,7 +39,7 @@ class APICaller {
     }
     
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Volume] {
-        //titles = volumes in API
+        //publisherTitles = volumes in API
         print("inside getPublisherTitlesAPI()")
         guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes") else {
             throw APIError.invalidURL

@@ -11,9 +11,7 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var selectedPublisher = ""
-        
+                
         let vc1 = UINavigationController(rootViewController: AllPublishersViewController())
         let vc2 = UINavigationController(rootViewController: ComicBoxViewController())
         let vc3 = UINavigationController(rootViewController: TitleCharacterSearchViewController())

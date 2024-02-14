@@ -9,11 +9,12 @@ import UIKit
 import CoreData
 
 //Titles = Volumes in API
-class selectedPublisherViewController: UIViewController {
+class SelectedPublisherViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     
-    private var titles = [Volume]()
+    
+    private var publisherTitles = [Volume]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -31,6 +32,7 @@ class selectedPublisherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedPublisherName = selectedPublisherName.removeAll(where: selectedPublisherName.contains("Comics"))
         view.backgroundColor = .systemBackground
         title = "\(selectedPublisherName) Comix"
     }

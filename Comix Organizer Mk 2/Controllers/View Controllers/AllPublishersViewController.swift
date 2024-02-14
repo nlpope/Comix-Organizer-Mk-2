@@ -31,10 +31,7 @@ class AllPublishersViewController: UIViewController {
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.frame = view.bounds
-            //get empty table when below is moved out of Task. why?
-            print("VDLoad: configurePublishers worked & tableview subview added")
-           
+            tableView.frame = view.bounds           
         }
     }
     
@@ -55,7 +52,6 @@ class AllPublishersViewController: UIViewController {
     
     func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishersAPI() {
-            print("got results from getPublishersAPI")
             self.publishers += results
         } else {
             print("something went wrong in configurePublishers()")
@@ -82,8 +78,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-    
-//        self.navigationController?.pushViewController(titlesCharactersTabBC, animated: true)
+        let selectedPublisherVC = SelectedPublisherViewController()
+        
+        selectedPublisherVC.selectedPublisherName = selectedPublisherName
+        selectedPublisherVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        self.navigationController?.pushViewController(selectedPublisherVC, animated: true)
         
         
         
@@ -460,6 +459,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  02.12
  > not gonna touch the app delegate - think that step is unnecessary since all that setup was successfully done in MainTBController
  > instead gonna share the publisher model in the MainTBController
+ 
+ 02.14
+ > project running super slow
+ > look into that - maybe too many tabs open? cause even typing this is slow
+ > successsfully set up selectedpublisherVC & pushing it from allpublishersVC
+ > wanna change the "comics" in a title to comix
+ >> maybe just remove the word "comic" if present
+ >> use contains(_:) method for this
  --------------------------
  
  */
