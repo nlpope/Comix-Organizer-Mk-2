@@ -467,6 +467,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > wanna change the "comics" in a title to comix
  >> maybe just remove the word "comic" if present
  >> use contains(_:) method for this
+ 
+ 02.15
+ > MILESTONE: GOT APP TO REPLACE ALL OCCURRENCES OF THE WORD "COMICS" TO "COMIX" NO MATTER WHERE IT IS IN THE TITLE
  --------------------------
  
  */

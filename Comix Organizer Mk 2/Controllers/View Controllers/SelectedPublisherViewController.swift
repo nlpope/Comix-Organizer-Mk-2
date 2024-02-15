@@ -32,9 +32,12 @@ class SelectedPublisherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        selectedPublisherName = selectedPublisherName.removeAll(where: selectedPublisherName.contains("Comics"))
+        if selectedPublisherName.contains("Comics") {
+            selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
+        }
+        title = "\(selectedPublisherName)"
+
         view.backgroundColor = .systemBackground
-        title = "\(selectedPublisherName) Comix"
     }
     
     override func viewDidLayoutSubviews() {
