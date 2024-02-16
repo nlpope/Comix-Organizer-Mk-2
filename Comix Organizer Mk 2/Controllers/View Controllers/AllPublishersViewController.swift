@@ -470,6 +470,10 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  02.15
  > MILESTONE: GOT APP TO REPLACE ALL OCCURRENCES OF THE WORD "COMICS" TO "COMIX" NO MATTER WHERE IT IS IN THE TITLE
+ 
+ > need to get a list of the top like 30 comic publishers and make the rest accessible only via search
+ >> want an animated pop-up of a character's stats in addition to the comic tracking
+ >>> maybe on the charactersVC?
  --------------------------
  
  */
