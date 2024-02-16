@@ -41,14 +41,16 @@ class APICaller {
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Volume] {
         //publisherTitles = volumes in API
         print("inside getPublisherTitlesAPI()")
-        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes") else {
+        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes&field_list=characters") else {
             throw APIError.invalidURL
         }
+        print(url)
 
         let (data, _) = try await URLSession.shared.data(from: url)
         
-        print("json decoded")
         let decodedJSON = try JSONDecoder().decode(APIVolumesResponse.self, from: data)
+        
+        print("json decoded")
                 
         return decodedJSON.results.sorted(by: {$1.volumeName > $0.volumeName})
     }

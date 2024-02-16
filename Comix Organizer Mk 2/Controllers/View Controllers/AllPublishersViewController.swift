@@ -13,7 +13,7 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
 //    private var tbvc = MainTabBarController()
-    private var publishers: [Publisher] = [Publisher]()
+    private var publishers = [Publisher]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -50,6 +50,7 @@ class AllPublishersViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    //MARK: CONFIGURATION
     func configurePublishers() async {
         if let results = try? await APICaller.shared.getPublishersAPI() {
             self.publishers += results
@@ -61,7 +62,7 @@ class AllPublishersViewController: UIViewController {
 
 //MARK: DELEGATE & DATASOURCE METHODS
 extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
-    //datasource
+    //MARK: DATASOURCE
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return publishers.count
     }
@@ -73,7 +74,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
-    //delegate
+    //MARK: DELEGATE
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                
         let selectedPublisherName = publishers[indexPath.row].publisherName

@@ -40,4 +40,4 @@ class TitleCharacterSearchViewController: UIViewController {
     
 }
 
-//add selector up top - if it reads "titles", the search will return volumes from selectedPublisher; if "Characters", the search will return characters from selectedPublisher
+//add selector up top - if it reads "volumeTitles", the search will return volumes from selectedPublisher; if "Characters", the search will return characters from selectedPublisher
