@@ -9,14 +9,29 @@ import Foundation
 import UIKit
 
 struct APIVolumesResponse: Decodable {
-    let results: [Volume]
+    let results: [String: [Volume]]
 }
 
 struct Volume: Decodable {
     var volumeID: Int
     var volumeName: String
-    var volumePublisher: String
     var volumeDetailURL: String
-    var volumeStartyear: String
-    var volumeIssues: [Issue]
+    //    var volumeIssues: [Issue]
+    
+    enum CodingKeys: String, CodingKey {
+        case volumeID = "id"
+        case volumeName = "name"
+        case volumeDetailURL = "api_detail_url"
+    }
+    
+    init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        volumeDetailURL = try container.decode(String.self, forKey: .volumeDetailURL)
+        
+        volumeID = try container.decode(Int.self, forKey: .volumeID)
+        
+        volumeName = try container.decode(String.self, forKey: .volumeName)
+    }
 }

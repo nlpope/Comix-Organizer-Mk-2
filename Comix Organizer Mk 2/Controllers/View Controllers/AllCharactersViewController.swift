@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class AllCharactersViewController: UIViewController {
-    
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     private var characters = [Character]()
@@ -52,7 +51,7 @@ class AllCharactersViewController: UIViewController {
     
     func configureCharacters(withPublisherDetailsURL publisherDetailsURL: String) async {
 
-        if let results = try? await APICaller.shared.getCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {
+        if let results = try? await APICaller.shared.getPublisherCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {
             
             self.characters += results
            
