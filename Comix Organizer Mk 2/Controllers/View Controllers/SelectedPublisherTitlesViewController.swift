@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 //Titles = Volumes in API
-class SelectedPublisherViewController: UIViewController {
+class SelectedPublisherTitlesViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     private var selectedPublisherTitles = [Volume]()
@@ -59,7 +59,7 @@ class SelectedPublisherViewController: UIViewController {
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension SelectedPublisherViewController: UITableViewDelegate, UITableViewDataSource {
+extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: DATASOURCE
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedPublisherTitles.count

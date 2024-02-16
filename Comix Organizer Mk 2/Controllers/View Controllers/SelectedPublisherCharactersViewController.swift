@@ -1,5 +1,5 @@
 //
-//  AllCharactersViewController.swift
+//  PublisherCharactersViewController.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 11/8/23.
@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class AllCharactersViewController: UIViewController {
+class SelectedPublisherCharactersViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     private var characters = [Character]()
@@ -64,7 +64,7 @@ class AllCharactersViewController: UIViewController {
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllCharactersViewController: UITableViewDelegate, UITableViewDataSource {
+extension SelectedPublisherCharactersViewController: UITableViewDelegate, UITableViewDataSource {
     //datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characters.count
