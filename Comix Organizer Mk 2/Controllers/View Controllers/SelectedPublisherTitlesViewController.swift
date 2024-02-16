@@ -68,6 +68,7 @@ extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = selectedPublisherTitles[indexPath.row].volumeName
+        //remove duplicate named cells here (compare btwn curr. & last string)
         
         return cell
     }

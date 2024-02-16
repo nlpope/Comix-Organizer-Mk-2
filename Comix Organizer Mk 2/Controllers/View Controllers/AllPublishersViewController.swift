@@ -79,7 +79,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        let selectedPublisherVC = SelectedPublisherViewController()
+        let selectedPublisherVC = SelectedPublisherTitlesViewController()
         
         selectedPublisherVC.selectedPublisherName = selectedPublisherName
         selectedPublisherVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
@@ -107,7 +107,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 //OG DIDSELECT METHOD
-//var secondTab = self.tabBarController?.viewControllers?[1] as! AllCharactersViewController
+//var secondTab = self.tabBarController?.viewControllers?[1] as! SelectedPublisherCharactersViewController
 //        let selectedPublisher = publishers[indexPath.row].name
 //        let allCharactersVC = AllCharactersViewController()
 //        Task {
@@ -475,6 +475,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  > need to get a list of the top like 30 comic publishers and make the rest accessible only via search
  >> want an animated pop-up of a character's stats in addition to the comic tracking
  >>> maybe on the charactersVC?
+ 
+ > GOALS:
+ >> delete duplicate titles (unless they're different somehow)
+ >> display popular publishers ONLY, accessing the rest via search
+ >> toggler to switch between displaying titles vs characters (affects search func)
+ >> colorful, animated template (see templates on github?) for AllCharactersVC > SelectedCharacterVC
  --------------------------
  
  */
