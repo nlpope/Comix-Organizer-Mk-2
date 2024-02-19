@@ -76,9 +76,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //MARK: DELEGATE
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //trigger pop-up
                
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
+        
+        //if pop-up trigger = "titles"
         let selectedPublisherVC = SelectedPublisherTitlesViewController()
         
         selectedPublisherVC.selectedPublisherName = selectedPublisherName
@@ -476,11 +480,20 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> want an animated pop-up of a character's stats in addition to the comic tracking
  >>> maybe on the charactersVC?
  
+ 02.19
+ 
  > GOALS:
+ >> create selectedTitle VC
+ >> create selectedCharacter VC
+ >> add a popup on the didselect method in allpublishersVC
+ >>> https://developer.apple.com/documentation/swiftui/modal-presentations
+ 
  >> delete duplicate titles (unless they're different somehow)
  >> display popular publishers ONLY, accessing the rest via search
  >> toggler to switch between displaying titles vs characters (affects search func)
  >> colorful, animated template (see templates on github?) for AllCharactersVC > SelectedCharacterVC
+ 
+ 
  --------------------------
  
  */
