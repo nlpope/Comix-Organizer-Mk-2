@@ -76,18 +76,24 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
     
     //MARK: DELEGATE
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        //trigger pop-up
-               
+                       
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
         
-        //if pop-up trigger = "titles"
-        let selectedPublisherVC = SelectedPublisherTitlesViewController()
+        //trigger pop-up
+        var popUpWindow: PopUpWindowViewController!
+        popUpWindow = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
+        self.present(popUpWindow, animated: true, completion: nil)
         
-        selectedPublisherVC.selectedPublisherName = selectedPublisherName
-        selectedPublisherVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
-        self.navigationController?.pushViewController(selectedPublisherVC, animated: true)
+        //if pop-up trigger = "titles"
+        let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
+        
+        selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
+        selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+        
+        //else ...
+        let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
         
         
         
@@ -480,7 +486,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> want an animated pop-up of a character's stats in addition to the comic tracking
  >>> maybe on the charactersVC?
  
- 02.19
+ 02.20
+ > adding popupwindowView to hold popupwindowVC (to be created)
+ 
+ 02.21
+ > successfully presenting character title pop up delineator, but one button is missing
  
  > GOALS:
  >> create selectedTitle VC

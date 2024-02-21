@@ -21,13 +21,13 @@ class MainTabBarController: UITabBarController {
     
         vc1.tabBarItem.image = UIImage(systemName: "list.dash")
         vc2.tabBarItem.image = UIImage(systemName: "books.vertical.fill")
-        vc3.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
+        vc3.tabBarItem.image = UIImage(systemName: "newspaper.fill")
         vc4.tabBarItem.image = UIImage(systemName: "person.circle.fill")
      
 
         vc1.title = "Publishers"
         vc2.title = "Comic Box"
-        vc3.title = "Search"
+        vc3.title = "News"
         vc4.title = "User Profile"
         
         tabBar.tintColor = .label

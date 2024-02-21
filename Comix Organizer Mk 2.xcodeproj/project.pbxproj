@@ -29,6 +29,7 @@
 		40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */; };
 		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
 		40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */; };
+		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
 		40D7D3032B331F1E00B040CE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3022B331F1E00B040CE /* Character.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherCharactersViewController.swift; sourceTree = "<group>"; };
 		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCharacterSearchViewController.swift; sourceTree = "<group>"; };
+		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
 		40D7D3022B331F1E00B040CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,8 +120,10 @@
 		404BA7582B7CE58600238FC9 /* Pushed VCs */ = {
 			isa = PBXGroup;
 			children = (
+				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
 				40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */,
 				40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */,
+				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
 			);
 			name = "Pushed VCs";
 			sourceTree = "<group>";
@@ -137,7 +141,6 @@
 			children = (
 				404BA7572B7C5BE600238FC9 /* Main Tabs */,
 				404BA7582B7CE58600238FC9 /* Pushed VCs */,
-				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */,
 				40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */,
 				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
+				40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */,
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
 				40A1A1CC2B6EFB8500DDF311 /* Volume.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* MainTabBarController.swift in Sources */,
