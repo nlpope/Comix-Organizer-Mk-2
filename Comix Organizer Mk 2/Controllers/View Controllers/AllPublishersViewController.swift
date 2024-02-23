@@ -492,12 +492,19 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  02.21
  > successfully presenting character title pop up delineator, but one button is missing
  
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
  > GOALS:
  >> create selectedTitle VC
  >> create selectedCharacter VC
  >> add a popup on the didselect method in allpublishersVC
- >>> https://developer.apple.com/documentation/swiftui/modal-presentations
+ >>> position the buttons to be side by side: https://www.hackingwithswift.com/example-code/uikit/how-to-position-a-view-using-auto-layout-anchors
  
+ >> review the role of VCs: https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457
+ >> review updated version of above
+ >> review MVC architecture (from BJ Homer): https://stackoverflow.com/questions/1151422/uiview-vs-uiviewcontroller
  >> delete duplicate titles (unless they're different somehow)
  >> display popular publishers ONLY, accessing the rest via search
  >> toggler to switch between displaying titles vs characters (affects search func)

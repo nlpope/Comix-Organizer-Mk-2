@@ -12,6 +12,7 @@ import UIKit
 //MARK: POP UP WINDOW VIEW
 //recognizes touches and gestures & notifies the UIVC
 //displays what you actually see
+//sets the constraints (...what you actually see)
 //configuration instructions sent by the UIVC
 private class PopUpWindowView: UIView {
     
@@ -100,8 +101,8 @@ private class PopUpWindowView: UIView {
         popupButtonOne.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popupButtonOne.heightAnchor.constraint(equalToConstant: 44),
-            popupButtonOne.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: BorderWidth),
-            popupButtonOne.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -BorderWidth),
+            popupButtonOne.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
+            popupButtonOne.trailingAnchor.constraint(equalTo: popUpButtonTwo.leadingAnchor, constant: BorderWidth/2),
             popupButtonOne.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -BorderWidth)
         ])
         
@@ -109,12 +110,10 @@ private class PopUpWindowView: UIView {
         popUpButtonTwo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popUpButtonTwo.heightAnchor.constraint(equalToConstant: 44),
-            popUpButtonTwo.leadingAnchor.constraint(equalTo: popupView.leadingAnchor, constant: BorderWidth),
+            popUpButtonTwo.leadingAnchor.constraint(equalTo: popupButtonOne.trailingAnchor, constant: BorderWidth),
             popUpButtonTwo.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -BorderWidth),
             popUpButtonTwo.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -BorderWidth)
         ])
-        
-        
         
     }
     
