@@ -102,18 +102,24 @@ private class PopUpWindowView: UIView {
         NSLayoutConstraint.activate([
             popupButtonOne.heightAnchor.constraint(equalToConstant: 44),
             popupButtonOne.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
-            popupButtonOne.trailingAnchor.constraint(equalTo: popUpButtonTwo.leadingAnchor, constant: BorderWidth/2),
+            popupButtonOne.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 0.5),
+//            popupButtonOne.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
             popupButtonOne.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -BorderWidth)
         ])
+        popupButtonOne.layer.borderWidth = 0.8
+
         
         // popupButtonTwo constraints
         popUpButtonTwo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             popUpButtonTwo.heightAnchor.constraint(equalToConstant: 44),
-            popUpButtonTwo.leadingAnchor.constraint(equalTo: popupButtonOne.trailingAnchor, constant: BorderWidth),
-            popUpButtonTwo.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -BorderWidth),
+            popUpButtonTwo.leadingAnchor.constraint(equalTo: popupButtonOne.trailingAnchor),
+            popUpButtonTwo.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
             popUpButtonTwo.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -BorderWidth)
         ])
+        popUpButtonTwo.layer.borderWidth = 0.8
+        
+//        popUpButtonTwo.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -BorderWidth)
         
     }
     
