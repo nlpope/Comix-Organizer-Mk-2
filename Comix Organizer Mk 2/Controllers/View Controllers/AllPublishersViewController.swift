@@ -81,9 +81,12 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
         
         //trigger pop-up
-        var popUpWindow: PopUpWindowViewController!
-        popUpWindow = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
-        self.present(popUpWindow, animated: true, completion: nil)
+        Task {
+            var popUpWindow: PopUpWindowViewController!
+            popUpWindow = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
+            self.present(popUpWindow, animated: true, completion: nil)
+        }
+        
         
         //if pop-up trigger = "titles"
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
@@ -497,10 +500,8 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  > GOALS:
- >> create selectedTitle VC
- >> create selectedCharacter VC
- >> add a popup on the didselect method in allpublishersVC
- >>> position the buttons to be side by side: https://www.hackingwithswift.com/example-code/uikit/how-to-position-a-view-using-auto-layout-anchors
+ >> set up @iboutlets & @ibactions for titles and characters (print text to test)
+ >> pause execution until "titles" || "characters" is selected (via Task? why not workin?)
  
  >> review the role of VCs: https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457
  >> review updated version of above
