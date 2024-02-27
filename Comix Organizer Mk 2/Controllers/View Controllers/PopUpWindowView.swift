@@ -106,7 +106,6 @@ private class PopUpWindowView: UIView {
             popupButtonOne.heightAnchor.constraint(equalToConstant: 44),
             popupButtonOne.leadingAnchor.constraint(equalTo: popupView.leadingAnchor),
             popupButtonOne.widthAnchor.constraint(equalTo: popupView.widthAnchor, multiplier: 0.5),
-//            popupButtonOne.trailingAnchor.constraint(equalTo: popupView.trailingAnchor),
             popupButtonOne.bottomAnchor.constraint(equalTo: popupView.bottomAnchor, constant: -BorderWidth)
         ])
         popupButtonOne.layer.borderWidth = 0.8
@@ -122,31 +121,12 @@ private class PopUpWindowView: UIView {
         ])
         popUpButtonTwo.layer.borderWidth = 0.8
         
-        popupButtonOne.addTarget(self, action: #selector(goToTitles), for: .touchUpInside)
-        popUpButtonTwo.addTarget(self, action: #selector(goToCharacters), for: .touchUpInside)
+        
         
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc func goToTitles() {
-        print("going to titles")
-        //go to parent view and dismiss thru here
-        //delete dismiss logic below to have it all concise
-            
-        //        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        //        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-    }
-    
-    @objc func goToCharacters() {
-        print("going to characters")
-        //go to parent view and dismiss thru here
-        //delete dismiss logic below to have it all concise
-            
-        //        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        //        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
     }
 }
 
@@ -158,6 +138,7 @@ private class PopUpWindowView: UIView {
 class PopUpWindowViewController: UIViewController {
     
     private let popUpWindowView = PopUpWindowView()
+    private var vcSelectedFromPopUp = ""
     
     init(title: String, text: String, buttonOneText: String, buttonTwoText: String) {
         super.init(nibName: nil, bundle: nil)
@@ -169,8 +150,8 @@ class PopUpWindowViewController: UIViewController {
         popUpWindowView.popupButtonOne.setTitle(buttonOneText, for: .normal)
         popUpWindowView.popUpButtonTwo.setTitle(buttonTwoText, for: .normal)
         
-//        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-//        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(goToTitles), for: .touchUpInside)
+        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(goToCharacters), for: .touchUpInside)
         
         view = popUpWindowView
     }
@@ -179,8 +160,21 @@ class PopUpWindowViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func goToTitles() {
+        self.vcSelectedFromPopUp = "titles"
+        print("going to titles")
+        dismissView()
+       
+    }
+    
+    @objc func goToCharacters() {
+        self.vcSelectedFromPopUp = "characters"
+        print("going to characters")
+        dismissView()
+    }
+    
     @objc func dismissView() {
-        print("this button works")
+        print("dismissing popup selector")
         self.dismiss(animated: true, completion: nil)
     }
     

@@ -85,10 +85,13 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
             var popUpWindowVC: PopUpWindowViewController!
             popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
             self.present(popUpWindowVC, animated: true, completion: nil)
+            //just need to access the vcSelectedFromPopUp property through an if else statement, but how to get to that after it's been clicked? is here even the place to do that? should i go back to the popupwindowVC?
+          
         }
         
         
         //if pop-up trigger = "titles"
+        
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
