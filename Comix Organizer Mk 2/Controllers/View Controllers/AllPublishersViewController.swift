@@ -14,6 +14,7 @@ import CoreData
 class AllPublishersViewController: UIViewController {
 //    private var tbvc = MainTabBarController()
     private var publishers = [Publisher]()
+    private var vcSelectedFromPopUp = ""
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -85,21 +86,20 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
             var popUpWindowVC: PopUpWindowViewController!
             popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
             self.present(popUpWindowVC, animated: true, completion: nil)
-            //just need to access the vcSelectedFromPopUp property through an if else statement, but how to get to that after it's been clicked? is here even the place to do that? should i go back to the popupwindowVC?
-          
+            
+            
         }
+        //make vcSelectedFromPopUp a state prop & update THAT via the objc func in popUpWindowVC?
+        //https://www.waldo.com/blog/swift-selector
+        //@ In Swift, you use the '#selector' directive
         
         
-        //if pop-up trigger = "titles"
         
-        let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
-        
-        selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
-        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+       
+//        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
         
         //else ...
-        let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
+//        let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
         
         
         

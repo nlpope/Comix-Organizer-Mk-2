@@ -134,11 +134,13 @@ private class PopUpWindowView: UIView {
 //initializes data in PopUpWindowView
 //cannot display anything, only decide WHAT gets displayed
 //... to then send it off to the UIView (above) for set up
-//closes the window
+//closes/dismisses the window
 class PopUpWindowViewController: UIViewController {
-    
+    public var selectedPublisherName = ""
+    public var selectedPublisherDetailsURL = ""
     private let popUpWindowView = PopUpWindowView()
-    private var vcSelectedFromPopUp = ""
+    var vcSelectedFromPopUp = ""
+    
     
     init(title: String, text: String, buttonOneText: String, buttonTwoText: String) {
         super.init(nibName: nil, bundle: nil)
@@ -160,11 +162,15 @@ class PopUpWindowViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func goToTitles() {
+    @objc func goToTitles(sender: UIGestureRecognizer) {
         self.vcSelectedFromPopUp = "titles"
         print("going to titles")
+        selectedPublisherName = publisher
+        let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
+        selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
+        selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
         dismissView()
-       
     }
     
     @objc func goToCharacters() {
