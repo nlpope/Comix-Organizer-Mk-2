@@ -82,9 +82,9 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         
         //trigger pop-up
         Task {
-            var popUpWindow: PopUpWindowViewController!
-            popUpWindow = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
-            self.present(popUpWindow, animated: true, completion: nil)
+            var popUpWindowVC: PopUpWindowViewController!
+            popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
+            self.present(popUpWindowVC, animated: true, completion: nil)
         }
         
         

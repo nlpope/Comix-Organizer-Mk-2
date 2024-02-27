@@ -24,6 +24,7 @@ private class PopUpWindowView: UIView {
     
     let BorderWidth: CGFloat = 2.0
     
+    
     init() {
         super.init(frame: CGRect.zero)
         //semi-transparent background
@@ -121,7 +122,8 @@ private class PopUpWindowView: UIView {
         ])
         popUpButtonTwo.layer.borderWidth = 0.8
         
-//        popUpButtonTwo.trailingAnchor.constraint(equalTo: popupView.trailingAnchor, constant: -BorderWidth)
+        popupButtonOne.addTarget(self, action: #selector(goToTitles), for: .touchUpInside)
+        popUpButtonTwo.addTarget(self, action: #selector(goToCharacters), for: .touchUpInside)
         
     }
     
@@ -129,6 +131,23 @@ private class PopUpWindowView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func goToTitles() {
+        print("going to titles")
+        //go to parent view and dismiss thru here
+        //delete dismiss logic below to have it all concise
+            
+        //        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        //        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+    }
+    
+    @objc func goToCharacters() {
+        print("going to characters")
+        //go to parent view and dismiss thru here
+        //delete dismiss logic below to have it all concise
+            
+        //        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+        //        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+    }
 }
 
 //MARK: POP UP WINDOW VIEW CONTROLLER
@@ -150,8 +169,8 @@ class PopUpWindowViewController: UIViewController {
         popUpWindowView.popupButtonOne.setTitle(buttonOneText, for: .normal)
         popUpWindowView.popUpButtonTwo.setTitle(buttonTwoText, for: .normal)
         
-        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+//        popUpWindowView.popupButtonOne.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
+//        popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
         
         view = popUpWindowView
     }
