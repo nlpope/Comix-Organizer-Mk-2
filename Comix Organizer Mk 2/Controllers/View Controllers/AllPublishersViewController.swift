@@ -6,6 +6,7 @@
 //
 
 import UIKit
+//UIKit does NOT make this a SwiftUI project
 import CoreData
 
 //this is the HomeViewController / HomeVC
@@ -498,12 +499,14 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  02.21
  > successfully presenting character title pop up delineator, but one button is missing
  
+ 02.28
+ > reading up on passing data using objc selectors
+ >> https://developer.apple.com/documentation/swift/using-objective-c-runtime-features-in-swift
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  > GOALS:
- >> set up @iboutlets & @ibactions for titles and characters (print text to test)
  >> pause execution until "titles" || "characters" is selected (via Task? why not workin?)
  
  >> review the role of VCs: https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457

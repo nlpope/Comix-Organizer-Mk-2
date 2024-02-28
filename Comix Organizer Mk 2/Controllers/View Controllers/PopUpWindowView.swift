@@ -14,6 +14,7 @@ import UIKit
 //displays what you actually see
 //sets the constraints (...what you actually see)
 //configuration instructions sent by the UIVC
+//THE LOOK
 private class PopUpWindowView: UIView {
     
     let popupView = UIView(frame: CGRect.zero)
@@ -135,6 +136,7 @@ private class PopUpWindowView: UIView {
 //cannot display anything, only decide WHAT gets displayed
 //... to then send it off to the UIView (above) for set up
 //closes/dismisses the window
+//THE BEHAVIOR
 class PopUpWindowViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
@@ -162,10 +164,10 @@ class PopUpWindowViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func goToTitles(sender: UIGestureRecognizer) {
+    @objc func goToTitles(_ sender: UIButton?) {
         self.vcSelectedFromPopUp = "titles"
         print("going to titles")
-        selectedPublisherName = publisher
+        sender.selectedPublisherName = publisher
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
         selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
