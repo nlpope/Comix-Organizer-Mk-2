@@ -22,6 +22,8 @@ private class PopUpWindowView: UIView {
     let popupText = UILabel(frame: CGRect.zero)
     let popupButtonOne = UIButton(frame: CGRect.zero)
     let popUpButtonTwo = UIButton(frame: CGRect.zero)
+    let selectedPublisherName = ""
+    let selectedPublisherDetailsURL = ""
     
     let BorderWidth: CGFloat = 2.0
     
@@ -144,7 +146,7 @@ class PopUpWindowViewController: UIViewController {
     var vcSelectedFromPopUp = ""
     
     
-    init(title: String, text: String, buttonOneText: String, buttonTwoText: String) {
+    init(title: String, text: String, buttonOneText: String, buttonTwoText: String, selectedPublisherName: String) {
         super.init(nibName: nil, bundle: nil)
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overFullScreen
