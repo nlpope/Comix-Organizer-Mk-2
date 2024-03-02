@@ -140,11 +140,12 @@ private class PopUpWindowView: UIView {
 //closes/dismisses the window
 //THE BEHAVIOR
 class PopUpWindowViewController: UIViewController {
+    //2. the delegate (to be defined in the delegate - allpubVC) - next one here, in goToTitles
+    //"Okay! I can set up a delegate using the type protocol type you just created so me and my 'employee' can communicate"
+    var delegate: PopUpDelegate?
     private let popUpWindowView = PopUpWindowView()
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-//    var vcSelectedFromPopUp = ""
-    
     
     init(title: String, text: String, buttonOneText: String, buttonTwoText: String, selectedPublisherName: String, selectedPublisherDetailsURL: String) {
         super.init(nibName: nil, bundle: nil)
@@ -169,30 +170,12 @@ class PopUpWindowViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //might not be necessary 
-//    func topMostController() -> UIViewController? {
-//        guard let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first, let rootViewController = window.rootViewController else {
-//            return nil
-//        }
-//        
-//        var topController = rootViewController
-//        
-//        while let newTopController = topController.presentedViewController {
-//            topController = newTopController
-//        }
-//        
-//        return topController
-//    }
-    
     @objc func goToTitles() {
         print("going to titles")
-        let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
-        selectedPublisherTitlesVC.selectedPublisherName = self.selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL = self.selectedPublisherDetailsURL
-        
-//        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
-        
-        print("in goToTitles & about to dismiss view")
+        //3. the delegate execution - next one in allpubVC @ bottom
+        //"Now that the delegate (of type protocol) is set up (but not yet defined), I'll be the one to tell said delegate to do something with the func it's required to have"
+        delegate?.presentTitlesViewController()
+        //change above to titles and set protocol to need titles and characters funcs then move characters func behavior to characters func
         dismissView()
     }
     
@@ -207,8 +190,11 @@ class PopUpWindowViewController: UIViewController {
     }
 }
 
+//1. the protocol - next one here, up top
+//"hmmmm this popupVC (manager) needs a delegate to talk to"
 protocol PopUpDelegate {
-    func presentNewViewController()
+    func presentTitlesViewController()
+    func presentCharactersViewController()
 }
 
 //MARK: QUESTIONS
