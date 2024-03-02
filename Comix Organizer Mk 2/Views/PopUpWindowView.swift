@@ -171,7 +171,6 @@ class PopUpWindowViewController: UIViewController {
     }
     
     @objc func goToTitles() {
-        print("going to titles")
         //3. the delegate execution - next one in allpubVC @ bottom
         //"Now that the delegate (of type protocol) is set up (but not yet defined), I'll be the one to tell said delegate to do something with the func it's required to have"
         delegate?.presentTitlesViewController()
@@ -180,7 +179,7 @@ class PopUpWindowViewController: UIViewController {
     }
     
     @objc func goToCharacters() {
-        print("going to characters")
+        delegate?.presentCharactersViewController()
         dismissView()
     }
     
