@@ -10,10 +10,11 @@ import UIKit
 import CoreData
 
 //this is the HomeViewController / HomeVC
-//match API results agains list of most popular publishers (another API?) then display that
+//match API results agains list of most popular publishers (via a set array that I create?) then display that
 
 class AllPublishersViewController: UIViewController {
-//    private var tbvc = MainTabBarController()
+    
+    
     private var publishers = [Publisher]()
     private var vcSelectedFromPopUp = ""
     
@@ -33,7 +34,7 @@ class AllPublishersViewController: UIViewController {
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.frame = view.bounds           
+            tableView.frame = view.bounds
         }
     }
     
@@ -44,7 +45,7 @@ class AllPublishersViewController: UIViewController {
         title = "Publishers"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-  
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,8 +64,9 @@ class AllPublishersViewController: UIViewController {
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSource {
-    //MARK: DATASOURCE
+extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
+    
+    //MARK: DATASOURCE METHODS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return publishers.count
     }
@@ -76,64 +78,25 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
         return cell
     }
     
-    //MARK: DELEGATE
+    //MARK: DELEGATE METHODS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                       
+        
         let selectedPublisherName = publishers[indexPath.row].publisherName
         let selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
         
         //trigger pop-up
-        Task {
-            var popUpWindowVC: PopUpWindowViewController!
-            popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters")
-            self.present(popUpWindowVC, animated: true, completion: nil)
-            
-            
-        }
-        //make vcSelectedFromPopUp a state prop & update THAT via the objc func in popUpWindowVC?
-        //https://www.waldo.com/blog/swift-selector
-        //@ In Swift, you use the '#selector' directive
-        
-        
+        var popUpWindowVC: PopUpWindowViewController!
+        popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
+        self.present(popUpWindowVC, animated: true, completion: nil)
         
        
-//        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
-        
-        //else ...
-//        let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
-        
-        
-        
-        
-        
-        
-        
-        
-        //send upper info to publishertitlesVC to be configured then push titlescharacterstabbarccontroller | skip navVC & just set up a represent. of titlescharacterstabBarController then set the Titles tab's slectedPub. prop via tabBar from inside w below:
-        /**
-         let navVC = tabBarController?.viewControllers![1] as! UINavigationController
-         
-         let publisherTitlesVC = navVC.topViewController as! PublisherTitlesViewController
-         */
-        
-        
-        //can i push  like below but w a titlescharacterstabbarcontroller?
-        //        self.navigationController?.pushViewController(charactersVC, animated: true)
-        
     }
+    //popup delegate
+    func presentNewViewController() {
+        print("im in the allpublishersVC and the popup delegate works!")
+    }
+    
 }
-
-//OG DIDSELECT METHOD
-//var secondTab = self.tabBarController?.viewControllers?[1] as! SelectedPublisherCharactersViewController
-//        let selectedPublisher = publishers[indexPath.row].name
-//        let allCharactersVC = AllCharactersViewController()
-//        Task {
-//            await secondTab.configureCharacters(withPublisher: selectedPublisher)
-////            await allCharactersVC.configureCharacters(withPublisher: selectedPublisher)
-//            self.navigationController?.tabBarController?.selectedIndex = 1
-//        }
-
-
 
 /**
  --------------------------
@@ -396,7 +359,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  
  01.20
  > but there's still the matter of the payload's result housing a dictionary instead of an array
- > so the real question is - how do I decode a Dictionary<String, [Any]> when enums can only accept a raw value type 
+ > so the real question is - how do I decode a Dictionary<String, [Any]> when enums can only accept a raw value type
  
  01.23
  > GOT IT!!!
@@ -413,11 +376,11 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  >> FIXED the "cells won't populate until I scroll" problem by putting the view.addSubview(tableView) line in the task with its accompanying delegate/datasource/frame logic
  
  Task {
-     await configurePublishers()
-     view.addSubview(tableView)
-     tableView.delegate = self
-     tableView.dataSource = self
-     tableView.frame = view.bounds
+ await configurePublishers()
+ view.addSubview(tableView)
+ tableView.delegate = self
+ tableView.dataSource = self
+ tableView.frame = view.bounds
  }
  
  01.25
@@ -459,7 +422,7 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  02.06
  > split up VCs & TabBarCs successfullly, just figure a way to push the secondary TabBarC from allpublishersVC
  > next work on deallocating via a de-initializer (?) saving the data to context before we proceed?
-
+ 
  02.07
  > reviewing docs & articles on tab bar controllers & passing info btwn them before continuing w setting up the V2 wireframe
  
@@ -502,6 +465,17 @@ extension AllPublishersViewController: UITableViewDelegate, UITableViewDataSourc
  02.28
  > reading up on passing data using objc selectors
  >> https://developer.apple.com/documentation/swift/using-objective-c-runtime-features-in-swift
+ 
+ 02.29
+ > using delegation design pattern to set (presnting) AllPublishersVC as deledgate of (presented) PopUpWindowVC; complete w protocol stubs accounting for title click & characters click (to be created)
+ >> https://stackoverflow.com/questions/43474872/access-the-presenting-view-controller-from-the-presented-view-controller
+ >> left off @ "Next: Make your presenting view controller conform to the protocol
+ >> not using storyboards so maybe skip this step or go here: https://stackoverflow.com/questions/36216582/create-and-perform-segue-without-storyboards
+ 
+ 03.01
+ > narrowed it down to closures and delegates
+ >> i will use delegates since Delegation is commonly employed in UI-related tasks, like handling user interactions or customizing behavior in response to certain events.
+ >>> https://medium.com/@kohinoorprajapat54/difference-between-closures-and-delegates-in-swift-b9b208e66267#:~:text=In%20summary%2C%20closures%20are%20more,communication%20and%20cooperation%20between%20objects.
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX

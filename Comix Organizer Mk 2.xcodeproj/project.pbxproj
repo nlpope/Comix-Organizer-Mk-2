@@ -120,7 +120,6 @@
 		404BA7582B7CE58600238FC9 /* Pushed VCs */ = {
 			isa = PBXGroup;
 			children = (
-				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
 				40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */,
 				40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */,
 				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
@@ -213,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */,
+				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -140,13 +140,13 @@ private class PopUpWindowView: UIView {
 //closes/dismisses the window
 //THE BEHAVIOR
 class PopUpWindowViewController: UIViewController {
+    private let popUpWindowView = PopUpWindowView()
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-    private let popUpWindowView = PopUpWindowView()
-    var vcSelectedFromPopUp = ""
+//    var vcSelectedFromPopUp = ""
     
     
-    init(title: String, text: String, buttonOneText: String, buttonTwoText: String, selectedPublisherName: String) {
+    init(title: String, text: String, buttonOneText: String, buttonTwoText: String, selectedPublisherName: String, selectedPublisherDetailsURL: String) {
         super.init(nibName: nil, bundle: nil)
         modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .overFullScreen
@@ -155,6 +155,9 @@ class PopUpWindowViewController: UIViewController {
         popUpWindowView.popupText.text = text
         popUpWindowView.popupButtonOne.setTitle(buttonOneText, for: .normal)
         popUpWindowView.popUpButtonTwo.setTitle(buttonTwoText, for: .normal)
+        
+        self.selectedPublisherName = selectedPublisherName
+        self.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
         popUpWindowView.popupButtonOne.addTarget(self, action: #selector(goToTitles), for: .touchUpInside)
         popUpWindowView.popUpButtonTwo.addTarget(self, action: #selector(goToCharacters), for: .touchUpInside)
@@ -166,19 +169,34 @@ class PopUpWindowViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func goToTitles(_ sender: UIButton?) {
-        self.vcSelectedFromPopUp = "titles"
+    //might not be necessary 
+//    func topMostController() -> UIViewController? {
+//        guard let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first, let rootViewController = window.rootViewController else {
+//            return nil
+//        }
+//        
+//        var topController = rootViewController
+//        
+//        while let newTopController = topController.presentedViewController {
+//            topController = newTopController
+//        }
+//        
+//        return topController
+//    }
+    
+    @objc func goToTitles() {
         print("going to titles")
-        sender.selectedPublisherName = publisher
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
-        selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
-        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+        selectedPublisherTitlesVC.selectedPublisherName = self.selectedPublisherName
+        selectedPublisherTitlesVC.selectedPublisherDetailsURL = self.selectedPublisherDetailsURL
+        
+//        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+        
+        print("in goToTitles & about to dismiss view")
         dismissView()
     }
     
     @objc func goToCharacters() {
-        self.vcSelectedFromPopUp = "characters"
         print("going to characters")
         dismissView()
     }
@@ -187,7 +205,10 @@ class PopUpWindowViewController: UIViewController {
         print("dismissing popup selector")
         self.dismiss(animated: true, completion: nil)
     }
-    
+}
+
+protocol PopUpDelegate {
+    func presentNewViewController()
 }
 
 //MARK: QUESTIONS
