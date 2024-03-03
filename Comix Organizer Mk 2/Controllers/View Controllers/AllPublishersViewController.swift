@@ -104,13 +104,18 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         print("im in the allpublishersVC and the popup delegate works!")
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL = self.selectedPublisherDetailsURL
+        selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
     }
     
     func presentCharactersViewController() {
         print("im in the allpublishersVC and the popup delegate works!")
+        let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
+        selectedPublisherCharactersVC.selectedPublisherName = selectedPublisherName
+        selectedPublisherCharactersVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        
+        self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
     }
     
 }

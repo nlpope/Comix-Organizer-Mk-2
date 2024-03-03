@@ -27,11 +27,14 @@ class SelectedPublisherCharactersViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         //adding "navigationItem" before "title" changes title of VC w/out touching the icon
+        if selectedPublisherName.contains("Comics") {
+            selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
+        }
+        title = "\(selectedPublisherName)"
         navigationItem.title = "\(selectedPublisherName) Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        print("in allcharactersVC & selectedPublisher = \(selectedPublisherName)")
+   
         
         Task {
             await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
