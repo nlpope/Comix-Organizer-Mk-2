@@ -138,10 +138,21 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
+ GOALS:
+ > URGENT:
+ >> deliniate duplicate titles by putting (volume #) after it, THAT'S where they differ, then the checkable issues will be umbrellaed under said volume on the next VC
+
+ >> add "please wait" spinning animation to allpubVC & selectedpubtitlesVC so user doesn't have to sit through lag
+ >> delete duplicate titles (unless they're different somehow)
+ >> display popular publishers ONLY, accessing the rest via search
+ >> toggler to switch between displaying titles vs characters (affects search func)
+ >> colorful, animated template (see templates on github?) for AllCharactersVC > SelectedCharacterVC
  
+ > EVENTUALLY:
+ >> review the role of VCs: https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457
+ >> review updated version of above
+ >> review MVC architecture (from BJ Homer): https://stackoverflow.com/questions/1151422/uiview-vs-uiviewcontroller
  --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
@@ -497,21 +508,15 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  03.01
  > narrowed it down to closures and delegates
  >> i will use delegates since Delegation is commonly employed in UI-related tasks, like handling user interactions or customizing behavior in response to certain events.
- >>> https://medium.com/@kohinoorprajapat54/difference-between-closures-and-delegates-in-swift-b9b208e66267#:~:text=In%20summary%2C%20closures%20are%20more,communication%20and%20cooperation%20between%20objects.
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- > GOALS:
- >> pause execution until "titles" || "characters" is selected (via Task? why not workin?)
+ >>> https://medium.com/@kohinoorprajapat54/difference-between-closures-and-delegates-in-swift-b9b208e66267#:~:text=In%20summary%2C%20closures%20are%20more,communication%20and%20cooperation%20between%20objects
  
- >> review the role of VCs: https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457
- >> review updated version of above
- >> review MVC architecture (from BJ Homer): https://stackoverflow.com/questions/1151422/uiview-vs-uiviewcontroller
- >> delete duplicate titles (unless they're different somehow)
- >> display popular publishers ONLY, accessing the rest via search
- >> toggler to switch between displaying titles vs characters (affects search func)
- >> colorful, animated template (see templates on github?) for AllCharactersVC > SelectedCharacterVC
+ 03.03
+ > MILESTONE: successfully displaying volumes for Marvel & DC (maybe I was leaving too early before it populated b/c I didn't change anything)
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ 
  
  
  --------------------------
