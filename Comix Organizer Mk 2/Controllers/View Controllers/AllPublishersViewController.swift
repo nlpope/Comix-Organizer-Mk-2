@@ -101,7 +101,6 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     
     //popup delegate method(s)
     func presentTitlesViewController() {
-        print("im in the allpublishersVC and the popup delegate works!")
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
         selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
@@ -110,7 +109,6 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     }
     
     func presentCharactersViewController() {
-        print("im in the allpublishersVC and the popup delegate works!")
         let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
         selectedPublisherCharactersVC.selectedPublisherName = selectedPublisherName
         selectedPublisherCharactersVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
@@ -142,7 +140,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  > URGENT:
  >> deliniate duplicate titles by putting (volume #) after it, THAT'S where they differ, then the checkable issues will be umbrellaed under said volume on the next VC
 
- >> add "please wait" spinning animation to allpubVC & selectedpubtitlesVC so user doesn't have to sit through lag
+ >> add "please wait" spinning animation to allpubVC & selectedpubtitlesVC so user doesn't have to sit through an ambiguous lag
  >> delete duplicate titles (unless they're different somehow)
  >> display popular publishers ONLY, accessing the rest via search
  >> toggler to switch between displaying titles vs characters (affects search func)
@@ -512,6 +510,8 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  
  03.03
  > MILESTONE: successfully displaying volumes for Marvel & DC (maybe I was leaving too early before it populated b/c I didn't change anything)
+ >> correction: something did change, I added the filter &field_list=volumes to the api call, for some reason the data loads in an incomplete way w/out it
+
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX

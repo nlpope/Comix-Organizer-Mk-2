@@ -30,6 +30,7 @@
 		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
 		40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */; };
 		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
+		40B6D3CE2B97496400E1C309 /* LoadAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6D3CD2B97496400E1C309 /* LoadAnimationViewController.swift */; };
 		40D7D3032B331F1E00B040CE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3022B331F1E00B040CE /* Character.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +79,7 @@
 		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
 		40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCharacterSearchViewController.swift; sourceTree = "<group>"; };
 		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
+		40B6D3CD2B97496400E1C309 /* LoadAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAnimationViewController.swift; sourceTree = "<group>"; };
 		40D7D3022B331F1E00B040CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */,
 				40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */,
 				404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */,
+				40B6D3CD2B97496400E1C309 /* LoadAnimationViewController.swift */,
 			);
 			name = "Main Tabs";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				40A83AD12AFBB09E009F80D3 /* MainTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */,
 				404BA7532B7C586C00238FC9 /* UserProfileViewController.swift in Sources */,
+				40B6D3CE2B97496400E1C309 /* LoadAnimationViewController.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */,

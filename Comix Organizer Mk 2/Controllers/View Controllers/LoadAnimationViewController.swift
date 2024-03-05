@@ -6,3 +6,11 @@
 //
 
 import Foundation
+import UIKit
+
+class LoadAnimationViewController: UIViewController {
+    private let stackView: UIStackView = {
+        return $0
+        //$0 = auto arg that generates as alt. shorthand arg in lieu of (let's say) ...{ loadingDot in or ...{ _ in
+    }(UIStackView())
+}
