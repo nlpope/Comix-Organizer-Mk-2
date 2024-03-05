@@ -14,3 +14,5 @@ class LoadAnimationViewController: UIViewController {
         //$0 = auto arg that generates as alt. shorthand arg in lieu of (let's say) ...{ loadingDot in or ...{ _ in
     }(UIStackView())
 }
+
+//https://stackoverflow.com/questions/62208949/how-to-make-loading-animation-in-ios-swift
