@@ -65,4 +65,24 @@ class LoadAnimationViewController: UIViewController {
     }
 }
 
-//https://stackoverflow.com/questions/62208949/how-to-make-loading-animation-in-ios-swift
+/**
+ QUESTIONS & REFERENCE CREDITS
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ QUESTIONS:
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ REFERENCE CREDITS:
+ > Overall Loading Animation layout
+ >> https://stackoverflow.com/questions/62208949/how-to-make-loading-animation-in-ios-swift
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+
+ */
+
+
