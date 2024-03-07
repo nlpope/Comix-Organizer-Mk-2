@@ -56,6 +56,7 @@ class AllPublishersViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        //DISMISS LOADING ANIMATION HERE?
         tableView.frame = view.bounds
     }
     
@@ -142,8 +143,9 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  --------------------------
  GOALS:
  > URGENT:
- >> deliniate duplicate titles by putting (volume #) after it, THAT'S where they differ, then the checkable issues will be umbrellaed under said volume on the next VC
-
+ >> I need to find a way to more naturally present & dismiss LoadAnimationVC based on whether or not the AllPublishersVC's tableView is ready - do this in the viewDidLayoutSubviews() method?
+ 
+ >> deliniate duplicate titles by putting (volume # or # of issues) after it, THAT'S where they differ, then the checkable issues will be umbrellaed under said volume on the next VC
  >> add "please wait" spinning animation to allpubVC & selectedpubtitlesVC so user doesn't have to sit through an ambiguous lag
  >> delete duplicate titles (unless they're different somehow)
  >> display popular publishers ONLY, accessing the rest via search
