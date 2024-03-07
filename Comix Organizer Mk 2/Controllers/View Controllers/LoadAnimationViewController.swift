@@ -38,7 +38,7 @@ class LoadAnimationViewController: UIViewController {
             let delay = jumpDuration*2 * TimeInterval(index) / TimeInterval(circles.count)
             UIView.animateKeyframes(withDuration: totalDuration, delay: delay, options: [.repeat], animations: {
                 //keyframe = "how do you want this animated? in this case, rise & fall 30 points
-                UIView.addKeyframe(withRelativeStartTime: fallRelativeTime, relativeDuration: jumpRelativeDuration) {
+                UIView.addKeyframe(withRelativeStartTime: jumpRelativeTime, relativeDuration: jumpRelativeDuration) {
                     circle.frame.origin.y -= 30
                 }
                 UIView.addKeyframe(withRelativeStartTime: fallRelativeTime, relativeDuration: jumpRelativeDuration) {
@@ -63,6 +63,11 @@ class LoadAnimationViewController: UIViewController {
             $0.widthAnchor.constraint(equalToConstant: 20).isActive = true
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animate()
     }
 }
 

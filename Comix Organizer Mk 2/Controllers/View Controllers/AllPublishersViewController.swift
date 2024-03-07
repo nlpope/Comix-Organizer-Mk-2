@@ -26,18 +26,15 @@ class AllPublishersViewController: UIViewController {
         return table
     }()
     
+    let loadingAnimationVC = LoadAnimationViewController()
+    
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewWillAppear(_ animated: Bool) {
         //triggered EVERY TIME window opens, not just the 1st like VDLoad
-        Task {
-            await configurePublishers()
-            view.addSubview(tableView)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.frame = view.bounds
-        }
+//        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
+        self.present(loadingAnimationVC, animated: true)
     }
     
     override func viewDidLoad() {
@@ -48,6 +45,13 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
+        Task {
+            await configurePublishers()
+            view.addSubview(tableView)
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.frame = view.bounds
+        }
     }
     
     override func viewDidLayoutSubviews() {
