@@ -515,6 +515,9 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  03.03
  > MILESTONE: successfully displaying volumes for Marvel & DC (maybe I was leaving too early before it populated b/c I didn't change anything)
  >> correction: something did change, I added the filter &field_list=volumes to the api call, for some reason the data loads in an incomplete way w/out it
+ 
+ 03.07
+ > adding mistakenly omitted "jumpRelativeTime" const to added keyframe & mistakenly omitted call to the animate() func. works fine now, but I need to find a way to more naturally present & dismiss this based on whether or not the AllPublishersVC's tableView is ready
 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
