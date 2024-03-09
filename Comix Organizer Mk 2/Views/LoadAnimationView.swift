@@ -10,7 +10,15 @@
 import Foundation
 import UIKit
 
+private class LoadAnimationView: UIView {
+    
+}
+
 class LoadAnimationViewController: UIViewController {
+    //delegation #2
+    var delegate: LoadAnimationDelegate?
+    private let loadAnimationView = LoadAnimationView()
+    //add a view above this & treat it like a larger version of the popupwindowView/VC relationship, but w/out the buttons?
     private let stackView: UIStackView = {loadingDot in
         loadingDot.distribution = .fill
         loadingDot.axis = .horizontal
@@ -70,6 +78,22 @@ class LoadAnimationViewController: UIViewController {
         super.viewDidAppear(animated)
         animate()
     }
+    
+    //delegation #3 (confused - what do i want it to do?)
+    @objc func dismissAndGoToSelectedVC() {
+        dismissView()
+    }
+    
+    @objc func dismissView() {
+        print("dismissing load animation")
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+//delegation #1
+protocol LoadAnimationDelegate {
+    func presentLoadingAnimationViewController()
+    func dismissLoadingAnimationViewController()
 }
 
 /**
