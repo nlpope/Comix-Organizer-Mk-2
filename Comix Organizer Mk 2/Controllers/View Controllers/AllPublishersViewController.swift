@@ -26,7 +26,7 @@ class AllPublishersViewController: UIViewController {
         return table
     }()
     
-    let loadingAnimationVC = LoadAnimationViewController()
+//    let loadingAnimationVC = LoadAnimationViewController()
     
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -34,7 +34,6 @@ class AllPublishersViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //triggered EVERY TIME window opens, not just the 1st like VDLoad
 //        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
-        self.present(loadingAnimationVC, animated: true)
     }
     
     override func viewDidLoad() {
@@ -106,11 +105,19 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     
     //popup delegate method(s)
     func presentTitlesViewController() {
+        let loadingAnimationVC = LoadAnimationViewController()
+        self.navigationController?.present(loadingAnimationVC, animated: false)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
         selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //set up state and dismiss the Loading VC once state in the presenting VC changes
     }
     
     func presentCharactersViewController() {

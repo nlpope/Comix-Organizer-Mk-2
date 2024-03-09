@@ -6,6 +6,7 @@
 //
 
 //ADD / DISPLAY USING VIEWWILLAPPEAR() METHOD?
+//dismissView() will get rid of this VC like it gets rid of the PopUpWindowVC > goToTitles/Characters() methods
 import Foundation
 import UIKit
 
