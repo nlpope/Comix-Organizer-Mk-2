@@ -52,9 +52,12 @@ class SelectedPublisherTitlesViewController: UIViewController {
     
     //MARK: CONFIGURATION
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
+        let allPublishersVC = AllPublishersViewController()
+        allPublishersVC.presentLoadingVC = true
         if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
             self.selectedPublisherTitles += results
         }
+        allPublishersVC.presentLoadingVC = false
     }
 }
 

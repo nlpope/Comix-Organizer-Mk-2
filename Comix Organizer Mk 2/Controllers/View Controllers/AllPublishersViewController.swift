@@ -13,11 +13,13 @@ import CoreData
 //match API results agains list of most popular publishers (via a set array that I create?) then display that
 
 class AllPublishersViewController: UIViewController {
-    
     private var publishers = [Publisher]()
     private var vcSelectedFromPopUp = ""
     var selectedPublisherName = ""
     var selectedPublisherDetailsURL = ""
+    public var presentLoadingVC: Bool = false
+    
+    //set an if statement here depending on the bool up top > triggering the presentloadingVC() method?
 
     
     let tableView: UITableView = {
@@ -25,16 +27,9 @@ class AllPublishersViewController: UIViewController {
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-    
-//    let loadingAnimationVC = LoadAnimationViewController()
-    
+        
     //CORE DATA STEP 2
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //triggered EVERY TIME window opens, not just the 1st like VDLoad
-//        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +65,7 @@ class AllPublishersViewController: UIViewController {
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
+extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate, LoadAnimationDelegate {
     
     //MARK: DATASOURCE METHODS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,15 +100,14 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     
     //popup delegate method(s)
     func presentTitlesViewController() {
-        let loadingAnimationVC = LoadAnimationViewController()
-        self.navigationController?.present(loadingAnimationVC, animated: false)
-
         self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        presentLoadingAnimationViewController()
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
+        
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
         selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
+        dismissLoadingAnimationViewController()
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -127,6 +121,19 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         
         self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
     }
+    
+    func presentLoadingAnimationViewController() {
+        let loadingAnimationVC = LoadAnimationViewController()
+        loadingAnimationVC.delegate = self
+        self.present(loadingAnimationVC, animated: true, completion: nil)
+        
+    }
+    
+    func dismissLoadingAnimationViewController() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+   
     
 }
 
@@ -527,6 +534,12 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  
  03.07
  > adding mistakenly omitted "jumpRelativeTime" const to added keyframe & mistakenly omitted call to the animate() func. works fine now, but I need to find a way to more naturally present & dismiss this based on whether or not the AllPublishersVC's tableView is ready
+ 
+ 03.09
+ > changing name of LoadAnimationVC to LoadAnimationView & in middle of playing w delegation pattern akin to popUpView to get animation to fill whole screen & dismiss when destinationVC's API call  is complete (triggers delegate's dismiss func)
+ 
+ 03.12
+ > completed setting up delegate pattern for load screen (not yet tested)
 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX

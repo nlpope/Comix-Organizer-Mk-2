@@ -141,7 +141,7 @@ private class PopUpWindowView: UIView {
 //THE BEHAVIOR
 class PopUpWindowViewController: UIViewController {
     //2. the delegate (to be defined in the delegate - allpubVC) - next one here, in goToTitles
-    //"Okay! I can set up a delegate using the type protocol type you just created so me and my 'employee' can communicate"
+    //"Okay! I can set up a delegate using the protocol type you just created so me and my 'employee' can communicate"
     var delegate: PopUpDelegate?
     private let popUpWindowView = PopUpWindowView()
     public var selectedPublisherName = ""
@@ -174,14 +174,11 @@ class PopUpWindowViewController: UIViewController {
         //3. the delegate execution - next one in allpubVC @ bottom
         //"Now that the delegate (of type protocol) is set up (but not yet defined), I'll be the one to tell said delegate to do something with the func it's required to have"
         dismissView()
-
         delegate?.presentTitlesViewController()
-        //change above to titles and set protocol to need titles and characters funcs then move characters func behavior to characters func
     }
     
     @objc func goToCharacters() {
         dismissView()
-
         delegate?.presentCharactersViewController()
     }
     

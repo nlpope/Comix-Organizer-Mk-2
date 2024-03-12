@@ -79,15 +79,20 @@ class LoadAnimationViewController: UIViewController {
         animate()
     }
     
-    //delegation #3 (confused - what do i want it to do?)
-    @objc func dismissAndGoToSelectedVC() {
-        dismissView()
-    }
+    //delegation #3 - all of below unnecessary(?) - no buttons to target/change things
+//    func presentLoadingAnimationVC() {
+//        delegate?.presentLoadingAnimationViewController()
+//    }
     
-    @objc func dismissView() {
-        print("dismissing load animation")
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @objc func dismissAndGoToSelectedVC() {
+//        //happens after API Call completes or is loaded into destinationVC (no button clicked)
+//        dismissView()
+//    }
+    
+//    @objc func dismissView() {
+//        print("dismissing load animation")
+//        self.dismiss(animated: true, completion: nil)
+//    }
 }
 
 //delegation #1
