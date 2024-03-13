@@ -11,6 +11,31 @@ import Foundation
 import UIKit
 
 private class LoadAnimationView: UIView {
+    let loadAnimationView = UIView(frame: CGRect.zero)
+    
+    init() {
+        super.init(frame: CGRect.zero)
+        
+        //constraints to fill whole screen
+//        loadAnimationView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+//        loadAnimationView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
+//        loadAnimationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+//        loadAnimationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+        addSubview(loadAnimationView)
+        loadAnimationView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            //why do i have access to self here and not just above "addSubview"?
+            loadAnimationView.widthAnchor.constraint(equalTo: self.widthAnchor),
+            loadAnimationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            loadAnimationView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
 }
 

@@ -100,7 +100,6 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     
     //popup delegate method(s)
     func presentTitlesViewController() {
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         presentLoadingAnimationViewController()
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         
@@ -125,6 +124,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     func presentLoadingAnimationViewController() {
         let loadingAnimationVC = LoadAnimationViewController()
         loadingAnimationVC.delegate = self
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.present(loadingAnimationVC, animated: true, completion: nil)
         
     }
