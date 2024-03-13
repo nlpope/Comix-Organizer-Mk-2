@@ -17,7 +17,8 @@ enum APIError: Error {
     case failedToGetData
 }
 
-class APICaller {
+class APICaller: LoadAnimationDelegate {
+    
     static let shared = APICaller()
     
     
@@ -78,6 +79,14 @@ class APICaller {
         
         
               
+    }
+    
+    func presentLoadingAnimationViewController() {
+        <#code#>
+    }
+    
+    func dismissLoadingAnimationViewController() {
+        <#code#>
     }
 
 }

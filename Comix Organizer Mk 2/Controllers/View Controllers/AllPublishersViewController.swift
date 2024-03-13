@@ -65,7 +65,7 @@ class AllPublishersViewController: UIViewController {
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate, LoadAnimationDelegate {
+extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
     
     //MARK: DATASOURCE METHODS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,13 +100,12 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     
     //popup delegate method(s)
     func presentTitlesViewController() {
-        presentLoadingAnimationViewController()
+//        presentLoadingAnimationViewController()
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
         selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
         
-        dismissLoadingAnimationViewController()
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -121,17 +120,18 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
     }
     
-    func presentLoadingAnimationViewController() {
-        let loadingAnimationVC = LoadAnimationViewController()
-        loadingAnimationVC.delegate = self
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.present(loadingAnimationVC, animated: true, completion: nil)
-        
-    }
+//    func presentLoadingAnimationViewController() {
+//        let loadingAnimationVC = LoadAnimationViewController()
+//        loadingAnimationVC.delegate = self
+//        self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+////        self.present(loadingAnimationVC, animated: true, completion: nil)
+//        
+//    }
     
-    func dismissLoadingAnimationViewController() {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    func dismissLoadingAnimationViewController() {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
    
     
