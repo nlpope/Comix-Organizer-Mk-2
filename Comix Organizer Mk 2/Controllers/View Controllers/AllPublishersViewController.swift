@@ -4,6 +4,7 @@
 //
 //  Created by Noah Pope on 11/7/23.
 //
+//  MAKING THIS THE LOADINGANIMATION DELEGATE (ADD TO OTHER VCs if it works)
 
 import UIKit
 //UIKit does NOT make this a SwiftUI project
@@ -12,7 +13,8 @@ import CoreData
 //this is the HomeViewController / HomeVC
 //match API results agains list of most popular publishers (via a set array that I create?) then display that
 
-class AllPublishersViewController: UIViewController {
+class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
+       
     private var publishers = [Publisher]()
     private var vcSelectedFromPopUp = ""
     var selectedPublisherName = ""
@@ -40,11 +42,15 @@ class AllPublishersViewController: UIViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
         Task {
+            presentLoadingAnimationViewController()
+            
             await configurePublishers()
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
+            
+            dismissLoadingAnimationViewController()
         }
     }
     
@@ -56,11 +62,24 @@ class AllPublishersViewController: UIViewController {
     
     //MARK: CONFIGURATION
     func configurePublishers() async {
+        //should load animation delegate reside in this func?
         if let results = try? await APICaller.shared.getPublishersAPI() {
             self.publishers += results
         } else {
             print("something went wrong in configurePublishers()")
         }
+    }
+    
+    func presentLoadingAnimationViewController() {
+        let loadingAnimationVC = LoadAnimationViewController()
+        
+        loadingAnimationVC.delegate = self
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+    }
+    
+    func dismissLoadingAnimationViewController() {
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -121,14 +140,10 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     }
     
 //    func presentLoadingAnimationViewController() {
-//        let loadingAnimationVC = LoadAnimationViewController()
-//        loadingAnimationVC.delegate = self
-//        self.navigationController?.setNavigationBarHidden(true, animated: true)
-//        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
-////        self.present(loadingAnimationVC, animated: true, completion: nil)
+//        
 //        
 //    }
-    
+//    
 //    func dismissLoadingAnimationViewController() {
 //        self.dismiss(animated: true, completion: nil)
 //    }
@@ -540,6 +555,9 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  
  03.12
  > completed setting up delegate pattern for load screen (not yet tested)
+ 
+ 03.13
+ > this is good - loading animation working as expected after setting delegate up to exist above the datasource and delegate methods listed in the extension (setup vs interaction portions of my code) but i still need to find a way to properly dismiss it & hide the maintbvc tabs @ the bottom during
 
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
