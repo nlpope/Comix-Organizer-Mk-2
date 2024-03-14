@@ -8,7 +8,8 @@
 import UIKit
 import CoreData
 
-class SelectedPublisherCharactersViewController: UIViewController {
+class SelectedPublisherCharactersViewController: UIViewController, LoadAnimationDelegate {
+    
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     private var characters = [Character]()
@@ -37,12 +38,16 @@ class SelectedPublisherCharactersViewController: UIViewController {
    
         
         Task {
+            presentLoadingAnimationViewController()
+            
             await configureCharacters(withPublisherDetailsURL: selectedPublisherDetailsURL)
             print("configureCharacters was successful. about to add subview")
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
+            
+//            dismissLoadingAnimationViewController()
         }
                 
     }
@@ -62,6 +67,24 @@ class SelectedPublisherCharactersViewController: UIViewController {
             print("something went wrong in configureCharacters().")
         }
         
+    }
+    
+    func presentLoadingAnimationViewController() {
+        let loadingAnimationVC = LoadAnimationViewController()
+        
+        loadingAnimationVC.delegate = self
+        //hide the navigation controller & tabs
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+    }
+    
+    func dismissLoadingAnimationViewController() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+
+        self.navigationController?.popViewController(animated: false)
     }
     
 }

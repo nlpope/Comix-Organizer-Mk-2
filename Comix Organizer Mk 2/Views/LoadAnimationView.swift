@@ -43,9 +43,9 @@ class LoadAnimationViewController: UIViewController {
     //delegation #2
     var delegate: LoadAnimationDelegate?
     private let loadAnimationView = LoadAnimationView()
-    //add a view above this & treat it like a larger version of the popupwindowView/VC relationship, but w/out the buttons?
+    //why is my spacing dissapearing when this VC is called in selectedPubVC?
     private let stackView: UIStackView = {loadingDot in
-        loadingDot.distribution = .fill
+//        loadingDot.distribution = .fill
         loadingDot.axis = .horizontal
         loadingDot.alignment = .center
         loadingDot.spacing = 10

@@ -9,13 +9,12 @@ import UIKit
 import CoreData
 
 //Titles = Volumes in API
-class SelectedPublisherTitlesViewController: UIViewController {
+class SelectedPublisherTitlesViewController: UIViewController, LoadAnimationDelegate {
+    
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     private var selectedPublisherTitles = [Volume]()
-    
-    
-    private var publisherTitles = [Volume]()
+//    private var publisherTitles = [Volume]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -25,24 +24,33 @@ class SelectedPublisherTitlesViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    override func viewWillAppear(_ animated: Bool) {
+//    override func viewWillAppear(_ animated: Bool) {
+//        
+//    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        
+        if selectedPublisherName.contains("Comics") {
+            selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
+        }
+        title = "\(selectedPublisherName)"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        
         Task {
+            //why is animation switching to vertical here?
+            presentLoadingAnimationViewController()
+            
             await configurePublisherTitles(withPublisherDetailsURL: selectedPublisherDetailsURL)
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.frame = view.bounds
+            
+            dismissLoadingAnimationViewController()
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if selectedPublisherName.contains("Comics") {
-            selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
-        }
-        title = "\(selectedPublisherName)"
-
-        view.backgroundColor = .systemBackground
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,12 +60,28 @@ class SelectedPublisherTitlesViewController: UIViewController {
     
     //MARK: CONFIGURATION
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
-        let allPublishersVC = AllPublishersViewController()
-        allPublishersVC.presentLoadingVC = true
         if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
             self.selectedPublisherTitles += results
+        } else {
+            print("something went wrong in configurePublisherTitles")
         }
-        allPublishersVC.presentLoadingVC = false
+    }
+    
+    func presentLoadingAnimationViewController() {
+        let loadingAnimationVC = LoadAnimationViewController()
+        
+        loadingAnimationVC.delegate = self
+        //hide the navigation controller & tabs
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+    }
+    
+    func dismissLoadingAnimationViewController() {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.popViewController(animated: false)
     }
 }
 
@@ -80,5 +104,7 @@ extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("it works")
     }
+    
+    
 
 }

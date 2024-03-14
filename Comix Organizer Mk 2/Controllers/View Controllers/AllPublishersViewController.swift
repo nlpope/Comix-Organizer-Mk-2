@@ -19,10 +19,6 @@ class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
     private var vcSelectedFromPopUp = ""
     var selectedPublisherName = ""
     var selectedPublisherDetailsURL = ""
-    public var presentLoadingVC: Bool = false
-    
-    //set an if statement here depending on the bool up top > triggering the presentloadingVC() method?
-
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -82,7 +78,6 @@ class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
     }
     
     func dismissLoadingAnimationViewController() {
-//        self.dismiss(animated: false, completion: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
 
