@@ -74,12 +74,19 @@ class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
         let loadingAnimationVC = LoadAnimationViewController()
         
         loadingAnimationVC.delegate = self
+        //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.tabBarController?.tabBar.isHidden = true
+        
         self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
     }
     
     func dismissLoadingAnimationViewController() {
-        self.dismiss(animated: false, completion: nil)
+//        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.tabBarController?.tabBar.isHidden = false
+
+        self.navigationController?.popViewController(animated: false)
     }
 }
 
