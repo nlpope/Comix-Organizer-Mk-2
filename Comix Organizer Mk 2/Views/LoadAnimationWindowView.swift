@@ -10,7 +10,8 @@
 import Foundation
 import UIKit
 
-private class LoadAnimationView: UIView {
+//MARK: LOAD ANIMATION VIEW
+private class LoadAnimationWindowView: UIView {
     let loadAnimationView = UIView(frame: CGRect.zero)
     
     init() {
@@ -42,7 +43,7 @@ private class LoadAnimationView: UIView {
 class LoadAnimationViewController: UIViewController {
     //delegation #2
     var delegate: LoadAnimationDelegate?
-    private let loadAnimationView = LoadAnimationView()
+    private let loadAnimationView = LoadAnimationWindowView()
     //why is my spacing dissapearing when this VC is called in selectedPubVC?
     private let stackView: UIStackView = {loadingDot in
 //        loadingDot.distribution = .fill
@@ -85,7 +86,7 @@ class LoadAnimationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        view.addSubview(stackView)
+//        view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
