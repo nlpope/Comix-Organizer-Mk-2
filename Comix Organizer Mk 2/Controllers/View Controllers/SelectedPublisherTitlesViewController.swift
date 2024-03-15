@@ -46,7 +46,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
             tableView.dataSource = self
             tableView.frame = view.bounds
             
-//            dismissLoadingAnimationViewController()
+            dismissLoadingAnimationViewController()
         }
     }
     
@@ -81,7 +81,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
     func dismissLoadingAnimationViewController() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

@@ -83,7 +83,7 @@ class AllPublishersViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
 
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -553,6 +553,8 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  03.13
  > this is good - loading animation working as expected after setting delegate up to exist above the datasource and delegate methods listed in the extension (setup vs interaction portions of my code) but i still need to find a way to properly dismiss it & hide the maintbvc tabs @ the bottom during
 
+ 03.15
+ > SUCCESS - LOADING ANIMATION: I thought the issue was the unnecessary delegate design pattern around the LoadingAnimationVC, and YES that had to go, but the real problem was setting the animation parameter in the navigationController's pushVC method to "false"
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
