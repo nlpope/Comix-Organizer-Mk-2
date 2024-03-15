@@ -18,6 +18,8 @@ private class LoadAnimationWindowView: UIView {
         super.init(frame: CGRect.zero)
         
         //constraints to fill whole screen
+        //03.15: working fine, but uncommenting topAnchor - trailingAnchor to see what happens
+        //...hmm doesn't work when I uncomment topAnchor - trailingAnchor logic. why?
 //        loadAnimationView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
 //        loadAnimationView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
 //        loadAnimationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
@@ -42,11 +44,11 @@ private class LoadAnimationWindowView: UIView {
 
 class LoadAnimationViewController: UIViewController {
     //delegation #2
-    var delegate: LoadAnimationDelegate?
+    //03.15: commented out - var delegate: LoadAnimationDelegate?
     private let loadAnimationView = LoadAnimationWindowView()
-    //why is my spacing dissapearing when this VC is called in selectedPubVC?
+    //why are my loadingDots overlapping when this VC is called in selectedPubVC?
     private let stackView: UIStackView = {loadingDot in
-//        loadingDot.distribution = .fill
+        loadingDot.distribution = .fill
         loadingDot.axis = .horizontal
         loadingDot.alignment = .center
         loadingDot.spacing = 10
@@ -72,7 +74,7 @@ class LoadAnimationViewController: UIViewController {
         for (index, circle) in circles.enumerated() {
             let delay = jumpDuration*2 * TimeInterval(index) / TimeInterval(circles.count)
             UIView.animateKeyframes(withDuration: totalDuration, delay: delay, options: [.repeat], animations: {
-                //keyframe = "how do you want this animated? in this case, rise & fall 30 points
+                //keyframe = "how do you want this animated? in this case, rise & fall 30 points"
                 UIView.addKeyframe(withRelativeStartTime: jumpRelativeTime, relativeDuration: jumpRelativeDuration) {
                     circle.frame.origin.y -= 30
                 }
@@ -86,7 +88,7 @@ class LoadAnimationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-//        view.addSubview(stackView)
+        view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -121,11 +123,11 @@ class LoadAnimationViewController: UIViewController {
 //    }
 }
 
-//delegation #1
-protocol LoadAnimationDelegate {
-    func presentLoadingAnimationViewController()
-    func dismissLoadingAnimationViewController()
-}
+//delegation #1 - may not be necessary: no btns to press
+//protocol LoadAnimationDelegate {
+//    func presentLoadingAnimationViewController()
+//    func dismissLoadingAnimationViewController()
+//}
 
 /**
  QUESTIONS & REFERENCE CREDITS

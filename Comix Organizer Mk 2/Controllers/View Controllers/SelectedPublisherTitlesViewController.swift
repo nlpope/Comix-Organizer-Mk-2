@@ -9,12 +9,13 @@ import UIKit
 import CoreData
 
 //Titles = Volumes in API
-class SelectedPublisherTitlesViewController: UIViewController, LoadAnimationDelegate {
+//remove delegate pattern for the load once the dot issue is sorted
+//03.15: just removed LoadAnimationDelegate pattern & conformance below
+class SelectedPublisherTitlesViewController: UIViewController {
     
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     private var selectedPublisherTitles = [Volume]()
-//    private var publisherTitles = [Volume]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -23,10 +24,6 @@ class SelectedPublisherTitlesViewController: UIViewController, LoadAnimationDele
     }()
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +46,7 @@ class SelectedPublisherTitlesViewController: UIViewController, LoadAnimationDele
             tableView.dataSource = self
             tableView.frame = view.bounds
             
-            dismissLoadingAnimationViewController()
+//            dismissLoadingAnimationViewController()
         }
     }
     
@@ -68,14 +65,17 @@ class SelectedPublisherTitlesViewController: UIViewController, LoadAnimationDele
     }
     
     func presentLoadingAnimationViewController() {
+        //03.15: sumn's wrong in here
+        //what if i removed the delegate pattern entirely?
+        //.. that worked for like a second then it didnt
         let loadingAnimationVC = LoadAnimationViewController()
         
-        loadingAnimationVC.delegate = self
         //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
         
-        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+        //03.15: just set the animation to "true"
+        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
     }
     
     func dismissLoadingAnimationViewController() {

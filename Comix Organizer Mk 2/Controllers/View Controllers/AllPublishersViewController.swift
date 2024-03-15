@@ -12,8 +12,9 @@ import CoreData
 
 //this is the HomeViewController / HomeVC
 //match API results agains list of most popular publishers (via a set array that I create?) then display that
+//03.15: just removed LoadAnimationDelegate pattern & conformance below
 
-class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
+class AllPublishersViewController: UIViewController {
        
     private var publishers = [Publisher]()
     private var vcSelectedFromPopUp = ""
@@ -38,6 +39,7 @@ class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
         Task {
+            //this works fine (horizontal dots)
             presentLoadingAnimationViewController()
             
             await configurePublishers()
@@ -68,8 +70,8 @@ class AllPublishersViewController: UIViewController, LoadAnimationDelegate {
     
     func presentLoadingAnimationViewController() {
         let loadingAnimationVC = LoadAnimationViewController()
+  //03.15: commented out - loadingAnimationVC.delegate = self
         
-        loadingAnimationVC.delegate = self
         //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
@@ -121,7 +123,6 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
     
     //popup delegate method(s)
     func presentTitlesViewController() {
-//        presentLoadingAnimationViewController()
         let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
         
         selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
@@ -129,8 +130,8 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
         
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-        //set up state and dismiss the Loading VC once state in the presenting VC changes
+        //03.15: i just hid the below, does that change anything?
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func presentCharactersViewController() {
@@ -140,15 +141,6 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         
         self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
     }
-    
-//    func presentLoadingAnimationViewController() {
-//        
-//        
-//    }
-//    
-//    func dismissLoadingAnimationViewController() {
-//        self.dismiss(animated: true, completion: nil)
-//    }
     
    
     

@@ -8,7 +8,8 @@
 import UIKit
 import CoreData
 
-class SelectedPublisherCharactersViewController: UIViewController, LoadAnimationDelegate {
+//03.15: commented out - LoadAnimationDelegate protocol below
+class SelectedPublisherCharactersViewController: UIViewController {
     
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
@@ -19,10 +20,6 @@ class SelectedPublisherCharactersViewController: UIViewController, LoadAnimation
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +68,8 @@ class SelectedPublisherCharactersViewController: UIViewController, LoadAnimation
     
     func presentLoadingAnimationViewController() {
         let loadingAnimationVC = LoadAnimationViewController()
+        //03.15: commented out - loadingAnimationVC.delegate = self
         
-        loadingAnimationVC.delegate = self
         //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
