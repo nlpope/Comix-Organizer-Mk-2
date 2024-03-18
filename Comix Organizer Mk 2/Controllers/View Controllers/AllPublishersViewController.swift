@@ -16,10 +16,10 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
        
-    private var publishers = [Publisher]()
     private var vcSelectedFromPopUp = ""
     var selectedPublisherName = ""
     var selectedPublisherDetailsURL = ""
+    private var publishers = [Publisher]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -555,6 +555,14 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
 
  03.15
  > SUCCESS - LOADING ANIMATION: I thought the issue was the unnecessary delegate design pattern around the LoadingAnimationVC, and YES that had to go, but the real problem was setting the animation parameter in the navigationController's pushVC method to "false"
+ 
+ > setting up VC for selected title's issues (where check marks come into play)
+ 
+ 03.17
+ > setting up final VC for title issues - but sumn's going wrong in SelectedTitleIssuesVC > configureTitleIssues() more spec. at the APICaller > let decodedJSON = ...
+ 
+ 03.18
+ > finished setting up issues struct so SelectedTitleIssuesVC correctly populates
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX

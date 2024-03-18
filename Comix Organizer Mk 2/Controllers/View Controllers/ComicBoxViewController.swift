@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class ComicBoxViewController: UIViewController {
-    private var volumeCollection = [Volume]()
+    private var volumeCollection = [Title]()
     private var issueCollection = [Issue]()
     
     let tableView: UITableView = {

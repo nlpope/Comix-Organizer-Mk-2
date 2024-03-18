@@ -17,13 +17,6 @@ private class LoadAnimationWindowView: UIView {
     init() {
         super.init(frame: CGRect.zero)
         
-        //constraints to fill whole screen
-        //03.15: working fine, but uncommenting topAnchor - trailingAnchor to see what happens
-        //...hmm doesn't work when I uncomment topAnchor - trailingAnchor logic. why?
-//        loadAnimationView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
-//        loadAnimationView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
-//        loadAnimationView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-//        loadAnimationView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         addSubview(loadAnimationView)
         loadAnimationView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -43,10 +36,9 @@ private class LoadAnimationWindowView: UIView {
 }
 
 class LoadAnimationViewController: UIViewController {
-    //delegation #2
-    //03.15: commented out - var delegate: LoadAnimationDelegate?
+    
     private let loadAnimationView = LoadAnimationWindowView()
-    //why are my loadingDots overlapping when this VC is called in selectedPubVC?
+    
     private let stackView: UIStackView = {loadingDot in
         loadingDot.distribution = .fill
         loadingDot.axis = .horizontal
@@ -106,28 +98,9 @@ class LoadAnimationViewController: UIViewController {
         super.viewDidAppear(animated)
         animate()
     }
-    
-    //delegation #3 - all of below unnecessary(?) - no buttons to target/change things
-//    func presentLoadingAnimationVC() {
-//        delegate?.presentLoadingAnimationViewController()
-//    }
-    
-//    @objc func dismissAndGoToSelectedVC() {
-//        //happens after API Call completes or is loaded into destinationVC (no button clicked)
-//        dismissView()
-//    }
-    
-//    @objc func dismissView() {
-//        print("dismissing load animation")
-//        self.dismiss(animated: true, completion: nil)
-//    }
 }
-
-//delegation #1 - may not be necessary: no btns to press
-//protocol LoadAnimationDelegate {
-//    func presentLoadingAnimationViewController()
-//    func dismissLoadingAnimationViewController()
-//}
+    
+    
 
 /**
  QUESTIONS & REFERENCE CREDITS
@@ -136,6 +109,8 @@ class LoadAnimationViewController: UIViewController {
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  QUESTIONS:
+ //why were  my loadingDots overlapping when this VC is called in selectedPubVC?
+ //ans: I was setting the animate param in the pushVC method to false
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
@@ -148,5 +123,3 @@ class LoadAnimationViewController: UIViewController {
  --------------------------
 
  */
-
-

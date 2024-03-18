@@ -41,7 +41,7 @@ class APICaller {
     }
     
     //MARK: GET PUBLISHER TITLES
-    func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Volume] {
+    func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
         //publisherTitles = volumes in API
         print("getPublisherTitlesAPI - publisherDetailsURL = \(publisherDetailsURL) - end of url")
         guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes") else {
@@ -53,11 +53,30 @@ class APICaller {
         let (data, _) = try await URLSession.shared.data(from: url)
         print("the data was pulled from the URL. about to decode")
 
-        let decodedJSON = try JSONDecoder().decode(APIVolumesResponse.self, from: data)
+        let decodedJSON = try JSONDecoder().decode(APITitlesResponse.self, from: data)
         
         print("json decoded")
                 
-        return decodedJSON.results["volumes"]!.sorted(by: {$1.volumeName > $0.volumeName})
+        return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
+    }
+    
+    //MARK: GET TITLE ISSUES
+    func getTitleIssuesAPI(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
+        print("getTitlesIssuesAPI - setting up url")
+        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=issues") else {
+            throw APIError.invalidURL
+        }
+        print(url)
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        print("the data was pulled from the URL. about to decode")
+
+        //03.17 problem child
+        let decodedJSON = try JSONDecoder().decode(APIIssuesResponse.self, from: data)
+        
+        print("json decoded")
+                
+        return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})
     }
     
     //MARK: GET PUBLISHER CHARACTERS
@@ -76,11 +95,8 @@ class APICaller {
         print("json decoded")
         
         return decodedJSON.results["characters"]!.sorted(by: {$1.characterName > $0.characterName})
-        
-        
               
     }
-   
 
 }
 

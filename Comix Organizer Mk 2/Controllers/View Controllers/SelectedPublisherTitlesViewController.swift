@@ -1,5 +1,5 @@
 //
-//  PublisherTitlesViewController.swift
+//  SelectedPublisherTitlesViewController.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 2/6/24.
@@ -15,7 +15,9 @@ class SelectedPublisherTitlesViewController: UIViewController {
     
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-    private var selectedPublisherTitles = [Volume]()
+//    public var selectedTitleName = ""
+//    public var selectedTitleDetailsURL = ""
+    private var selectedPublisherTitles = [Title]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -32,7 +34,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
         if selectedPublisherName.contains("Comics") {
             selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
         }
-        title = "\(selectedPublisherName)"
+        title = "\(selectedPublisherName) Titles/Volumes"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
@@ -57,6 +59,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
     
     //MARK: CONFIGURATION
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
+        
         if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
             self.selectedPublisherTitles += results
         } else {
@@ -94,7 +97,7 @@ extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = selectedPublisherTitles[indexPath.row].volumeName
+        cell.textLabel?.text = selectedPublisherTitles[indexPath.row].titleName
         //remove duplicate named cells here (compare btwn curr. & last string)
         
         return cell
@@ -102,7 +105,11 @@ extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableVie
     
     //MARK: DELEGATE
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("it works")
+        let selctedTitleIssuesVC = SelectedTitleIssuesViewController()
+        
+        selctedTitleIssuesVC.selectedTitleName = selectedPublisherTitles[indexPath.row].titleName
+        selctedTitleIssuesVC.selectedTitleDetailsURL = selectedPublisherTitles[indexPath.row].titleDetailsURL
+        self.navigationController?.pushViewController(selctedTitleIssuesVC, animated: true)
     }
     
     

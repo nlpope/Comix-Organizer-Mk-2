@@ -13,7 +13,7 @@ class SelectedPublisherCharactersViewController: UIViewController {
     
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-    private var characters = [Character]()
+    private var selectedPublisherCharacters = [Character]()
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -24,11 +24,8 @@ class SelectedPublisherCharactersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        //adding "navigationItem" before "title" changes title of VC w/out touching the icon
-        if selectedPublisherName.contains("Comics") {
-            selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
-        }
         title = "\(selectedPublisherName)"
+        //adding "navigationItem" before "title" changes title of VC w/out touching the icon
         navigationItem.title = "\(selectedPublisherName) Characters"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
@@ -44,7 +41,7 @@ class SelectedPublisherCharactersViewController: UIViewController {
             tableView.dataSource = self
             tableView.frame = view.bounds
             
-//            dismissLoadingAnimationViewController()
+            dismissLoadingAnimationViewController()
         }
                 
     }
@@ -58,7 +55,7 @@ class SelectedPublisherCharactersViewController: UIViewController {
 
         if let results = try? await APICaller.shared.getPublisherCharactersAPI(withPublisherDetailsURL: publisherDetailsURL) {
             
-            self.characters += results
+            self.selectedPublisherCharacters += results
            
         } else {
             print("something went wrong in configureCharacters().")
@@ -74,14 +71,14 @@ class SelectedPublisherCharactersViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
         
-        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
     }
     
     func dismissLoadingAnimationViewController() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
 
-        self.navigationController?.popViewController(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -90,21 +87,15 @@ class SelectedPublisherCharactersViewController: UIViewController {
 extension SelectedPublisherCharactersViewController: UITableViewDelegate, UITableViewDataSource {
     //datasource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return characters.count
+        return selectedPublisherCharacters.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
-//"as! CharacterSelectViewCell" gives access to iboutles in CharacterSelectViewCell
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "CharacterSelectViewCell", for: indexPath) as! CharacterSelectViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let theCharacter = characters[indexPath.row]
+        let theCharacter = selectedPublisherCharacters[indexPath.row]
         cell.textLabel?.text = theCharacter.characterName
-        
-        //configuring / linking CharacterSelectViewCell's IBOutlets to Character model props
-        //more to come (including images & detailed bios)
-//        cell.characterViewCellName?.text = theCharacter.characterName
        
         return cell
     }
@@ -113,8 +104,9 @@ extension SelectedPublisherCharactersViewController: UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        let selectedCharacterVC
         //make selectedcharacter VCb
-        let selectedCharacterDetailsURL = characters[indexPath.row].characterDetailsURL
+        let selectedCharacterDetailsURL = selectedPublisherCharacters[indexPath.row].characterDetailsURL
         print(selectedCharacterDetailsURL)
+        print("it works")
 
     }
 }

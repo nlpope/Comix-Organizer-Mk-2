@@ -12,7 +12,7 @@
 		40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */; };
 		40A1A1C82B6EF93400DDF311 /* ComicBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */; };
 		40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C92B6EFA7C00DDF311 /* Issue.swift */; };
-		40A1A1CC2B6EFB8500DDF311 /* Volume.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1CB2B6EFB8500DDF311 /* Volume.swift */; };
+		40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1CB2B6EFB8500DDF311 /* Title.swift */; };
 		40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */; };
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
@@ -31,6 +31,7 @@
 		40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */; };
 		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
 		40B6D3CE2B97496400E1C309 /* LoadAnimationWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6D3CD2B97496400E1C309 /* LoadAnimationWindowView.swift */; };
+		40C7F4312BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7F4302BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift */; };
 		40D7D3032B331F1E00B040CE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3022B331F1E00B040CE /* Character.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +58,7 @@
 		40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewCell.swift; sourceTree = "<group>"; };
 		40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBoxViewController.swift; sourceTree = "<group>"; };
 		40A1A1C92B6EFA7C00DDF311 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
-		40A1A1CB2B6EFB8500DDF311 /* Volume.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volume.swift; sourceTree = "<group>"; };
+		40A1A1CB2B6EFB8500DDF311 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherTitlesViewController.swift; sourceTree = "<group>"; };
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCharacterSearchViewController.swift; sourceTree = "<group>"; };
 		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
 		40B6D3CD2B97496400E1C309 /* LoadAnimationWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAnimationWindowView.swift; sourceTree = "<group>"; };
+		40C7F4302BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTitleIssuesViewController.swift; sourceTree = "<group>"; };
 		40D7D3022B331F1E00B040CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */,
+				40C7F4302BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift */,
 				40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */,
 				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
 			);
@@ -203,7 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				40A83ACB2AFA6187009F80D3 /* Publisher.swift */,
-				40A1A1CB2B6EFB8500DDF311 /* Volume.swift */,
+				40A1A1CB2B6EFB8500DDF311 /* Title.swift */,
 				40A1A1C92B6EFA7C00DDF311 /* Issue.swift */,
 				40D7D3022B331F1E00B040CE /* Character.swift */,
 			);
@@ -380,9 +383,10 @@
 				40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */,
 				40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */,
 				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
+				40C7F4312BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift in Sources */,
 				40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */,
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
-				40A1A1CC2B6EFB8500DDF311 /* Volume.swift in Sources */,
+				40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* MainTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */,
 				404BA7532B7C586C00238FC9 /* UserProfileViewController.swift in Sources */,
