@@ -14,6 +14,7 @@
 		40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C92B6EFA7C00DDF311 /* Issue.swift */; };
 		40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1CB2B6EFB8500DDF311 /* Title.swift */; };
 		40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */; };
+		40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */; };
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
 		40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */; };
@@ -60,6 +61,7 @@
 		40A1A1C92B6EFA7C00DDF311 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		40A1A1CB2B6EFB8500DDF311 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherTitlesViewController.swift; sourceTree = "<group>"; };
+		40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectViewCell.swift; sourceTree = "<group>"; };
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		40A83AC62AFA5F99009F80D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */,
 				40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */,
 				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
 				40B6D3CD2B97496400E1C309 /* LoadAnimationWindowView.swift */,
@@ -382,6 +385,7 @@
 			files = (
 				40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */,
 				40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */,
+				40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */,
 				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
 				40C7F4312BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift in Sources */,
 				40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */,

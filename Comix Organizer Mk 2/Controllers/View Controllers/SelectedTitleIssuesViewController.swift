@@ -101,6 +101,7 @@ extension SelectedTitleIssuesViewController: UITableViewDelegate, UITableViewDat
         let theIssue = selectedTitleIssues[indexPath.row]
         cell.textLabel?.text = theIssue.issueName
         
+        
         return cell
     }
     
@@ -108,6 +109,16 @@ extension SelectedTitleIssuesViewController: UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //base off of allpubVC didselect method
         print("it works")
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath)
+        if cell!.accessoryType == .none {
+            cell?.accessoryType = .checkmark
+        } else {
+            cell?.accessoryType = .none
+        }
+        //see: https://stackoverflow.com/questions/8388136/how-to-remove-the-check-mark-on-another-click
+        
+        
     }
 }
 
