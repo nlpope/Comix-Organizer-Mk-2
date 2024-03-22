@@ -567,6 +567,9 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  03.21
  > see below link for check marking the cell on click for issues
  >> https://stackoverflow.com/questions/8388136/how-to-remove-the-check-mark-on-another-click
+ 
+ 03.22
+ > SUCCESS - issue cell checkmarks tested working after accessory edit
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
