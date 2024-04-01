@@ -12,8 +12,24 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //first thing that happens (before the viewdidload) when app boots
+        print("didFinishLaunchingWithOptions")
+        
         
         return true
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        //do sumn to prevent user from loosing data when they get a leave the app (e.g. get a call, etc.)
+        print("application will resign active")
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print("application did enter background")
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        print("application will terminate")
     }
 
     // MARK: UISceneSession Lifecycle

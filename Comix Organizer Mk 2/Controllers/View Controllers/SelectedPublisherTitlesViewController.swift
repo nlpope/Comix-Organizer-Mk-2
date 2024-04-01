@@ -61,6 +61,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
         
         if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
+            
             self.selectedPublisherTitles += results
         } else {
             print("something went wrong in configurePublisherTitles")

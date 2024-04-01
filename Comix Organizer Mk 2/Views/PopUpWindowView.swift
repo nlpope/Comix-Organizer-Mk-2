@@ -57,13 +57,13 @@ private class PopUpWindowView: UIView {
         //popup button one
         popupButtonOne.setTitleColor(UIColor.white, for: .normal)
         popupButtonOne.titleLabel?.font = UIFont.systemFont(ofSize: 23.0, weight: .bold)
-        popupButtonOne.backgroundColor = UIColor.yellow
+        popupButtonOne.backgroundColor = UIColor.green
         popupButtonOne.sendActions(for: .touchUpInside)
         
         //popup button two
         popUpButtonTwo.setTitleColor(UIColor.white, for: .normal)
         popUpButtonTwo.titleLabel?.font = UIFont.systemFont(ofSize: 23.0, weight: .bold)
-        popUpButtonTwo.backgroundColor = UIColor.yellow
+        popUpButtonTwo.backgroundColor = UIColor.green
         popUpButtonTwo.sendActions(for: .touchUpInside)
         
         popupView.addSubview(popupTitle)

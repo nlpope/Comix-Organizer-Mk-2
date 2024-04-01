@@ -41,8 +41,8 @@ class APICaller {
     }
     
     //MARK: GET PUBLISHER TITLES
+    //publisherTitles = volumes in API
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
-        //publisherTitles = volumes in API
         print("getPublisherTitlesAPI - publisherDetailsURL = \(publisherDetailsURL) - end of url")
         guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes") else {
             //&field_list=volumes
@@ -63,19 +63,14 @@ class APICaller {
     //MARK: GET TITLE ISSUES
     func getTitleIssuesAPI(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
         print("getTitlesIssuesAPI - setting up url")
-        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=issues") else {
+        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=issues,count_of_issues") else {
             throw APIError.invalidURL
         }
-        print(url)
-
+        
         let (data, _) = try await URLSession.shared.data(from: url)
-        print("the data was pulled from the URL. about to decode")
-
         //03.17 problem child
         let decodedJSON = try JSONDecoder().decode(APIIssuesResponse.self, from: data)
-        
-        print("json decoded")
-                
+                        
         return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})
     }
     

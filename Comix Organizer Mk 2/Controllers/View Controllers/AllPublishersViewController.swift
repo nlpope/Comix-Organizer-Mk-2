@@ -570,6 +570,9 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  
  03.22
  > SUCCESS - issue cell checkmarks tested working after accessory edit
+ 
+ 04.01
+ > working on omitting volumes w an issue count of 0 > work on adding context to save state of checked cells for the selectedTitleIssuesVC
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
