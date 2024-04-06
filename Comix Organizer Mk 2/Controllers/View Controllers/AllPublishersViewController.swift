@@ -573,6 +573,9 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  
  04.01
  > working on omitting volumes w an issue count of 0 > work on adding context to save state of checked cells for the selectedTitleIssuesVC
+ 
+ 04.06
+ > printing title count in hopes to omit publishers w zero titles and titles w zero issues
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX

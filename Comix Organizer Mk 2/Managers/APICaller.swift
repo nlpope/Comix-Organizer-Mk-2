@@ -43,9 +43,7 @@ class APICaller {
     //MARK: GET PUBLISHER TITLES
     //publisherTitles = volumes in API
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
-        print("getPublisherTitlesAPI - publisherDetailsURL = \(publisherDetailsURL) - end of url")
         guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes") else {
-            //&field_list=volumes
             throw APIError.invalidURL
         }
         print(url)
@@ -56,6 +54,8 @@ class APICaller {
         let decodedJSON = try JSONDecoder().decode(APITitlesResponse.self, from: data)
         
         print("json decoded")
+        
+        print("this publisher has \(decodedJSON.results["volumes"]!.count) titles")
                 
         return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
     }

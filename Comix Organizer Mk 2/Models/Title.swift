@@ -17,14 +17,14 @@ struct Title: Decodable {
     var titleID: Int
     var titleName: String
     var titleDetailsURL: String
-    var titleIssueCount: Int
+//    var titleIssueCount: Int
     //    var volumeIssues: [Issue]
     
     enum CodingKeys: String, CodingKey {
         case titleID = "id"
         case titleName = "name"
         case titleDetailsURL = "api_detail_url"
-        case titleIssueCount = "count_of_issues"
+//        case titleIssueCount = "count_of_issues"
     }
     
     init(from decoder: Decoder) throws {
@@ -37,7 +37,7 @@ struct Title: Decodable {
 
         titleDetailsURL = try container.decode(String.self, forKey: .titleDetailsURL)
         
-        titleIssueCount = try container.decode(Int.self, forKey: .titleIssueCount)
+//        titleIssueCount = try container.decode(Int.self, forKey: .titleIssueCount)
                 
     }
 }
