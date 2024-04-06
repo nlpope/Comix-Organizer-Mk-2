@@ -56,6 +56,10 @@ class APICaller {
         print("json decoded")
         
         print("this publisher has \(decodedJSON.results["volumes"]!.count) titles")
+        if decodedJSON.results["volumes"]!.count == 0 {
+            //how to push previous vc from here?
+            print("this publisher has zero titles - we will work to have this flagged removed")
+        }
                 
         return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
     }
