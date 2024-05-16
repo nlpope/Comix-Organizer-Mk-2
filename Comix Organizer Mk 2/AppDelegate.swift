@@ -5,6 +5,8 @@
 //  Created by Noah Pope on 11/7/23.
 //
 
+// once you get the count down to only titles/issues with stuff inside, work on creating a gradient effect on the cells using udemy mod 274
+
 import UIKit
 import CoreData
 

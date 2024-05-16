@@ -184,7 +184,6 @@ class PopUpWindowViewController: UIViewController {
     }
     
     @objc func dismissView() {
-        print("dismissing popup selector")
         self.dismiss(animated: true, completion: nil)
     }
 }

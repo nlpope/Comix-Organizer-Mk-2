@@ -12,11 +12,9 @@ import CoreData
 //remove delegate pattern for the load once the dot issue is sorted
 //03.15: just removed LoadAnimationDelegate pattern & conformance below
 class SelectedPublisherTitlesViewController: UIViewController {
-    
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-//    public var selectedTitleName = ""
-//    public var selectedTitleDetailsURL = ""
+    public var publisherHasNoTitles = false
     private var selectedPublisherTitles = [Title]()
     
     let tableView: UITableView = {
@@ -61,11 +59,30 @@ class SelectedPublisherTitlesViewController: UIViewController {
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
         
         if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
-            
-            self.selectedPublisherTitles += results
+            if publisherHasNoTitles {
+                self.navigationController?.pushViewController(AllPublishersViewController(), animated: true)
+                //trigger single button pop-up
+                var popUpWindowSBVC: PopUpWindowSingleButtonViewController!
+                popUpWindowSBVC = PopUpWindowSingleButtonViewController(title: "No titles available", text: "We're sorry, but the selected publisher holds no titles. We will work to have this item removed. Thank you.", buttonOneText: "Ok")
+                self.present(popUpWindowSBVC, animated: true, completion: nil)
+
+            } else {
+                self.selectedPublisherTitles += results
+            }
         } else {
             print("something went wrong in configurePublisherTitles")
         }
+    }
+    
+    func setPublisherZeroTitleCountProp() {
+        publisherHasNoTitles = publisherHasNoTitles == true ? false : true
+        
+//        if publisherHasNoTitles == false {
+//            publisherHasNoTitles = true
+//        } else {
+//            publisherHasNoTitles = false
+//        }
+        print("\(publisherHasNoTitles.description)")
     }
     
     func presentLoadingAnimationViewController() {
@@ -87,6 +104,8 @@ class SelectedPublisherTitlesViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
 }
 
 //MARK: DELEGATE & DATASOURCE METHODS

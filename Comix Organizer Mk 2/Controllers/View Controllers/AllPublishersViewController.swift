@@ -16,7 +16,7 @@ import CoreData
 
 class AllPublishersViewController: UIViewController {
        
-    private var vcSelectedFromPopUp = ""
+//    private var vcSelectedFromPopUp = ""
     var selectedPublisherName = ""
     var selectedPublisherDetailsURL = ""
     private var publishers = [Publisher]()
