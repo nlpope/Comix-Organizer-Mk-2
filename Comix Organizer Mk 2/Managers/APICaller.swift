@@ -74,6 +74,8 @@ class APICaller {
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         //05.16 problem child
+        //solved: I was expecting the "issues" url inst. of the "volume"
+        //and accounted for the field_list that should've only incl. "issues" as a param
         let decodedJSON = try JSONDecoder().decode(APIIssuesResponse.self, from: data)
         print("json decoded")
         return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})

@@ -62,6 +62,8 @@ class SelectedTitleIssuesViewController: UIViewController {
             //if no issues boot out and send a popup saying there are no issues in this title/volume
             
             self.selectedTitleIssues += results
+                self.selectedTitleIssues = self.selectedTitleIssues.filter{$0.issueName != ""}
+                //publisher = avon; title = betty boop
            
         } else {
             print("something went wrong in configureTitleIssues().")

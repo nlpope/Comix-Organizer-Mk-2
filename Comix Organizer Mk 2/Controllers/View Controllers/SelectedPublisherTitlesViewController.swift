@@ -60,31 +60,31 @@ class SelectedPublisherTitlesViewController: UIViewController {
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
         
         if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
-            if publisherHasNoTitles {
-                self.navigationController?.pushViewController(AllPublishersViewController(), animated: true)
-                //trigger single button pop-up
-                var popUpWindowSBVC: PopUpWindowSingleButtonViewController!
-                popUpWindowSBVC = PopUpWindowSingleButtonViewController(title: "No titles available", text: "We're sorry, but the selected publisher holds no titles. We will work to have this item removed. Thank you.", buttonOneText: "Ok")
-                self.present(popUpWindowSBVC, animated: true, completion: nil)
-
-            } else {
-                self.selectedPublisherTitles += results
-            }
+            
+            self.selectedPublisherTitles += results
+            self.selectedPublisherTitles = self.selectedPublisherTitles.filter{$0.titleName != ""}
+            //delete this contingency?
+//            if publisherHasNoTitles {
+//                self.navigationController?.pushViewController(AllPublishersViewController(), animated: true)
+//                //trigger single button pop-up
+//                var popUpWindowSBVC: PopUpWindowSingleButtonViewController!
+//                popUpWindowSBVC = PopUpWindowSingleButtonViewController(title: "No titles available", text: "We're sorry, but the selected publisher holds no titles. We will work to have this item removed. Thank you.", buttonOneText: "Ok")
+//                self.present(popUpWindowSBVC, animated: true, completion: nil)
+//
+//            } else {
+//                
+//                self.selectedPublisherTitles += results
+//            }
         } else {
             print("something went wrong in configurePublisherTitles")
         }
     }
     
-    func setPublisherZeroTitleCountProp() {
-        publisherHasNoTitles = publisherHasNoTitles == true ? false : true
-        
-//        if publisherHasNoTitles == false {
-//            publisherHasNoTitles = true
-//        } else {
-//            publisherHasNoTitles = false
-//        }
-        print("\(publisherHasNoTitles.description)")
-    }
+//    func setPublisherZeroTitleCountProp() {
+//        publisherHasNoTitles = publisherHasNoTitles == true ? false : true
+//
+//        print("\(publisherHasNoTitles.description)")
+//    }
     
     func presentLoadingAnimationViewController() {
         //03.15: sumn's wrong in here
@@ -113,13 +113,16 @@ class SelectedPublisherTitlesViewController: UIViewController {
 extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableViewDataSource {
     //MARK: DATASOURCE
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //sift through array of selectedpublishertitles
+        //if any of them equal "", decrease the count (-= 1)
         return selectedPublisherTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = selectedPublisherTitles[indexPath.row].titleName
-        //remove duplicate named cells here (compare btwn curr. & last string)
+       
+        //remove duplicate named cells here? (compare btwn curr. & last string)
         
         return cell
     }
@@ -132,9 +135,5 @@ extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableVie
         selctedTitleIssuesVC.selectedTitleDetailsURL = selectedPublisherTitles[indexPath.row].titleDetailsURL
         print("IssuesVC selectedTitleDetailsURL = \(selctedTitleIssuesVC.selectedTitleDetailsURL)")
         self.navigationController?.pushViewController(selctedTitleIssuesVC, animated: true)
-        
     }
-    
-    
-
 }

@@ -22,6 +22,8 @@ struct Title: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case titleID = "id"
+        //handle title name deletion first
+        //then handle no title held boot out behavior
         case titleName = "name"
         case titleDetailsURL = "api_detail_url"
 //        case titleIssueCount = "count_of_issues"
