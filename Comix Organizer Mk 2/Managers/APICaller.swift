@@ -57,26 +57,22 @@ class APICaller {
         
         print("this publisher has \(decodedJSON.results["volumes"]!.count) titles")
         //testing
-        if decodedJSON.results["volumes"]!.count > 0 {
-            let selectedPublisherTitlesVC = await SelectedPublisherTitlesViewController()
-            await selectedPublisherTitlesVC.setPublisherZeroTitleCountProp()
-            print("this publisher has zero titles - we will work to have this flagged removed")
-          
-        }
-                
+//        if decodedJSON.results["volumes"]!.count > 0 {
+//            let selectedPublisherTitlesVC = await SelectedPublisherTitlesViewController()
+//            await selectedPublisherTitlesVC.setPublisherZeroTitleCountProp()
+//            print("this publisher has zero titles - we will work to have this flagged removed")
+//          
+//        }
+         
         return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
     }
     
     //MARK: GET TITLE ISSUES
     func getTitleIssuesAPI(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
-        print("getTitlesIssuesAPI - setting up url")
-        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=issues,count_of_issues") else {
-            print("we didn't even get passed the first bit throwing error here")
+        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=issues") else {
             throw APIError.invalidURL
         }
-        print("url passed moving on")
         let (data, _) = try await URLSession.shared.data(from: url)
-        print("data  tuple passed moving on to decode")
         //05.16 problem child
         let decodedJSON = try JSONDecoder().decode(APIIssuesResponse.self, from: data)
         print("json decoded")

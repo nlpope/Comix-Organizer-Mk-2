@@ -55,9 +55,10 @@ class SelectedTitleIssuesViewController: UIViewController {
     
     //MARK: CONFIGURATION
     //withTitleDetailsURL selectedTitleDetailsURL: String
-    //i took out the params here for it being redundant; params only needed for API call & the val for THAT param exists up top (preset by last VC)
+    //i took out the params here for it being redundant; params only needed for API call & the val for THAT param exists up  top (preset by last VC)
     func configureTitleIssues() async {
-        if let results = try? await APICaller.shared.getTitleIssuesAPI(withTitleDetailsURL: selectedTitleDetailsURL) {
+        print("selectedTitleDetailsURL = \(selectedTitleDetailsURL)")
+            if let results = try? await APICaller.shared.getTitleIssuesAPI(withTitleDetailsURL: selectedTitleDetailsURL) {
             //if no issues boot out and send a popup saying there are no issues in this title/volume
             
             self.selectedTitleIssues += results

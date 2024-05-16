@@ -38,6 +38,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
         
         Task {
             //why is animation switching to vertical here?
+            //answer down below in notes & notebook
             presentLoadingAnimationViewController()
             
             await configurePublisherTitles(withPublisherDetailsURL: selectedPublisherDetailsURL)
@@ -129,7 +130,9 @@ extension SelectedPublisherTitlesViewController: UITableViewDelegate, UITableVie
         
         selctedTitleIssuesVC.selectedTitleName = selectedPublisherTitles[indexPath.row].titleName
         selctedTitleIssuesVC.selectedTitleDetailsURL = selectedPublisherTitles[indexPath.row].titleDetailsURL
+        print("IssuesVC selectedTitleDetailsURL = \(selctedTitleIssuesVC.selectedTitleDetailsURL)")
         self.navigationController?.pushViewController(selctedTitleIssuesVC, animated: true)
+        
     }
     
     

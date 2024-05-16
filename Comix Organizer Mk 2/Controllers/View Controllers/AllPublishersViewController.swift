@@ -4,19 +4,16 @@
 //
 //  Created by Noah Pope on 11/7/23.
 //
-//  MAKING THIS THE LOADINGANIMATION DELEGATE (ADD TO OTHER VCs if it works)
 
 import UIKit
 //UIKit does NOT make this a SwiftUI project
 import CoreData
 
 //this is the HomeViewController / HomeVC
-//match API results agains list of most popular publishers (via a set array that I create?) then display that
 //03.15: just removed LoadAnimationDelegate pattern & conformance below
 
 class AllPublishersViewController: UIViewController {
-       
-//    private var vcSelectedFromPopUp = ""
+
     var selectedPublisherName = ""
     var selectedPublisherDetailsURL = ""
     private var publishers = [Publisher]()
