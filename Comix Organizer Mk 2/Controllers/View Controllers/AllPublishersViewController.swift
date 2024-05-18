@@ -110,7 +110,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         var popUpWindowVC: PopUpWindowViewController!
         popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
         //delegates step 4. the definition - next one below
-        //"Great! I'll make myself the delegate and conform to the protocol (by containing the func the protocol requires)"
+        //"Great! I'll make myself the delegate and conform to the protocol (by containing the func(s) the protocol requires)"
         
         popUpWindowVC.delegate = self
         self.present(popUpWindowVC, animated: true, completion: nil)
