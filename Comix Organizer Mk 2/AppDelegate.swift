@@ -80,3 +80,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+/**
+ --------------------------
+ SHORTCUTS:
+ * create new code snippets: right click + "create code snippet"
+ * edit this code snippet: cmd + shift + L
+ * storyboard object lisit: cmd + shift + L
+ 
+ * edit multiple lines at once: control + shift + click away then start typing
+ * duplicate a line = cmd + D
+ * hide/reveal debug area = cmd + shift + Y
+ * hide/reveal console = cmd + shift + C
+ * hide/reveal left pane = cmd + 0
+ * hide/reveal right pane = cmd + shift + 0
+ * hide/reveal preview window = cmd + shift + enter
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ GOALS:
+ > URGENT:
+ 
+ 
+ > EVENTUALLY:
+ 
+ --------------------------
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ XXXXXXXXXXXXXXXXXXXXXXXX
+ --------------------------
+ PROJECT NOTES:
+ 
+ --------------------------
+ 
+ */

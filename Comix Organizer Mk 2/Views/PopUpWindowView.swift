@@ -173,7 +173,7 @@ class PopUpWindowViewController: UIViewController {
     
     @objc func goToTitles() {
         //delegates step 3. the delegate execution - next one in allpubVC @ bottom
-        //"Now that the delegate (of type protocol) is set up (but not yet defined), I'll be the one to tell said delegate to do something with the func it's required to have. REFER TO ME IN THIS VC'S INIT > .ADDTARGET METHOD"
+        //"Now that the delegate (of type protocol) is set up (but not yet defined), I'll be the one to tell said delegate to do something with the func it's required to have. REFER TO ME IN THIS VC'S INIT > VIEW.BUTTONNAME.ADDTARGET(..#SELECTOR) METHOD"
         dismissView()
         delegate?.presentTitlesViewController()
     }
