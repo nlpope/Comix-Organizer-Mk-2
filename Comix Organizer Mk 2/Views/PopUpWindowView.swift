@@ -141,7 +141,7 @@ private class PopUpWindowView: UIView {
 //closes/dismisses the window
 //THE BEHAVIOR
 class PopUpWindowViewController: UIViewController {
-    //2. the delegate (to be defined in the delegate - allpubVC) - next one here, in goToTitles
+    //delegates step 2. the delegate (to be defined in the delegate - allpubVC) - next one here, in goToTitles
     //"Okay! I can set up a delegate using the protocol type you just created so me and my 'employee' can communicate"
     var delegate: PopUpDelegate?
     private let popUpWindowView = PopUpWindowView()
@@ -172,7 +172,7 @@ class PopUpWindowViewController: UIViewController {
     }
     
     @objc func goToTitles() {
-        //3. the delegate execution - next one in allpubVC @ bottom
+        //delegates step 3. the delegate execution - next one in allpubVC @ bottom
         //"Now that the delegate (of type protocol) is set up (but not yet defined), I'll be the one to tell said delegate to do something with the func it's required to have"
         dismissView()
         delegate?.presentTitlesViewController()
@@ -188,7 +188,7 @@ class PopUpWindowViewController: UIViewController {
     }
 }
 
-//1. the protocol - next one here, up top
+//delegates step 1. the protocol - next one here, up top
 //"hmmmm this popupVC (manager) needs a delegate to talk to"
 protocol PopUpDelegate {
     func presentTitlesViewController()

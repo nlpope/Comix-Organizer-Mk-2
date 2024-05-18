@@ -14,7 +14,6 @@ import CoreData
 class SelectedPublisherTitlesViewController: UIViewController {
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
-    public var publisherHasNoTitles = false
     private var selectedPublisherTitles = [Title]()
     
     let tableView: UITableView = {
@@ -40,7 +39,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
             //why is animation switching to vertical here?
             //answer down below in notes & notebook
             presentLoadingAnimationViewController()
-            
+             
             await configurePublisherTitles(withPublisherDetailsURL: selectedPublisherDetailsURL)
             view.addSubview(tableView)
             tableView.delegate = self
@@ -63,18 +62,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
             
             self.selectedPublisherTitles += results
             self.selectedPublisherTitles = self.selectedPublisherTitles.filter{$0.titleName != ""}
-            //delete this contingency?
-//            if publisherHasNoTitles {
-//                self.navigationController?.pushViewController(AllPublishersViewController(), animated: true)
-//                //trigger single button pop-up
-//                var popUpWindowSBVC: PopUpWindowSingleButtonViewController!
-//                popUpWindowSBVC = PopUpWindowSingleButtonViewController(title: "No titles available", text: "We're sorry, but the selected publisher holds no titles. We will work to have this item removed. Thank you.", buttonOneText: "Ok")
-//                self.present(popUpWindowSBVC, animated: true, completion: nil)
-//
-//            } else {
-//                
-//                self.selectedPublisherTitles += results
-//            }
+            
         } else {
             print("something went wrong in configurePublisherTitles")
         }
