@@ -10,6 +10,7 @@
 		404BA7532B7C586C00238FC9 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */; };
 		409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */; };
 		40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */; };
+		40A0B27E2BFA2A2700D49D9B /* SuperImageScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A0B27D2BFA2A2700D49D9B /* SuperImageScanner.swift */; };
 		40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */; };
 		40A1A1C82B6EF93400DDF311 /* ComicBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */; };
 		40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C92B6EFA7C00DDF311 /* Issue.swift */; };
@@ -59,6 +60,7 @@
 		404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedCharacterViewController.swift; sourceTree = "<group>"; };
 		40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SuperImageClassifier.mlmodel; sourceTree = "<group>"; };
+		40A0B27D2BFA2A2700D49D9B /* SuperImageScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperImageScanner.swift; sourceTree = "<group>"; };
 		40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewCell.swift; sourceTree = "<group>"; };
 		40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicBoxViewController.swift; sourceTree = "<group>"; };
 		40A1A1C92B6EFA7C00DDF311 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				40A1A1C72B6EF93400DDF311 /* ComicBoxViewController.swift */,
 				40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */,
 				404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */,
+				40A0B27D2BFA2A2700D49D9B /* SuperImageScanner.swift */,
 			);
 			name = "Main Tabs";
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
 				40A1A1C82B6EF93400DDF311 /* ComicBoxViewController.swift in Sources */,
+				40A0B27E2BFA2A2700D49D9B /* SuperImageScanner.swift in Sources */,
 				40D7D3032B331F1E00B040CE /* Character.swift in Sources */,
 				40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */,
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,

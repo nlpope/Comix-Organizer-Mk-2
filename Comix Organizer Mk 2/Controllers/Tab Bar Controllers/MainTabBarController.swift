@@ -15,24 +15,27 @@ class MainTabBarController: UITabBarController {
         let vc1 = UINavigationController(rootViewController: AllPublishersViewController())
         let vc2 = UINavigationController(rootViewController: ComicBoxViewController())
         let vc3 = UINavigationController(rootViewController: TitleCharacterSearchViewController())
-        let vc4 = UINavigationController(rootViewController: UserProfileViewController())
+        let vc4 = UINavigationController(rootViewController: SuperImageScanner())
+        let vc5 = UINavigationController(rootViewController: UserProfileViewController())
        
         
     
         vc1.tabBarItem.image = UIImage(systemName: "list.dash")
         vc2.tabBarItem.image = UIImage(systemName: "books.vertical.fill")
         vc3.tabBarItem.image = UIImage(systemName: "newspaper.fill")
-        vc4.tabBarItem.image = UIImage(systemName: "person.circle.fill")
+        vc4.tabBarItem.image = UIImage(systemName: "camera.viewfinder")
+        vc5.tabBarItem.image = UIImage(systemName: "person.circle.fill")
      
 
         vc1.title = "Publishers"
         vc2.title = "Comic Box"
         vc3.title = "News"
-        vc4.title = "User Profile"
+        vc4.title = "Scanner"
+        vc5.title = "User Profile"
         
         tabBar.tintColor = .label
 
-        setViewControllers([vc1, vc2, vc3, vc4], animated: true)
+        setViewControllers([vc1, vc2, vc3, vc4, vc5], animated: true)
     }
 }
 
