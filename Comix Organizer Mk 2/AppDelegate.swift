@@ -100,10 +100,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
  GOALS:
- > URGENT:
- 
- 
- > EVENTUALLY:
+ > create and upload new MLM superimageclassifier with more data points?
+ >> thinking of incl. a cmera scan feature that lists all relevant comics
+ >> already in git ignore
+ >> pull from images in comic vine; how? and where is training img's coming from?
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
