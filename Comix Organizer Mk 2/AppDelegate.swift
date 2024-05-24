@@ -85,10 +85,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  SHORTCUTS:
  * create new code snippets: right click + "create code snippet"
  * edit this code snippet: cmd + shift + L
- * storyboard object lisit: cmd + shift + L
+ * storyboard object lisit: cmd + shift + L (double check?)
  
- * edit multiple lines at once: control + shift + click away then start typing
+ * access quick actions (XCode 15) = cmd + shift + a
+   > use to access 'minimap'
+   > use to quick change 'theme' - current = midnight
+ * clean XCode build folder = cmd + shift + K
+ * create new XCode internal tab = cmd + ctrl + T
  * duplicate a line = cmd + D
+ * edit multiple lines at once: control + shift + click away then start typing
  * hide/reveal debug area = cmd + shift + Y
  * hide/reveal console = cmd + shift + C
  * hide/reveal left pane = cmd + 0
@@ -99,12 +104,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  XXXXXXXXXXXXXXXXXXXXXXXX
  XXXXXXXXXXXXXXXXXXXXXXXX
  --------------------------
- GOALS:
+ GOALS (check bookmarks):
  > create and upload new MLM superimageclassifier with more data points
  >> thinking of incl. a camera scan feature that lists all relevant comics
  >> already in git ignore
  >> pull from images in comic vine; how? and where is training img's coming from?
- >>> comic vine's img data sets arent big enough. where to pull the data from?
+ >>> comic vine's img data sets arent big enough. where to pull the data from? 
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX
