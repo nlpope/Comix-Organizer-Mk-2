@@ -11,26 +11,22 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        let vc1 = UINavigationController(rootViewController: AllPublishersViewController())
+          
+        #warning("change root vc to searchVC")
+        let vc1 = UINavigationController(rootViewController: COSearchVC())
         let vc2 = UINavigationController(rootViewController: ComicBoxViewController())
-      
-        let vc3 = UINavigationController(rootViewController: UserProfileViewController())
-       
         
     
-        vc1.tabBarItem.image = UIImage(systemName: "list.dash")
+        vc1.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         vc2.tabBarItem.image = UIImage(systemName: "books.vertical.fill")
-        vc3.tabBarItem.image = UIImage(systemName: "person.circle.fill")
      
 
         vc1.title = "Publishers"
         vc2.title = "Comic Box"
-        vc3.title = "User Profile"
         
         tabBar.tintColor = .label
 
-        setViewControllers([vc1, vc2, vc3], animated: true)
+        setViewControllers([vc1, vc2], animated: true)
     }
 }
 

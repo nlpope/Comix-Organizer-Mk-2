@@ -72,8 +72,8 @@ class AllPublishersViewController: UIViewController {
         //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
-        
-        self.navigationController?.pushViewController(loadingAnimationVC, animated: false)
+        #warning("pay attention here - loading dots")
+        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
     }
     
     func dismissLoadingAnimationViewController() {
