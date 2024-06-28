@@ -12,8 +12,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
           
-        #warning("change root vc to searchVC")
-        let vc1 = UINavigationController(rootViewController: COSearchVC())
+        let vc1 = UINavigationController(rootViewController: COStartVC())
         let vc2 = UINavigationController(rootViewController: ComicBoxViewController())
         
     

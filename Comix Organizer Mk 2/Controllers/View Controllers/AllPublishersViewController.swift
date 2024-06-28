@@ -65,6 +65,8 @@ class AllPublishersViewController: UIViewController {
         }
     }
     
+    #warning("refactor: place in extension for all VCs & put dismissal in begining of closure completion block (start of closure")
+    
     func presentLoadingAnimationViewController() {
         let loadingAnimationVC = LoadAnimationViewController()
   //03.15: commented out - loadingAnimationVC.delegate = self
@@ -72,7 +74,6 @@ class AllPublishersViewController: UIViewController {
         //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
-        #warning("pay attention here - loading dots")
         self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
     }
     

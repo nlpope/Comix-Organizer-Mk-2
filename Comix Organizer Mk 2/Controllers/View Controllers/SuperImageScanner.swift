@@ -45,7 +45,7 @@ class SuperImageScanner: UIViewController, UIImagePickerControllerDelegate, UINa
                 fatalError("Cannot import model")
             }
             
-            let request = VNCoreMLRequest(model: model) { (request, error) in
+            _ = VNCoreMLRequest(model: model) { (request, error) in
                 //stopped here - finish later
             }
 

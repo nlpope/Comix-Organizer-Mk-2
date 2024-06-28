@@ -7,7 +7,7 @@
 
 import UIKit
 
-class COSearchVC: UIViewController {
+class COStartVC: UIViewController {
     
     let callToActionButton = UIButton(frame: .zero)
     
