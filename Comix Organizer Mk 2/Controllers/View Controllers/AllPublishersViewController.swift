@@ -49,20 +49,26 @@ class AllPublishersViewController: UIViewController {
         }
     }
     
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //DISMISS LOADING ANIMATION HERE?
         tableView.frame = view.bounds
     }
     
-    //MARK: CONFIGURATION
-    func configurePublishers() async {
-        //should load animation delegate reside in this func?
-        if let results = try? await APICaller.shared.getPublishersAPI() {
-            self.publishers += results
-        } else {
-            print("something went wrong in configurePublishers()")
+
+    func getAllPublishers() async {
+        presentLoadingAnimationViewController()
+        APICaller.shared.getPublishersAPI() { [weak self] results in
+            
+            
         }
+        
+//        if let results = try? await APICaller.shared.getPublishersAPI() {
+//            self.dismissLoadingAnimationViewController()
+//            self.publishers += results
+//        } else {
+//            print("something went wrong in getAllPublishers()")
+//        }
     }
     
     #warning("refactor: place in extension for all VCs & put dismissal in begining of closure completion block (start of closure")
@@ -434,7 +440,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  >> FIXED the "cells won't populate until I scroll" problem by putting the view.addSubview(tableView) line in the task with its accompanying delegate/datasource/frame logic
  
  Task {
- await configurePublishers()
+ await getAllPublishers()
  view.addSubview(tableView)
  tableView.delegate = self
  tableView.dataSource = self

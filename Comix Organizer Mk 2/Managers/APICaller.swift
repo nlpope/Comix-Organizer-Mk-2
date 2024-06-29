@@ -25,8 +25,7 @@ class APICaller {
 //    func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void)
     //removing &field_list=name,id,publisher from url - move back if probs
     //MARK: GET PUBLISHERS
-    func getPublishersAPI() async throws -> [Publisher] {
-        print("inside getPublishersAPI()")
+    func getPublishersAPI(completed: @escaping (Result<[Publisher], Error>) -> Void) {
         guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases") else {
             //&field_list=name,id
             throw APIError.invalidURL

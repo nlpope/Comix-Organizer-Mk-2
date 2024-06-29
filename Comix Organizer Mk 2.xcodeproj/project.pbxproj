@@ -18,6 +18,7 @@
 		40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */; };
 		40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */; };
 		40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */; };
+		40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */; };
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
 		40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */; };
@@ -69,6 +70,7 @@
 		40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherTitlesViewController.swift; sourceTree = "<group>"; };
 		40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectViewCell.swift; sourceTree = "<group>"; };
 		40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowSingleButtonView.swift; sourceTree = "<group>"; };
+		40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,14 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		40A6E5542C303A95008340B5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		40A83A862AFA5F5B009F80D3 = {
 			isa = PBXGroup;
 			children = (
@@ -184,8 +194,7 @@
 		40A83A912AFA5F5B009F80D3 /* Comix Organizer Mk 2 */ = {
 			isa = PBXGroup;
 			children = (
-				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
-				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
+				40A6E5542C303A95008340B5 /* Extensions */,
 				40A83AC82AFA616C009F80D3 /* Managers */,
 				40A83AC72AFA5FA0009F80D3 /* Controllers */,
 				40A83AC52AFA5F7D009F80D3 /* Models */,
@@ -259,6 +268,8 @@
 		40A83ACF2AFA697D009F80D3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
+				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
 				40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */,
 				40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */,
 			);
@@ -421,6 +432,7 @@
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,
 				40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */,
 				40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */,
+				40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
