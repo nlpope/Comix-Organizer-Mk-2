@@ -1,5 +1,5 @@
 //
-//  COStartVC.swift
+//  StartVC.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 6/28/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class COStartVC: UIViewController {
+class StartVC: UIViewController {
     
     let callToActionButton = UIButton(frame: .zero)
     

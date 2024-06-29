@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ComicBoxViewController: UIViewController {
+class ComixBinVC: UIViewController {
     private var volumeCollection = [Title]()
     private var issueCollection = [Issue]()
     

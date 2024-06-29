@@ -11,21 +11,32 @@ class MainTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-          
-        let vc1 = UINavigationController(rootViewController: COStartVC())
-        let vc2 = UINavigationController(rootViewController: ComicBoxViewController())
-        
+        setVCs()
+        configureTabBar()
+    }
     
-        vc1.tabBarItem.image = UIImage(systemName: "magnifyingglass")
-        vc2.tabBarItem.image = UIImage(systemName: "books.vertical.fill")
-     
-
-        vc1.title = "Publishers"
-        vc2.title = "Comic Box"
+    
+    func configureTabBar() { tabBar.tintColor = .label }
+    
+    
+    func setVCs() { viewControllers = [createStartNC(), createComixBinNC()] }
+    
+    
+    func createStartNC() -> UINavigationController {
+        let startVC = StartVC()
+        startVC.title = "ComixOrganizer"
+        startVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         
-        tabBar.tintColor = .label
+        return UINavigationController(rootViewController: startVC)
+    }
+    
+    
+    func createComixBinNC() -> UINavigationController {
+        let comixBinVC = ComixBinVC()
+        comixBinVC.title = "ComixBin"
+        comixBinVC.tabBarItem.image = UIImage(systemName: "books.vertical.fill")
 
-        setViewControllers([vc1, vc2], animated: true)
+        return UINavigationController(rootViewController: comixBinVC)
     }
 }
 
