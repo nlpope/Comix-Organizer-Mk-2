@@ -19,6 +19,8 @@
 		40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */; };
 		40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */; };
 		40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */; };
+		40A6E5582C30B0A8008340B5 /* Constants+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6E5572C30B0A8008340B5 /* Constants+Utils.swift */; };
+		40A6E55A2C30B572008340B5 /* COError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6E5592C30B572008340B5 /* COError+Utils.swift */; };
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
 		40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */; };
@@ -71,6 +73,8 @@
 		40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectViewCell.swift; sourceTree = "<group>"; };
 		40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowSingleButtonView.swift; sourceTree = "<group>"; };
 		40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		40A6E5572C30B0A8008340B5 /* Constants+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Utils.swift"; sourceTree = "<group>"; };
+		40A6E5592C30B572008340B5 /* COError+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "COError+Utils.swift"; sourceTree = "<group>"; };
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +175,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		40A6E5562C30B07E008340B5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				40A6E5572C30B0A8008340B5 /* Constants+Utils.swift */,
+				40A6E5592C30B572008340B5 /* COError+Utils.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		40A83A862AFA5F5B009F80D3 = {
 			isa = PBXGroup;
 			children = (
@@ -195,14 +208,14 @@
 			isa = PBXGroup;
 			children = (
 				40A6E5542C303A95008340B5 /* Extensions */,
+				40A6E5562C30B07E008340B5 /* Utilities */,
 				40A83AC82AFA616C009F80D3 /* Managers */,
-				40A83AC72AFA5FA0009F80D3 /* Controllers */,
 				40A83AC52AFA5F7D009F80D3 /* Models */,
 				40A83AC62AFA5F99009F80D3 /* Views */,
+				40A83AC72AFA5FA0009F80D3 /* Controllers */,
 				40A83ACF2AFA697D009F80D3 /* Supporting Files */,
 				40A83AA32AFA5F5E009F80D3 /* Info.plist */,
 				40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */,
-				40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */,
 			);
 			path = "Comix Organizer Mk 2";
 			sourceTree = "<group>";
@@ -272,6 +285,7 @@
 				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
 				40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */,
 				40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */,
+				40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -407,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */,
+				40A6E5582C30B0A8008340B5 /* Constants+Utils.swift in Sources */,
 				40AD02712C2F355B000C53A2 /* StartVC.swift in Sources */,
 				40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */,
 				40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */,
@@ -425,6 +440,7 @@
 				40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */,
 				409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
+				40A6E55A2C30B572008340B5 /* COError+Utils.swift in Sources */,
 				40A1A1C82B6EF93400DDF311 /* ComixBinVC.swift in Sources */,
 				40A0B27E2BFA2A2700D49D9B /* SuperImageScanner.swift in Sources */,
 				40D7D3032B331F1E00B040CE /* Character.swift in Sources */,

@@ -25,7 +25,7 @@ class MainTabBarController: UITabBarController {
     func createStartNC() -> UINavigationController {
         let startVC = StartVC()
         startVC.title = "ComixOrganizer"
-        startVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        startVC.tabBarItem.image = SFSymbols.search
         
         return UINavigationController(rootViewController: startVC)
     }
@@ -34,7 +34,7 @@ class MainTabBarController: UITabBarController {
     func createComixBinNC() -> UINavigationController {
         let comixBinVC = ComixBinVC()
         comixBinVC.title = "ComixBin"
-        comixBinVC.tabBarItem.image = UIImage(systemName: "books.vertical.fill")
+        comixBinVC.tabBarItem.image = SFSymbols.bookShelf
 
         return UINavigationController(rootViewController: comixBinVC)
     }

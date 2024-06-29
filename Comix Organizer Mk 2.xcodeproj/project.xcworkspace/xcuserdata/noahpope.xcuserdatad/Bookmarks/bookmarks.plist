@@ -15,13 +15,13 @@
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>44</string>
+							<string>32</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>43</string>
+							<string>31</string>
 							<key>Timestamp</key>
-							<string>741359184.71097</string>
+							<string>741396698.363693</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -42,13 +42,13 @@
 						<string>    func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -&gt; [Title] {
 </string>
 						<key>leading</key>
-						<string>    //MARK: GET PUBLISHER TITLES
+						<string>  
     //publisherTitles = volumes in API
 </string>
 						<key>trailing</key>
-						<string>        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&amp;format=json&amp;field_list=volumes") else {
+						<string>        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&amp;format=json&amp;field_list=volumes"
+        guard let url = URL(string: endpoint) else {
             throw APIError.invalidURL
-        }
 </string>
 					</dict>
 					<key>title</key>

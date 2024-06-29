@@ -5,44 +5,33 @@
 //  Created by Noah Pope on 11/7/23.
 //
 
+#warning("import UIKit instead?")
+#warning("get rid of all the prints & comments > transfer to app delegate")
+
 import Foundation
-
-struct Constants {
-    static let API_KEY = "b31d5105925e7fd811a07d63e82320578ba699f1"
-    static let baseURL = "https://comicvine.gamespot.com/api"
-}
-
-enum APIError: Error {
-    case invalidURL
-    case failedToGetData
-}
 
 class APICaller {
     
     static let shared = APICaller()
     
-    
-//    func getPublishers(completion: @escaping (Result<[Publisher], Error>) -> Void)
-    //removing &field_list=name,id,publisher from url - move back if probs
-    //MARK: GET PUBLISHERS
-    func getPublishersAPI(completed: @escaping (Result<[Publisher], Error>) -> Void) {
-        guard let url = URL(string: "\(Constants.baseURL)/publishers/?api_key=\(Constants.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases") else {
-            //&field_list=name,id
-            throw APIError.invalidURL
-        }
-        //async variant of urlsession - may suspend code, hence the await
+    // figure another way to present / dismiss the loading view - present AND dismiss here instead of dismiss @ the completion?
+    func getPublishersAPI() async throws -> [Publisher] {
+        // see note _ in app delegate > only place baseURL is not passed from a click
+        let endpoint = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        guard let url = URL(string: endpoint) else { throw COError.invalidURL }
+        // see note _ in app delegate > async variant of urlsession - may suspend code, hence the await
         let (data, _) = try await URLSession.shared.data(from: url)
         
-        print("json decoded")
         let decodedJSON = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
                 
         return decodedJSON.results.sorted(by: {$1.publisherName > $0.publisherName})
     }
     
-    //MARK: GET PUBLISHER TITLES
+  
     //publisherTitles = volumes in API
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
-        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=volumes") else {
+        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
+        guard let url = URL(string: endpoint) else {
             throw APIError.invalidURL
         }
         print(url)
@@ -55,13 +44,6 @@ class APICaller {
         print("json decoded")
         
         print("this publisher has \(decodedJSON.results["volumes"]!.count) titles")
-        //testing
-//        if decodedJSON.results["volumes"]!.count > 0 {
-//            let selectedPublisherTitlesVC = await SelectedPublisherTitlesViewController()
-//            await selectedPublisherTitlesVC.setPublisherZeroTitleCountProp()
-//            print("this publisher has zero titles - we will work to have this flagged removed")
-//          
-//        }
          
         return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
     }
