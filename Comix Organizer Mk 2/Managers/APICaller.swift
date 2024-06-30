@@ -5,7 +5,6 @@
 //  Created by Noah Pope on 11/7/23.
 //
 
-#warning("figure another way to present / dismiss the loading view - present AND dismiss @ call site in VC instead of dismiss @ the non-exist. completion?")
 #warning("get rid of all the prints & comments > transfer to app delegate")
 
 import Foundation
@@ -37,7 +36,7 @@ class APICaller {
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
         let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
         guard let url = URL(string: endpoint) else {
-            throw APIError.invalidURL
+            throw COError.invalidURL
         }
         print(url)
 
@@ -55,8 +54,8 @@ class APICaller {
     
     //MARK: GET TITLE ISSUES
     func getTitleIssuesAPI(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
-        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=issues") else {
-            throw APIError.invalidURL
+        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=issues") else {
+            throw COError.invalidURL
         }
         let (data, _) = try await URLSession.shared.data(from: url)
         //05.16 problem child
@@ -71,8 +70,8 @@ class APICaller {
     func getPublisherCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Character] {
         print("inside getPublisherCharactersAPI")
         
-        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(Constants.API_KEY)&format=json&field_list=characters") else {
-            throw APIError.invalidURL
+        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=characters") else {
+            throw COError.invalidURL
         }
         
         let (data, _) = try await URLSession.shared.data(from: url)

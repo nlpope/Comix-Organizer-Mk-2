@@ -1,5 +1,5 @@
 //
-//  AllPublishersViewController.swift
+//  AllPublishersVC.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 11/7/23.
@@ -8,13 +8,13 @@
 import UIKit
 import CoreData
 
-class AllPublishersViewController: UIViewController {
+class AllPublishersVC: UIViewController {
     
     var selectedPublisherName           = ""
     var selectedPublisherDetailsURL     = ""
     private var publishers              = [Publisher]()
     
-    let tableView: UITableView = {
+    let tableView: UITableView          = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
@@ -28,6 +28,7 @@ class AllPublishersViewController: UIViewController {
         super.viewDidLoad()
         configureNavigationController()
         Task { try await getAllPublishers() }
+        configureTableView()
     }
     
     #warning("is this lifecycle method necessary or can i move the contents to VDL?")
@@ -38,15 +39,17 @@ class AllPublishersViewController: UIViewController {
     
     
     private func configureNavigationController() {
-        view.backgroundColor = .systemBackground
-        title = "Publishers"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        view.backgroundColor    = .systemBackground
+        title                   = "Publishers"
+        
+        navigationController?.navigationBar.prefersLargeTitles      = true
+        navigationController?.navigationItem.largeTitleDisplayMode  = .always
     }
     
     
     func getAllPublishers() async throws {
         presentLoadAnimationVC()
+        #warning("change to guard let?")
         if let results = try? await APICaller.shared.getPublishersAPI() { self.publishers += results } else {
             self.dismissLoadAnimationVC()
             throw COError.failedToGetData
@@ -58,63 +61,60 @@ class AllPublishersViewController: UIViewController {
     
     func configureTableView() {
         view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.frame = view.bounds
+        tableView.delegate      = self
+        tableView.dataSource    = self
+        tableView.frame         = view.bounds
     }
 }
 
+
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
+extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
     
-    //MARK: DATASOURCE METHODS
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return publishers.count
-    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = publishers[indexPath.row].publisherName
+        let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text    = publishers[indexPath.row].publisherName
         
         return cell
     }
     
-    //MARK: DELEGATE METHODS
-    //didSelect delegate method(s)
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        selectedPublisherName = publishers[indexPath.row].publisherName
+        selectedPublisherName       = publishers[indexPath.row].publisherName
         selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
         
-        //trigger pop-up
+        // trigger pop-up
         var popUpWindowVC: PopUpWindowViewController!
-        popUpWindowVC = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
-        //delegates step 4. the definition - next one below
-        //"Great! I'll make myself the delegate and conform to the protocol (by containing the func(s) the protocol requires)"
+        popUpWindowVC           = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
+        
+        // see note _ in app delegate
+        // delegates step 4. the definition - next one below
+        // "Great! I'll make myself the delegate and conform to the protocol (by containing the func(s) the protocol requires)"
         
         popUpWindowVC.delegate = self
         self.present(popUpWindowVC, animated: true, completion: nil)
     }
-    //delegates step 5. the handler - end
-    //Awesome, now that I'm the delegate, I can provide my own functionality to that required protocol func (with access to all the variables you'll need"
     
-    //popup delegate method(s)
+    // see note _ in app delegate
+    // delegates step 5. the handler - end
+    // Awesome, now that I'm the delegate, I can provide my own functionality to that required protocol func (with access to all the variables you'll need"
+    
+    // MARK: TITLES / CHARACTERS ALERT DELEGATE METHODS
     func presentTitlesViewController() {
-        let selectedPublisherTitlesVC = SelectedPublisherTitlesViewController()
+        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesViewController()
         
-        selectedPublisherTitlesVC.selectedPublisherName = selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        selectedPublisherTitlesVC.selectedPublisherName         = selectedPublisherName
+        selectedPublisherTitlesVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
         
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
-        
-        //03.15: i just hid the below, does that change anything?
-        //        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func presentCharactersViewController() {
-        let selectedPublisherCharactersVC = SelectedPublisherCharactersViewController()
-        selectedPublisherCharactersVC.selectedPublisherName = selectedPublisherName
-        selectedPublisherCharactersVC.selectedPublisherDetailsURL = selectedPublisherDetailsURL
+        let selectedPublisherCharactersVC                           = SelectedPublisherCharactersViewController()
+        selectedPublisherCharactersVC.selectedPublisherName         = selectedPublisherName
+        selectedPublisherCharactersVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
         
         self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
     }
