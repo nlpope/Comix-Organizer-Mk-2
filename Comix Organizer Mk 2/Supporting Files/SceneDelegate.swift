@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         //is the below right? root should = MainTBVC or AllPubVC?
-        window?.rootViewController = MainTabBarController()
+        window?.rootViewController = COTabBarController()
         window?.makeKeyAndVisible()
     }
 

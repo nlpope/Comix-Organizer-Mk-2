@@ -170,8 +170,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  --------------------------
  
  PROJECT NOTES:
- * FileName
- 1.
+ *  Publisher:
+    1. Coding keys steps:
+    > start w plural "CodingKeys" for top level enums & expected nest name cases...
+    > then move to singular naming convention if nest delves even deeper - docs
+    > finally, after the enum setup, in your init(from decoder), link the top level key containing the nested container using the corresp. top level case - docs
+ 
+    2. for nested items, start w final dest. then declare wrapper prop(s) in enum(s)
+ 
+    3. below must be named 'results' as it "maps" to JSON's 'results'
  
  
  

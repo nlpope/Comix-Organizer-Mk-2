@@ -13,6 +13,7 @@ struct APITitlesResponse: Decodable {
     let results: [String: [Title]]
 }
 
+#warning("figure if Codable prot. is still a problem. will this be able to be favorited without Encodable prot.?")
 struct Title: Decodable {
     var titleID: Int
     var titleName: String

@@ -7,33 +7,24 @@
 
 import Foundation
 
-struct APIPublishersResponse: Decodable {
-    //below must be named 'results' as it "maps" to JSON's 'results'(?)
+struct APIPublishersResponse: Decodable, Hashable {
+    // see note 3 in app delegate
     let results: [Publisher]
 }
 
-//for nested items, start w final dest. then declare wrapper prop(s) in enum(s)
-struct Publisher: Decodable {
+#warning("making Publisher model 'Hashable' for diffable data source implem.")
+// see note 2 in app delegate
+struct Publisher: Decodable, Hashable {
     var publisherDetailsURL: String
     var id: Int
     var publisherName: String
     
-    //(a) start w plural "CodingKeys" for top level enums & expected nest name cases...
-    //(b) then move to singular naming convention if nest delves even deeper - docs
-    //(c) finally, after the enum setup, in your init(from decoder) - ...
-    //link the top level key containing the nested container using the corresp. top level case - docs
+    // see note 1 in app delegate
     enum CodingKeys: String, CodingKey {
         case publisherDetailsURL = "api_detail_url"
         case id
         case publisherName = "name"
     }
-    
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//        self.publisherDetailsURL = try container.decodeIfPresent(URL.self, forKey: .publisherDetailsURL)
-//        self.id = try container.decode(Int.self, forKey: .id)
-//        self.publisherName = try container.decode(String.self, forKey: .publisherName)
-//    }
 }
 
 
