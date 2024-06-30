@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 //title = volume in the API
-struct APITitlesResponse: Decodable {
+struct APITitlesResponse: Decodable, Hashable {
     let results: [String: [Title]]
 }
 
 #warning("figure if Codable prot. is still a problem. will this be able to be favorited without Encodable prot.?")
-struct Title: Decodable {
+struct Title: Decodable, Hashable {
     var titleID: Int
     var titleName: String
     var titleDetailsURL: String
