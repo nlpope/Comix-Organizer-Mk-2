@@ -78,7 +78,7 @@ class SelectedPublisherTitlesViewController: UIViewController {
         //03.15: sumn's wrong in here
         //what if i removed the delegate pattern entirely?
         //.. that worked for like a second then it didnt
-        let loadingAnimationVC = LoadAnimationViewController()
+        let loadingAnimationVC = LoadAnimationVC()
         
         //hide the navigation controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)

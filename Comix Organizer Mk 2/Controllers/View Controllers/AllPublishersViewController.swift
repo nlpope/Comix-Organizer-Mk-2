@@ -6,88 +6,61 @@
 //
 
 import UIKit
-//UIKit does NOT make this a SwiftUI project
 import CoreData
 
-//this is the HomeViewController / HomeVC
-//03.15: just removed LoadAnimationDelegate pattern & conformance below
-
 class AllPublishersViewController: UIViewController {
-
-    var selectedPublisherName = ""
-    var selectedPublisherDetailsURL = ""
-    private var publishers = [Publisher]()
+    
+    var selectedPublisherName           = ""
+    var selectedPublisherDetailsURL     = ""
+    private var publishers              = [Publisher]()
     
     let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-        
-    //CORE DATA STEP 2
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    #warning("context unused change to user defaults")
+    // core data - step 2
+    // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //get the reference to the shared model (Publisher)
-        view.backgroundColor = .systemBackground
-        title = "Publishers"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
-        Task {
-            //this works fine (horizontal dots)
-            presentLoadingAnimationViewController()
-            
-            await configurePublishers()
-            view.addSubview(tableView)
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.frame = view.bounds
-            
-            dismissLoadingAnimationViewController()
-        }
+        configureNavigationController()
+        Task { try await getAllPublishers() }
     }
     
-    
+    #warning("is this lifecycle method necessary or can i move the contents to VDL?")
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
     
-
-    func getAllPublishers() async {
-        presentLoadingAnimationViewController()
-        APICaller.shared.getPublishersAPI() { [weak self] results in
-            
-            
+    
+    private func configureNavigationController() {
+        view.backgroundColor = .systemBackground
+        title = "Publishers"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+    }
+    
+    
+    func getAllPublishers() async throws {
+        presentLoadAnimationVC()
+        if let results = try? await APICaller.shared.getPublishersAPI() { self.publishers += results } else {
+            self.dismissLoadAnimationVC()
+            throw COError.failedToGetData
         }
-        
-//        if let results = try? await APICaller.shared.getPublishersAPI() {
-//            self.dismissLoadingAnimationViewController()
-//            self.publishers += results
-//        } else {
-//            print("something went wrong in getAllPublishers()")
-//        }
+        configureTableView()
+        dismissLoadAnimationVC()
     }
     
-    #warning("refactor: place in extension for all VCs & put dismissal in begining of closure completion block (start of closure")
     
-    func presentLoadingAnimationViewController() {
-        let loadingAnimationVC = LoadAnimationViewController()
-  //03.15: commented out - loadingAnimationVC.delegate = self
-        
-        //hide the navigation controller & tabs
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
-    }
-    
-    func dismissLoadingAnimationViewController() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.tabBarController?.tabBar.isHidden = false
-
-        self.navigationController?.popViewController(animated: true)
+    func configureTableView() {
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.frame = view.bounds
     }
 }
 
@@ -135,7 +108,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
         
         //03.15: i just hid the below, does that change anything?
-//        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        //        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func presentCharactersViewController() {
@@ -146,7 +119,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
         self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
     }
     
-   
+    
     
 }
 
@@ -556,7 +529,7 @@ extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegat
  
  03.13
  > this is good - loading animation working as expected after setting delegate up to exist above the datasource and delegate methods listed in the extension (setup vs interaction portions of my code) but i still need to find a way to properly dismiss it & hide the maintbvc tabs @ the bottom during
-
+ 
  03.15
  > SUCCESS - LOADING ANIMATION: I thought the issue was the unnecessary delegate design pattern around the LoadingAnimationVC, and YES that had to go, but the real problem was setting the animation parameter in the navigationController's pushVC method to "false"
  

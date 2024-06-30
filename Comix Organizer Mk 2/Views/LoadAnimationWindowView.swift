@@ -1,5 +1,5 @@
 //
-//  LoadAnimationViewController.swift
+//  LoadAnimationVC.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 3/5/24.
@@ -35,7 +35,7 @@ private class LoadAnimationWindowView: UIView {
     
 }
 
-class LoadAnimationViewController: UIViewController {
+class LoadAnimationVC: UIViewController {
     
     private let loadAnimationView = LoadAnimationWindowView()
     

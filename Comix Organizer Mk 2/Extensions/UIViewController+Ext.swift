@@ -9,20 +9,19 @@ import UIKit
 
 extension UIViewController {
     
-    func presentLoadingAnimationViewController() {
-        let loadingAnimationVC = LoadAnimationViewController()
-  //03.15: commented out - loadingAnimationVC.delegate = self
+    func presentLoadAnimationVC() {
+        let loadAnimationVC = LoadAnimationVC()
+//        loadingAnimationVC.delegate = self
         
-        //hide the navigation controller & tabs
+        // hide nav controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.pushViewController(loadingAnimationVC, animated: true)
+        self.navigationController?.pushViewController(loadAnimationVC, animated: true)
     }
     
-    func dismissLoadingAnimationViewController() {
+    func dismissLoadAnimationVC() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
-
         self.navigationController?.popViewController(animated: true)
     }
 }

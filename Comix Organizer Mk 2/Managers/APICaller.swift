@@ -5,7 +5,7 @@
 //  Created by Noah Pope on 11/7/23.
 //
 
-#warning("import UIKit instead?")
+#warning("figure another way to present / dismiss the loading view - present AND dismiss @ call site in VC instead of dismiss @ the non-exist. completion?")
 #warning("get rid of all the prints & comments > transfer to app delegate")
 
 import Foundation
@@ -14,17 +14,22 @@ class APICaller {
     
     static let shared = APICaller()
     
-    // figure another way to present / dismiss the loading view - present AND dismiss here instead of dismiss @ the completion?
     func getPublishersAPI() async throws -> [Publisher] {
         // see note _ in app delegate > only place baseURL is not passed from a click
-        let endpoint = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
-        guard let url = URL(string: endpoint) else { throw COError.invalidURL }
-        // see note _ in app delegate > async variant of urlsession - may suspend code, hence the await
-        let (data, _) = try await URLSession.shared.data(from: url)
+        let endpoint        = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
-        let decodedJSON = try JSONDecoder().decode(APIPublishersResponse.self, from: data)
-                
-        return decodedJSON.results.sorted(by: {$1.publisherName > $0.publisherName})
+        guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
+        // see note _ in app delegate > async variant of urlsession - may suspend code, hence the await
+        let (data, _)       = try await URLSession.shared.data(from: url)
+        
+        do {
+            let decoder     = JSONDecoder()
+            let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
+            return decodedJSON.results.sorted(by: {$1.publisherName > $0.publisherName})
+
+        } catch {
+            throw COError.failedToGetData
+        }
     }
     
   

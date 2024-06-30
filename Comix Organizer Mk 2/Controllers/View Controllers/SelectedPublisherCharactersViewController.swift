@@ -64,7 +64,7 @@ class SelectedPublisherCharactersViewController: UIViewController {
     }
     
     func presentLoadingAnimationViewController() {
-        let loadingAnimationVC = LoadAnimationViewController()
+        let loadingAnimationVC = LoadAnimationVC()
         //03.15: commented out - loadingAnimationVC.delegate = self
         
         //hide the navigation controller & tabs
