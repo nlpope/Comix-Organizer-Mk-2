@@ -23,7 +23,7 @@
 		40A6E55A2C30B572008340B5 /* COError+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6E5592C30B572008340B5 /* COError+Utils.swift */; };
 		40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */; };
 		40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */; };
-		40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */; };
+		40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */; };
 		40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */; };
 		40A83A9F2AFA5F5E009F80D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */; };
 		40A83AA22AFA5F5E009F80D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */; };
@@ -78,7 +78,7 @@
 		40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comix Organizer Mk 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPublishersViewController.swift; sourceTree = "<group>"; };
+		40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPublishersVC.swift; sourceTree = "<group>"; };
 		40A83A9C2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Comix_Organizer_Mk_2.xcdatamodel; sourceTree = "<group>"; };
 		40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40A83AA12AFA5F5E009F80D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				40AD02702C2F355B000C53A2 /* StartVC.swift */,
-				40A83A962AFA5F5B009F80D3 /* AllPublishersViewController.swift */,
+				40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */,
 				40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */,
 				40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */,
 				404BA7522B7C586C00238FC9 /* UserProfileViewController.swift */,
@@ -431,7 +431,7 @@
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
 				40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* MainTabBarController.swift in Sources */,
-				40A83A972AFA5F5B009F80D3 /* AllPublishersViewController.swift in Sources */,
+				40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */,
 				404BA7532B7C586C00238FC9 /* UserProfileViewController.swift in Sources */,
 				40B6D3CE2B97496400E1C309 /* LoadAnimationWindowView.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
