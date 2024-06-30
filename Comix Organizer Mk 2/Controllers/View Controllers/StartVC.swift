@@ -38,7 +38,7 @@ class StartVC: UIViewController {
     
     
     @objc func pushPublisherVC() {
-        let publisherVC = AllPublishersVC()
+        let publisherVC = AllPublishersViewController()
         navigationController?.pushViewController(publisherVC, animated: true)
     }
 }

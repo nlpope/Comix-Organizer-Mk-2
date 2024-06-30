@@ -106,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  SHORTCUTS (HIDE / REVEAL PANES):
  
  *  hide/reveal debug & console area = cmd + shift + Y
+    > hide/reveal console = cmd + shift + c
  *  hide/reveal left pane = cmd + 0
  *  hide/reveal right pane = cmd + shift + 0
  *  hide/reveal preview window = cmd + shift + enter

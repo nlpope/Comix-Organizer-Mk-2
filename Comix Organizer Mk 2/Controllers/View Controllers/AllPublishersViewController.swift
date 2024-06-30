@@ -1,5 +1,5 @@
 //
-//  AllPublishersVC.swift
+//  AllPublishersViewController.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 11/7/23.
@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class AllPublishersVC: UIViewController {
+class AllPublishersViewController: UIViewController {
     
     var selectedPublisherName           = ""
     var selectedPublisherDetailsURL     = ""
@@ -28,7 +28,7 @@ class AllPublishersVC: UIViewController {
         super.viewDidLoad()
         configureNavigationController()
         Task { try await getAllPublishers() }
-        configureTableView()
+//        configureTableView()
     }
     
     #warning("is this lifecycle method necessary or can i move the contents to VDL?")
@@ -48,6 +48,7 @@ class AllPublishersVC: UIViewController {
     
     
     func getAllPublishers() async throws {
+        print("inside getAllPublishers")
         presentLoadAnimationVC()
         #warning("change to guard let?")
         if let results = try? await APICaller.shared.getPublishersAPI() { self.publishers += results } else {
@@ -60,6 +61,7 @@ class AllPublishersVC: UIViewController {
     
     
     func configureTableView() {
+        print("inside configureTableView")
         view.addSubview(tableView)
         tableView.delegate      = self
         tableView.dataSource    = self
@@ -69,7 +71,7 @@ class AllPublishersVC: UIViewController {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
+extension AllPublishersViewController: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
     
