@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */; };
 		40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */; };
 		40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */; };
 		40A1A1C82B6EF93400DDF311 /* ComixBinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */; };
 		40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C92B6EFA7C00DDF311 /* Issue.swift */; };
 		40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1CB2B6EFB8500DDF311 /* Title.swift */; };
-		40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */; };
 		40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */; };
 		40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */; };
 		40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */; };
@@ -31,14 +29,12 @@
 		40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AC92AFA617A009F80D3 /* APICaller.swift */; };
 		40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACB2AFA6187009F80D3 /* Publisher.swift */; };
 		40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */; };
-		40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */; };
 		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
-		40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */; };
 		40AD02712C2F355B000C53A2 /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD02702C2F355B000C53A2 /* StartVC.swift */; };
+		40ADE13E2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */; };
+		40ADE1402C33349100E2EEC9 /* COPopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE13F2C33349100E2EEC9 /* COPopUpWindowView.swift */; };
 		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
 		40B6D3CE2B97496400E1C309 /* LoadAnimationWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B6D3CD2B97496400E1C309 /* LoadAnimationWindowView.swift */; };
-		40C7F4312BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C7F4302BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift */; };
-		40D7D3032B331F1E00B040CE /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D7D3022B331F1E00B040CE /* Character.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,13 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectedCharacterViewController.swift; path = "View Controllers/SelectedCharacterViewController.swift"; sourceTree = "<group>"; };
 		40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SuperImageClassifier.mlmodel; sourceTree = "<group>"; };
 		40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectViewCell.swift; sourceTree = "<group>"; };
 		40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComixBinVC.swift; sourceTree = "<group>"; };
 		40A1A1C92B6EFA7C00DDF311 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		40A1A1CB2B6EFB8500DDF311 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
-		40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectedPublisherTitlesViewController.swift; path = "../CustomViews/ChildViewControllers/View Controllers/SelectedPublisherTitlesViewController.swift"; sourceTree = "<group>"; };
 		40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSelectViewCell.swift; sourceTree = "<group>"; };
 		40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowSingleButtonView.swift; sourceTree = "<group>"; };
 		40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
@@ -87,14 +81,12 @@
 		40A83AC92AFA617A009F80D3 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		40A83ACB2AFA6187009F80D3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTabBarController.swift; sourceTree = "<group>"; };
-		40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectedPublisherCharactersViewController.swift; path = "../CustomViews/ChildViewControllers/View Controllers/SelectedPublisherCharactersViewController.swift"; sourceTree = "<group>"; };
 		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
-		40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCharacterSearchViewController.swift; sourceTree = "<group>"; };
 		40AD02702C2F355B000C53A2 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherTitlesVC.swift; sourceTree = "<group>"; };
+		40ADE13F2C33349100E2EEC9 /* COPopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COPopUpWindowView.swift; sourceTree = "<group>"; };
 		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
 		40B6D3CD2B97496400E1C309 /* LoadAnimationWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAnimationWindowView.swift; sourceTree = "<group>"; };
-		40C7F4302BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectedTitleIssuesViewController.swift; path = "View Controllers/SelectedTitleIssuesViewController.swift"; sourceTree = "<group>"; };
-		40D7D3022B331F1E00B040CE /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,10 +119,8 @@
 			children = (
 				40AD02702C2F355B000C53A2 /* StartVC.swift */,
 				40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */,
-				40A1A1D12B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift */,
-				40A83AD42AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift */,
+				40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */,
 				40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */,
-				40A94C142B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift */,
 			);
 			name = Screens;
 			path = "View Controllers";
@@ -164,8 +154,8 @@
 		40A6E55B2C31E225008340B5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
 				40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */,
+				40ADE13F2C33349100E2EEC9 /* COPopUpWindowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,7 +218,6 @@
 				40A83ACB2AFA6187009F80D3 /* Publisher.swift */,
 				40A1A1CB2B6EFB8500DDF311 /* Title.swift */,
 				40A1A1C92B6EFA7C00DDF311 /* Issue.swift */,
-				40D7D3022B331F1E00B040CE /* Character.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,8 +227,7 @@
 			children = (
 				40A1A1CF2B72548000DDF311 /* Tab Bar Controllers */,
 				40A83AC72AFA5FA0009F80D3 /* ChildViewControllers */,
-				40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */,
-				40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */,
+				40ADE13C2C332DA000E2EEC9 /* Cells */,
 				40A6E55B2C31E225008340B5 /* Views */,
 				40B6D3CD2B97496400E1C309 /* LoadAnimationWindowView.swift */,
 			);
@@ -249,8 +237,7 @@
 		40A83AC72AFA5FA0009F80D3 /* ChildViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				40C7F4302BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift */,
-				409F3F112B3C51DA00427354 /* SelectedCharacterViewController.swift */,
+				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
 			);
 			path = ChildViewControllers;
 			sourceTree = "<group>";
@@ -275,6 +262,15 @@
 				40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40ADE13C2C332DA000E2EEC9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				40A2F4F02BAB156B000F5F14 /* IssueSelectViewCell.swift */,
+				40A120EF2B30758600D93F9B /* CharacterSelectViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,13 +403,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A83AD52AFBBD89009F80D3 /* SelectedPublisherCharactersViewController.swift in Sources */,
 				40A6E5582C30B0A8008340B5 /* Constants+Utils.swift in Sources */,
 				40AD02712C2F355B000C53A2 /* StartVC.swift in Sources */,
-				40A1A1D22B7255CC00DDF311 /* SelectedPublisherTitlesViewController.swift in Sources */,
 				40A2F4F12BAB156B000F5F14 /* IssueSelectViewCell.swift in Sources */,
 				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
-				40C7F4312BA4EB9D001AD5B9 /* SelectedTitleIssuesViewController.swift in Sources */,
 				40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */,
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
 				40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */,
@@ -422,14 +415,13 @@
 				40B6D3CE2B97496400E1C309 /* LoadAnimationWindowView.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
-				40A94C152B7A5ABE007BA436 /* TitleCharacterSearchViewController.swift in Sources */,
 				40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */,
-				409F3F122B3C51DA00427354 /* SelectedCharacterViewController.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
+				40ADE1402C33349100E2EEC9 /* COPopUpWindowView.swift in Sources */,
 				40A6E55A2C30B572008340B5 /* COError+Utils.swift in Sources */,
 				40A1A1C82B6EF93400DDF311 /* ComixBinVC.swift in Sources */,
-				40D7D3032B331F1E00B040CE /* Character.swift in Sources */,
 				40A120F02B30758600D93F9B /* CharacterSelectViewCell.swift in Sources */,
+				40ADE13E2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift in Sources */,
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,
 				40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */,
 				40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */,

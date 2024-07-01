@@ -71,7 +71,7 @@ class AllPublishersVC: UIViewController {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpDelegate {
+extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWindowChildVCDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
     
@@ -88,8 +88,8 @@ extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpDele
         selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
         
         // trigger pop-up
-        var popUpWindowVC: PopUpWindowViewController!
-        popUpWindowVC           = PopUpWindowViewController(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
+        var popUpWindowVC: PopUpWindowChildVC!
+        popUpWindowVC           = PopUpWindowChildVC(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
         
         // see note _ in app delegate
         // delegates step 4. the definition - next one below
@@ -105,24 +105,13 @@ extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpDele
     
     // MARK: TITLES / CHARACTERS ALERT DELEGATE METHODS
     func presentTitlesViewController() {
-        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesViewController()
+        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesVC()
         
         selectedPublisherTitlesVC.selectedPublisherName         = selectedPublisherName
         selectedPublisherTitlesVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
         
         self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
     }
-    
-    func presentCharactersViewController() {
-        let selectedPublisherCharactersVC                           = SelectedPublisherCharactersViewController()
-        selectedPublisherCharactersVC.selectedPublisherName         = selectedPublisherName
-        selectedPublisherCharactersVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
-        
-        self.navigationController?.pushViewController(selectedPublisherCharactersVC, animated: true)
-    }
-    
-    
-    
 }
 
 /**

@@ -66,24 +66,6 @@ class APICaller {
         return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})
     }
     
-    //MARK: GET PUBLISHER CHARACTERS
-    func getPublisherCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Character] {
-        print("inside getPublisherCharactersAPI")
-        
-        guard let url = URL(string: "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=characters") else {
-            throw COError.invalidURL
-        }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        print("the data was pulled from the URL. about to decode")
-    
-        let decodedJSON = try JSONDecoder().decode(APICharactersResponse.self, from: data)
-        
-        print("json decoded")
-        
-        return decodedJSON.results["characters"]!.sorted(by: {$1.characterName > $0.characterName})
-              
-    }
 
 }
 
