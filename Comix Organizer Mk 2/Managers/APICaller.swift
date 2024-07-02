@@ -68,7 +68,9 @@ class APICaller {
     }
     
     
-    func downloadImage(from)
+    func downloadImage(from urlString: String, completed: @escaping (UIImage) -> Void) {
+        let cacheKey = NSString(string: urlString)
+    }
     
 
 }
