@@ -35,6 +35,7 @@
 		40ADE1442C33769100E2EEC9 /* PublisherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1432C33769100E2EEC9 /* PublisherCell.swift */; };
 		40ADE1482C337ADA00E2EEC9 /* COLoadAnimationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1472C337ADA00E2EEC9 /* COLoadAnimationVC.swift */; };
 		40ADE14A2C337EEB00E2EEC9 /* COAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */; };
+		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
 		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		40ADE1432C33769100E2EEC9 /* PublisherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherCell.swift; sourceTree = "<group>"; };
 		40ADE1472C337ADA00E2EEC9 /* COLoadAnimationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COLoadAnimationVC.swift; sourceTree = "<group>"; };
 		40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAvatarImageView.swift; sourceTree = "<group>"; };
+		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
 		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,6 +234,7 @@
 				40A1A1CF2B72548000DDF311 /* Tab Bar Controllers */,
 				40A83AC72AFA5FA0009F80D3 /* ChildViewControllers */,
 				40ADE13C2C332DA000E2EEC9 /* Cells */,
+				40ADE14B2C345A5400E2EEC9 /* Labels */,
 				40A6E55B2C31E225008340B5 /* Views */,
 			);
 			path = CustomViews;
@@ -274,6 +277,14 @@
 				40ADE1432C33769100E2EEC9 /* PublisherCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		40ADE14B2C345A5400E2EEC9 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */,
+			);
+			path = Labels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +438,7 @@
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,
 				40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */,
 				40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */,
+				40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */,
 				40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */,
 				40ADE1442C33769100E2EEC9 /* PublisherCell.swift in Sources */,
 				40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */,

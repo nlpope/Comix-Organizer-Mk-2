@@ -9,6 +9,7 @@ import UIKit
 
 class PublisherCell: UICollectionViewCell {
     
-    static let reuseID = "PublisherCell"
-    let avatarImageView = UIImage()
+    static let reuseID      = "PublisherCell"
+    let avatarImageView     = COAvatarImageView(frame: .zero)
+    let publisherNameLabel  = UILabel()
 }

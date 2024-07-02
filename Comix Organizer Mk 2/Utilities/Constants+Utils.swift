@@ -13,3 +13,8 @@ enum SFSymbols {
     static let search               = UIImage(systemName: "magnifyingglass")
     static let bookShelf            = UIImage(systemName: "books.vertical.fill")
 }
+
+
+enum Images {
+    static let placeholder          = UIImage(named: "avatar-placeholder")
+}
