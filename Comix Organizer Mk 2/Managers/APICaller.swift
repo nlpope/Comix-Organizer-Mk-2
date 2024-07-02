@@ -7,11 +7,12 @@
 
 #warning("get rid of all the prints & comments > transfer to app delegate")
 
-import Foundation
+import UIKit
 
 class APICaller {
     
     static let shared = APICaller()
+    let cache         = NSCache<NSString, UIImage>()
     
     func getPublishersAPI() async throws -> [Publisher] {
         // see note _ in app delegate > only place baseURL is not passed from a click
@@ -65,6 +66,9 @@ class APICaller {
         print("json decoded")
         return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})
     }
+    
+    
+    func downloadImage(from)
     
 
 }
