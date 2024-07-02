@@ -68,16 +68,3 @@ class APICaller {
     
 
 }
-
-
-/**
- ARCHIVED CODE
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- func getPublisherCharactersAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> Dictionary<String, [Character]>
- 
- --------------------------
- print("inside getCharactersAPI & the guard let threw no error. About to start URLSession to pull data for decoder. URL = \(url)")
- */

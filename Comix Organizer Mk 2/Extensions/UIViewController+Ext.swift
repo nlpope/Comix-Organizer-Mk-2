@@ -10,7 +10,7 @@ import UIKit
 extension UIViewController {
     
     func presentLoadAnimationVC() {
-        let loadAnimationVC = LoadAnimationVC()
+        let loadAnimationVC = COLoadAnimationVC()
 //        loadingAnimationVC.delegate = self
         
         // hide nav controller & tabs

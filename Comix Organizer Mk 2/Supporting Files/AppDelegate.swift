@@ -121,48 +121,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
  HELPFUL TIPS:
  
+ *  App Icons & Image sets:
+    >  https://www.appicon.co/#app-icon
+    >  https://www.appicon.co/#image-sets
+    >> mind light & dark views: https://developer.apple.com/documentation/uikit/uiimage/providing_images_for_different_appearances
+ 
  *  Code formatting:
- > order = vars/lets, init methods, view lifecycle methods (VDL), funcs
- > 1 space after imports
- > 1 space BETWEEN class / struct / enum declarations
- > 1 space AFTER class / struct / enum declarations
- > 2 spaces after vars just before methods
- > 2 spaces between funcs
- >> no spaces on 1st line after func declaration
+    > order = vars/lets, init methods, view lifecycle methods (VDL), funcs
+    > 1 space after imports
+    > 1 space BETWEEN class / struct / enum declarations
+    > 1 space AFTER class / struct / enum declarations
+    > 2 spaces after vars just before methods
+    > 2 spaces between funcs
+    >> no spaces on 1st line after func declaration
  
  *  Debugging
- > see Stanford: https://www.youtube.com/watch?v=CRxHhx_pubY&list=PL3d_SFOiG7_8ofjyKzX6Nl1wZehbdiZC_&index=3&ab_channel=CS193P
+    > see Stanford: https://www.youtube.com/watch?v=CRxHhx_pubY&list=PL3d_SFOiG7_8ofjyKzX6Nl1wZehbdiZC_&index=3&ab_channel=CS193P
  
  *  DispatchQueue-ing to main thread:
- > updating UI? - switch to main thread
- >> ex: DispatchQueue.main.async { self.image = image }
+    > updating UI? - switch to main thread
+    >> ex: DispatchQueue.main.async { self.image = image }
  
  *  Folders = instead of MVC, MVVM, etc. start with:
- > Extensions - "...+Ext"
- > Utilities (error msgs, constant enums, UIHelpers) - "...+Utils"
- > Managers
- > Models
- > CustomViews
- > Screens (VCs)
- > Support (App/Scene Delegate, Assets, the rest)
- >> except info.plist, leave this outside/alone
+    > Extensions - "...+Ext"
+    > Utilities (error msgs, constant enums, UIHelpers) - "...+Utils"
+    > Managers
+    > Models
+    > CustomViews
+    > Screens (VCs)
+    > Support (App/Scene Delegate, Assets, the rest)
+    >> except info.plist, leave this outside/alone
  
  *  Human interface guidelines: https://developer.apple.com/design/human-interface-guidelines
  
  *  MVC = "Does my View Controller need to know about this?":
- >  basically if you see NO GREEN TEXT (ref's to props created in the VC) in the func, it can be refactored to another file.
- >> the background color, border width, & corner radius of a container for an alert? No; Include in separate UIView
- >> NSLayoutContstraints for the container? Yes.
- >> if a refactored view was referenced in the OG func and is throwing an error once you move it, pass in the view using: func functionName(in view: UIView) { }
+    >  basically if you see NO GREEN TEXT (ref's to props created in the VC) in the func, it can be refactored to   another file.
+    >> the background color, border width, & corner radius of a container for an alert? No; Include in separate  UIView
+    >> NSLayoutContstraints for the container? Yes.
+    >> if a refactored view was referenced in the OG func and is throwing an error once you move it, pass in the view using: func functionName(in view: UIView) { }
  
  *  Network calls:
- > best to keep your .success, .failure & switch statement cases contained to 1-2 readable lines of code - factor out if need be. for example:
- >>    case .success(let followers):
- updateUI(with: followers)
- >> NOTE: not always possible, if it's 4 lines & depends on a complex completion handler, so be it
+    > best to keep your .success, .failure & switch statement cases contained to 1-2 readable lines of code - factor out if need be. for example:
+    >>    case .success(let followers):
+    updateUI(with: followers)
+    >> NOTE: not always possible, if it's 4 lines & depends on a complex completion handler, so be it
  
  *  Padding & constraints:
- >  whatever your fontSize is set to, give your label 4 extra points of padding in the NSLayoutConstraints below it  to account for letters that dip below baseline (y, j, g, etc)
+    >  whatever your fontSize is set to, give your label 4 extra points of padding in the NSLayoutConstraints below it  to account for letters that dip below baseline (y, j, g, etc)
  
  --------------------------
  XXXXXXXXXXXXXXXXXXXXXXXX

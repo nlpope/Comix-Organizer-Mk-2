@@ -1,45 +1,15 @@
 //
-//  LoadAnimationVC.swift
+//  COLoadAnimationVC.swift
 //  Comix Organizer Mk 2
 //
-//  Created by Noah Pope on 3/5/24.
+//  Created by Noah Pope on 7/1/24.
 //
 
-//ADD / DISPLAY USING VIEWWILLAPPEAR() METHOD?
-//dismissView() will get rid of this VC like it gets rid of the PopUpWindowVC > goToTitles/Characters() methods
-import Foundation
 import UIKit
 
-//MARK: LOAD ANIMATION VIEW
-private class LoadAnimationWindowView: UIView {
-    let loadAnimationView = UIView(frame: CGRect.zero)
+class COLoadAnimationVC: UIViewController {
     
-    init() {
-        super.init(frame: CGRect.zero)
-        
-        addSubview(loadAnimationView)
-        loadAnimationView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            //why do i have access to self here and not just above "addSubview"?
-            loadAnimationView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            loadAnimationView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            loadAnimationView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ])
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-}
-
-class LoadAnimationVC: UIViewController {
-    
-    private let loadAnimationView = LoadAnimationWindowView()
-    
-    private let stackView: UIStackView = {loadingDot in
+    private let stackView: UIStackView = { loadingDot in
         loadingDot.distribution = .fill
         loadingDot.axis = .horizontal
         loadingDot.alignment = .center
@@ -52,6 +22,18 @@ class LoadAnimationVC: UIViewController {
     private let circleB = UIView()
     private let circleC = UIView()
     private lazy var circles = [circleA, circleB, circleC]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureStackView()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animate()
+    }
+    
     
     func animate() {
         let jumpDuration: Double = 0.30
@@ -77,8 +59,8 @@ class LoadAnimationVC: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    func configureStackView() {
         view.backgroundColor = .white
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,33 +75,5 @@ class LoadAnimationVC: UIViewController {
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        animate()
-    }
 }
-    
-    
 
-/**
- QUESTIONS & REFERENCE CREDITS
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- QUESTIONS:
- //why were  my loadingDots overlapping when this VC is called in selectedPubVC?
- //ans: I was setting the animate param in the pushVC method to false
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
- REFERENCE CREDITS:
- > Overall Loading Animation layout
- >> https://stackoverflow.com/questions/62208949/how-to-make-loading-animation-in-ios-swift
- --------------------------
- XXXXXXXXXXXXXXXXXXXXXXXX
- XXXXXXXXXXXXXXXXXXXXXXXX
- --------------------------
-
- */

@@ -37,7 +37,7 @@ class SelectedPublisherTitlesVC: UIViewController {
         Task {
             //why is animation switching to vertical here?
             //answer down below in notes & notebook
-            presentLoadAnimationVC
+            presentLoadAnimationVC()
              
             await configurePublisherTitles(withPublisherDetailsURL: selectedPublisherDetailsURL)
             view.addSubview(tableView)
@@ -92,7 +92,7 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource 
     //MARK: DELEGATE
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         #warning("create alt '...VC' version of below then test run")
-        let selctedTitleIssuesVC = SelectedTitleIssuesViewController()
+        let selctedTitleIssuesVC = SelectedTitleIssuesVC()
         
         selctedTitleIssuesVC.selectedTitleName = selectedPublisherTitles[indexPath.row].titleName
         selctedTitleIssuesVC.selectedTitleDetailsURL = selectedPublisherTitles[indexPath.row].titleDetailsURL
