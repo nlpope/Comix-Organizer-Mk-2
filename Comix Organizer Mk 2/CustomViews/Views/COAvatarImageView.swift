@@ -8,8 +8,8 @@
 import UIKit
 
 class COAvatarImageView: UIImageView {
-    #warning("set up your cache in the apicaller/networkmanager")
+    #warning("previously on: make placeholder from assets > enums in Utils > set up your cache in the apicaller/networkmanager")
 //    let cache               = APICaller.shared.cache
-    let placeHolderImage    =
+    let placeHolderImage    = UIImage()
 
 }
