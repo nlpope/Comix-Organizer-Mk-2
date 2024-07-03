@@ -26,12 +26,26 @@ class PublisherCell: UICollectionViewCell {
     
     
     func set(publisher: Publisher) {
-        publisherNameLabel.text = publisher.publisherName
-        avatarImageView
+        publisherNameLabel.text = publisher.name
+        avatarImageView.downloadImage(fromURL: publisher.avatarURL)
     }
     
     
     func configure() {
+        addSubviews(avatarImageView, publisherNameLabel)
         
+        let padding: CGFloat = 8
+        
+        NSLayoutConstraint.activate([
+            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            avatarImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            
+            publisherNameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
+            publisherNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            publisherNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            publisherNameLabel.heightAnchor.constraint(equalToConstant: 20)
+        ])
     }
 }

@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  --------------------------
  
  PROJECT NOTES:
- *  Publisher:
+ *  Publisher
     1. Coding keys steps:
     > start w plural "CodingKeys" for top level enums & expected nest name cases...
     > then move to singular naming convention if nest delves even deeper - docs
@@ -185,8 +185,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
     3. below must be named 'results' as it "maps" to JSON's 'results'
  
- 
- 
+ *  AllPublishersVC: Archived Notes
+    4. see https://docs.google.com/document/d/1QzdvsaMTDFkR5K3aL_i9YvgTQeATA5c-7xIW7G_8PG4/edit
+    
  --------------------------
  
  */
+
+#warning("previously on: finish comixmk2 refactor w diffable datasource > noahpope.me portfolio after checking hostgator progress")

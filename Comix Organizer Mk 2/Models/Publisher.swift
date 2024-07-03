@@ -12,18 +12,19 @@ struct APIPublishersResponse: Decodable, Hashable {
     let results: [Publisher]
 }
 
-#warning("making Publisher model 'Hashable' for diffable data source implem.")
 // see note 2 in app delegate
 struct Publisher: Decodable, Hashable {
     var publisherDetailsURL: String
     var id: Int
-    var publisherName: String
+    var name: String
+    var avatarURL: String
     
     // see note 1 in app delegate
     enum CodingKeys: String, CodingKey {
-        case publisherDetailsURL = "api_detail_url"
         case id
-        case publisherName = "name"
+        case name
+        case publisherDetailsURL    = "api_detail_url"
+        case avatarURL              = "icon_url"
     }
 }
 

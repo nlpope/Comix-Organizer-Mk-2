@@ -8,7 +8,7 @@
 import UIKit
 
 class COAvatarImageView: UIImageView {
-    #warning("previously on: make placeholder from assets > enums in Utils > set up your cache in the apicaller/networkmanager > noahpope.me portfolio after checking hostgator progress")
+    
 //    let cache               = APICaller.shared.cache
     let placeholderImage    = Images.placeholder
     
@@ -32,6 +32,9 @@ class COAvatarImageView: UIImageView {
     
     
     func downloadImage(fromURL url: String) {
-        
+        APICaller.shared.downloadImage(from: url) { [weak self] image in
+            guard let self = self else { return }
+            DispatchQueue.main.async { self.image = image }
+        }
     }
 }

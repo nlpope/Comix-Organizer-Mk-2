@@ -23,21 +23,19 @@ struct Title: Decodable, Hashable {
     var titleDetailsURL: String
     
     enum CodingKeys: String, CodingKey {
-        case titleID = "id"
-        //handle title name deletion first
-        //then handle no title held boot out behavior
-        case titleName = "name"
-        case titleDetailsURL = "api_detail_url"
+        case titleID            = "id"
+        case titleName          = "name"
+        case titleDetailsURL    = "api_detail_url"
 //        case titleIssueCount = "count_of_issues"
     }
     
     init(from decoder: Decoder) throws {
         
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let container   = try decoder.container(keyedBy: CodingKeys.self)
         
-        titleID = try container.decode(Int.self, forKey: .titleID)
+        titleID         = try container.decode(Int.self, forKey: .titleID)
 
-        titleName = try container.decode(String.self, forKey: .titleName)
+        titleName       = try container.decode(String.self, forKey: .titleName)
 
         titleDetailsURL = try container.decode(String.self, forKey: .titleDetailsURL)
         

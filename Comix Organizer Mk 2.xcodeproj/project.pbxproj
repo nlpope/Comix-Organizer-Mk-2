@@ -37,6 +37,7 @@
 		40ADE14A2C337EEB00E2EEC9 /* COAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */; };
 		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
 		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
+		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAvatarImageView.swift; sourceTree = "<group>"; };
 		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
 		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
+		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */,
+				40C4F99B2C35D2100077808D /* UIView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				40A2F4F32BC45A4F000F5F14 /* PopUpWindowSingleButtonView.swift in Sources */,
 				40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */,
 				40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */,
+				40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */,
 				40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */,
 				40ADE1442C33769100E2EEC9 /* PublisherCell.swift in Sources */,
 				40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */,
