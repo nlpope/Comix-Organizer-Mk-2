@@ -187,6 +187,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
  *  AllPublishersVC: Archived Notes
     4. see https://docs.google.com/document/d/1QzdvsaMTDFkR5K3aL_i9YvgTQeATA5c-7xIW7G_8PG4/edit
+ 
+ *  AllPublishersVC
+    5. this is how the old tableView was set up @ the top. It's worth noting since it's unlike how I set up the tableView for the FavoritesListVC in GHFollowers
+    
+    let tableView: UITableView = {
+    let table = UITableView()
+    table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+    return table
+    ( )
+  
+ *  PopUpWindowChildVC
+    7.
     
  --------------------------
  

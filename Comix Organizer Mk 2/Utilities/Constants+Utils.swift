@@ -16,6 +16,7 @@ enum SFSymbols {
 
 
 enum Images {
+    static let coLogo               = UIImage(named: "co-logo")
     static let placeholder          = UIImage(named: "avatar-placeholder")
     static let emptyStateLogo       = UIImage(named: "empty-state-logo")
 }

@@ -23,7 +23,7 @@ class COTabBarController: UITabBarController {
     
     
     func createStartNC() -> UINavigationController {
-        let startVC = StartVC()
+        let startVC = SearchVC()
         startVC.title = "ComixOrganizer"
         startVC.tabBarItem.image = SFSymbols.search
         

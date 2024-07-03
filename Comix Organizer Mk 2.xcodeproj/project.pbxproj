@@ -28,7 +28,7 @@
 		40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACB2AFA6187009F80D3 /* Publisher.swift */; };
 		40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */; };
 		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
-		40AD02712C2F355B000C53A2 /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD02702C2F355B000C53A2 /* StartVC.swift */; };
+		40AD02712C2F355B000C53A2 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD02702C2F355B000C53A2 /* SearchVC.swift */; };
 		40ADE13E2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */; };
 		40ADE1402C33349100E2EEC9 /* COPopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE13F2C33349100E2EEC9 /* COPopUpWindowView.swift */; };
 		40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */; };
@@ -36,8 +36,9 @@
 		40ADE1482C337ADA00E2EEC9 /* COLoadAnimationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1472C337ADA00E2EEC9 /* COLoadAnimationVC.swift */; };
 		40ADE14A2C337EEB00E2EEC9 /* COAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */; };
 		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
-		40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowView.swift */; };
+		40B28E742B839D6A00951AEF /* PopUpWindowChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */; };
 		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
+		40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99E2C35E2E10077808D /* COTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +84,7 @@
 		40A83ACB2AFA6187009F80D3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTabBarController.swift; sourceTree = "<group>"; };
 		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
-		40AD02702C2F355B000C53A2 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
+		40AD02702C2F355B000C53A2 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherTitlesVC.swift; sourceTree = "<group>"; };
 		40ADE13F2C33349100E2EEC9 /* COPopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COPopUpWindowView.swift; sourceTree = "<group>"; };
 		40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTitleIssuesVC.swift; sourceTree = "<group>"; };
@@ -91,8 +92,9 @@
 		40ADE1472C337ADA00E2EEC9 /* COLoadAnimationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COLoadAnimationVC.swift; sourceTree = "<group>"; };
 		40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAvatarImageView.swift; sourceTree = "<group>"; };
 		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
-		40B28E732B839D6A00951AEF /* PopUpWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowView.swift; sourceTree = "<group>"; };
+		40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowChildVC.swift; sourceTree = "<group>"; };
 		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		40C4F99E2C35E2E10077808D /* COTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,7 @@
 		404BA7572B7C5BE600238FC9 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				40AD02702C2F355B000C53A2 /* StartVC.swift */,
+				40AD02702C2F355B000C53A2 /* SearchVC.swift */,
 				40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */,
 				40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */,
 				40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */,
@@ -238,6 +240,7 @@
 				40A83AC72AFA5FA0009F80D3 /* ChildViewControllers */,
 				40ADE13C2C332DA000E2EEC9 /* Cells */,
 				40ADE14B2C345A5400E2EEC9 /* Labels */,
+				40C4F99D2C35E2B80077808D /* TextFields */,
 				40A6E55B2C31E225008340B5 /* Views */,
 			);
 			path = CustomViews;
@@ -246,7 +249,7 @@
 		40A83AC72AFA5FA0009F80D3 /* ChildViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				40B28E732B839D6A00951AEF /* PopUpWindowView.swift */,
+				40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */,
 				40ADE1472C337ADA00E2EEC9 /* COLoadAnimationVC.swift */,
 			);
 			path = ChildViewControllers;
@@ -288,6 +291,14 @@
 				40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		40C4F99D2C35E2B80077808D /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				40C4F99E2C35E2E10077808D /* COTextField.swift */,
+			);
+			path = TextFields;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,9 +432,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A6E5582C30B0A8008340B5 /* Constants+Utils.swift in Sources */,
-				40AD02712C2F355B000C53A2 /* StartVC.swift in Sources */,
+				40AD02712C2F355B000C53A2 /* SearchVC.swift in Sources */,
 				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
-				40B28E742B839D6A00951AEF /* PopUpWindowView.swift in Sources */,
+				40B28E742B839D6A00951AEF /* PopUpWindowChildVC.swift in Sources */,
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
 				40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */,
 				40ADE1482C337ADA00E2EEC9 /* COLoadAnimationVC.swift in Sources */,
@@ -433,6 +444,7 @@
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
+				40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */,
 				40ADE1402C33349100E2EEC9 /* COPopUpWindowView.swift in Sources */,
 				40A6E55A2C30B572008340B5 /* COError+Utils.swift in Sources */,
 				40A1A1C82B6EF93400DDF311 /* ComixBinVC.swift in Sources */,

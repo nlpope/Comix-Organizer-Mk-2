@@ -1,31 +1,24 @@
 //
-//  PopUpWindowView.swift
+//  PopUpWindowChildVC.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 2/19/24.
 //
 
 import UIKit
-// see note _ in app delegate >
-// delegates step 1. the protocol - next one here, up top
-// "hmmmm this popupVC (manager) needs a delegate to talk to"
+
 protocol PopUpWindowChildVCDelegate {
     func presentTitlesViewController()
 }
-//MARK: POP UP WINDOW VIEW CONTROLLER
-//initializes data in PopUpWindowView
-//cannot display anything, only decide WHAT gets displayed
-//... to then send it off to the UIView (above) for set up
-//closes/dismisses the window
-//THE BEHAVIOR
+
 class PopUpWindowChildVC: UIViewController {
-    //delegates step 2. the delegate (to be defined in the delegate - allpubVC) - next one here, in goToTitles
-    //"Okay! I can set up a delegate using the protocol type you just created so me and my 'employee' can communicate"
+    
     var delegate: PopUpWindowChildVCDelegate?
     private let popUpWindowView = COPopUpWindowView()
     public var selectedPublisherName = ""
     public var selectedPublisherDetailsURL = ""
     
+    #warning("rework this init after setting up just a one button popup to appear: text should always = 'you're about to see all publishers since you haven't specified one in the search field' ")
     init(title: String, text: String, buttonOneText: String, buttonTwoText: String, selectedPublisherName: String, selectedPublisherDetailsURL: String) {
         super.init(nibName: nil, bundle: nil)
         modalTransitionStyle = .crossDissolve

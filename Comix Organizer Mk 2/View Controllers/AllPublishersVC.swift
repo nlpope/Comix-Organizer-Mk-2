@@ -12,23 +12,25 @@ class AllPublishersVC: UIViewController {
     enum Section { case main }
     
     var selectedPublisherName: String!
+    #warning("selectedPublisherDetailsURL can be moved to selectedPublisherTitles & handled via delegation")
     var selectedPublisherDetailsURL: String!
-    private var publishers              = [Publisher]()
+    private var publishers = [Publisher]()
     
-    let tableView: UITableView          = {
-        let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        return table
-    }()
+    //see note 5 in app delegate
+    var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
     
-    #warning("context unused change to user defaults")
-    // core data - step 2
-    // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    init(selectedPublisher: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.selectedPublisherName  = selectedPublisher
+        title                       = selectedPublisher
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationController()
-        Task { try await getAllPublishers() }
+        Task { try await getPublishers() }
         // see note _ in app delegate > calling configureTableView() here results in blank page
     }
     
@@ -48,8 +50,7 @@ class AllPublishersVC: UIViewController {
     }
     
     
-    func getAllPublishers() async throws {
-        print("inside getAllPublishers")
+    func getPublishers() async throws {
         presentLoadAnimationVC()
         #warning("change to guard let?")
         if let results = try? await APICaller.shared.getPublishersAPI() { self.publishers += results } else {
@@ -72,7 +73,12 @@ class AllPublishersVC: UIViewController {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWindowChildVCDelegate {
+extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWindowChildVCDelegate, SearchVCDelegate {
+    
+    func didRequestPublishers(for publisherName: String) {
+        <#code#>
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
     
@@ -98,12 +104,7 @@ extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWind
     
     
     func presentTitlesViewController() {
-        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesVC()
         
-        selectedPublisherTitlesVC.selectedPublisherName         = selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
-        
-        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
     }
 }
 
