@@ -9,15 +9,16 @@ import UIKit
 import CoreData
 
 protocol SelectedPublisherTitlesVCDelegate: AnyObject {
-    func didRequestIssues(fromPublisher: String)
+    func didRequestIssues(forTitle: String)
 }
 
 class SelectedPublisherTitlesVC: UIViewController {
 
     var selectedPublisherName: String!
     var selectedPublisherDetailsURL: String!
+    
     var selectedPublisherTitles = [Title]()
-    var offSet                  = 0
+    var page                    = 0
     var hasMoreTitles           = true
     var isSearching             = false
     var isLoadingMoreTitles     = false
@@ -31,8 +32,14 @@ class SelectedPublisherTitlesVC: UIViewController {
     }()
     
     
-    init(withPublisherName name: String, andPublisherDetailsURL url: String) {
+    init() {
         super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    
+    convenience init(withPublisherName name: String, andPublisherDetailsURL url: String) {
+        self.init()
         self.selectedPublisherName          = name
         self.selectedPublisherDetailsURL    = url
     }
@@ -50,7 +57,7 @@ class SelectedPublisherTitlesVC: UIViewController {
         if selectedPublisherName.contains("Comics") {
             selectedPublisherName = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
         }
-        title = "\(selectedPublisherName) Titles/Volumes"
+        title = "\(selectedPublisherName!) Titles"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
@@ -92,14 +99,18 @@ class SelectedPublisherTitlesVC: UIViewController {
 //MARK: DELEGATE & DATASOURCE METHODS
 extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource, AllPublishersVCDelegate {
     
-    func didRequestTitles(fromPublisher publisher: String) {
-        // do stuff
+    func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String) {
+        self.selectedPublisherName = publisher
+        self.selectedPublisherDetailsURL = detailsURL
+        
+        let navController   = UINavigationController(rootViewController: self)
+        present(navController, animated: true)
     }
     
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //sift through array of selectedpublishertitles
-        //if any of them equal "", decrease the count (-= 1)
+        // sift through array of selectedpublishertitles
+        // if any of them equal "", decrease the count (-= 1)
         return selectedPublisherTitles.count
     }
     
@@ -108,7 +119,7 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource,
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = selectedPublisherTitles[indexPath.row].titleName
        
-        //remove duplicate named cells here? (compare btwn curr. & last string)
+        // remove duplicate named cells here? (compare btwn curr. & last string)
         
         return cell
     }

@@ -15,6 +15,7 @@ extension UIViewController {
         }
     }
     
+    
     func presentLoadAnimationVC() {
         let loadAnimationVC = COLoadAnimationVC()
         
@@ -24,9 +25,17 @@ extension UIViewController {
         self.navigationController?.pushViewController(loadAnimationVC, animated: true)
     }
     
+    
     func dismissLoadAnimationVC() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    func showEmptyStateView(with message: String, in view: UIView) {
+        let emptyStateView      = COEmptyStateView(message: message)
+        emptyStateView.frame    = view.bounds
+        view.addSubview(emptyStateView)
     }
 }

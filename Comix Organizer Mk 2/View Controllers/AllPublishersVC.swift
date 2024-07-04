@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AllPublishersVCDelegate: AnyObject {
-    func didRequestTitles(fromPublisher publisher: String)
+    func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String)
 }
 
 class AllPublishersVC: UIViewController {
@@ -33,10 +33,14 @@ class AllPublishersVC: UIViewController {
         configureNavigationController()
         configureSearchController()
         configureCollectionView()
-        Task { try await getPublishers(page: page) }
+        Task {
+            try await getPublishers(page: page)
+            configureDataSource()
+        }
         
-        #warning(" calling configureTableView() here results in blank page")
+        // see note 10 in app delegate
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -83,12 +87,49 @@ class AllPublishersVC: UIViewController {
     
     func getPublishers(page: Int) async throws {
         presentLoadAnimationVC()
-        if let results = try? await APICaller.shared.getPublishers(page: page) { self.publishers += results } else {
+        // load works - so func is being reached
+        guard let results = try? await APICaller.shared.getPublishers(page: page) else {
             self.dismissLoadAnimationVC()
+            #warning("unsure how to use throw to say self.presentCOAlertOnMainThread( )")
             throw COError.failedToGetData
         }
-//        configureTableView()
+        // api call not working - payload not printing to console w/out throwing errors
+
         dismissLoadAnimationVC()
+        updateUI(with: results)
+        self.isLoadingMorePublishers = false
+        
+        // see note 9 in app delegate
+    }
+    
+    
+    func updateUI(with publishers: [Publisher]) {
+        if publishers.count < 100 { self.hasMorePublishers = false }
+        self.publishers.append(contentsOf: publishers)
+        
+        // test empty state
+        // self.publishers = []
+        if self.publishers.isEmpty {
+            let message = "There are no more publishers to display 😢."
+            DispatchQueue.main.async {
+                self.hideSearchController()
+                self.showEmptyStateView(with: message, in: self.view)
+            }
+            
+            return
+        }
+        
+        self.updateData(on: self.publishers)
+    }
+    
+    
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Publisher>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
+            cell.set(publisher: publisher)
+            
+            return cell
+        })
     }
     
     
@@ -109,11 +150,19 @@ extension AllPublishersVC: UICollectionViewDelegate {
         let contentHeight   = scrollView.contentSize.height
         let height          = scrollView.frame.size.height
         
-        if offSetY > contentHeight - height {
+        if offsetY > contentHeight - height {
             guard hasMorePublishers, !isLoadingMorePublishers else { return }
             page += 1
-            getPubli
+            Task { try await getPublishers(page: page) }
         }
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let activeArray     = isSearching ? filteredPublishers : publishers
+        let publisher       = activeArray[indexPath.item]
+        
+        delegate?.didRequestTitles(fromPublisher: publisher.name, withPublisherDetailsURL: publisher.publisherDetailsURL)
     }
 }
 

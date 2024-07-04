@@ -27,7 +27,8 @@ class PublisherCell: UICollectionViewCell {
     
     func set(publisher: Publisher) {
         publisherNameLabel.text = publisher.name
-        avatarImageView.downloadImage(fromURL: publisher.avatarURL)
+        #warning("this shouldn't work til I can get access to the img")
+//        avatarImageView.downloadImage(fromURL: publisher.avatarURL)
     }
     
     

@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  *  edit multiple lines at once: control + shift + click away then start typing
  > or opt + click & drag down
  *  edit this / saved code snippet: cmd + shift + L
- *  emoji keyboard: cmd + cntrl + spacebar
+ *  emoji keyboard: cmd + cntrl + spacebar 😎
  *  force quit on mac: cmd + opt + esc
  *  importing UIKit also imports Foundation (never import Foundation if UIkit is in play)
  *  new XCode internal tab = cmd + ctrl + T
@@ -203,7 +203,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  *  COLoadAnimationVC
     8. PROBLEM: WHY ARE MY DOTS LINED UP ON TOP OF EACH OTHER INSTEAD OF LAID OUT HORIZONATALLY & SPACED?
     > sltn: I had the 'animate' prop on the VC's initializers set to false
+ 
+ *  AllPublishersVC
+    9. OG logic for getPublishers( ) in place of everything under guard, let, else { }
     
+        if let results = try? await APICaller.shared.getPublishers(page: page) { self.publishers += results } else {
+            self.dismissLoadAnimationVC()
+            throw COError.failedToGetData
+        }
+        configureTableView()
+ 
+    10. calling configureTableView() here resulted in blank page when I was working with a tableView. I wonder why?
+ 
+ *  APICaller
+    11.  async variant of urlsession - may suspend code, hence the await
+ 
  --------------------------
  
  */

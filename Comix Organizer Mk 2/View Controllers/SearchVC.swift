@@ -39,12 +39,12 @@ class SearchVC: UIViewController {
     
     
     @objc func pushAllPublishersListVC() {
-        guard isPublisherEntered else { return }
+        guard !isPublisherEntered else { return }
         
         publisherNameTextField.resignFirstResponder()
         
-        let publisherListVC = AllPublishersVC(selectedPublisher: publisherNameTextField.text!)
-        navigationController?.pushViewController(publisherListVC, animated: true)
+        let allPublisherListVC = AllPublishersVC()
+        navigationController?.pushViewController(allPublisherListVC, animated: true)
     }
     
     
@@ -55,14 +55,15 @@ class SearchVC: UIViewController {
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 200),
-            logoImageView.heightAnchor.constraint(equalToConstant: 200)
+            logoImageView.widthAnchor.constraint(equalToConstant: 350),
+            logoImageView.heightAnchor.constraint(equalToConstant: 350)
         ])
     }
     
     
     func configureTextField() {
         publisherNameTextField.delegate = self
+        publisherNameTextField.placeholder = "Enter publisher or hit GO to see all"
         
         NSLayoutConstraint.activate([
             publisherNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -74,13 +75,11 @@ class SearchVC: UIViewController {
     
     
     func configureCallToActionButton() {
-        let selector: Selector              = isPublisherEntered ? #selector(pushSelectedPublisherTitlesVC) : #selector(pushAllPublishersVC)
-        
         callToActionButton.backgroundColor  = .blue
         callToActionButton.setTitle("GO", for: .normal)
         callToActionButton.translatesAutoresizingMaskIntoConstraints = false
-        callToActionButton.addTarget(self, action: selector, for: .touchUpInside)
-
+        callToActionButton.addTarget(self, action: #selector(pushAllPublishersOrSelectedPublishersVC), for: .touchUpInside)
+        
         
         NSLayoutConstraint.activate([
             callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
@@ -91,11 +90,19 @@ class SearchVC: UIViewController {
     }
     
     
-    @objc func pushSelectedPublisherTitlesVC() {
+    @objc func pushAllPublishersOrSelectedPublishersVC() {
+        // is publisher name entered ? pushSelectedPublisherTitlesVC : pushAllPublishersVC
+        // turn the below two into non objc funcs that can execute
+        isPublisherEntered ? pushSelectedPublisherTitlesVC() : pushAllPublishersVC()
+    }
+    
+    
+    func pushSelectedPublisherTitlesVC() {
         // display alert 'about to be taken to 'Marvel' titles'
         // need to find a way to get publisherdetailsURL from typed name > API call
-        var publisherName = publisherNameTextField.text!
-        var publisherDetailsURL = ""
+        #warning("still working on getting details url from text field - maybe use the conv. init in selectedPubs?")
+        let publisherName = publisherNameTextField.text!
+        let publisherDetailsURL = ""
         
         Task { try await APICaller.shared.getPublisherTitles(withPublisherDetailsURL: publisherDetailsURL) }
         // add logic that says: if it comes back nil, display an alert || empty state view
@@ -105,7 +112,7 @@ class SearchVC: UIViewController {
     }
     
     
-    @objc func pushAllPublishersVC() {
+    func pushAllPublishersVC() {
         // display alert 'about to be taken to all publishers. to see titles from them, simply select.'
         let allPublishersVC = AllPublishersVC()
         navigationController?.pushViewController(allPublishersVC, animated: true)

@@ -37,6 +37,7 @@
 		40ADE14A2C337EEB00E2EEC9 /* COAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */; };
 		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
 		40B28E742B839D6A00951AEF /* PopUpWindowChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */; };
+		40C0372D2C3732BC00A67B2D /* COEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */; };
 		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
 		40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99E2C35E2E10077808D /* COTextField.swift */; };
 		40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */; };
@@ -94,6 +95,7 @@
 		40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAvatarImageView.swift; sourceTree = "<group>"; };
 		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
 		40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowChildVC.swift; sourceTree = "<group>"; };
+		40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COEmptyStateView.swift; sourceTree = "<group>"; };
 		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		40C4F99E2C35E2E10077808D /* COTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTextField.swift; sourceTree = "<group>"; };
 		40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHelper+Utils.swift"; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				40A2F4F22BC45A4E000F5F14 /* PopUpWindowSingleButtonView.swift */,
 				40ADE13F2C33349100E2EEC9 /* COPopUpWindowView.swift */,
 				40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */,
+				40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				40AD02712C2F355B000C53A2 /* SearchVC.swift in Sources */,
 				40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */,
 				40B28E742B839D6A00951AEF /* PopUpWindowChildVC.swift in Sources */,
+				40C0372D2C3732BC00A67B2D /* COEmptyStateView.swift in Sources */,
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
 				40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */,
 				40ADE1482C337ADA00E2EEC9 /* COLoadAnimationVC.swift in Sources */,

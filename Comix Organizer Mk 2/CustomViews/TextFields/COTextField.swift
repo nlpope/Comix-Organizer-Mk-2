@@ -38,6 +38,5 @@ class COTextField: UITextField {
         autocorrectionType        = .no
         returnKeyType             = .go
         clearButtonMode           = .whileEditing
-        placeholder               = "Enter a publisher or leave empty to see all publishers"
     }
 }

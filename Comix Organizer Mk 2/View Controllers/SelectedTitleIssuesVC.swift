@@ -74,7 +74,7 @@ class SelectedTitleIssuesVC: UIViewController {
 //MARK: DELEGATE & DATASOURCE METHODS
 extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource, SelectedPublisherTitlesVCDelegate {
     
-    func didRequestIssues(fromPublisher: String) {
+    func didRequestIssues(forTitle: String) {
         // do stuff
     }
     

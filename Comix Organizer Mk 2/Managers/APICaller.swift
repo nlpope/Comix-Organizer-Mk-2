@@ -12,22 +12,29 @@ import UIKit
 class APICaller {
     
     static let shared = APICaller()
+    let baseURL       = "https://comicvine.gamespot.com/api"
     let cache         = NSCache<NSString, UIImage>()
     
+    
+    // need to alphabetize the payload - how to from comic vine api?
     func getPublishers(page: Int) async throws -> [Publisher] {
-        // see note _ in app delegate > only place baseURL is not passed from a click
-        let endpoint        = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        let endpoint        = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
+        // endpoint works & provides payload in chrome
         guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
-        // see note _ in app delegate > async variant of urlsession - may suspend code, hence the await
+        // see note 11 in app delegate
         let (data, _)       = try await URLSession.shared.data(from: url)
-        
+        print("dataz = \(data)")
         do {
             let decoder     = JSONDecoder()
             let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
+            print("decoded json results: \(decodedJSON.results)")
+            
             return decodedJSON.results.sorted(by: {$1.name > $0.name})
 
         } catch {
+            print("an error occured in the decoder")
+            #warning("throw isn't printing anything to the console")
             throw COError.failedToGetData
         }
     }
