@@ -9,6 +9,7 @@ import UIKit
 
 class COLoadAnimationVC: UIViewController {
     
+    // see note 8 in app delegate
     private let stackView: UIStackView = { loadingDot in
         loadingDot.distribution = .fill
         loadingDot.axis = .horizontal

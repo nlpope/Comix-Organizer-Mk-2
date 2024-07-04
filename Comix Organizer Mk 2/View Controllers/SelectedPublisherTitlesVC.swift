@@ -9,14 +9,19 @@ import UIKit
 import CoreData
 
 protocol SelectedPublisherTitlesVCDelegate: AnyObject {
-    func didRequestIssues(forTitle title: String)
+    func didRequestIssues(fromPublisher: String)
 }
 
 class SelectedPublisherTitlesVC: UIViewController {
 
     var selectedPublisherName: String!
     var selectedPublisherDetailsURL: String!
-    private var selectedPublisherTitles = [Title]()
+    var selectedPublisherTitles = [Title]()
+    var offSet                  = 0
+    var hasMoreTitles           = true
+    var isSearching             = false
+    var isLoadingMoreTitles     = false
+    
     weak var delegate: SelectedPublisherTitlesVCDelegate!
     
     let tableView: UITableView = {
@@ -72,7 +77,7 @@ class SelectedPublisherTitlesVC: UIViewController {
     
     //MARK: CONFIGURATION
     func configurePublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async {
-        if let results = try? await APICaller.shared.getPublisherTitlesAPI(withPublisherDetailsURL: selectedPublisherDetailsURL) {
+        if let results = try? await APICaller.shared.getPublisherTitles(withPublisherDetailsURL: selectedPublisherDetailsURL) {
             
             self.selectedPublisherTitles += results
             self.selectedPublisherTitles = self.selectedPublisherTitles.filter{$0.titleName != ""}
@@ -109,7 +114,6 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource,
     }
     
     
-    //MARK: DELEGATE
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         #warning("create alt '...VC' version of below then test run")
         let selctedTitleIssuesVC = SelectedTitleIssuesVC()

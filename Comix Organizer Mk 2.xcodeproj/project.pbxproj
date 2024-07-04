@@ -39,6 +39,7 @@
 		40B28E742B839D6A00951AEF /* PopUpWindowChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */; };
 		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
 		40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99E2C35E2E10077808D /* COTextField.swift */; };
+		40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		40B28E732B839D6A00951AEF /* PopUpWindowChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpWindowChildVC.swift; sourceTree = "<group>"; };
 		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		40C4F99E2C35E2E10077808D /* COTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTextField.swift; sourceTree = "<group>"; };
+		40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHelper+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				40A6E5572C30B0A8008340B5 /* Constants+Utils.swift */,
 				40A6E5592C30B572008340B5 /* COError+Utils.swift */,
+				40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				40ADE1482C337ADA00E2EEC9 /* COLoadAnimationVC.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */,
+				40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */,

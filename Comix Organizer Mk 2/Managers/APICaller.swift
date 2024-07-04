@@ -14,9 +14,9 @@ class APICaller {
     static let shared = APICaller()
     let cache         = NSCache<NSString, UIImage>()
     
-    func getPublishers() async throws -> [Publisher] {
+    func getPublishers(page: Int) async throws -> [Publisher] {
         // see note _ in app delegate > only place baseURL is not passed from a click
-        let endpoint        = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        let endpoint        = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
         // see note _ in app delegate > async variant of urlsession - may suspend code, hence the await
@@ -34,7 +34,8 @@ class APICaller {
     
   
     // publisherTitles = volumes in API
-    func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
+    #warning("add page & url 'offset' param")
+    func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
         let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
         guard let url = URL(string: endpoint) else {
             throw COError.invalidURL
@@ -54,7 +55,7 @@ class APICaller {
     }
     
     
-    func getTitleIssuesAPI(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
+    func getTitleIssues(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
         guard let url = URL(string: "\(titleDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=issues") else {
             throw COError.invalidURL
         }

@@ -199,6 +199,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
  *  PopUpWindowChildVC
     7.
+ 
+ *  COLoadAnimationVC
+    8. PROBLEM: WHY ARE MY DOTS LINED UP ON TOP OF EACH OTHER INSTEAD OF LAID OUT HORIZONATALLY & SPACED?
+    > sltn: I had the 'animate' prop on the VC's initializers set to false
     
  --------------------------
  

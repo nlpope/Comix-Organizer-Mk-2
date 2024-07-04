@@ -15,13 +15,13 @@
 							<key>EndingColumnNumber</key>
 							<string>0</string>
 							<key>EndingLineNumber</key>
-							<string>37</string>
+							<string>38</string>
 							<key>StartingColumnNumber</key>
 							<string>0</string>
 							<key>StartingLineNumber</key>
-							<string>36</string>
+							<string>37</string>
 							<key>Timestamp</key>
-							<string>741634811.411301</string>
+							<string>741754608.3623641</string>
 						</dict>
 						<key>rebasable-url</key>
 						<dict>
@@ -39,11 +39,11 @@
 					<key>text-context</key>
 					<dict>
 						<key>focused</key>
-						<string>    func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -&gt; [Title] {
+						<string>    func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -&gt; [Title] {
 </string>
 						<key>leading</key>
-						<string>  
-    // publisherTitles = volumes in API
+						<string>    // publisherTitles = volumes in API
+    #warning("add page &amp; url 'offset' param")
 </string>
 						<key>trailing</key>
 						<string>        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&amp;format=json&amp;field_list=volumes"

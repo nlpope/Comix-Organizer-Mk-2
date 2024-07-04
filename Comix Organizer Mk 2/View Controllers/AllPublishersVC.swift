@@ -15,26 +15,33 @@ class AllPublishersVC: UIViewController {
     
     enum Section { case main }
     
-    private var publishers = [Publisher]()
+    var publishers              = [Publisher]()
+    var filteredPublishers      = [Publisher]()
+    var page                    = 0
+    var hasMorePublishers       = true
+    var isSearching             = false
+    var isLoadingMorePublishers = false
     
-    //see note 5 in app delegate
+    // see note 5 in app delegate
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
-    // now call delegate?.didRequestTitles(fromPublisher..) in the didSelect method for the collection view delegate in here when you say selectedPublisherTitlesVC = SelectedPublisherTitlesVC( )
     weak var delegate: AllPublishersVCDelegate!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationController()
-        Task { try await getPublishers() }
-        // see note _ in app delegate > calling configureTableView() here results in blank page
+        configureSearchController()
+        configureCollectionView()
+        Task { try await getPublishers(page: page) }
+        
+        #warning(" calling configureTableView() here results in blank page")
     }
     
-    #warning("is this lifecycle method necessary or can i move the contents to VDL?")
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.frame = view.bounds
+        #warning("is setting the collectionview's 'frame' equivalent necessary here?")
+//        tableView.frame = view.bounds
     }
     
     
@@ -47,67 +54,129 @@ class AllPublishersVC: UIViewController {
     }
     
     
-    func getPublishers() async throws {
+    func configureSearchController() {
+        let mySearchController                                  = UISearchController()
+        mySearchController.searchResultsUpdater                 = self
+        mySearchController.searchBar.delegate                   = self
+        mySearchController.searchBar.placeholder                = "Search for a publisher"
+        mySearchController.obscuresBackgroundDuringPresentation = false
+        
+        navigationItem.searchController                         = mySearchController
+        navigationItem.hidesSearchBarWhenScrolling              = false
+    }
+    
+    
+    func hideSearchController() {
+        navigationItem.searchController?.searchBar.isHidden = true
+    }
+    
+    
+    func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
+        
+        view.addSubview(collectionView)
+        collectionView.delegate         = self
+        collectionView.backgroundColor  = .systemBackground
+        collectionView.register(PublisherCell.self, forCellWithReuseIdentifier: PublisherCell.reuseID)
+    }
+    
+    
+    func getPublishers(page: Int) async throws {
         presentLoadAnimationVC()
-        #warning("change to guard let?")
-        if let results = try? await APICaller.shared.getPublishers() { self.publishers += results } else {
+        if let results = try? await APICaller.shared.getPublishers(page: page) { self.publishers += results } else {
             self.dismissLoadAnimationVC()
             throw COError.failedToGetData
         }
-        configureTableView()
+//        configureTableView()
         dismissLoadAnimationVC()
     }
     
     
-    func configureTableView() {
-        print("inside configureTableView")
-        view.addSubview(tableView)
-        tableView.delegate      = self
-        tableView.dataSource    = self
-        tableView.frame         = view.bounds
+    func updateData(on publishers: [Publisher]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Publisher>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(publishers)
+        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
 }
 
 
-//MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWindowChildVCDelegate, SelectedPublisherTitlesVCDelegate {
+//MARK: COLLECTIONVIEW DELEGATE METHODS
+extension AllPublishersVC: UICollectionViewDelegate {
     
-    func didRequestTitles(fromPublisher publisher: String) {
-        <#code#>
-    }
-    
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text    = publishers[indexPath.row].name
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+        let height          = scrollView.frame.size.height
         
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedPublisherName       = publishers[indexPath.row].name
-        selectedPublisherDetailsURL = publishers[indexPath.row].publisherDetailsURL
-        
-        // trigger pop-up
-        var popUpWindowVC: PopUpWindowChildVC!
-        popUpWindowVC           = PopUpWindowChildVC(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
-        
-        popUpWindowVC.delegate = self
-        self.present(popUpWindowVC, animated: true, completion: nil)
-    }
-    
-    
-    func presentTitlesViewController() {
-        
+        if offSetY > contentHeight - height {
+            guard hasMorePublishers, !isLoadingMorePublishers else { return }
+            page += 1
+            getPubli
+        }
     }
 }
+
+
+// MARK: SEARCHBAR DELEGATE METHODS
+extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        
+        isSearching         = true
+        filteredPublishers  = publishers.filter { $0.name.lowercased().contains(filter.lowercased()) }
+        updateData(on: filteredPublishers)
+    }
+    
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        updateData(on: publishers)
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            searchBar.resignFirstResponder()
+            isSearching = false
+            updateData(on: publishers)
+        }
+    }
+}
+
 
 // see note 4 in app delegate
 
 
-
-
+//extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate {
+//    
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
+//    
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//        cell.textLabel?.text    = publishers[indexPath.row].name
+//        
+//        return cell
+//    }
+//    
+//    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        // now call delegate?.didRequestTitles(fromPublisher..) in the didSelect method for the collection view delegate in here when you say selectedPublisherTitlesVC = SelectedPublisherTitlesVC( )
+//       
+//        
+//        // trigger pop-up
+//        var popUpWindowVC: PopUpWindowChildVC!
+//        popUpWindowVC           = PopUpWindowChildVC(title: "Please Specify", text: "What would you like to see from this publisher?", buttonOneText: "Titles", buttonTwoText: "Characters", selectedPublisherName: selectedPublisherName, selectedPublisherDetailsURL: selectedPublisherDetailsURL)
+//        
+//        popUpWindowVC.delegate = self
+//        self.present(popUpWindowVC, animated: true, completion: nil)
+//    }
+//    
+//    
+//    func presentTitlesViewController() {
+//        
+//    }
+//}
