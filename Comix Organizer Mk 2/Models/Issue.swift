@@ -14,9 +14,9 @@ struct APIIssuesResponse: Decodable {
 }
 
 struct Issue: Decodable {
+    var issueDetailsURL: String
     var issueID: Int
     var issueName: String
-    var issueDetailsURL: String
     
     enum CodingKeys: String, CodingKey {
         case issueID = "id"

@@ -18,9 +18,9 @@ struct APITitlesResponse: Decodable, Hashable {
 #warning("then figure how to access title issue count & avatar image url in nested response")
 
 struct Title: Decodable, Hashable {
+    var titleDetailsURL: String
     var titleID: Int
     var titleName: String
-    var titleDetailsURL: String
     
     enum CodingKeys: String, CodingKey {
         case titleID            = "id"

@@ -14,7 +14,7 @@ class APICaller {
     static let shared = APICaller()
     let cache         = NSCache<NSString, UIImage>()
     
-    func getPublishersAPI() async throws -> [Publisher] {
+    func getPublishers() async throws -> [Publisher] {
         // see note _ in app delegate > only place baseURL is not passed from a click
         let endpoint        = "https://comicvine.gamespot.com/api/publishers/?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
@@ -33,7 +33,7 @@ class APICaller {
     }
     
   
-    //publisherTitles = volumes in API
+    // publisherTitles = volumes in API
     func getPublisherTitlesAPI(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
         let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
         guard let url = URL(string: endpoint) else {

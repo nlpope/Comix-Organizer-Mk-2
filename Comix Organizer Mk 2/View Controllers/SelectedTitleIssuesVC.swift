@@ -9,8 +9,8 @@ import UIKit
 
 class SelectedTitleIssuesVC: UIViewController {
 
-    public var selectedTitleName = ""
-    public var selectedTitleDetailsURL = ""
+    public var selectedTitleName: String!
+    public var selectedTitleDetailsURL: String!
     private var selectedTitleIssues = [Issue]()
     
     let tableView: UITableView = {
@@ -72,7 +72,12 @@ class SelectedTitleIssuesVC: UIViewController {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
+extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource, SelectedPublisherTitlesVCDelegate {
+    
+    func didRequestIssues(forTitle title: String) {
+        // do stuff
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedTitleIssues.count

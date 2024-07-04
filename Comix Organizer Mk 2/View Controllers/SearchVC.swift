@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol SearchVCDelegate: AnyObject {
-    func didRequestPublishers(for publisherName: String)
-}
-
 class SearchVC: UIViewController {
     
     let logoImageView           = UIImageView()
@@ -82,7 +78,8 @@ class SearchVC: UIViewController {
         callToActionButton.setTitle("GO", for: .normal)
         callToActionButton.translatesAutoresizingMaskIntoConstraints = false
         
-        callToActionButton.addTarget(self, action: #selector(pushPublisherVC), for: .touchUpInside)
+        // change selector based on isPublisherEntered value via 'if else'
+        callToActionButton.addTarget(self, action: #selector(pushSelectedPublisherTitlesVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
@@ -93,29 +90,35 @@ class SearchVC: UIViewController {
     }
     
     
-    @objc func pushPublisherVC() {
-        let publisherVC = AllPublishersVC(selectedPublisher: <#String#>)
-        navigationController?.pushViewController(publisherVC, animated: true)
+    @objc func pushSelectedPublisherTitlesVC() {
+        // need to find a way to get publisherdetailsURL from typed name > API call
+        APICaller.getPublisherTitlesAPI(<#T##self: APICaller##APICaller#>)
+        let selectedPublisherTitlesVC = SelectedPublisherTitlesVC(withPublisherName: <#T##String#>, andPublisherDetailsURL: <#T##String#>)
+        navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
     }
 }
 
 
-#warning("does not need to be a delegate if just pushing the publishersVC indescrim.")
-extension SearchVC: PopUpWindowChildVCDelegate {
-    func presentTitlesViewController() {
-        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesVC()
-        
-        selectedPublisherTitlesVC.selectedPublisherName         = selectedPublisherName
-        selectedPublisherTitlesVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
-        
-        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+extension SearchVC: UITextFieldDelegate {
+    // set up alert presentation / dismissal then handle the below
+    // if isPublisherEntered is false...
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        pushSelectedPublisherTitlesVC()
+        return true
     }
+    
+    // if isPublisherEntered is true...
 }
 
 
-//extension COSearchVC: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//        pushPublisherVC()
-//        return true
+
+//extension SearchVC: PopUpWindowChildVCDelegate {
+//    func presentTitlesViewController() {
+//        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesVC()
+//
+//        selectedPublisherTitlesVC.selectedPublisherName         = selectedPublisherName
+//        selectedPublisherTitlesVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
+//
+//        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
 //    }
 //}

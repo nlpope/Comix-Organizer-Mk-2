@@ -43,7 +43,7 @@
 </string>
 						<key>leading</key>
 						<string>  
-    //publisherTitles = volumes in API
+    // publisherTitles = volumes in API
 </string>
 						<key>trailing</key>
 						<string>        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&amp;format=json&amp;field_list=volumes"

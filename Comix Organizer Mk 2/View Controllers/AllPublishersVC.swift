@@ -7,25 +7,22 @@
 
 import UIKit
 
+protocol AllPublishersVCDelegate: AnyObject {
+    func didRequestTitles(fromPublisher publisher: String)
+}
+
 class AllPublishersVC: UIViewController {
     
     enum Section { case main }
     
-    var selectedPublisherName: String!
-    #warning("selectedPublisherDetailsURL can be moved to selectedPublisherTitles & handled via delegation")
-    var selectedPublisherDetailsURL: String!
     private var publishers = [Publisher]()
     
     //see note 5 in app delegate
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
+    // now call delegate?.didRequestTitles(fromPublisher..) in the didSelect method for the collection view delegate in here when you say selectedPublisherTitlesVC = SelectedPublisherTitlesVC( )
+    weak var delegate: AllPublishersVCDelegate!
     
-    
-    init(selectedPublisher: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.selectedPublisherName  = selectedPublisher
-        title                       = selectedPublisher
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +50,7 @@ class AllPublishersVC: UIViewController {
     func getPublishers() async throws {
         presentLoadAnimationVC()
         #warning("change to guard let?")
-        if let results = try? await APICaller.shared.getPublishersAPI() { self.publishers += results } else {
+        if let results = try? await APICaller.shared.getPublishers() { self.publishers += results } else {
             self.dismissLoadAnimationVC()
             throw COError.failedToGetData
         }
@@ -73,14 +70,15 @@ class AllPublishersVC: UIViewController {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWindowChildVCDelegate, SearchVCDelegate {
+extension AllPublishersVC: UITableViewDataSource, UITableViewDelegate, PopUpWindowChildVCDelegate, SelectedPublisherTitlesVCDelegate {
     
-    func didRequestPublishers(for publisherName: String) {
+    func didRequestTitles(fromPublisher publisher: String) {
         <#code#>
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return publishers.count }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)

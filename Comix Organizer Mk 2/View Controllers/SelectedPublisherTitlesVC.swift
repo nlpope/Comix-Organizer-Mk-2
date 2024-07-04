@@ -8,11 +8,16 @@
 import UIKit
 import CoreData
 
+protocol SelectedPublisherTitlesVCDelegate: AnyObject {
+    func didRequestIssues(forTitle title: String)
+}
+
 class SelectedPublisherTitlesVC: UIViewController {
 
-    public var selectedPublisherName = ""
-    public var selectedPublisherDetailsURL = ""
+    var selectedPublisherName: String!
+    var selectedPublisherDetailsURL: String!
     private var selectedPublisherTitles = [Title]()
+    weak var delegate: SelectedPublisherTitlesVCDelegate!
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -20,8 +25,18 @@ class SelectedPublisherTitlesVC: UIViewController {
         return table
     }()
     
-    #warning("context unused change to user defaults")
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    init(withPublisherName name: String, andPublisherDetailsURL url: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.selectedPublisherName          = name
+        self.selectedPublisherDetailsURL    = url
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +85,12 @@ class SelectedPublisherTitlesVC: UIViewController {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource {
+extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource, AllPublishersVCDelegate {
+    
+    func didRequestTitles(fromPublisher publisher: String) {
+        // do stuff
+    }
+    
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //sift through array of selectedpublishertitles

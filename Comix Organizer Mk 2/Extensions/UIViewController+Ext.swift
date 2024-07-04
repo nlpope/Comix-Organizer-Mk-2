@@ -9,9 +9,14 @@ import UIKit
 
 extension UIViewController {
     
+    func presentCOAlertOnMainThread(alertTitle: String, message: String, buttonTitle: String) {
+        DispatchQueue.main.async {
+            // do stuff
+        }
+    }
+    
     func presentLoadAnimationVC() {
         let loadAnimationVC = COLoadAnimationVC()
-//        loadingAnimationVC.delegate = self
         
         // hide nav controller & tabs
         self.navigationController?.setNavigationBarHidden(true, animated: false)
