@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-//title = volume in the API
-#warning("will diff. data source negate the need for APITitlesResponse?")
+// title = volume in the API
 struct APITitlesResponse: Decodable, Hashable {
     let results: [String: [Title]]
 }
