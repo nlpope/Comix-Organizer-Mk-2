@@ -25,6 +25,10 @@ struct Publisher: Decodable, Hashable {
         case publisherDetailsURL    = "api_detail_url"
         case image
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+    }
 }
 
 struct Image: Decodable, Hashable {
