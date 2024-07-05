@@ -14,33 +14,20 @@ class APICaller {
     let cache         = NSCache<NSString, UIImage>()
     
     
-    // think the reason I don't need to return optional type here is b/c 'throw' accts for error & nil is impossible (?)
+    // see notes 12a & 12b in app delegate
     func getPublishers(page: Int) async throws -> [Publisher] {
         let endpoint        = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
         
         // see note 11 in app delegate
-        // (data, _) = type (Data, [unnamed] URLResponse [that throws its own error])?
-        // ... i.e. it's equiv. to COError.failedToGetData - no need to handle that below
         let (data, _)       = try await URLSession.shared.data(from: url)
         let decoder         = JSONDecoder()
         let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
         
         return decodedJSON.results.sorted(by: {$1.name > $0.name})
-
     }
-    
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     // publisherTitles = volumes in API
     #warning("add page & url 'offset' param")

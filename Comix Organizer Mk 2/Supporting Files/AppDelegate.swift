@@ -175,6 +175,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  --------------------------
  
  PROJECT NOTES:
+ *  Biggest Struggles:
+    > delegate & protocol method placements (who was calling what)
+    > completion handlers vs task (async await)
+    >> more specifically the placement of keywords: async throws, Task @ call site vs @ func declaration, & do/catch block placement @ call site vs @ func declaration
+ --------------------------
+
  *  Publisher
     1. Coding keys steps:
     > start w plural "CodingKeys" for top level enums & expected nest name cases...
@@ -215,10 +221,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
     10. calling configureTableView() here resulted in blank page when I was working with a tableView. I wonder why?
  
- *  APICaller
+ *  APICaller & AllPublishersVC - Returning Error vs Throwing Error
     11.  async variant of urlsession - may suspend code, hence the await
+    > (data, _) = type (Data, [unnamed] URLResponse [that throws its own error])?
+    > ... i.e. it's equiv. to COError.failedToGetData - no need to handle that below
+ 
+    12a. think the reason I don't need to return optional type here is b/c 'throw' accts for error & nil is impossible (?)
+    12b. ERROR CORRECTION: refactored APICaller.getAllPublishers by removing incorrect do/try/catch block & including said block @ call site (AllPublishersVC)
+    > also, removing the '?' after the 'try' resulted in the 'results' not having to be force unwrapped, which allowed the catch block to be reached
+    > I also was incorrectly declaring 'async throws' @ the call site. Removing that meant I only needed to include the 'Task' concurrency wrapper inside the call site func, not the VDLoad
+    > see: https://medium.com/@kuopingl/returning-error-vs-throwing-error-in-swift-8d3657e1330d
  
  --------------------------
+ 
  
  */
 

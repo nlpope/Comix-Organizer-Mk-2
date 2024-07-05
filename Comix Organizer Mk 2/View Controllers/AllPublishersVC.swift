@@ -36,12 +36,6 @@ class AllPublishersVC: CODataLoadingVC {
         getPublishers(page: page)
         configureDataSource()
         // see note 10 in app delegate
-        
-//        Task {
-//            try await getPublishers(page: page)
-//            configureDataSource()
-//        }
-        
     }
     
     
@@ -81,6 +75,7 @@ class AllPublishersVC: CODataLoadingVC {
     }
     
     
+    // see note 12b in app delegate
     func getPublishers(page: Int) {
         showLoadingView()
         Task {
@@ -94,27 +89,6 @@ class AllPublishersVC: CODataLoadingVC {
             }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-//    func getPublishers(page: Int) async throws {
-//        showLoadingView()
-//        guard let results = try? await APICaller.shared.getPublishers(page: page) else {
-//            self.dismissLoadingView()
-//            #warning("unsure how to use throw to say self.presentCOAlertOnMainThread( )")
-//            throw COError.failedToGetData
-//        }
-//
-//        dismissLoadingView()
-//        updateUI(with: results)
-//        self.isLoadingMorePublishers = false
-//        
-//        // see note 9 in app delegate
-//    }
     
     
     func updateUI(with publishers: [Publisher]) {
@@ -168,7 +142,7 @@ extension AllPublishersVC: UICollectionViewDelegate {
         if offsetY > contentHeight - height {
             guard hasMorePublishers, !isLoadingMorePublishers else { return }
             page += 1
-            Task { try await getPublishers(page: page) }
+            getPublishers(page: page)
         }
     }
     
