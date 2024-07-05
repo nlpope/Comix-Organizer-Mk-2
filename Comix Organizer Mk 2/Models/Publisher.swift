@@ -35,11 +35,3 @@ struct Image: Decodable, Hashable {
     }
 }
 
-
-
-// see note 1a & 1b in app delegate > used to be in publisher struct but pulled out for inclusion of Image struct
-// https://anjalijoshi2426.medium.com/fetch-data-from-nested-json-in-api-in-swift-629e67fe8269
-
-
-
-

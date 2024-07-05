@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelectedTitleIssuesVC: UIViewController {
+class SelectedTitleIssuesVC: CODataLoadingVC {
 
     public var selectedTitleName: String!
     public var selectedTitleDetailsURL: String!
@@ -19,7 +19,6 @@ class SelectedTitleIssuesVC: UIViewController {
         return table
     }()
     
-//    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +29,7 @@ class SelectedTitleIssuesVC: UIViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         
         Task {
-            presentLoadAnimationVC()
+            showLoadingView()
             
             await configureTitleIssues()
             view.addSubview(tableView)
@@ -38,9 +37,7 @@ class SelectedTitleIssuesVC: UIViewController {
             tableView.dataSource = self
             tableView.frame = view.bounds
             
-            dismissLoadAnimationVC()
-            
-            
+            dismissLoadingView()
         }
     }
     

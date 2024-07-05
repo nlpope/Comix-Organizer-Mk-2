@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol AllPublishersVCDelegate: AnyObject {
+protocol AllPublishersVCDelegate: CODataLoadingVC {
     func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String)
 }
 
-class AllPublishersVC: UIViewController {
+class AllPublishersVC: CODataLoadingVC {
     
     enum Section { case main }
     
@@ -33,19 +33,15 @@ class AllPublishersVC: UIViewController {
         configureNavigationController()
         configureSearchController()
         configureCollectionView()
-        Task {
-            try await getPublishers(page: page)
-            configureDataSource()
-        }
-        
+        getPublishers(page: page)
+        configureDataSource()
         // see note 10 in app delegate
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        #warning("is setting the collectionview's 'frame' equivalent necessary here?")
-//        tableView.frame = view.bounds
+        
+//        Task {
+//            try await getPublishers(page: page)
+//            configureDataSource()
+//        }
+        
     }
     
     
@@ -85,22 +81,40 @@ class AllPublishersVC: UIViewController {
     }
     
     
-    func getPublishers(page: Int) async throws {
-        presentLoadAnimationVC()
-        // load works - so func is being reached
-        guard let results = try? await APICaller.shared.getPublishers(page: page) else {
-            self.dismissLoadAnimationVC()
-            #warning("unsure how to use throw to say self.presentCOAlertOnMainThread( )")
-            throw COError.failedToGetData
+    func getPublishers(page: Int) {
+        showLoadingView()
+        Task {
+            do {
+                let results = try await APICaller.shared.getPublishers(page: page)
+                dismissLoadingView()
+                updateUI(with: results)
+                self.isLoadingMorePublishers = false
+            } catch is COError {
+                print(COError.invalidURL.rawValue)
+            }
         }
-        // api call not working - payload not printing to console w/out throwing errors
-
-        dismissLoadAnimationVC()
-        updateUI(with: results)
-        self.isLoadingMorePublishers = false
-        
-        // see note 9 in app delegate
     }
+    
+    
+    
+    
+    
+    
+    
+//    func getPublishers(page: Int) async throws {
+//        showLoadingView()
+//        guard let results = try? await APICaller.shared.getPublishers(page: page) else {
+//            self.dismissLoadingView()
+//            #warning("unsure how to use throw to say self.presentCOAlertOnMainThread( )")
+//            throw COError.failedToGetData
+//        }
+//
+//        dismissLoadingView()
+//        updateUI(with: results)
+//        self.isLoadingMorePublishers = false
+//        
+//        // see note 9 in app delegate
+//    }
     
     
     func updateUI(with publishers: [Publisher]) {
@@ -113,6 +127,7 @@ class AllPublishersVC: UIViewController {
             let message = "There are no more publishers to display 😢."
             DispatchQueue.main.async {
                 self.hideSearchController()
+                
                 self.showEmptyStateView(with: message, in: self.view)
             }
             

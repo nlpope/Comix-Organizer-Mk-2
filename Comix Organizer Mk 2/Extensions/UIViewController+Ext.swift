@@ -11,31 +11,11 @@ extension UIViewController {
     
     func presentCOAlertOnMainThread(alertTitle: String, message: String, buttonTitle: String) {
         DispatchQueue.main.async {
-            // do stuff
+            let alertVC = COAlertChildVC(alertTitle: alertTitle, message: message, buttonTitle: buttonTitle)
+            alertVC.modalPresentationStyle  = .overFullScreen
+            alertVC.modalTransitionStyle    = .crossDissolve
+            
+            self.present(alertVC, animated: true)
         }
-    }
-    
-    
-    func presentLoadAnimationVC() {
-        let loadAnimationVC = COLoadAnimationVC()
-        
-        // hide nav controller & tabs
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.pushViewController(loadAnimationVC, animated: true)
-    }
-    
-    
-    func dismissLoadAnimationVC() {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    
-    func showEmptyStateView(with message: String, in view: UIView) {
-        let emptyStateView      = COEmptyStateView(message: message)
-        emptyStateView.frame    = view.bounds
-        view.addSubview(emptyStateView)
     }
 }

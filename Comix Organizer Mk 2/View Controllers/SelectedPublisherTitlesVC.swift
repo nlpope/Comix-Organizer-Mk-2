@@ -12,7 +12,7 @@ protocol SelectedPublisherTitlesVCDelegate: AnyObject {
     func didRequestIssues(forTitle: String)
 }
 
-class SelectedPublisherTitlesVC: UIViewController {
+class SelectedPublisherTitlesVC: CODataLoadingVC {
 
     var selectedPublisherName: String!
     var selectedPublisherDetailsURL: String!
@@ -64,7 +64,7 @@ class SelectedPublisherTitlesVC: UIViewController {
         Task {
             //why is animation switching to vertical here?
             //answer down below in notes & notebook
-            presentLoadAnimationVC()
+            showLoadingView()
              
             await configurePublisherTitles(withPublisherDetailsURL: selectedPublisherDetailsURL)
             view.addSubview(tableView)
@@ -72,7 +72,7 @@ class SelectedPublisherTitlesVC: UIViewController {
             tableView.dataSource = self
             tableView.frame = view.bounds
             
-            dismissLoadAnimationVC()
+            dismissLoadingView()
         }
     }
     

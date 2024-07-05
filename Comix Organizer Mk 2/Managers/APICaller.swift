@@ -5,8 +5,6 @@
 //  Created by Noah Pope on 11/7/23.
 //
 
-#warning("get rid of all the prints & comments > transfer to app delegate")
-
 import UIKit
 
 class APICaller {
@@ -16,48 +14,44 @@ class APICaller {
     let cache         = NSCache<NSString, UIImage>()
     
     
-    // need to alphabetize the payload - how to from comic vine api?
+    // think the reason I don't need to return optional type here is b/c 'throw' accts for error & nil is impossible (?)
     func getPublishers(page: Int) async throws -> [Publisher] {
         let endpoint        = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
-        // endpoint works & provides payload in chrome
         guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
+        
         // see note 11 in app delegate
+        // (data, _) = type (Data, [unnamed] URLResponse [that throws its own error])?
+        // ... i.e. it's equiv. to COError.failedToGetData - no need to handle that below
         let (data, _)       = try await URLSession.shared.data(from: url)
-        print("dataz = \(data)")
-        do {
-            let decoder     = JSONDecoder()
-            let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
-            print("decoded json results: \(decodedJSON.results)")
-            
-            return decodedJSON.results.sorted(by: {$1.name > $0.name})
+        let decoder         = JSONDecoder()
+        let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
+        
+        return decodedJSON.results.sorted(by: {$1.name > $0.name})
 
-        } catch {
-            print("an error occured in the decoder")
-            #warning("throw isn't printing anything to the console")
-            throw COError.failedToGetData
-        }
     }
     
   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // publisherTitles = volumes in API
     #warning("add page & url 'offset' param")
     func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
         let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
-        guard let url = URL(string: endpoint) else {
-            throw COError.invalidURL
-        }
-        print(url)
-
+        guard let url = URL(string: endpoint) else { throw COError.invalidURL }
+        
         let (data, _) = try await URLSession.shared.data(from: url)
-        print("the data was pulled from the URL. about to decode")
-
-        let decodedJSON = try JSONDecoder().decode(APITitlesResponse.self, from: data)
+        #warning("consider removing the guard/let/and ? since above tupule accts for errors in data retrieval")
+        guard let decodedJSON = try? JSONDecoder().decode(APITitlesResponse.self, from: data) else { throw COError.failedToGetData }
         
-        print("json decoded")
-        
-        print("this publisher has \(decodedJSON.results["volumes"]!.count) titles")
-         
         return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
     }
     
