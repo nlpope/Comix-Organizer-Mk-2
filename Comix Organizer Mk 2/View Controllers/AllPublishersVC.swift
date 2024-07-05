@@ -86,6 +86,7 @@ class AllPublishersVC: CODataLoadingVC {
                 updateUI(with: results)
                 self.isLoadingMorePublishers = false
             } catch is COError {
+                showEmptyStateView(with: COError.invalidURL.rawValue, in: self.view)
                 print(COError.invalidURL.rawValue)
             }
         }
@@ -110,6 +111,14 @@ class AllPublishersVC: CODataLoadingVC {
     }
     
     
+    func updateData(on publishers: [Publisher]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Publisher>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(publishers)
+        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
+    }
+    
+    
     func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Publisher>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
@@ -117,14 +126,6 @@ class AllPublishersVC: CODataLoadingVC {
             
             return cell
         })
-    }
-    
-    
-    func updateData(on publishers: [Publisher]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Publisher>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(publishers)
-        DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
 }
 

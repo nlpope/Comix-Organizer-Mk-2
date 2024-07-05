@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct APIPublishersResponse: Decodable, Hashable {
+struct APIPublishersResponse: Codable, Hashable {
     // see note 3 in app delegate
     let results: [Publisher]
 }
 
 // see note 2 in app delegate
-struct Publisher: Decodable, Hashable {
+struct Publisher: Codable, Hashable {
     var publisherDetailsURL: String
     var id: Int
     var name: String
@@ -31,7 +31,7 @@ struct Publisher: Decodable, Hashable {
     }
 }
 
-struct Image: Decodable, Hashable {
+struct Image: Codable, Hashable {
     var iconURL: String
     
     enum CodingKeys: String, CodingKey {
