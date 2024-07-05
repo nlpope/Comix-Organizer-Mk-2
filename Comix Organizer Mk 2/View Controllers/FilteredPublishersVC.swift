@@ -1,20 +1,21 @@
 //
-//  AllPublishersVC.swift
+//  FilteredPublishersVC.swift
 //  Comix Organizer Mk 2
 //
-//  Created by Noah Pope on 11/7/23.
+//  Created by Noah Pope on 7/5/24.
 //
 
 import UIKit
 
-protocol AllPublishersVCDelegate: AnyObject {
+protocol FilteredPublishersVCDelegate: AnyObject {
     func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String)
 }
 
-class AllPublishersVC: CODataLoadingVC {
+class FilteredPublishersVC: CODataLoadingVC {
     
     enum Section { case main }
     
+    var publisherContainsName: String!
     var publishers              = [Publisher]()
     var filteredPublishers      = [Publisher]()
     var page                    = 0
@@ -26,7 +27,18 @@ class AllPublishersVC: CODataLoadingVC {
     // see note 5 in app delegate
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
-    weak var delegate: AllPublishersVCDelegate!
+    weak var delegate: FilteredPublishersVCDelegate!
+    
+    
+    init(withName name: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.publisherContainsName = name
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     override func viewDidLoad() {
@@ -34,7 +46,7 @@ class AllPublishersVC: CODataLoadingVC {
         configureNavigationController()
         configureSearchController()
         configureCollectionView()
-        getPublishers(page: page)
+        getFilteredPublishers()
         configureDataSource()
         presentListOrderAlert()
         // see note 10 in app delegate
@@ -97,12 +109,12 @@ class AllPublishersVC: CODataLoadingVC {
     
     
     // see note 12b in app delegate
-    func getPublishers(page: Int) {
+    func getFilteredPublishers() {
         showLoadingView()
         isLoadingMorePublishers = true
         Task {
             do {
-                let results = try await APICaller.shared.getPublishers(page: page)
+                let results = try await APICaller.shared.getFilteredPublishers(withName: publisherContainsName, page: page)
                 dismissLoadingView()
                 updateUI(with: results)
                 self.isLoadingMorePublishers = false
@@ -121,7 +133,7 @@ class AllPublishersVC: CODataLoadingVC {
         // test empty state
         // self.publishers = []
         if self.publishers.isEmpty {
-            let message = "There are no more publishers to display 😢."
+            let message = "There are no publishers by the name \(publisherContainsName!) to display 😢."
             DispatchQueue.main.async {
                 self.hideSearchController()
                 self.showEmptyStateView(with: message, in: self.view)
@@ -152,7 +164,7 @@ class AllPublishersVC: CODataLoadingVC {
 
 
 //MARK: COLLECTIONVIEW DELEGATE METHODS
-extension AllPublishersVC: UICollectionViewDelegate {
+extension FilteredPublishersVC: UICollectionViewDelegate {
     
     // see note 13 in app delegate
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -163,7 +175,7 @@ extension AllPublishersVC: UICollectionViewDelegate {
         if offsetY > contentHeight - height {
             guard hasMorePublishers, !isLoadingMorePublishers else { return }
             page += 100
-            getPublishers(page: page)
+            getFilteredPublishers()
         }
     }
     
@@ -178,7 +190,7 @@ extension AllPublishersVC: UICollectionViewDelegate {
 
 
 // MARK: SEARCHBAR DELEGATE METHODS
-extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension FilteredPublishersVC: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
@@ -202,5 +214,3 @@ extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate {
         }
     }
 }
-
-// see note 4 in app delegate

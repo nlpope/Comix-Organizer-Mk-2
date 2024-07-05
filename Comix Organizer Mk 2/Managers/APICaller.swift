@@ -27,6 +27,20 @@ class APICaller {
         
         return decodedJSON.results.sorted(by: {$1.name > $0.name})
     }
+    
+    
+    func getFilteredPublishers(withName name: String, page: Int) async throws -> [Publisher] {
+        let endpoint        = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&filter=name:\(name)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        
+        guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
+        
+        // see note 11 in app delegate
+        let (data, _)       = try await URLSession.shared.data(from: url)
+        let decoder         = JSONDecoder()
+        let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
+        
+        return decodedJSON.results.sorted(by: {$1.name > $0.name})
+    }
 
     
     // publisherTitles = volumes in API

@@ -78,7 +78,7 @@ class SearchVC: UIViewController {
         callToActionButton.backgroundColor  = .blue
         callToActionButton.setTitle("GO", for: .normal)
         callToActionButton.translatesAutoresizingMaskIntoConstraints = false
-        callToActionButton.addTarget(self, action: #selector(pushAllPublishersOrSelectedPublishersVC), for: .touchUpInside)
+        callToActionButton.addTarget(self, action: #selector(pushAllOrFilteredPublishersVC), for: .touchUpInside)
         
         
         NSLayoutConstraint.activate([
@@ -90,25 +90,15 @@ class SearchVC: UIViewController {
     }
     
     
-    @objc func pushAllPublishersOrSelectedPublishersVC() {
-        // is publisher name entered ? pushSelectedPublisherTitlesVC : pushAllPublishersVC
-        // turn the below two into non objc funcs that can execute
-        isPublisherEntered ? pushSelectedPublisherTitlesVC() : pushAllPublishersVC()
-    }
+    @objc func pushAllOrFilteredPublishersVC() { isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC() }
     
-    
-    func pushSelectedPublisherTitlesVC() {
-        // display alert 'about to be taken to 'Marvel' titles'
-        // need to find a way to get publisherdetailsURL from typed name > API call
-        #warning("still working on getting details url from text field - maybe use the conv. init in selectedPubs?")
+    #warning("change to filtered publishers (same as allpubs but diff url call)")
+    func pushFilteredPublishersVC() {
         let publisherName = publisherNameTextField.text!
-        let publisherDetailsURL = ""
+        Task { try await APICaller.shared.getFilteredPublishers(withName: publisherName, page: 0) }
         
-        Task { try await APICaller.shared.getPublisherTitles(withPublisherDetailsURL: publisherDetailsURL) }
-        // add logic that says: if it comes back nil, display an alert || empty state view
-        
-        let selectedPublisherTitlesVC = SelectedPublisherTitlesVC(withPublisherName: publisherName, andPublisherDetailsURL: publisherDetailsURL)
-        navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
+        let filteredPublishersVC = FilteredPublishersVC(withName: publisherName)
+        navigationController?.pushViewController(filteredPublishersVC, animated: true)
     }
     
     
@@ -124,7 +114,7 @@ extension SearchVC: UITextFieldDelegate {
     // set up alert presentation / dismissal then handle the below
     // if isPublisherEntered is false...
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        isPublisherEntered ? pushSelectedPublisherTitlesVC() : pushAllPublishersVC()
+        isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC()
         return true
     }
     
