@@ -38,7 +38,7 @@ class COAlertChildVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
         // see note 18 in app delegate
-        view.addSubviews(containerView)
+        view.addSubview(containerView)
         containerView.addSubviews(titleLabel, messageLabel, actionButton)
         
         configureContainerView()
@@ -54,7 +54,7 @@ class COAlertChildVC: UIViewController {
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.widthAnchor.constraint(equalToConstant: 280),
-            containerView.heightAnchor.constraint(equalToConstant: 220)
+            containerView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
@@ -74,7 +74,7 @@ class COAlertChildVC: UIViewController {
     
     func configureMessageLabel() {
         messageLabel.text          = message ?? "Unable to complete request"
-        messageLabel.numberOfLines = 4
+        messageLabel.numberOfLines = 7
         
         NSLayoutConstraint.activate([
             messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),

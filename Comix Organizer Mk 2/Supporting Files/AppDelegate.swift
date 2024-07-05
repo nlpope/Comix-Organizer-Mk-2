@@ -230,19 +230,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     > ... i.e. it's equiv. to COError.failedToGetData - no need to handle that below
  
     12a. think the reason I don't need to return optional type here is b/c 'throw' accts for error & nil is impossible (?)
+    
     12b. ERROR CORRECTION: refactored APICaller.getAllPublishers by removing incorrect do/try/catch block & including said block @ call site (AllPublishersVC)
     > also, removing the '?' after the 'try' resulted in the 'results' not having to be force unwrapped, which allowed the catch block to be reached
     > I also was incorrectly declaring 'async throws' @ the call site. Removing that meant I only needed to include the 'Task' concurrency wrapper inside the call site func, not the VDLoad
     > see: https://medium.com/@kuopingl/returning-error-vs-throwing-error-in-swift-8d3657e1330d
  
- *  Publisher
-    13. Equatable is the base protocol for the Hashable protocol
     
  *  AllPublishersVC
-    14. PROBLEM: I was getting an Assertion Failure crash from the diffable datasource when trying to load more publishers, incrementing the 'offset' param by 1
-    > SLTN: I was setting the offset to increment by 1 when that only bumps out the very top result, leaving the rest of the 99 untouched (+ the 1 new result), resulting in a hash collision which wouldn't have sparked the crash, but WOULD have affected the search function's efficiency.
+    13. PROBLEM: I was getting an Assertion Failure crash from the diffable datasource when trying to load more publishers, incrementing the 'offset' param by 1
+    > SLTN: I was setting the offset to increment by 1 when that only bumps out the very top result, leaving the rest of the 99 untouched (+ the 1 new result), resulting in a hash collision.
+    >> i.e. Marvel comics & 98 other identicals were coming up again in the appended set, but with different hash values - it crashed because two identical identifiers (Marvel comics id = 4 && Marvel comics id = 4) held different hash values b/c of the new api call. Identical identifiers must have the same hash value UUID1
+    >> though the opposite is not true - identical hash values can have 2 mismatched identifiers (DC comics id = 6 && Archie comics id = 12) can have the same hash value of UUID2 (this is hash collision)
  
     > What I needed to do was increment the 'offset' param by 100 @ a time
+ 
+    > I also set the initial call's offset to be 600 to acct for the alphabetized payload and land @ Archie comics (first most recognizable company to me)
+ 
+ *  Publisher
+    14. Equatable is the base protocol for the Hashable protocol. Adding Equatable here negates need for that == lhs/rhs func in Publisher struct, b/c all stored props in struct must conform to Equatable: most types are but you include a custom type (Image) within it as well, which isn't automatically Equatable
+ 
+ *  AllPublishersVC
+    15. once the view appears for the first time the static var (seen by all instances of this VC & therefore accessed via not 'self.' but 'AllPublishersVC.') is set to false so that popup doesn't get triggered on every subsequent visit
  --------------------------
  
  

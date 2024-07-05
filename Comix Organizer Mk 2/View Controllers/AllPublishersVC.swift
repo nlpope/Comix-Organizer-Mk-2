@@ -21,6 +21,7 @@ class AllPublishersVC: CODataLoadingVC {
     var hasMorePublishers       = true
     var isSearching             = false
     var isLoadingMorePublishers = false
+    static var isFirstVisit     = true
     
     // see note 5 in app delegate
     var collectionView: UICollectionView!
@@ -35,7 +36,27 @@ class AllPublishersVC: CODataLoadingVC {
         configureCollectionView()
         getPublishers(page: page)
         configureDataSource()
+        presentImportantAlert()
         // see note 10 in app delegate
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    
+    // see note 15 in app delegate
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AllPublishersVC.isFirstVisit = false
+    }
+    
+    
+    func presentImportantAlert() {
+        guard AllPublishersVC.isFirstVisit else { return }
+        presentCOAlertOnMainThread(alertTitle: "Important", message: "The following list is loaded by popularity THEN alphabetically. So 'Z' may appear just before 'A' at the bottom when new publishers load. Happy searching 😁.", buttonTitle: "ok")
     }
     
     
@@ -133,8 +154,7 @@ class AllPublishersVC: CODataLoadingVC {
 //MARK: COLLECTIONVIEW DELEGATE METHODS
 extension AllPublishersVC: UICollectionViewDelegate {
     
-    #warning("below func incites error = Assertion failure in -[_UIDiffableDataSourceUpdate initWithIdentifiers:sectionIdentifiers:action:desinationIdentifier:relativePosition:destinationIsSection:], _UIDiffableDataSourceHelpers.m:504")
-    
+    // see note 13 in app delegate
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY         = scrollView.contentOffset.y
         let contentHeight   = scrollView.contentSize.height
