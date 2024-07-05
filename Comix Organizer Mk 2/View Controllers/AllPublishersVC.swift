@@ -78,6 +78,7 @@ class AllPublishersVC: CODataLoadingVC {
     // see note 12b in app delegate
     func getPublishers(page: Int) {
         showLoadingView()
+        isLoadingMorePublishers = true
         Task {
             do {
                 let results = try await APICaller.shared.getPublishers(page: page)
@@ -101,13 +102,10 @@ class AllPublishersVC: CODataLoadingVC {
             let message = "There are no more publishers to display 😢."
             DispatchQueue.main.async {
                 self.hideSearchController()
-                
                 self.showEmptyStateView(with: message, in: self.view)
             }
-            
             return
         }
-        
         self.updateData(on: self.publishers)
     }
     
@@ -133,6 +131,8 @@ class AllPublishersVC: CODataLoadingVC {
 
 //MARK: COLLECTIONVIEW DELEGATE METHODS
 extension AllPublishersVC: UICollectionViewDelegate {
+    
+    #warning("below func incites error = Assertion failure in -[_UIDiffableDataSourceUpdate initWithIdentifiers:sectionIdentifiers:action:desinationIdentifier:relativePosition:destinationIsSection:], _UIDiffableDataSourceHelpers.m:504")
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offsetY         = scrollView.contentOffset.y
