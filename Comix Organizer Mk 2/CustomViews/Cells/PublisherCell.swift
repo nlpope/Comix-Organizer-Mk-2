@@ -28,7 +28,7 @@ class PublisherCell: UICollectionViewCell {
     func set(publisher: Publisher) {
         publisherNameLabel.text = publisher.name
         #warning("solve the img > replace loadVC w GHfolowers method")
-//        avatarImageView.downloadImage(fromURL: publisher.avatarURL)
+        avatarImageView.downloadImage(fromURL: publisher.image.iconURL)
     }
     
     

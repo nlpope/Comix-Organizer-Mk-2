@@ -18,21 +18,28 @@ struct Publisher: Decodable, Hashable {
     var id: Int
     var name: String
     var image: Image
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case publisherDetailsURL    = "api_detail_url"
+        case image
+    }
 }
 
 struct Image: Decodable, Hashable {
     var iconURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case iconURL                = "icon_url"
+    }
 }
+
+
 
 // see note 1a & 1b in app delegate > used to be in publisher struct but pulled out for inclusion of Image struct
 // https://anjalijoshi2426.medium.com/fetch-data-from-nested-json-in-api-in-swift-629e67fe8269
 
-enum CodingKeys: String, CodingKey {
-    case id
-    case name
-    case image
-    case publisherDetailsURL    = "api_detail_url"
-    case iconURL                = "icon_url"
-}
+
 
 

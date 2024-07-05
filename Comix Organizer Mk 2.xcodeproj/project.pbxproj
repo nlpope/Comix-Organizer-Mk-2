@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */; };
 		40A1A1C82B6EF93400DDF311 /* ComixBinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */; };
 		40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1C92B6EFA7C00DDF311 /* Issue.swift */; };
 		40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A1A1CB2B6EFB8500DDF311 /* Title.swift */; };
@@ -61,7 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SuperImageClassifier.mlmodel; sourceTree = "<group>"; };
 		40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComixBinVC.swift; sourceTree = "<group>"; };
 		40A1A1C92B6EFA7C00DDF311 /* Issue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Issue.swift; sourceTree = "<group>"; };
 		40A1A1CB2B6EFB8500DDF311 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
 				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
 				40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */,
-				40A0B27B2BF9C1FB00D49D9B /* SuperImageClassifier.mlmodel */,
 				40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */,
 				40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */,
 			);
@@ -450,7 +447,6 @@
 				40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
-				40A0B27C2BF9C1FC00D49D9B /* SuperImageClassifier.mlmodel in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
 				40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */,
 				40ADE1402C33349100E2EEC9 /* COPopUpWindowView.swift in Sources */,
