@@ -142,7 +142,7 @@ extension AllPublishersVC: UICollectionViewDelegate {
         
         if offsetY > contentHeight - height {
             guard hasMorePublishers, !isLoadingMorePublishers else { return }
-            page += 1
+            page += 100
             getPublishers(page: page)
         }
     }

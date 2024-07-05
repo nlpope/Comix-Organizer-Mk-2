@@ -177,8 +177,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  PROJECT NOTES:
  *  Biggest Struggles:
     > delegate & protocol method placements (who was calling what)
+    
     > completion handlers vs task (async await)
     >> more specifically the placement of keywords: async throws, Task @ call site vs @ func declaration, & do/catch block placement @ call site vs @ func declaration
+    
+    > hash collision induced diffable datasource crash when loading new publishers (see note 14 below)
  --------------------------
 
  *  Publisher
@@ -232,6 +235,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     > I also was incorrectly declaring 'async throws' @ the call site. Removing that meant I only needed to include the 'Task' concurrency wrapper inside the call site func, not the VDLoad
     > see: https://medium.com/@kuopingl/returning-error-vs-throwing-error-in-swift-8d3657e1330d
  
+ *  Publisher
+    13. Equatable is the base protocol for the Hashable protocol
+    
+ *  AllPublishersVC
+    14. PROBLEM: I was getting an Assertion Failure crash from the diffable datasource when trying to load more publishers, incrementing the 'offset' param by 1
+    > SLTN: I was setting the offset to increment by 1 when that only bumps out the very top result, leaving the rest of the 99 untouched (+ the 1 new result), resulting in a hash collision which wouldn't have sparked the crash, but WOULD have affected the search function's efficiency.
+ 
+    > What I needed to do was increment the 'offset' param by 100 @ a time
  --------------------------
  
  
