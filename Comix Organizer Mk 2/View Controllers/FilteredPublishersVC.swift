@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol FilteredPublishersVCDelegate: AnyObject {
-    func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String)
-}
-
 class FilteredPublishersVC: CODataLoadingVC {
     
     enum Section { case main }
@@ -27,7 +23,6 @@ class FilteredPublishersVC: CODataLoadingVC {
     // see note 5 in app delegate
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
-    weak var delegate: FilteredPublishersVCDelegate!
     
     
     init(withName name: String) {
@@ -183,8 +178,9 @@ extension FilteredPublishersVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray     = isSearching ? filteredPublishers : publishers
         let publisher       = activeArray[indexPath.item]
+        let destVC          = SelectedPublisherTitlesVC(underPublisher: publisher.name, withDetailsURL: publisher.publisherDetailsURL)
         
-        delegate?.didRequestTitles(fromPublisher: publisher.name, withPublisherDetailsURL: publisher.publisherDetailsURL)
+        navigationController?.pushViewController(destVC, animated: true)
     }
 }
 

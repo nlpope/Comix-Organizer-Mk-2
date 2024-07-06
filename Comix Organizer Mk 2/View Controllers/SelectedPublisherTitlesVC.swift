@@ -6,11 +6,6 @@
 //
 
 import UIKit
-import CoreData
-
-protocol SelectedPublisherTitlesVCDelegate: AnyObject {
-    func didRequestIssues(forTitle: String)
-}
 
 class SelectedPublisherTitlesVC: CODataLoadingVC {
 
@@ -151,11 +146,10 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
 extension SelectedPublisherTitlesVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selctedTitleIssuesVC = SelectedTitleIssuesVC()
+        let title  = titles[indexPath.row]
+        let destVC = SelectedTitleIssuesVC(selectedTitleName: title.titleName, selectedTitleDetailsURL: title.titleDetailsURL)
         
-        selctedTitleIssuesVC.selectedTitleName = titles[indexPath.row].titleName
-        selctedTitleIssuesVC.selectedTitleDetailsURL = titles[indexPath.row].titleDetailsURL
-        self.navigationController?.pushViewController(selctedTitleIssuesVC, animated: true)
+        self.navigationController?.pushViewController(destVC, animated: true)
     }
 }
 

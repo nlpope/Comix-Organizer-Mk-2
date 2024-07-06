@@ -7,11 +7,12 @@
 
 import UIKit
 
+#warning("model this after SelectedPublisherTitlesVC - only NO DIFF. DATASOURCE, LEAVE TABLEVIEW AS IS")
 class SelectedTitleIssuesVC: CODataLoadingVC {
 
-    public var selectedTitleName: String!
-    public var selectedTitleDetailsURL: String!
-    private var selectedTitleIssues = [Issue]()
+    var selectedTitleName: String!
+    var selectedTitleDetailsURL: String!
+    var selectedTitleIssues = [Issue]()
     
     let tableView: UITableView = {
        let table = UITableView()
@@ -20,13 +21,21 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     }()
     
     
+    init(selectedTitleName: String, selectedTitleDetailsURL: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.selectedTitleName = selectedTitleName
+        self.selectedTitleDetailsURL = selectedTitleDetailsURL
+    }
+    
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        title = "\(selectedTitleName)"
-        navigationItem.title = "\(selectedTitleName) Issues"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        configureNavigationController()
         
         Task {
             showLoadingView()
@@ -41,6 +50,15 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         }
     }
     
+    
+    func configureNavigationController() {
+        title = "\(selectedTitleName!)"
+        view.backgroundColor = .systemBackground
+        navigationItem.title = "\(selectedTitleName!) Issues"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+    }
+    
     //why isn't this an override func here, like it is in selectedPublisherTitles/CharactersVC?
     func viewDidLayoutSubViews() {
         super.viewDidLayoutSubviews()
@@ -51,7 +69,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     //withTitleDetailsURL selectedTitleDetailsURL: String
     //i took out the params here for it being redundant; params only needed for API call & the val for THAT param exists up  top (preset by last VC)
     func configureTitleIssues() async {
-        print("selectedTitleDetailsURL = \(selectedTitleDetailsURL)")
             if let results = try? await APICaller.shared.getTitleIssues(withTitleDetailsURL: selectedTitleDetailsURL) {
             //if no issues boot out and send a popup saying there are no issues in this title/volume
             
@@ -69,7 +86,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource, SelectedPublisherTitlesVCDelegate {
+extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
     
     func didRequestIssues(forTitle: String) {
         // do stuff
@@ -82,8 +99,6 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource, Sel
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //03.17 - change reuse identifier to a (to be created) "checkableCell" identifier
-        //how to programmatically set up a reuse identifier
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let theIssue = selectedTitleIssues[indexPath.row]
         cell.textLabel?.text = theIssue.issueName

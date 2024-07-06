@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol AllPublishersVCDelegate: AnyObject {
-    func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String)
-}
-
 class AllPublishersVC: CODataLoadingVC {
     
     enum Section { case main }
@@ -26,7 +22,6 @@ class AllPublishersVC: CODataLoadingVC {
     // see note 5 in app delegate
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
-    weak var delegate: AllPublishersVCDelegate!
     
     
     override func viewDidLoad() {
