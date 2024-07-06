@@ -252,6 +252,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
  *  AllPublishersVC
     15. once the view appears for the first time the static var (seen by all instances of this VC & therefore accessed via not 'self.' but 'AllPublishersVC.') is set to false so that popup doesn't get triggered on every subsequent visit
+ 
+ *  SelectedPublisherTitlesVC
+    16. page, isLoadingMoreTitles, & hasMoreTitles doesn't apply since the API dumps all 13k or so items out at once
  --------------------------
  
  
