@@ -108,6 +108,16 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
+    func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Publisher>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
+            cell.set(publisher: publisher)
+            
+            return cell
+        })
+    }
+    
+    
     // see note 12b in app delegate
     func getFilteredPublishers() {
         showLoadingView()
@@ -149,16 +159,6 @@ class FilteredPublishersVC: CODataLoadingVC {
         snapshot.appendSections([.main])
         snapshot.appendItems(publishers)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
-    }
-    
-    
-    func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section, Publisher>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
-            cell.set(publisher: publisher)
-            
-            return cell
-        })
     }
 }
 

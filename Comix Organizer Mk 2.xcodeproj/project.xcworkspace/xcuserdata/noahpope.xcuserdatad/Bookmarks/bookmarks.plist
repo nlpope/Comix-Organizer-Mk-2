@@ -43,7 +43,7 @@
 </string>
 						<key>leading</key>
 						<string>    // publisherTitles = volumes in API
-    #warning("add page &amp; url 'offset' param")
+    #warning("add page param")
 </string>
 						<key>trailing</key>
 						<string>        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&amp;format=json&amp;field_list=volumes"

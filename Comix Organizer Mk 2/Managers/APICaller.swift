@@ -44,7 +44,7 @@ class APICaller {
 
     
     // publisherTitles = volumes in API
-    #warning("add page & url 'offset' param")
+    #warning("add page param")
     func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
         let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
         guard let url = URL(string: endpoint) else { throw COError.invalidURL }
