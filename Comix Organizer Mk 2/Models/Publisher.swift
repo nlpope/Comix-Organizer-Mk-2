@@ -13,9 +13,8 @@ struct APIPublishersResponse: Codable {
 }
 
 
-// see notes 2 in app delegate
+// see note 2 in app delegate
 struct Publisher: Codable, Hashable {
-    
     var publisherDetailsURL: String
     var id: Int
     var name: String

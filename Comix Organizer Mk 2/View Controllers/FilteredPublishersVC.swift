@@ -62,12 +62,12 @@ class FilteredPublishersVC: CODataLoadingVC {
     // see note 15 in app delegate
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AllPublishersVC.isFirstVisit = false
+        FilteredPublishersVC.isFirstVisit = false
     }
     
     
     func presentListOrderAlert() {
-        guard AllPublishersVC.isFirstVisit else { return }
+        guard FilteredPublishersVC.isFirstVisit else { return }
         presentCOAlertOnMainThread(alertTitle: "Important", message: "The following list is loaded by popularity THEN alphabetically. So 'Z' may appear just before 'A' at the bottom when new publishers load. Happy searching 😁.", buttonTitle: "ok")
     }
     

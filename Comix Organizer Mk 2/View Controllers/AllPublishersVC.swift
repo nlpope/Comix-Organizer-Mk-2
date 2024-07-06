@@ -171,8 +171,9 @@ extension AllPublishersVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeArray     = isSearching ? filteredPublishers : publishers
         let publisher       = activeArray[indexPath.item]
+        let destVC          = SelectedPublisherTitlesVC(underPublisher: publisher.name, withDetailsURL: publisher.publisherDetailsURL)
         
-        delegate?.didRequestTitles(fromPublisher: publisher.name, withPublisherDetailsURL: publisher.publisherDetailsURL)
+        navigationController?.pushViewController(destVC, animated: true)
     }
 }
 

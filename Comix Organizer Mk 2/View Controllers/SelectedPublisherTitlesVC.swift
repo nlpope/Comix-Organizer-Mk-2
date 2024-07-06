@@ -8,12 +8,16 @@
 import UIKit
 import CoreData
 
+#warning("keep this a tableview for lack of access to indiv. title imgs but set up searchable diff. datasource")
+
 protocol SelectedPublisherTitlesVCDelegate: AnyObject {
     func didRequestIssues(forTitle: String)
 }
 
 class SelectedPublisherTitlesVC: CODataLoadingVC {
 
+    enum Section { case main }
+    
     var selectedPublisherName: String!
     var selectedPublisherDetailsURL: String!
     
@@ -23,7 +27,9 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     var isSearching             = false
     var isLoadingMoreTitles     = false
     
-    weak var delegate: SelectedPublisherTitlesVCDelegate!
+    var dataSource: UITableViewDiffableDataSource<Section, Title>!
+    
+//    weak var delegate: SelectedPublisherTitlesVCDelegate!
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -32,16 +38,10 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }()
     
     
-    init() {
+    init(underPublisher publisherName: String, withDetailsURL publisherDetailsURL: String) {
         super.init(nibName: nil, bundle: nil)
-        
-    }
-    
-    
-    convenience init(withPublisherName name: String, andPublisherDetailsURL url: String) {
-        self.init()
-        self.selectedPublisherName          = name
-        self.selectedPublisherDetailsURL    = url
+        self.selectedPublisherName = publisherName
+        self.selectedPublisherDetailsURL = publisherDetailsURL
     }
     
     
@@ -97,14 +97,12 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
 
 
 //MARK: DELEGATE & DATASOURCE METHODS
-extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource, AllPublishersVCDelegate {
+#warning("consider removing delegate & protocols since setup is happening via inits & navcontroller pushing - it'd be different if for inst. a modal was dictating what is happening on the screen behind it - add this to app del. notes")
+extension SelectedPublisherTitlesVC: UITableViewDelegate, UITableViewDataSource, AllPublishersVCDelegate, FilteredPublishersVCDelegate {
     
     func didRequestTitles(fromPublisher publisher: String, withPublisherDetailsURL detailsURL: String) {
         self.selectedPublisherName = publisher
         self.selectedPublisherDetailsURL = detailsURL
-        
-        let navController   = UINavigationController(rootViewController: self)
-        present(navController, animated: true)
     }
     
 

@@ -9,14 +9,11 @@ import Foundation
 import UIKit
 
 // title = volume in the API
-struct APITitlesResponse: Decodable, Hashable {
+struct APITitlesResponse: Codable {
     let results: [String: [Title]]
 }
 
-#warning("figure if Codable prot. is still a problem. will this be able to be favorited without Encodable prot.?")
-#warning("then figure how to access title issue count & avatar image url in nested response")
-
-struct Title: Decodable, Hashable {
+struct Title: Codable, Hashable {
     var titleDetailsURL: String
     var titleID: Int
     var titleName: String
@@ -25,7 +22,6 @@ struct Title: Decodable, Hashable {
         case titleID            = "id"
         case titleName          = "name"
         case titleDetailsURL    = "api_detail_url"
-//        case titleIssueCount = "count_of_issues"
     }
     
     init(from decoder: Decoder) throws {
@@ -37,8 +33,10 @@ struct Title: Decodable, Hashable {
         titleName       = try container.decode(String.self, forKey: .titleName)
 
         titleDetailsURL = try container.decode(String.self, forKey: .titleDetailsURL)
-        
-//        titleIssueCount = try container.decode(Int.self, forKey: .titleIssueCount)
                 
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(titleName)
     }
 }
