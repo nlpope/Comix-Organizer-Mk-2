@@ -97,7 +97,7 @@ class AllPublishersVC: CODataLoadingVC {
         isLoadingMorePublishers = true
         Task {
             do {
-                let results = try await APICaller.shared.getPublishers(page: page)
+                let results = try await APICaller.shared.getAllPublishers(page: page)
                 dismissLoadingView()
                 updateUI(with: results)
                 self.isLoadingMorePublishers = false

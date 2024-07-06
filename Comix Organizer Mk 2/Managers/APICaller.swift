@@ -15,58 +15,54 @@ class APICaller {
     
     
     // see notes 12a & 12b in app delegate
-    func getPublishers(page: Int) async throws -> [Publisher] {
-        let endpoint        = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+    func getAllPublishers(page: Int) async throws -> [Publisher] {
+        let endpoint            = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
-        guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
+        guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
         
         // see note 11 in app delegate
-        let (data, _)       = try await URLSession.shared.data(from: url)
-        let decoder         = JSONDecoder()
-        let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
+        let (data, _)           = try await URLSession.shared.data(from: url)
+        let decoder             = JSONDecoder()
+        guard let decodedJSON   = try? decoder.decode(APIPublishersResponse.self, from: data) else { throw COError.failedToGetData }
         
         return decodedJSON.results.sorted(by: {$1.name > $0.name})
     }
     
     
     func getFilteredPublishers(withName name: String, page: Int) async throws -> [Publisher] {
-        let endpoint        = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&filter=name:\(name)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        let endpoint                = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&filter=name:\(name)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
-        guard let url       = URL(string: endpoint) else { throw COError.invalidURL }
+        guard let url               = URL(string: endpoint) else { throw COError.invalidURL }
         
-        // see note 11 in app delegate
-        let (data, _)       = try await URLSession.shared.data(from: url)
-        let decoder         = JSONDecoder()
-        let decodedJSON = try decoder.decode(APIPublishersResponse.self, from: data)
+        let (data, _)               = try await URLSession.shared.data(from: url)
+        let decoder                 = JSONDecoder()
+        guard let decodedJSON       = try? decoder.decode(APIPublishersResponse.self, from: data) else { throw COError.failedToGetData }
         
         return decodedJSON.results.sorted(by: {$1.name > $0.name})
     }
 
     
     // publisherTitles = volumes in API
-    #warning("add page param")
     func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
-        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
-        guard let url = URL(string: endpoint) else { throw COError.invalidURL }
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        #warning("consider removing the guard/let/and ? since above tupule accts for errors in data retrieval")
-        guard let decodedJSON = try? JSONDecoder().decode(APITitlesResponse.self, from: data) else { throw COError.failedToGetData }
+        let endpoint            = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
+        guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
+                
+        let (data, _)           = try await URLSession.shared.data(from: url)
+        let decoder             = JSONDecoder()
+        guard let decodedJSON   = try? decoder.decode(APITitlesResponse.self, from: data) else { throw COError.failedToGetData }
         
         return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
     }
     
     
     func getTitleIssues(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
-        guard let url = URL(string: "\(titleDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=issues") else {
-            throw COError.invalidURL
-        }
-        let (data, _) = try await URLSession.shared.data(from: url)
-        //05.16 problem child
-        //solved: I was expecting the "issues" url inst. of the "volume"
-        //and accounted for the field_list that should've only incl. "issues" as a param
-        let decodedJSON = try JSONDecoder().decode(APIIssuesResponse.self, from: data)
-        print("json decoded")
+        let endpoint            = "\(titleDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=issues"
+        guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
+        
+        let (data, _)           = try await URLSession.shared.data(from: url)
+        let decoder             = JSONDecoder()
+        guard let decodedJSON   = try? decoder.decode(APIIssuesResponse.self, from: data) else { throw COError.failedToGetData }
+        
         return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})
     }
     
@@ -99,6 +95,4 @@ class APICaller {
         
         task.resume()
     }
-    
-
 }

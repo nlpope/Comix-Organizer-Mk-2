@@ -30,7 +30,7 @@
 		40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AC92AFA617A009F80D3 /* APICaller.swift */; };
 		40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACB2AFA6187009F80D3 /* Publisher.swift */; };
 		40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */; };
-		40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */; };
+		40A83AD72AFD09D0009F80D3 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD62AFD09D0009F80D3 /* PersistenceManager.swift */; };
 		40AD02712C2F355B000C53A2 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD02702C2F355B000C53A2 /* SearchVC.swift */; };
 		40ADE13E2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */; };
 		40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */; };
@@ -89,7 +89,7 @@
 		40A83AC92AFA617A009F80D3 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		40A83ACB2AFA6187009F80D3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTabBarController.swift; sourceTree = "<group>"; };
-		40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		40A83AD62AFD09D0009F80D3 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		40AD02702C2F355B000C53A2 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedPublisherTitlesVC.swift; sourceTree = "<group>"; };
 		40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTitleIssuesVC.swift; sourceTree = "<group>"; };
@@ -276,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				40A83AC92AFA617A009F80D3 /* APICaller.swift */,
-				40A83AD62AFD09D0009F80D3 /* DataPersistenceManager.swift */,
+				40A83AD62AFD09D0009F80D3 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -471,7 +471,7 @@
 				40ADE14A2C337EEB00E2EEC9 /* COAvatarImageView.swift in Sources */,
 				40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */,
 				40112D762C3789AB0029D91E /* COBodyLabel.swift in Sources */,
-				40A83AD72AFD09D0009F80D3 /* DataPersistenceManager.swift in Sources */,
+				40A83AD72AFD09D0009F80D3 /* PersistenceManager.swift in Sources */,
 				40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */,
 				40112D742C3787B10029D91E /* COAlertContainerView.swift in Sources */,
 				40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */,

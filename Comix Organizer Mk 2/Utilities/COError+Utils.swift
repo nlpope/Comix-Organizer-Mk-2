@@ -8,6 +8,11 @@
 import Foundation
 
 enum COError: String, Error {
-    case invalidURL = "The URL passed is invalid."
-    case failedToGetData = "Failed to get the data."
+    case invalidURL         = "The URL passed is invalid."
+    case failedToGetData    = "Failed to get the data."
+    #warning("replace error msgs in empty states with below")
+    case noPublishedTitles  = ""
+    case unableToBookmark   = "There was a problem adding this title to your ComixBin. Please try again."
+    case alreadyInBookmarx  = "You've already added this title to your ComixBin."
+    
 }

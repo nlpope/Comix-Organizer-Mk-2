@@ -6,98 +6,11 @@
 	<array>
 		<dict>
 			<key>children</key>
-			<array>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>location-parameters</key>
-						<dict>
-							<key>EndingColumnNumber</key>
-							<string>0</string>
-							<key>EndingLineNumber</key>
-							<string>48</string>
-							<key>StartingColumnNumber</key>
-							<string>0</string>
-							<key>StartingLineNumber</key>
-							<string>47</string>
-							<key>Timestamp</key>
-							<string>741911365.92075</string>
-						</dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Comix Organizer Mk 2/Managers/APICaller.swift</string>
-							</dict>
-						</dict>
-					</dict>
-					<key>is-complete</key>
-					<true/>
-					<key>text-context</key>
-					<dict>
-						<key>focused</key>
-						<string>    func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -&gt; [Title] {
-</string>
-						<key>leading</key>
-						<string>    // publisherTitles = volumes in API
-    #warning("add page param")
-</string>
-						<key>trailing</key>
-						<string>        let endpoint = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&amp;format=json&amp;field_list=volumes"
-        guard let url = URL(string: endpoint) else { throw COError.invalidURL }
-        
-</string>
-					</dict>
-					<key>title</key>
-					<string>this is a getPublisherTitlesAPI bookmark</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-				<dict>
-					<key>destination</key>
-					<dict>
-						<key>rebasable-url</key>
-						<dict>
-							<key>base</key>
-							<string>workspace</string>
-							<key>payload</key>
-							<dict>
-								<key>relative-path</key>
-								<string>Comix Organizer Mk 2/SuperImageClassifier.mlmodel</string>
-							</dict>
-						</dict>
-						<key>type</key>
-						<string>DVTDocumentLocation</string>
-					</dict>
-					<key>title</key>
-					<string>Add new super image classifier model with enough data for mainstream heroes</string>
-					<key>type</key>
-					<string>bookmark</string>
-				</dict>
-			</array>
+			<array/>
 			<key>title</key>
-			<string>Today's Work</string>
+			<string>Return To</string>
 			<key>type</key>
 			<string>group</string>
-		</dict>
-		<dict>
-			<key>query-specification</key>
-			<dict>
-				<key>query</key>
-				<string>text</string>
-				<key>term</key>
-				<dict>
-					<key>text</key>
-					<string>decodedjson</string>
-				</dict>
-			</dict>
-			<key>title</key>
-			<string>find "decodedJSON" mentions</string>
-			<key>type</key>
-			<string>batch-find-query</string>
 		</dict>
 	</array>
 </dict>

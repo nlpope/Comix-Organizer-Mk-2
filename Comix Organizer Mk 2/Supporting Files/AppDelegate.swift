@@ -214,9 +214,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     > sltn: I had the 'animate' prop on the VC's initializers set to false
  
  *  AllPublishersVC
-    9. OG logic for getPublishers( ) in place of everything under guard, let, else { }
+    9. OG logic for getAllPublishers( ) in place of everything under guard, let, else { }
     
-        if let results = try? await APICaller.shared.getPublishers(page: page) { self.publishers += results } else {
+        if let results = try? await APICaller.shared.getAllPublishers(page: page) { self.publishers += results } else {
             self.dismissLoadAnimationVC()
             throw COError.failedToGetData
         }
