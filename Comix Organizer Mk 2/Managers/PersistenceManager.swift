@@ -77,38 +77,27 @@ enum PersistenceManager {
     static func save(issues: [Issue]) throws {
         // set issue.isFinished in defaults for key
         let encoder = JSONEncoder()
-        do {
-            let data = try encoder.encode(issues)
-            defaults.setValue(data, forKey: Keys.issues)
-        } catch is COError {
-            throw COError.cannotRecordCompletion
+        guard let data = try? encoder.encode(issues) else {
+            throw COError.failedToRecordCompletion
         }
+        defaults.setValue(data, forKey: Keys.issues)
+        
     }
     
     
     // use in cell for row at method
-    static func loadIssues() throws -> [Issue]? {
-
-        guard let data = defaults.data(forKey: Keys.issues) else {
-            return nil
+    static func loadProgress() throws -> [Issue] {
+        
+        guard let data = defaults.data(forKey: Keys.issues), data.count != 0 else {
+            return []
         }
         
+        
         let decoder = JSONDecoder()
-        do {
-            let issues = try decoder.decode([Issue].self, from: data)
-            return issues
-        } catch let error {
-            throw error
+        guard let issues = try? decoder.decode([Issue].self, from: data) else {
+            throw COError.failedToGetData
         }
+        
+        return issues
     }
-    
-//    static func saveCellAccessory(forIssue issue: Issue) {
-//        defaults.set(cellAccessory, forKey: Keys.cellAccessory)
-//    }
-//    
-//    
-//    static func loadAccessory(forIssue issue: Issue) -> UITableViewCell.AccessoryType {
-//        guard let data = defaults.da
-//    }
-   
 }

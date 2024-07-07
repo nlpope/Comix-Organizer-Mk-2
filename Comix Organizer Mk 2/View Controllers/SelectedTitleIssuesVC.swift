@@ -14,7 +14,8 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     var selectedTitleDetailsURL: String!
     
     var titleID: Int!
-    var selectedTitleIssues = [Issue]()
+    var selectedTitleIssues  = [Issue]()
+    var persistedTitleIssues = [Issue]()
     
     var tableView: UITableView!
     
@@ -33,11 +34,17 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("selectedTitleDetailsURL = \(selectedTitleDetailsURL!)")
         configureNavigationController()
         // see note 17 in app delegate
+//        loadProgress()
         getTitleIssues()
     }
+    
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        loadProgress()
+//    }
     
     
     func configureNavigationController() {
@@ -64,8 +71,34 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     }
     
     
+    func saveProgress() {
+        showLoadingView()
+        do {
+            let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
+
+            try PersistenceManager.save(issues: activeArray)
+            dismissLoadingView()
+            presentCOAlertOnMainThread(alertTitle: "Success!", message: "Your progress has been saved successfully 🥳", buttonTitle: "Yay")
+        } catch let error {
+            presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToRecordCompletion.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    
+    func loadProgress() {
+        showLoadingView()
+        do {
+            let persistedIssues = try PersistenceManager.loadProgress()
+            dismissLoadingView()
+        } catch {
+            presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToLoadProgress.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    
     func getTitleIssues() {
         showLoadingView()
+            
         Task {
             do {
                 var results = try await APICaller.shared.getTitleIssues(withTitleDetailsURL: selectedTitleDetailsURL)
@@ -81,15 +114,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
             }
         }
     }
-    
-    
-//    func getPublisherTitle(withPublisherDetailsURL publisherDetailsURL: String) -> Title {
-//        Task {
-//            let results = try await APICaller.shared.getPublisherTitles(withPublisherDetailsURL: publisherDetailsURL)
-//            let title = results[0]
-//            return title
-//        }
-//    }
     
     
     @objc func addButtonTapped() { addToComixBin(withTitle: titleInQuestion) }
@@ -117,38 +141,45 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedTitleIssues.count
+        let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
+        return activeArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let issue = selectedTitleIssues[indexPath.row]
-        cell.textLabel?.text = "\(issue.issueNumber). \(issue.issueName)"
-        cell.accessoryType = PersistenceManager.loadIssueState(forIssue: issue)
+        let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
+        let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let issue               = activeArray[indexPath.row]
+        
+        cell.textLabel?.text    = "\(issue.issueNumber). \(issue.issueName)"
+        
+        
+        cell.accessoryType      = issue.isFinished ? .checkmark : .none
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // make var that flicks to false if it's 1st check
+        // after 1st check load all data from persistence manager then handle checks down here w the new activeArray
         tableView.deselectRow(at: indexPath, animated: true)
-        var issue   = selectedTitleIssues[indexPath.row]
+        let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
+
+        var issue   = activeArray[indexPath.row]
         let cell    = tableView.cellForRow(at: indexPath)
         
         if cell!.accessoryType == .none {
             cell?.accessoryType = .checkmark
             issue.isFinished    = true
-            do {
-                try PersistenceManager.save(issues: selectedTitleIssues)
-            } catch let error {
-                presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: , buttonTitle: <#T##String#>)
-            }
+//            saveProgress()
+            
         } else {
             cell?.accessoryType = .none
             issue.isFinished    = false
+//            saveProgress()
         }
-        // @ viewWillAppear, persistence.load(cell or load(cells
+        
         // see: https://stackoverflow.com/questions/8388136/how-to-remove-the-check-mark-on-another-click
         
         

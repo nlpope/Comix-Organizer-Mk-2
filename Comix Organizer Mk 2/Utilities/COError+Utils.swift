@@ -13,6 +13,7 @@ enum COError: String, Error {
     #warning("replace error msgs in empty states with below")
     case unableToBookmark       = "There was a problem adding this title to your ComixBin. Please try again."
     case alreadyInBookmarx      = "You've already added this title to your ComixBin."
-    case cannotRecordCompletion = "We were unable to record this completion. Please try again."
+    case failedToRecordCompletion = "We were unable to record this completion. Please try again."
+    case failedToLoadProgress   = "We were unable to retrieve your progress from your last visit. Your progress will be reset. If the issue persists, please notify the developer."
     
 }
