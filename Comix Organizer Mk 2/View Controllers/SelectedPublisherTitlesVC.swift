@@ -40,6 +40,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
         configureNavigationVC()
         configureSearchController()
         configureTableView()
+        
         getPublisherTitles()
         configureDataSource()
     }
@@ -94,6 +95,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
         dataSource = UITableViewDiffableDataSource<Section, Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = title.titleName
+            cell.accessoryType
             
             return cell
         })
@@ -146,8 +148,11 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
 extension SelectedPublisherTitlesVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let title  = titles[indexPath.row]
-        let destVC = SelectedTitleIssuesVC(selectedTitleName: title.titleName, selectedTitleDetailsURL: title.titleDetailsURL)
+        let activeArray                     = isSearching ? filteredTitles : titles
+        let title                           = activeArray[indexPath.row]
+        let destVC                          = SelectedTitleIssuesVC(selectedTitleName: title.titleName, selectedTitleDetailsURL: title.titleDetailsURL)
+        destVC.titleID                      = title.titleID
+        destVC.titleInQuestion              = title
         
         self.navigationController?.pushViewController(destVC, animated: true)
     }

@@ -182,6 +182,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     >> more specifically the placement of keywords: async throws, Task @ call site vs @ func declaration, & do/catch block placement @ call site vs @ func declaration
     
     > hash collision induced diffable datasource crash when loading new publishers (see note 14 below)
+ 
+    > presenting tableViews via concurrency without diffable datasource (see note 17 below)
  --------------------------
 
  *  Publisher
@@ -255,6 +257,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
  *  SelectedPublisherTitlesVC
     16. page, isLoadingMoreTitles, & hasMoreTitles doesn't apply since the API dumps all 13k or so items out at once
+ 
+ *  SelectedTitleIssuesVC
+    17. PROBLEM: I struggled getting the tableView to display here after abstracting the OG Task {} from the VDLoad (see below from lhs code). 
+    > SLTN: I think because concurrency is in play w/out a diffable datasource may have something to do with why the data wasn't populating each cell as the datasource dictates. I notice a test print statement located just below the getTitleIssues() call fires BEFORE said call completes (concurrency), so i needed to move the table view configureTableView call from the VDLoad into the end of the getTitleIssues API call within the same Task { }  - return to this with tutor
+ 
+ OG Code:
+ override func viewDidLoad() {
+     Task {
+     showLoadingView()
+     
+     await configureTitleIssues()
+     view.addSubview(tableView)
+     tableView.delegate = self
+     tableView.dataSource = self
+     tableView.frame = view.bounds
+     
+     dismissLoadingView()
+     }
+ }
+ 
+ *  ComixBinVC
+    18. getSavedTitles() is not concurrent/Task driven so we can safely configure the table view independently of it.
+ 
  --------------------------
  
  

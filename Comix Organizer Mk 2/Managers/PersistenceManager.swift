@@ -14,7 +14,11 @@ enum PersistenceActiontype {
 enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
-    enum Keys { static let bookmarx = "bookmarx"}
+    enum Keys {
+        static let bookmarx             = "bookmarx"
+        static let issues               = "issues"
+    }
+    
     
     static func updateWith(title: Title, actionType: PersistenceActiontype, completed: @escaping (COError?) -> Void) {
         retrieveBookmarx { result in
@@ -67,4 +71,44 @@ enum PersistenceManager {
             return .unableToBookmark
         }
     }
+    
+    
+    // use in didselect method
+    static func save(issues: [Issue]) throws {
+        // set issue.isFinished in defaults for key
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(issues)
+            defaults.setValue(data, forKey: Keys.issues)
+        } catch is COError {
+            throw COError.cannotRecordCompletion
+        }
+    }
+    
+    
+    // use in cell for row at method
+    static func loadIssues() throws -> [Issue]? {
+
+        guard let data = defaults.data(forKey: Keys.issues) else {
+            return nil
+        }
+        
+        let decoder = JSONDecoder()
+        do {
+            let issues = try decoder.decode([Issue].self, from: data)
+            return issues
+        } catch let error {
+            throw error
+        }
+    }
+    
+//    static func saveCellAccessory(forIssue issue: Issue) {
+//        defaults.set(cellAccessory, forKey: Keys.cellAccessory)
+//    }
+//    
+//    
+//    static func loadAccessory(forIssue issue: Issue) -> UITableViewCell.AccessoryType {
+//        guard let data = defaults.da
+//    }
+   
 }
