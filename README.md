@@ -29,6 +29,8 @@ ComixOrganizer - A way to keep track of and check off comic issues after you've 
 
 ComixOrganizer uses Swift's new diffable datasource to sift through publishers and their respective titles
 
+Once a publisher is selected, if they have 'Comics' in their title it will automaticlaly be changed to read 'Comix' to match the aesthetic of the app
+
 ## Built With
 
 * Swift
