@@ -38,7 +38,7 @@ Once a publisher is selected, if they have 'Comics' in their title it will autom
 
 ## Authors
 
-Noah Pope
+* **Noah Pope**
 
 
 ## License
