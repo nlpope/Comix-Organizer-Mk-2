@@ -27,7 +27,7 @@ ComixOrganizer - A way to keep track of and check off comic issues after you've 
 
 ### Extras
 
-ComixOrganizer uses Swift's new diffable datasource to sift through publishers and their respective titles
+ComixOrganizer has been updated to use Swift's new diffable datasource to sift through publishers and their respective titles
 
 Once a publisher is selected, if they have 'Comics' in their title it will automaticlaly be changed to read 'Comix' to match the aesthetic of the app
 
@@ -43,7 +43,7 @@ Once a publisher is selected, if they have 'Comics' in their title it will autom
 
 ## License
 
-Copyright (c) 2024 by Noah Pope (https://github.com/nlpope/Comix-Organizer-Mk-2)
+Copyright (c) 2023 by Noah Pope (https://github.com/nlpope/Comix-Organizer-Mk-2)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
