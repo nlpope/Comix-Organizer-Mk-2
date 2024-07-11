@@ -207,9 +207,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     return table
     ( )
-  
- *  PopUpWindowChildVC
-    7.
  
  *  COLoadAnimationVC
     8. PROBLEM: WHY ARE MY DOTS LINED UP ON TOP OF EACH OTHER INSTEAD OF LAID OUT HORIZONATALLY & SPACED?
