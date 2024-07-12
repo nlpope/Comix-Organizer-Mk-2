@@ -24,9 +24,6 @@
 		40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */; };
 		40A83A9F2AFA5F5E009F80D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */; };
 		40A83AA22AFA5F5E009F80D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */; };
-		40A83AAD2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AAC2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift */; };
-		40A83AB72AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AB62AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift */; };
-		40A83AB92AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */; };
 		40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AC92AFA617A009F80D3 /* APICaller.swift */; };
 		40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACB2AFA6187009F80D3 /* Publisher.swift */; };
 		40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */; };
@@ -43,23 +40,6 @@
 		40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99E2C35E2E10077808D /* COTextField.swift */; };
 		40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		40A83AA92AFA5F5E009F80D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 40A83A872AFA5F5B009F80D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 40A83A8E2AFA5F5B009F80D3;
-			remoteInfo = "Comix Organizer Mk 2";
-		};
-		40A83AB32AFA5F5E009F80D3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 40A83A872AFA5F5B009F80D3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 40A83A8E2AFA5F5B009F80D3;
-			remoteInfo = "Comix Organizer Mk 2";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		40112D6F2C37823B0029D91E /* CODataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CODataLoadingVC.swift; sourceTree = "<group>"; };
@@ -81,9 +61,7 @@
 		40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40A83AA12AFA5F5E009F80D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40A83AA32AFA5F5E009F80D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		40A83AA82AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Comix Organizer Mk 2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83AAC2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2Tests.swift; sourceTree = "<group>"; };
-		40A83AB22AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Comix Organizer Mk 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A83AB62AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2UITests.swift; sourceTree = "<group>"; };
 		40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		40A83AC92AFA617A009F80D3 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
@@ -105,20 +83,6 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		40A83A8C2AFA5F5B009F80D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		40A83AA52AFA5F5E009F80D3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		40A83AAF2AFA5F5E009F80D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -201,8 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */,
-				40A83AA82AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests.xctest */,
-				40A83AB22AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -338,42 +300,6 @@
 			productReference = 40A83A8F2AFA5F5B009F80D3 /* Comix Organizer Mk 2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		40A83AA72AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 40A83ABF2AFA5F5E009F80D3 /* Build configuration list for PBXNativeTarget "Comix Organizer Mk 2Tests" */;
-			buildPhases = (
-				40A83AA42AFA5F5E009F80D3 /* Sources */,
-				40A83AA52AFA5F5E009F80D3 /* Frameworks */,
-				40A83AA62AFA5F5E009F80D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				40A83AAA2AFA5F5E009F80D3 /* PBXTargetDependency */,
-			);
-			name = "Comix Organizer Mk 2Tests";
-			productName = "Comix Organizer Mk 2Tests";
-			productReference = 40A83AA82AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		40A83AB12AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 40A83AC22AFA5F5E009F80D3 /* Build configuration list for PBXNativeTarget "Comix Organizer Mk 2UITests" */;
-			buildPhases = (
-				40A83AAE2AFA5F5E009F80D3 /* Sources */,
-				40A83AAF2AFA5F5E009F80D3 /* Frameworks */,
-				40A83AB02AFA5F5E009F80D3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				40A83AB42AFA5F5E009F80D3 /* PBXTargetDependency */,
-			);
-			name = "Comix Organizer Mk 2UITests";
-			productName = "Comix Organizer Mk 2UITests";
-			productReference = 40A83AB22AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -386,14 +312,6 @@
 				TargetAttributes = {
 					40A83A8E2AFA5F5B009F80D3 = {
 						CreatedOnToolsVersion = 15.0.1;
-					};
-					40A83AA72AFA5F5E009F80D3 = {
-						CreatedOnToolsVersion = 15.0.1;
-						TestTargetID = 40A83A8E2AFA5F5B009F80D3;
-					};
-					40A83AB12AFA5F5E009F80D3 = {
-						CreatedOnToolsVersion = 15.0.1;
-						TestTargetID = 40A83A8E2AFA5F5B009F80D3;
 					};
 				};
 			};
@@ -411,8 +329,6 @@
 			projectRoot = "";
 			targets = (
 				40A83A8E2AFA5F5B009F80D3 /* Comix Organizer Mk 2 */,
-				40A83AA72AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests */,
-				40A83AB12AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -424,20 +340,6 @@
 			files = (
 				40A83AA22AFA5F5E009F80D3 /* LaunchScreen.storyboard in Resources */,
 				40A83A9F2AFA5F5E009F80D3 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		40A83AA62AFA5F5E009F80D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		40A83AB02AFA5F5E009F80D3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,37 +383,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		40A83AA42AFA5F5E009F80D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				40A83AAD2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		40A83AAE2AFA5F5E009F80D3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				40A83AB92AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift in Sources */,
-				40A83AB72AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		40A83AAA2AFA5F5E009F80D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 40A83A8E2AFA5F5B009F80D3 /* Comix Organizer Mk 2 */;
-			targetProxy = 40A83AA92AFA5F5E009F80D3 /* PBXContainerItemProxy */;
-		};
-		40A83AB42AFA5F5E009F80D3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 40A83A8E2AFA5F5B009F80D3 /* Comix Organizer Mk 2 */;
-			targetProxy = 40A83AB32AFA5F5E009F80D3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */ = {
@@ -704,82 +576,6 @@
 			};
 			name = Release;
 		};
-		40A83AC02AFA5F5E009F80D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M9MT23QW7V;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "noahpope.Comix-Organizer-Mk-2Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Comix Organizer Mk 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Comix Organizer Mk 2";
-			};
-			name = Debug;
-		};
-		40A83AC12AFA5F5E009F80D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M9MT23QW7V;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "noahpope.Comix-Organizer-Mk-2Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Comix Organizer Mk 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Comix Organizer Mk 2";
-			};
-			name = Release;
-		};
-		40A83AC32AFA5F5E009F80D3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M9MT23QW7V;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "noahpope.Comix-Organizer-Mk-2UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Comix Organizer Mk 2";
-			};
-			name = Debug;
-		};
-		40A83AC42AFA5F5E009F80D3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M9MT23QW7V;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "noahpope.Comix-Organizer-Mk-2UITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Comix Organizer Mk 2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -797,24 +593,6 @@
 			buildConfigurations = (
 				40A83ABD2AFA5F5E009F80D3 /* Debug */,
 				40A83ABE2AFA5F5E009F80D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		40A83ABF2AFA5F5E009F80D3 /* Build configuration list for PBXNativeTarget "Comix Organizer Mk 2Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				40A83AC02AFA5F5E009F80D3 /* Debug */,
-				40A83AC12AFA5F5E009F80D3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		40A83AC22AFA5F5E009F80D3 /* Build configuration list for PBXNativeTarget "Comix Organizer Mk 2UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				40A83AC32AFA5F5E009F80D3 /* Debug */,
-				40A83AC42AFA5F5E009F80D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
