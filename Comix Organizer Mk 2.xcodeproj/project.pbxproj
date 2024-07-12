@@ -61,9 +61,6 @@
 		40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40A83AA12AFA5F5E009F80D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40A83AA32AFA5F5E009F80D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		40A83AAC2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2Tests.swift; sourceTree = "<group>"; };
-		40A83AB62AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2UITests.swift; sourceTree = "<group>"; };
-		40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comix_Organizer_Mk_2UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		40A83AC92AFA617A009F80D3 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		40A83ACB2AFA6187009F80D3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTabBarController.swift; sourceTree = "<group>"; };
@@ -155,8 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				40A83A912AFA5F5B009F80D3 /* Comix Organizer Mk 2 */,
-				40A83AAB2AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests */,
-				40A83AB52AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests */,
 				40A83A902AFA5F5B009F80D3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -182,23 +177,6 @@
 				40A83AA32AFA5F5E009F80D3 /* Info.plist */,
 			);
 			path = "Comix Organizer Mk 2";
-			sourceTree = "<group>";
-		};
-		40A83AAB2AFA5F5E009F80D3 /* Comix Organizer Mk 2Tests */ = {
-			isa = PBXGroup;
-			children = (
-				40A83AAC2AFA5F5E009F80D3 /* Comix_Organizer_Mk_2Tests.swift */,
-			);
-			path = "Comix Organizer Mk 2Tests";
-			sourceTree = "<group>";
-		};
-		40A83AB52AFA5F5E009F80D3 /* Comix Organizer Mk 2UITests */ = {
-			isa = PBXGroup;
-			children = (
-				40A83AB62AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITests.swift */,
-				40A83AB82AFA5F5E009F80D3 /* Comix_Organizer_Mk_2UITestsLaunchTests.swift */,
-			);
-			path = "Comix Organizer Mk 2UITests";
 			sourceTree = "<group>";
 		};
 		40A83AC52AFA5F7D009F80D3 /* Models */ = {
