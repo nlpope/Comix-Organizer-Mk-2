@@ -15,9 +15,9 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     var titleID: Int!
     var selectedTitleIssues  = [Issue]()
-    var persistedTitleIssues = [Issue]()
     
     var tableView: UITableView!
+    var progressLoaded: Bool = false
     
     
     init(selectedTitleName: String, selectedTitleDetailsURL: String) {
@@ -36,15 +36,14 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         super.viewDidLoad()
         configureNavigationController()
         // see note 17 in app delegate
-//        loadProgress()
         getTitleIssues()
     }
     
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        loadProgress()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadProgress()
+    }
     
     
     func configureNavigationController() {
@@ -72,33 +71,44 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     
     func saveProgress() {
-        showLoadingView()
         do {
-            let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
-
-            try PersistenceManager.save(issues: activeArray)
-            dismissLoadingView()
-            presentCOAlertOnMainThread(alertTitle: "Success!", message: "Your progress has been saved successfully 🥳", buttonTitle: "Yay")
-        } catch let error {
+            try PersistenceManager.saveProgress(forIssues: selectedTitleIssues)
+        } catch {
             presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToRecordCompletion.rawValue, buttonTitle: "Ok")
         }
     }
     
     
     func loadProgress() {
-        showLoadingView()
-        do {
-            let persistedIssues = try PersistenceManager.loadProgress()
-            dismissLoadingView()
-        } catch {
-            presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToLoadProgress.rawValue, buttonTitle: "Ok")
+        PersistenceManager.retrieveProgress { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let issues):
+                updateUI(with: issues)
+                
+            case .failure(let error):
+                self.presentCOAlertOnMainThread(alertTitle: "Could not retrieve progress", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
+    
+    
+    func updateUI(with savedProgress: [Issue]) {
+        if savedProgress.isEmpty { return } else {
+            progressLoaded = true
+            self.selectedTitleIssues = savedProgress
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.view.bringSubviewToFront(self.tableView)
+            }
         }
     }
     
     
     func getTitleIssues() {
+        guard !progressLoaded else { return }
         showLoadingView()
-            
         Task {
             do {
                 var results = try await APICaller.shared.getTitleIssues(withTitleDetailsURL: selectedTitleDetailsURL)
@@ -141,19 +151,16 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
-        return activeArray.count
+        return selectedTitleIssues.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
         let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let issue               = activeArray[indexPath.row]
+        let issue               = selectedTitleIssues[indexPath.row]
+        // load progress w single issue return single issue
         
         cell.textLabel?.text    = "\(issue.issueNumber). \(issue.issueName)"
-        
-        
         cell.accessoryType      = issue.isFinished ? .checkmark : .none
         
         return cell
@@ -164,20 +171,19 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
         // make var that flicks to false if it's 1st check
         // after 1st check load all data from persistence manager then handle checks down here w the new activeArray
         tableView.deselectRow(at: indexPath, animated: true)
-        let activeArray         = persistedTitleIssues.isEmpty ? selectedTitleIssues : persistedTitleIssues
 
-        var issue   = activeArray[indexPath.row]
+        var issue   = selectedTitleIssues[indexPath.row]
         let cell    = tableView.cellForRow(at: indexPath)
         
         if cell!.accessoryType == .none {
             cell?.accessoryType = .checkmark
             issue.isFinished    = true
-//            saveProgress()
+            saveProgress()
             
         } else {
             cell?.accessoryType = .none
             issue.isFinished    = false
-//            saveProgress()
+            saveProgress()
         }
         
         // see: https://stackoverflow.com/questions/8388136/how-to-remove-the-check-mark-on-another-click

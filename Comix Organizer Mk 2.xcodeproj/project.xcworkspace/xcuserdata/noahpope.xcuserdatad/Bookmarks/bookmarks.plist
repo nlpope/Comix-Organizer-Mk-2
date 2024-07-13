@@ -20,13 +20,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>40</string>
+					<string>39</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>39</string>
+					<string>38</string>
 					<key>Timestamp</key>
-					<string>742045956.477612</string>
+					<string>742569922.606812</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -45,8 +45,8 @@
 				<string>        getTitleIssues()
 </string>
 				<key>leading</key>
-				<string>        // see note 17 in app delegate
-//        loadProgress()
+				<string>        configureNavigationController()
+        // see note 17 in app delegate
 </string>
 				<key>trailing</key>
 				<string>    }

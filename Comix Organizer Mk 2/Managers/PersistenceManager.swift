@@ -16,7 +16,7 @@ enum PersistenceManager {
     static private let defaults = UserDefaults.standard
     enum Keys {
         static let bookmarx             = "bookmarx"
-        static let issues               = "issues"
+        static let issueProgress        = "issueProgress"
     }
     
     
@@ -45,18 +45,53 @@ enum PersistenceManager {
     }
     
     
+//    static func updateWith(issue: Issue, actionType: PersistenceActiontype, completed: @escaping (COError?) -> Void) {
+//        retrieveProgress { result in
+//            switch result {
+//            case .success(var issues):
+//                
+//                switch actionType {
+//                case .check:
+//                   
+//                case .remove:
+//                    bookmarx.removeAll { $0.titleName == title.titleName }
+//                }
+//                completed(save(bookMarx: bookmarx))
+//                
+//                
+//            case .failure(let error):
+//                completed(error)
+//            }
+//        }
+//    }
+    
+    
     static func retrieveBookmarx(completed: @escaping (Result<[Title], COError>) -> Void) {
         guard let bookmarxData = defaults.object(forKey: Keys.bookmarx) as? Data else {
             completed(.success([]))
             return
         }
-        
         do {
             let decoder = JSONDecoder()
             let bookmarx = try decoder.decode([Title].self, from: bookmarxData)
             completed(.success(bookmarx))
         } catch {
             completed(.failure(.unableToBookmark))
+        }
+    }
+    
+    
+    static func retrieveProgress(completed: @escaping (Result<[Issue], COError>) -> Void) {
+        guard let issueData = defaults.object(forKey: Keys.issueProgress) as? Data else {
+            completed(.success([]))
+            return
+        }
+        do {
+            let decoder = JSONDecoder()
+            let issues  = try decoder.decode([Issue].self, from: issueData)
+            completed(.success(issues))
+        } catch {
+            completed(.failure(.failedToLoadProgress))
         }
     }
     
@@ -74,30 +109,15 @@ enum PersistenceManager {
     
     
     // use in didselect method
-    static func save(issues: [Issue]) throws {
-        // set issue.isFinished in defaults for key
-        let encoder = JSONEncoder()
-        guard let data = try? encoder.encode(issues) else {
+    static func saveProgress(forIssues issues: [Issue]) throws {
+        do {
+            let encoder = JSONEncoder()
+            let encodedIssues = try encoder.encode(issues)
+            defaults.setValue(encodedIssues, forKey: Keys.issueProgress)
+            print("progress saved")
+            return
+        } catch {
             throw COError.failedToRecordCompletion
         }
-        defaults.setValue(data, forKey: Keys.issues)
-        
-    }
-    
-    
-    // use in cell for row at method
-    static func loadProgress() throws -> [Issue] {
-        
-        guard let data = defaults.data(forKey: Keys.issues), data.count != 0 else {
-            return []
-        }
-        
-        
-        let decoder = JSONDecoder()
-        guard let issues = try? decoder.decode([Issue].self, from: data) else {
-            throw COError.failedToGetData
-        }
-        
-        return issues
     }
 }
