@@ -17,7 +17,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     var selectedTitleIssues  = [Issue]()
     
     var tableView: UITableView!
-    var progressLoaded: Bool = false
+    var progressSaved: Bool = false
     
     
     init(selectedTitleName: String, selectedTitleDetailsURL: String) {
@@ -36,13 +36,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         super.viewDidLoad()
         configureNavigationController()
         // see note 17 in app delegate
-        getTitleIssues()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadProgress()
+        progressSaved ? loadProgress() : getTitleIssues()
     }
     
     
@@ -71,32 +65,39 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     
     func saveProgress() {
-        do {
-            try PersistenceManager.saveProgress(forIssues: selectedTitleIssues)
-        } catch {
-            presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToRecordCompletion.rawValue, buttonTitle: "Ok")
-        }
+        PersistenceManager.saveProgress(forIssues: selectedTitleIssues)
+        progressSaved = true
+        
+//        do {
+//            try PersistenceManager.saveProgress(forIssues: selectedTitleIssues)
+//        } catch {
+//            presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToRecordCompletion.rawValue, buttonTitle: "Ok")
+//        }
     }
     
     
     func loadProgress() {
         PersistenceManager.retrieveProgress { [weak self] result in
             guard let self = self else { return }
-            
-            switch result {
-            case .success(let issues):
-                updateUI(with: issues)
-                
-            case .failure(let error):
-                self.presentCOAlertOnMainThread(alertTitle: "Could not retrieve progress", message: error.rawValue, buttonTitle: "Ok")
+            self.selectedTitleIssues = result
+            if self.selectedTitleIssues.isEmpty {
+                progressSaved = false
+                getTitleIssues()
             }
+            
+//            switch result {
+//            case .success(let issues):
+//                updateUI(with: issues)
+//                
+//            case .failure(let error):
+//                self.presentCOAlertOnMainThread(alertTitle: "Could not retrieve progress", message: error.rawValue, buttonTitle: "Ok")
+//            }
         }
     }
     
     
     func updateUI(with savedProgress: [Issue]) {
         if savedProgress.isEmpty { return } else {
-            progressLoaded = true
             self.selectedTitleIssues = savedProgress
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -107,7 +108,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     
     func getTitleIssues() {
-        guard !progressLoaded else { return }
+        guard !progressSaved else { return }
         showLoadingView()
         Task {
             do {

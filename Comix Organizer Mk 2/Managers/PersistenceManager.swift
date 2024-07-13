@@ -16,7 +16,7 @@ enum PersistenceManager {
     static private let defaults = UserDefaults.standard
     enum Keys {
         static let bookmarx             = "bookmarx"
-        static let issueProgress        = "issueProgress"
+        static let savedProgress        = "savedProgress"
     }
     
     
@@ -81,18 +81,24 @@ enum PersistenceManager {
     }
     
     
-    static func retrieveProgress(completed: @escaping (Result<[Issue], COError>) -> Void) {
-        guard let issueData = defaults.object(forKey: Keys.issueProgress) as? Data else {
-            completed(.success([]))
-            return
-        }
-        do {
-            let decoder = JSONDecoder()
-            let issues  = try decoder.decode([Issue].self, from: issueData)
-            completed(.success(issues))
-        } catch {
-            completed(.failure(.failedToLoadProgress))
-        }
+    static func retrieveProgress(completed: @escaping ([Issue]) -> Void) {
+        let decoder = JSONDecoder()
+        if let issueProgressData = defaults.object(forKey: Keys.savedProgress) as? Data
+        completed(issueProgressData)
+        
+        
+        
+//        guard let issueData = defaults.object(forKey: Keys.savedProgress) as? Data else {
+//            completed(.success([]))
+//            return
+//        }
+//        do {
+//            let decoder = JSONDecoder()
+//            let issues  = try decoder.decode([Issue].self, from: issueData)
+//            completed(.success(issues))
+//        } catch {
+//            completed(.failure(.failedToLoadProgress))
+//        }
     }
     
     
@@ -109,15 +115,11 @@ enum PersistenceManager {
     
     
     // use in didselect method
-    static func saveProgress(forIssues issues: [Issue]) throws {
-        do {
-            let encoder = JSONEncoder()
-            let encodedIssues = try encoder.encode(issues)
-            defaults.setValue(encodedIssues, forKey: Keys.issueProgress)
+    static func saveProgress(forIssues issues: [Issue]) {
+        let encoder = JSONEncoder()
+        if let encdodedIssues = try? encoder.encode(issues) {
+            defaults.set(encdodedIssues, forKey: Keys.savedProgress)
             print("progress saved")
-            return
-        } catch {
-            throw COError.failedToRecordCompletion
         }
     }
 }
