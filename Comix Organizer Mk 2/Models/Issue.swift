@@ -12,7 +12,11 @@ struct APIIssuesResponse: Codable {
     let results: [String: [Issue]]
 }
 
-struct Issue: Codable {
+struct Issue: Codable, Comparable {
+    static func < (lhs: Issue, rhs: Issue) -> Bool {
+        return lhs.issueName < rhs.issueName
+    }
+    
     var issueDetailsURL: String
     var issueID: Int
     var issueName: String

@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>39</string>
+					<string>40</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
 					<string>39</string>
 					<key>Timestamp</key>
-					<string>742594994.437876</string>
+					<string>742608554.141336</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,15 +34,22 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>        // see note 17 in app delegate
-        progressSaved ? loadProgress() : getTitleIssues()
-</string>
-				<key>trailing</key>
 				<string>    }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadProgress()
+    }
+</string>
+				<key>leading</key>
+				<string>        // see note 17 in app delegate
+//        loadProgress()
+</string>
+				<key>trailing</key>
+				<string>    
+    
+    func configureNavigationController() {
 </string>
 			</dict>
 			<key>title</key>
@@ -58,13 +65,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>120</string>
+					<string>123</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>119</string>
+					<string>122</string>
 					<key>Timestamp</key>
-					<string>742597620.306362</string>
+					<string>742610331.112267</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -80,16 +87,15 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>        if let encdodedIssues = try? encoder.encode(issues) {
+				<string>        }
 </string>
 				<key>leading</key>
-				<string>    static func saveProgress(forIssues issues: [Issue]) {
-        let encoder = JSONEncoder()
+				<string>        } catch {
+            return .failedToRecordCompletion
 </string>
 				<key>trailing</key>
-				<string>            defaults.set(encdodedIssues, forKey: Keys.savedProgress)
-            print("progress saved")
-        }
+				<string>    }
+}
 </string>
 			</dict>
 			<key>title</key>

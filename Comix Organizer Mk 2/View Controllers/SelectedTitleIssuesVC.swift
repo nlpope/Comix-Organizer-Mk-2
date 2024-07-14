@@ -14,10 +14,10 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     var selectedTitleDetailsURL: String!
     
     var titleID: Int!
+    var completedTitleIssues = [Issue]()
     var selectedTitleIssues  = [Issue]()
     
     var tableView: UITableView!
-    var progressSaved: Bool = false
     
     
     init(selectedTitleName: String, selectedTitleDetailsURL: String) {
@@ -36,21 +36,25 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         super.viewDidLoad()
         configureNavigationController()
         // see note 17 in app delegate
-        progressSaved ? loadProgress() : getTitleIssues()
+//        loadProgress()
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadProgress()
     }
     
     
     func configureNavigationController() {
-        title = "\(selectedTitleName!)"
-        view.backgroundColor = .systemBackground
-        navigationItem.title = "\(selectedTitleName!) Issues"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
         
-        navigationItem.rightBarButtonItem = addButton
-
+        title = "\(selectedTitleName!)"
+        view.backgroundColor                                        = .systemBackground
+        navigationItem.title                                        = "\(selectedTitleName!) Issues"
+        navigationItem.rightBarButtonItem                           = addButton
+        navigationController?.navigationBar.prefersLargeTitles      = true
+        navigationController?.navigationItem.largeTitleDisplayMode  = .always
     }
     
     
@@ -64,57 +68,39 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     }
     
     
-    func saveProgress() {
-        PersistenceManager.saveProgress(forIssues: selectedTitleIssues)
-        progressSaved = true
-        
-//        do {
-//            try PersistenceManager.saveProgress(forIssues: selectedTitleIssues)
-//        } catch {
-//            presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: COError.failedToRecordCompletion.rawValue, buttonTitle: "Ok")
-//        }
-    }
-    
-    
     func loadProgress() {
-        PersistenceManager.retrieveProgress { [weak self] result in
+        PersistenceManager.retrieveCompletedIssues { [weak self] result in
             guard let self = self else { return }
-            self.selectedTitleIssues = result
-            if self.selectedTitleIssues.isEmpty {
-                progressSaved = false
-                getTitleIssues()
-            }
             
-//            switch result {
-//            case .success(let issues):
-//                updateUI(with: issues)
-//                
-//            case .failure(let error):
-//                self.presentCOAlertOnMainThread(alertTitle: "Could not retrieve progress", message: error.rawValue, buttonTitle: "Ok")
-//            }
-        }
-    }
-    
-    
-    func updateUI(with savedProgress: [Issue]) {
-        if savedProgress.isEmpty { return } else {
-            self.selectedTitleIssues = savedProgress
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                self.view.bringSubviewToFront(self.tableView)
+            switch result {
+            case .success(let issues):
+                self.completedTitleIssues = issues
+                print(self.completedTitleIssues)
+                getTitleIssues()
+                
+            case .failure(let error):
+                self.presentCOAlertOnMainThread(alertTitle: "Could not retrieve progress", message: error.rawValue, buttonTitle: "Ok")
+                getTitleIssues()
             }
         }
     }
     
     
     func getTitleIssues() {
-        guard !progressSaved else { return }
         showLoadingView()
         Task {
             do {
                 var results = try await APICaller.shared.getTitleIssues(withTitleDetailsURL: selectedTitleDetailsURL)
                 
                 results.sort{$0.issueNumber < $1.issueNumber}
+                for var result in results {
+                    result.isFinished = true
+//                    if completedTitleIssues.contains(result) {
+//                        result.isFinished = true
+//                    } else {
+//                        result.isFinished = false
+//                    }
+                }
                 self.selectedTitleIssues += results.filter{$0.issueName != ""}
                 dismissLoadingView()
                 // see note 17 in app delegate
@@ -137,6 +123,36 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
             self.dismissLoadingView()
             guard let error = error else {
                 self.presentCOAlertOnMainThread(alertTitle: "Success!", message: "You have successfully saved this title to your ComixBin 🥳.", buttonTitle: "Hooray!")
+                return
+            }
+            
+            self.presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    
+    func addToCompletedIssues(withIssue issue: Issue) {
+        showLoadingView()
+        PersistenceManager.updateWith(issue: issue, actionType: .check) { [weak self] error in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            guard let error = error else {
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: "Hope you enjoyed reading this issue. It was saved to your completed list", buttonTitle: "Ok")
+                return
+            }
+            
+            self.presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    
+    func removeFromCompletedIssues(withIssue issue: Issue) {
+        showLoadingView()
+        PersistenceManager.updateWith(issue: issue, actionType: .uncheck) { [weak self] error in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            guard let error = error else {
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: "Give this issue another go, later. It was removed from your completed list", buttonTitle: "Ok")
                 return
             }
             
@@ -179,12 +195,12 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
         if cell!.accessoryType == .none {
             cell?.accessoryType = .checkmark
             issue.isFinished    = true
-            saveProgress()
+            addToCompletedIssues(withIssue: issue)
             
         } else {
             cell?.accessoryType = .none
             issue.isFinished    = false
-            saveProgress()
+            removeFromCompletedIssues(withIssue: issue)
         }
         
         // see: https://stackoverflow.com/questions/8388136/how-to-remove-the-check-mark-on-another-click
