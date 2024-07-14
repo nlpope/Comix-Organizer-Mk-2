@@ -74,7 +74,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
             switch result {
             case .success(let issues):
                 self.completedTitleIssues = issues
-                print(self.completedTitleIssues)
                 getTitleIssues()
                 
             case .failure(let error):
@@ -183,12 +182,10 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
         
         if cell!.accessoryType == .none {
             cell?.accessoryType = .checkmark
-            issue.isFinished    = true
             addToCompletedIssues(withIssue: issue)
             
         } else {
             cell?.accessoryType = .none
-            issue.isFinished    = false
             removeFromCompletedIssues(withIssue: issue)
         }
     }

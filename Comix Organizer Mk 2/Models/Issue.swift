@@ -21,7 +21,6 @@ struct Issue: Codable, Comparable {
     var issueID: Int
     var issueName: String
     var issueNumber: String
-    var isFinished: Bool = false
     
     enum CodingKeys: String, CodingKey {
         case issueID            = "id"

@@ -282,9 +282,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  *  SelectedTitleIssuesVC
     19. PROBLEM: was having trouble perisisting the checkmarks on cells for completed issues
     > sltn: instead of tracking via the old 'isFinished' prop in each issue, I just made a collection of indiscrim. completed issues in the persistence manager under a key - this was needed because there were god knows how many instances of SelectedTitleIssuesVC, each w their own set of completed issues that couldn't be tracked case by case in the persistence manager. Having them all in one place no matter the title was the next best deal
-    >> no longer needed the Comparable protocol (.contains works just fine)
     >> no longer needed the Array extension (.containsSameElements) - again .contains works just fine
     >> no longer needed the 'isFinished' prop
+    >> however we DO still need the Comparable protocol on the custom type w its stubs for the .contains to work
  
  --------------------------
  
