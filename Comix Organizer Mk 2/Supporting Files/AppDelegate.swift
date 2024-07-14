@@ -184,6 +184,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     > hash collision induced diffable datasource crash when loading new publishers (see note 14 below)
  
     > presenting tableViews via concurrency without diffable datasource (see note 17 below)
+ 
+    > persisting the checkmarks on finished issues (see note 19 below)
  --------------------------
 
  *  Publisher
@@ -277,9 +279,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  *  ComixBinVC
     18. getSavedTitles() is not concurrent/Task driven so we can safely configure the table view independently of it.
  
+ *  SelectedTitleIssuesVC
+    19. PROBLEM: was having trouble perisisting the checkmarks on cells for completed issues
+    > sltn: instead of tracking via the old 'isFinished' prop in each issue, I just made a collection of indiscrim. completed issues in the persistence manager under a key - this was needed because there were god knows how many instances of SelectedTitleIssuesVC, each w their own set of completed issues that couldn't be tracked case by case in the persistence manager. Having them all in one place no matter the title was the next best deal
+    >> no longer needed the Comparable protocol (.contains works just fine)
+    >> no longer needed the Array extension (.containsSameElements) - again .contains works just fine
+    >> no longer needed the 'isFinished' prop
+ 
  --------------------------
  
  
  */
-
-#warning("previously on: finish comixmk2 refactor w diffable datasource > noahpope.me portfolio after checking hostgator progress")

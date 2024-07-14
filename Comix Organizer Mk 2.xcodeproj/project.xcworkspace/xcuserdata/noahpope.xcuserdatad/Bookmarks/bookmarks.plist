@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>46</string>
+					<string>41</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>39</string>
+					<string>40</string>
 					<key>Timestamp</key>
-					<string>742611490.731486</string>
+					<string>742611973.02779</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -35,12 +35,6 @@
 			<dict>
 				<key>focused</key>
 				<string>    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loadProgress()
-    }
 </string>
 				<key>leading</key>
 				<string>        // see note 17 in app delegate
@@ -49,7 +43,7 @@
 				<key>trailing</key>
 				<string>    
     
-    func configureNavigationController() {
+    override func viewWillAppear(_ animated: Bool) {
 </string>
 			</dict>
 			<key>title</key>

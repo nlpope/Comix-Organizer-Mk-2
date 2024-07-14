@@ -13,9 +13,10 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     var selectedTitleName: String!
     var selectedTitleDetailsURL: String!
     
-    var titleID: Int!
+    // see note 19 in app delegate
     var completedTitleIssues = [Issue]()
     var selectedTitleIssues  = [Issue]()
+    var titleID: Int!
     
     var tableView: UITableView!
     
@@ -167,10 +168,8 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let issue               = selectedTitleIssues[indexPath.row]
-        // load progress w single issue return single issue
         
         cell.textLabel?.text    = "\(issue.issueNumber). \(issue.issueName)"
-//        cell.accessoryType      = issue.isFinished ? .checkmark : .none
         cell.accessoryType      = completedTitleIssues.contains(issue) ? .checkmark : .none
         
         return cell
@@ -178,8 +177,7 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // make var that flicks to false if it's 1st check
-        // after 1st check load all data from persistence manager then handle checks down here w the new activeArray
+     
         tableView.deselectRow(at: indexPath, animated: true)
 
         var issue   = selectedTitleIssues[indexPath.row]
