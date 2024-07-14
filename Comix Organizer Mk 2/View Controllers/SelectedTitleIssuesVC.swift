@@ -93,14 +93,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
                 var results = try await APICaller.shared.getTitleIssues(withTitleDetailsURL: selectedTitleDetailsURL)
                 
                 results.sort{$0.issueNumber < $1.issueNumber}
-                for var result in results {
-                    result.isFinished = true
-//                    if completedTitleIssues.contains(result) {
-//                        result.isFinished = true
-//                    } else {
-//                        result.isFinished = false
-//                    }
-                }
                 self.selectedTitleIssues += results.filter{$0.issueName != ""}
                 dismissLoadingView()
                 // see note 17 in app delegate
@@ -178,7 +170,8 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
         // load progress w single issue return single issue
         
         cell.textLabel?.text    = "\(issue.issueNumber). \(issue.issueName)"
-        cell.accessoryType      = issue.isFinished ? .checkmark : .none
+//        cell.accessoryType      = issue.isFinished ? .checkmark : .none
+        cell.accessoryType      = completedTitleIssues.contains(issue) ? .checkmark : .none
         
         return cell
     }
