@@ -36,8 +36,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationController()
-        // see note 17 in app delegate
-//        loadProgress()
     }
     
     
@@ -193,10 +191,6 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
             issue.isFinished    = false
             removeFromCompletedIssues(withIssue: issue)
         }
-        
-        // see: https://stackoverflow.com/questions/8388136/how-to-remove-the-check-mark-on-another-click
-        
-        
     }
 }
 

@@ -96,4 +96,20 @@ extension ComixBinVC: UITableViewDelegate, UITableViewDataSource {
         
         self.navigationController?.pushViewController(destVC, animated: true)
     }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+                
+        PersistenceManager.updateWith(title: savedTitles[indexPath.row], actionType: .remove) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                self.savedTitles.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                return
+            }
+            
+            self.presentCOAlertOnMainThread(alertTitle: "Unable to remove", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
 }

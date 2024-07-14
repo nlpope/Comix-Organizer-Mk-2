@@ -258,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     16. page, isLoadingMoreTitles, & hasMoreTitles doesn't apply since the API dumps all 13k or so items out at once
  
  *  SelectedTitleIssuesVC
-    17. PROBLEM: I struggled getting the tableView to display here after abstracting the OG Task {} from the VDLoad (see below from lhs code). 
+    17. PROBLEM: I struggled getting the tableView to display a bit further up in the VDL  after abstracting the OG Task {} from the VDLoad (see below from lhs code). 
     > SLTN: I think because concurrency is in play w/out a diffable datasource may have something to do with why the data wasn't populating each cell as the datasource dictates. I notice a test print statement located just below the getTitleIssues() call fires BEFORE said call completes (concurrency), so i needed to move the table view configureTableView call from the VDLoad into the end of the getTitleIssues API call within the same Task { }  - return to this with tutor
  
  OG Code:
