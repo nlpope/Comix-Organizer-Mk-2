@@ -11,7 +11,8 @@ class SearchVC: UIViewController {
     
     let logoImageView           = UIImageView()
     let publisherNameTextField  = COTextField()
-    let callToActionButton      = UIButton(frame: .zero)
+//    let callToActionButton      = UIButton(frame: .zero)
+    let callToActionButton      = COButton(backgroundColor: .blue, title: "Get Publishers")
     
     var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
     
@@ -33,9 +34,6 @@ class SearchVC: UIViewController {
         publisherNameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
-    
-    
-    #warning("add 'createDismissKeyboardTapGesture( )' & its extension after successful run")
     
     
     @objc func pushAllPublishersListVC() {
@@ -63,7 +61,7 @@ class SearchVC: UIViewController {
     
     func configureTextField() {
         publisherNameTextField.delegate = self
-        publisherNameTextField.placeholder = "Enter publisher or hit GO to see all"
+        publisherNameTextField.placeholder = " Enter publisher or hit GO to see all  "
         
         NSLayoutConstraint.activate([
             publisherNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -77,7 +75,7 @@ class SearchVC: UIViewController {
     func configureCallToActionButton() {
         callToActionButton.backgroundColor  = .blue
         callToActionButton.setTitle("GO", for: .normal)
-        callToActionButton.translatesAutoresizingMaskIntoConstraints = false
+//        callToActionButton.translatesAutoresizingMaskIntoConstraints = false
         callToActionButton.addTarget(self, action: #selector(pushAllOrFilteredPublishersVC), for: .touchUpInside)
         
         
@@ -103,7 +101,6 @@ class SearchVC: UIViewController {
     
     
     func pushAllPublishersVC() {
-        // display alert 'about to be taken to all publishers. to see titles from them, simply select.'
         let allPublishersVC = AllPublishersVC()
         navigationController?.pushViewController(allPublishersVC, animated: true)
     }
@@ -111,25 +108,12 @@ class SearchVC: UIViewController {
 
 
 extension SearchVC: UITextFieldDelegate {
-    // set up alert presentation / dismissal then handle the below
-    // if isPublisherEntered is false...
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC()
         return true
     }
-    
-    // if isPublisherEntered is true...
 }
 
 
 
-//extension SearchVC: PopUpWindowChildVCDelegate {
-//    func presentTitlesViewController() {
-//        let selectedPublisherTitlesVC                           = SelectedPublisherTitlesVC()
-//
-//        selectedPublisherTitlesVC.selectedPublisherName         = selectedPublisherName
-//        selectedPublisherTitlesVC.selectedPublisherDetailsURL   = selectedPublisherDetailsURL
-//
-//        self.navigationController?.pushViewController(selectedPublisherTitlesVC, animated: true)
-//    }
-//}
+
