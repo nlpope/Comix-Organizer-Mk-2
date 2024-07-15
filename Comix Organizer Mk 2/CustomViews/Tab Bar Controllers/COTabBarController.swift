@@ -23,17 +23,17 @@ class COTabBarController: UITabBarController {
     
     
     func createStartNC() -> UINavigationController {
-        let startVC = SearchVC()
-        startVC.title = "ComixOrganizer"
-        startVC.tabBarItem.image = SFSymbols.search
+        let startVC                 = SearchVC()
+        startVC.title               = "ComixOrganizer"
+        startVC.tabBarItem.image    = SFSymbols.search
         
         return UINavigationController(rootViewController: startVC)
     }
     
     
     func createComixBinNC() -> UINavigationController {
-        let comixBinVC = ComixBinVC()
-        comixBinVC.title = "ComixBin"
+        let comixBinVC              = ComixBinVC()
+        comixBinVC.title            = "ComixBin"
         comixBinVC.tabBarItem.image = SFSymbols.bookShelf
 
         return UINavigationController(rootViewController: comixBinVC)
