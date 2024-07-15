@@ -12,7 +12,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //first thing that happens (before the viewdidload) when app boots
+        // first thing that happens (before the viewdidload) when app boots
         print("didFinishLaunchingWithOptions")
         
         
@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        //do sumn to prevent user from loosing data when they get a leave the app (e.g. get a call, etc.)
         print("application will resign active")
     }
     
