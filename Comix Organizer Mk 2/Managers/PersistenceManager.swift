@@ -19,8 +19,8 @@ enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
     enum Keys {
-        static let bookmarx             = "bookmarx"
-        static let completedIssues        = "completedIssues"
+        static let bookmarx                 = "bookmarx"
+        static let completedIssues          = "completedIssues"
     }
     
     
