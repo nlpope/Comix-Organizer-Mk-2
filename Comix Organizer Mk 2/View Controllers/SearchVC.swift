@@ -11,21 +11,16 @@ class SearchVC: UIViewController {
     
     let logoImageView           = UIImageView()
     let publisherNameTextField  = COTextField()
-//    let callToActionButton      = UIButton(frame: .zero)
     let callToActionButton      = COButton(backgroundColor: .blue, title: "Get Publishers")
-    
     var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        title = "ComixOrganizer"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.addSubviews(logoImageView, publisherNameTextField, callToActionButton)
-        
+        setUpView()
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
+        addKeyboardDismissOnTap()
     }
     
     
@@ -33,6 +28,14 @@ class SearchVC: UIViewController {
         super.viewWillAppear(animated)
         publisherNameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    
+    func setUpView() {
+        view.backgroundColor                        = .systemBackground
+        title = "ComixOrganizer"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.addSubviews(logoImageView, publisherNameTextField, callToActionButton)
     }
     
     
@@ -48,7 +51,8 @@ class SearchVC: UIViewController {
     
     func configureLogoImageView() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image = Images.coLogo
+        logoImageView.image             = Images.coLogo
+        logoImageView.layer.zPosition   = -1
         
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
@@ -60,8 +64,13 @@ class SearchVC: UIViewController {
     
     
     func configureTextField() {
-        publisherNameTextField.delegate = self
-        publisherNameTextField.placeholder = " Enter publisher or hit GO to see all  "
+        let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
+        publisherNameTextField.delegate         = self
+        publisherNameTextField.placeholder      = PlaceHolders.searchPlaceHolder
+        publisherNameTextField.leftView         = paddingView
+        publisherNameTextField.rightView        = paddingView
+        publisherNameTextField.leftViewMode     = .always
+        publisherNameTextField.rightViewMode    = .always
         
         NSLayoutConstraint.activate([
             publisherNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
@@ -75,7 +84,6 @@ class SearchVC: UIViewController {
     func configureCallToActionButton() {
         callToActionButton.backgroundColor  = .blue
         callToActionButton.setTitle("GO", for: .normal)
-//        callToActionButton.translatesAutoresizingMaskIntoConstraints = false
         callToActionButton.addTarget(self, action: #selector(pushAllOrFilteredPublishersVC), for: .touchUpInside)
         
         
@@ -90,7 +98,6 @@ class SearchVC: UIViewController {
     
     @objc func pushAllOrFilteredPublishersVC() { isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC() }
     
-    #warning("change to filtered publishers (same as allpubs but diff url call)")
     func pushFilteredPublishersVC() {
         let publisherName = publisherNameTextField.text!
         Task { try await APICaller.shared.getFilteredPublishers(withName: publisherName, page: 0) }

@@ -20,3 +20,7 @@ enum Images {
     static let placeholder          = UIImage(named: "avatar-placeholder")
     static let emptyStateLogo       = UIImage(named: "empty-state-logo")
 }
+
+enum PlaceHolders {
+    static let searchPlaceHolder    = "Enter publisher or hit GO to see all"
+}

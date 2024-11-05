@@ -40,7 +40,6 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
         configureNavigationVC()
         configureSearchController()
         configureTableView()
-        
         getPublisherTitles()
         configureDataSource()
     }
