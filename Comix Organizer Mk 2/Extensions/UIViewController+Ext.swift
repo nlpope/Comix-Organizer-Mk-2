@@ -24,4 +24,33 @@ extension UIViewController {
             self.present(alertVC, animated: true)
         }
     }
+    
+    
+    // MARK: SOLVE FOR KEYBOARD BLOCKING TEXTFIELD
+    func setupKeyboardHiding() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    @objc func keyboardWillShow(sender: NSNotification) {
+        guard let userInfo = sender.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextField = UIResponder.currentResponder() as? UITextField else { return }
+        
+        let keyboardTopY        = keyboardFrame.cgRectValue.origin.y
+        let textFieldBottomY    = currentTextField.frame.origin.y + currentTextField.frame.size.height
+        
+        if textFieldBottomY > keyboardTopY {
+            let textFieldTopY   = currentTextField.frame.origin.y
+            let newFrameY       = (textFieldTopY - keyboardTopY / 2) * -1
+            view.frame.origin.y = newFrameY
+        }
+    }
+    
+    
+    @objc func keyboardWillHide(sender: NSNotification) {
+        view.frame.origin.y = 0
+    }
 }

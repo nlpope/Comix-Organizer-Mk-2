@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4006FDC22CDAA1AE0009BB11 /* UIResponder+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4006FDC12CDAA1AE0009BB11 /* UIResponder+Utils.swift */; };
 		40112D702C37823B0029D91E /* CODataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40112D6F2C37823B0029D91E /* CODataLoadingVC.swift */; };
 		40112D722C3787010029D91E /* COAlertChildVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40112D712C3787010029D91E /* COAlertChildVC.swift */; };
 		40112D742C3787B10029D91E /* COAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40112D732C3787B10029D91E /* COAlertContainerView.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4006FDC12CDAA1AE0009BB11 /* UIResponder+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Utils.swift"; sourceTree = "<group>"; };
 		40112D6F2C37823B0029D91E /* CODataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CODataLoadingVC.swift; sourceTree = "<group>"; };
 		40112D712C3787010029D91E /* COAlertChildVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAlertChildVC.swift; sourceTree = "<group>"; };
 		40112D732C3787B10029D91E /* COAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAlertContainerView.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				40A6E5572C30B0A8008340B5 /* Constants+Utils.swift */,
 				40A6E5592C30B572008340B5 /* COError+Utils.swift */,
 				40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */,
+				4006FDC12CDAA1AE0009BB11 /* UIResponder+Utils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */,
 				40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */,
 				40ADE1442C33769100E2EEC9 /* PublisherCell.swift in Sources */,
+				4006FDC22CDAA1AE0009BB11 /* UIResponder+Utils.swift in Sources */,
 				40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

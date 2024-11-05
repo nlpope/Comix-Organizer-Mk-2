@@ -20,6 +20,7 @@ class SearchVC: UIViewController {
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
+        setupKeyboardHiding()
         addKeyboardDismissOnTap()
     }
     
@@ -73,7 +74,8 @@ class SearchVC: UIViewController {
         publisherNameTextField.rightViewMode    = .always
         
         NSLayoutConstraint.activate([
-            publisherNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 48),
+            //48
+            publisherNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 75),
             publisherNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             publisherNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             publisherNameTextField.heightAnchor.constraint(equalToConstant: 50)
