@@ -16,7 +16,8 @@ class SearchVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
+        configureNavigation()
+        addSubviews()
         configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
@@ -32,14 +33,6 @@ class SearchVC: UIViewController {
     }
     
     
-    func setUpView() {
-        view.backgroundColor                        = .systemBackground
-        title = "ComixOrganizer"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.addSubviews(logoImageView, publisherNameTextField, callToActionButton)
-    }
-    
-    
     @objc func pushAllPublishersListVC() {
         guard !isPublisherEntered else { return }
         
@@ -50,17 +43,43 @@ class SearchVC: UIViewController {
     }
     
     
+    func configureNavigation() {
+        view.backgroundColor                        = .systemBackground
+        title = "ComixOrganizer"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
+    func addSubviews() { view.addSubviews(logoImageView, publisherNameTextField, callToActionButton) }
+    
+    
     func configureLogoImageView() {
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image             = Images.coLogo
-        logoImageView.layer.zPosition   = -1
+        logoImageView.image                                     = Images.coLogo
+        logoImageView.layer.zPosition                           = -1
         
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 120),
+            logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 950),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.widthAnchor.constraint(equalToConstant: 350),
             logoImageView.heightAnchor.constraint(equalToConstant: 350)
         ])
+        UIImageView.animate(withDuration: 1, animations: {
+            self.logoImageView.transform = CGAffineTransform(translationX: 0, y: -790)
+        }) { _ in
+            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat]) {
+                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 10)
+//                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -10)
+//                not working, use another chain/indent?
+            }
+        }
+
+        //i wanna make him hover/float after he rises up
+    }
+    
+    
+    func playHoverAnimation() {
+        
     }
     
     
@@ -75,7 +94,7 @@ class SearchVC: UIViewController {
         
         NSLayoutConstraint.activate([
             //48
-            publisherNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 75),
+            publisherNameTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
             publisherNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             publisherNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
             publisherNameTextField.heightAnchor.constraint(equalToConstant: 50)
@@ -96,6 +115,9 @@ class SearchVC: UIViewController {
             callToActionButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
+    
+    
+   
     
     
     @objc func pushAllOrFilteredPublishersVC() { isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC() }
