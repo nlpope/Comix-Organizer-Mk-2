@@ -5,12 +5,44 @@
       "scale" : "1x"
     },
     {
-      "filename" : "cleaner-co-logo-icon.jpg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "cleaner-logo-no-background.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cleaner-co-logo-icon 1.jpg",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "cleaner-dark-logo-no-background.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "cleaner-logo-no-background 1.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "cleaner-dark-logo-no-background 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

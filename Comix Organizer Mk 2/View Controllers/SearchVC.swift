@@ -71,8 +71,6 @@ class SearchVC: UIViewController {
             UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
                 print("initial repeat animation")
                 self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
-//                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -10)
-//                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 10)
 
                 print("2nd initial one reached")
             }
