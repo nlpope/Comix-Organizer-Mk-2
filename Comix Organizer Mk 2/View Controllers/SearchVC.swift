@@ -18,7 +18,6 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         configureNavigation()
         addSubviews()
-        configureLogoImageView()
         configureTextField()
         configureCallToActionButton()
         setupKeyboardHiding()
@@ -28,6 +27,7 @@ class SearchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        configureLogoImageView()
         publisherNameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
@@ -66,20 +66,19 @@ class SearchVC: UIViewController {
         ])
         
         UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.logoImageView.transform = CGAffineTransform(translationX: 0, y: -790)
+            self.logoImageView.transform    = CGAffineTransform(translationX: 0, y: -770)
         }) { (_) in
-            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
-                print("initial repeat animation")
+            UIImageView.animate(withDuration: 1, delay: 0, options: [.beginFromCurrentState, .repeat, .autoreverse]) {
                 self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
-
-                print("2nd initial one reached")
             }
         }
     }
     
     
     func playHoverAnimation() {
-        
+        UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
+            self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
+        }
     }
     
     
@@ -120,7 +119,16 @@ class SearchVC: UIViewController {
    
     
     
-    @objc func pushAllOrFilteredPublishersVC() { isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC() }
+    @objc func pushAllOrFilteredPublishersVC() {
+        //animate here shoot up
+        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.logoImageView.layer.removeAllAnimations()
+        }) { (_) in
+            self.logoImageView.transform    = CGAffineTransform(translationX: 0, y: -900)
+        }
+//        isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC()
+
+    }
     
     func pushFilteredPublishersVC() {
         let publisherName = publisherNameTextField.text!

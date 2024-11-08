@@ -24,7 +24,8 @@ class COTabBarController: UITabBarController {
     
     func createStartNC() -> UINavigationController {
         let startVC                 = SearchVC()
-        startVC.title               = "ComixOrganizer"
+        // ComixOrganizer word under search image not updating
+        startVC.title               = "Search"
         startVC.tabBarItem.image    = SFSymbols.search
         
         return UINavigationController(rootViewController: startVC)
