@@ -64,17 +64,19 @@ class SearchVC: UIViewController {
             logoImageView.widthAnchor.constraint(equalToConstant: 350),
             logoImageView.heightAnchor.constraint(equalToConstant: 350)
         ])
-        UIImageView.animate(withDuration: 1, animations: {
+        
+        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.logoImageView.transform = CGAffineTransform(translationX: 0, y: -790)
-        }) { _ in
-            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat]) {
-                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 10)
+        }) { (_) in
+            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
+                print("initial repeat animation")
+                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
 //                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -10)
-//                not working, use another chain/indent?
+//                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 10)
+
+                print("2nd initial one reached")
             }
         }
-
-        //i wanna make him hover/float after he rises up
     }
     
     
