@@ -7,15 +7,6 @@
 
 import UIKit
 
-// move inside?
-enum TitlePersistenceActiontype {
-    case add, remove
-}
-
-enum IssuePersistenceActiontype {
-    case check, uncheck
-}
-
 enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
@@ -23,6 +14,14 @@ enum PersistenceManager {
     enum SaveKeys {
         static let bookmarx                 = "bookmarx"
         static let completedIssues          = "completedIssues"
+    }
+    
+    enum TitlePersistenceActiontype {
+        case add, remove
+    }
+
+    enum IssuePersistenceActiontype {
+        case check, uncheck
     }
     
     
