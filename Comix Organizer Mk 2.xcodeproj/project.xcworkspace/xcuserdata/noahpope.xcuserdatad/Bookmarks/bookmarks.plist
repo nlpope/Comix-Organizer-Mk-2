@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>93</string>
+					<string>107</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>92</string>
+					<string>106</string>
 					<key>Timestamp</key>
-					<string>752865267.243451</string>
+					<string>752871677.043196</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,16 +34,16 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>                // see note 17 in app delegate
+				<string>                configureTableView()
 </string>
 				<key>leading</key>
-				<string>                self.selectedTitleIssues += results.filter{$0.issueName != ""}
+				<string>                self.currentTitleIssues += results.filter{$0.name != ""}
                 dismissLoadingView()
 </string>
 				<key>trailing</key>
-				<string>                configureTableView()
-                
+				<string>                
             } catch is COError {
+                showEmptyStateView(with: COError.failedToGetData.rawValue, in: self.view)
 </string>
 			</dict>
 			<key>title</key>
@@ -104,13 +104,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>16</string>
+					<string>15</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>15</string>
+					<string>13</string>
 					<key>Timestamp</key>
-					<string>752863664.170321</string>
+					<string>752870396.425283</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -127,19 +127,67 @@
 			<dict>
 				<key>focused</key>
 				<string>    var completedTitleIssues    = [Issue]()
+    var titleSavedToBin         = true
 </string>
 				<key>leading</key>
-				<string>    var selectedTitleDetailsURL: String!
-    var titleAddedToBin         = false
+				<string>    var currentTitle: Title!
+    var currentTitleIssues      = [Issue]()
 </string>
 				<key>trailing</key>
-				<string>    var selectedTitleIssues     = [Issue]()
-    var titleID: Int!
+				<string>    var titleID: Int!
     
+    var tableView: UITableView!
 </string>
 			</dict>
 			<key>title</key>
 			<string>struggle point - persisting checkmarks</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>81</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>80</string>
+					<key>Timestamp</key>
+					<string>752871677.0431449</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/SelectedTitleIssuesVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    func loadProgress() {
+</string>
+				<key>leading</key>
+				<string>
+    
+</string>
+				<key>trailing</key>
+				<string>        PersistenceManager.loadCompletedIssues { [weak self] result in
+            guard let self = self else { return }
+            
+</string>
+			</dict>
+			<key>title</key>
+			<string>loadProgress is stored then matched against what's brought in from getTitleIssues for cell check accessory</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

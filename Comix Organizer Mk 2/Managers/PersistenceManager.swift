@@ -39,7 +39,7 @@ enum PersistenceManager {
                     }
                     bookmarx.append(title)
                 case .remove:
-                    bookmarx.removeAll { $0.titleName == title.titleName }
+                    bookmarx.removeAll { $0.name == title.name }
                 }
                 completed(save(bookMarx: bookmarx))
                 
@@ -85,7 +85,7 @@ enum PersistenceManager {
                 case .check:
                     issues.append(issue)
                 case .uncheck:
-                    issues.removeAll { $0.issueName == issue.issueName }
+                    issues.removeAll { $0.name == issue.name }
                 }
                 completed(save(completedIssues: issues))
                 

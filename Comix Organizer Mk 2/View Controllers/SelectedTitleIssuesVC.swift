@@ -9,21 +9,18 @@ import UIKit
 
 class SelectedTitleIssuesVC: CODataLoadingVC {
 
-    var titleInQuestion: Title!
-    var selectedTitleName: String!
-    var selectedTitleDetailsURL: String!
-    var titleAddedToBin         = false
+    var currentTitle: Title!
+    var currentTitleIssues      = [Issue]()
     var completedTitleIssues    = [Issue]()
-    var selectedTitleIssues     = [Issue]()
+    var titleSavedToBin         = true
     var titleID: Int!
     
     var tableView: UITableView!
     
     
-    init(selectedTitleName: String, selectedTitleDetailsURL: String) {
+    init(forTitle title: Title) {
         super.init(nibName: nil, bundle: nil)
-        self.selectedTitleName = selectedTitleName
-        self.selectedTitleDetailsURL = selectedTitleDetailsURL
+        self.currentTitle       = title
     }
     
     
@@ -35,12 +32,29 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationController()
+        // load titles from persistence like in comixbin then use bool value to popul. rightbarbuttonitem
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadProgress()
+        getSavedTitles()
+    }
+    
+    
+    func getSavedTitles() {
+        PersistenceManager.loadBookmarx { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let savedTitles):
+                titleSavedToBin = savedTitles.contains(currentTitle) ? true : false
+                
+            case .failure(let error):
+                self.presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
     }
     
     
@@ -48,20 +62,20 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         let addButton            = UIBarButtonItem(image: SFSymbolKeys.add, style: .plain, target: self, action: #selector(addButtonTapped))
         let subtractButton       = UIBarButtonItem(image: SFSymbolKeys.subtract, style: .plain, target: self, action: #selector(subtractButtonTapped))
         
-        title = "\(selectedTitleName!)"
+        title = "\(currentTitle!)"
         view.backgroundColor                                        = .systemBackground
-        navigationItem.title                                        = "\(selectedTitleName!) Issues"
-        // ternary operator based on 'addedtobin'/loadprogress value
-        navigationItem.rightBarButtonItem                           = addButton
+        navigationItem.title                                        = "\(currentTitle.name) Issues"
+        #warning("bar button itme not changing based on 'savedToBin' status")
+        navigationItem.rightBarButtonItem                           = titleSavedToBin ? subtractButton : addButton
         navigationController?.navigationBar.prefersLargeTitles      = true
         navigationController?.navigationItem.largeTitleDisplayMode  = .always
     }
     
     
-    @objc func addButtonTapped() { addToComixBin(withTitle: titleInQuestion) }
+    @objc func addButtonTapped() { addToComixBin(withTitle: currentTitle) }
     
     
-    @objc func subtractButtonTapped() { addToComixBin(withTitle: titleInQuestion) }
+    @objc func subtractButtonTapped() { removeFromComixBin(withTitle: currentTitle) }
 
     
     func loadProgress() {
@@ -85,12 +99,11 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         showLoadingView()
         Task {
             do {
-                var results = try await APICaller.shared.getTitleIssues(withTitleDetailsURL: selectedTitleDetailsURL)
+                var results = try await APICaller.shared.getTitleIssues(withTitleDetailsURL: currentTitle.detailsURL)
                 
-                results.sort{$0.issueNumber < $1.issueNumber}
-                self.selectedTitleIssues += results.filter{$0.issueName != ""}
+                results.sort{$0.number < $1.number}
+                self.currentTitleIssues += results.filter{$0.name != ""}
                 dismissLoadingView()
-                // see note 17 in app delegate
                 configureTableView()
                 
             } catch is COError {
@@ -113,10 +126,11 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     func addToComixBin(withTitle title: Title) {
         showLoadingView()
         PersistenceManager.updateWith(title: title, actionType: .add) { [weak self] error in
-            guard let self = self else { return }
+            guard let self          = self else { return }
             self.dismissLoadingView()
-            guard let error = error else {
-                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: "You have successfully saved this title to your ComixBin 🥳.", buttonTitle: "Hooray!")
+            self.titleSavedToBin    = true
+            guard let error         = error else {
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.titleAdded, buttonTitle: "Hooray!")
                 return
             }
             
@@ -125,13 +139,29 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     }
     
     
-    func addToCompletedIssues(withIssue issue: Issue) {
+    func removeFromComixBin(withTitle title: Title) {
+        showLoadingView()
+        PersistenceManager.updateWith(title: title, actionType: .remove) { [weak self] error in
+            guard let self          = self else { return }
+            self.dismissLoadingView()
+            self.titleSavedToBin    = false
+            guard let error         = error else {
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.titleRemoved, buttonTitle: "Hooray!")
+                return
+            }
+            
+            self.presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
+    }
+    
+    
+    func markComplete(withIssue issue: Issue) {
         showLoadingView()
         PersistenceManager.updateWith(issue: issue, actionType: .check) { [weak self] error in
             guard let self = self else { return }
             self.dismissLoadingView()
             guard let error = error else {
-                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: "Hope you enjoyed reading this issue. It was saved to your completed list", buttonTitle: "Ok")
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.issueCompleted, buttonTitle: "Ok")
                 return
             }
             
@@ -140,13 +170,13 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     }
     
     
-    func removeFromCompletedIssues(withIssue issue: Issue) {
+    func markIncomplete(withIssue issue: Issue) {
         showLoadingView()
         PersistenceManager.updateWith(issue: issue, actionType: .uncheck) { [weak self] error in
             guard let self = self else { return }
             self.dismissLoadingView()
             guard let error = error else {
-                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: "Give this issue another go, later. It was removed from your completed list", buttonTitle: "Ok")
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.issueIncomplete, buttonTitle: "Ok")
                 return
             }
             
@@ -162,15 +192,15 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedTitleIssues.count
+        return currentTitleIssues.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let issue               = selectedTitleIssues[indexPath.row]
+        let issue               = currentTitleIssues[indexPath.row]
         
-        cell.textLabel?.text    = "\(issue.issueNumber). \(issue.issueName)"
+        cell.textLabel?.text    = "\(issue.number). \(issue.name)"
         cell.accessoryType      = completedTitleIssues.contains(issue) ? .checkmark : .none
         
         return cell
@@ -181,16 +211,16 @@ extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource {
      
         tableView.deselectRow(at: indexPath, animated: true)
 
-        var issue   = selectedTitleIssues[indexPath.row]
+        var issue   = currentTitleIssues[indexPath.row]
         let cell    = tableView.cellForRow(at: indexPath)
         
         if cell!.accessoryType == .none {
             cell?.accessoryType = .checkmark
-            addToCompletedIssues(withIssue: issue)
+            markComplete(withIssue: issue)
             
         } else {
             cell?.accessoryType = .none
-            removeFromCompletedIssues(withIssue: issue)
+            markIncomplete(withIssue: issue)
         }
     }
 }

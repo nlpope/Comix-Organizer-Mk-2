@@ -14,19 +14,19 @@ struct APIIssuesResponse: Codable {
 
 struct Issue: Codable, Comparable {
     static func < (lhs: Issue, rhs: Issue) -> Bool {
-        return lhs.issueName < rhs.issueName
+        return lhs.name < rhs.name
     }
     
-    var issueDetailsURL: String
-    var issueID: Int
-    var issueName: String
-    var issueNumber: String
+    var name: String
+    var id: Int
+    var detailsURL: String
+    var number: String
     
     enum CodingKeys: String, CodingKey {
-        case issueID            = "id"
-        case issueName          = "name"
-        case issueDetailsURL    = "api_detail_url"
-        case issueNumber        = "issue_number"
+        case name          = "name"
+        case id            = "id"
+        case detailsURL    = "api_detail_url"
+        case number        = "issue_number"
     }
 }
 

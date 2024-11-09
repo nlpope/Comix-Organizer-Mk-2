@@ -93,7 +93,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = title.titleName
+            cell.textLabel?.text = title.name
             cell.accessoryType
             
             return cell
@@ -149,9 +149,9 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let activeArray                     = isSearching ? filteredTitles : titles
         let title                           = activeArray[indexPath.row]
-        let destVC                          = SelectedTitleIssuesVC(selectedTitleName: title.titleName, selectedTitleDetailsURL: title.titleDetailsURL)
-        destVC.titleID                      = title.titleID
-        destVC.titleInQuestion              = title
+        let destVC                          = SelectedTitleIssuesVC(forTitle: title)
+//        destVC.titleID                      = title.titleID
+//        destVC.currentTitle              = title
         
         self.navigationController?.pushViewController(destVC, animated: true)
     }
@@ -165,7 +165,7 @@ extension SelectedPublisherTitlesVC: UISearchResultsUpdating, UISearchBarDelegat
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
         
         isSearching         = true
-        filteredTitles      = titles.filter { $0.titleName.lowercased().contains(filter.lowercased()) }
+        filteredTitles      = titles.filter { $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredTitles)
     }
     

@@ -14,29 +14,25 @@ struct APITitlesResponse: Codable {
 }
 
 struct Title: Codable, Hashable {
-    var titleDetailsURL: String
-    var titleID: Int
-    var titleName: String
+    var name: String
+    var id: Int
+    var detailsURL: String
     
     enum CodingKeys: String, CodingKey {
-        case titleID            = "id"
-        case titleName          = "name"
-        case titleDetailsURL    = "api_detail_url"
+        case name          = "name"
+        case id            = "id"
+        case detailsURL    = "api_detail_url"
     }
     
     init(from decoder: Decoder) throws {
-        
         let container   = try decoder.container(keyedBy: CodingKeys.self)
         
-        titleID         = try container.decode(Int.self, forKey: .titleID)
-
-        titleName       = try container.decode(String.self, forKey: .titleName)
-
-        titleDetailsURL = try container.decode(String.self, forKey: .titleDetailsURL)
-                
+        name            = try container.decode(String.self, forKey: .name)
+        id              = try container.decode(Int.self, forKey: .id)
+        detailsURL      = try container.decode(String.self, forKey: .detailsURL)
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(titleName)
+        hasher.combine(name)
     }
 }

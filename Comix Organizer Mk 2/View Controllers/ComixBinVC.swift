@@ -22,7 +22,6 @@ class ComixBinVC: CODataLoadingVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // see note 18 in app delegate
         getSavedTitles()
     }
     
@@ -82,7 +81,7 @@ extension ComixBinVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let savedTitle = savedTitles[indexPath.row]
-        cell.textLabel?.text = savedTitle.titleName
+        cell.textLabel?.text = savedTitle.name
         
         return cell
         
@@ -90,9 +89,8 @@ extension ComixBinVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let title               = savedTitles[indexPath.row]
-        let destVC              = SelectedTitleIssuesVC(selectedTitleName: title.titleName, selectedTitleDetailsURL: title.titleDetailsURL)
-        destVC.titleID          = title.titleID
-        destVC.titleInQuestion  = title
+        let destVC              = SelectedTitleIssuesVC(forTitle: title)
+       
         
         self.navigationController?.pushViewController(destVC, animated: true)
     }

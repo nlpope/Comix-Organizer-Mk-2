@@ -25,3 +25,10 @@ enum ImageKeys {
 enum PlaceHolderKeys {
     static let searchPlaceHolder    = "Enter publisher or hit GO to see all"
 }
+
+enum MessageKeys {
+    static let titleAdded           = "You have successfully saved this title to your ComixBin 🥳."
+    static let titleRemoved         = "You have successfully removed this title from your ComixBin."
+    static let issueCompleted       = "Hope you enjoyed reading this issue. It was saved to your completed list  🥳."
+    static let issueIncomplete      = "This issue has been marked incomplete."
+}

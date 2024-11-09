@@ -14,13 +14,11 @@ class APICaller {
     let cache         = NSCache<NSString, UIImage>()
     
     
-    // see notes 12a & 12b in app delegate
     func getAllPublishers(page: Int) async throws -> [Publisher] {
         let endpoint            = "\(baseURL)/publishers/?api_key=\(NetworkCallKeys.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
         
-        // see note 11 in app delegate
         let (data, _)           = try await URLSession.shared.data(from: url)
         let decoder             = JSONDecoder()
         guard let decodedJSON   = try? decoder.decode(APIPublishersResponse.self, from: data) else { throw COError.failedToGetData }
@@ -51,7 +49,7 @@ class APICaller {
         let decoder             = JSONDecoder()
         guard let decodedJSON   = try? decoder.decode(APITitlesResponse.self, from: data) else { throw COError.failedToGetData }
         
-        return decodedJSON.results["volumes"]!.sorted(by: {$1.titleName > $0.titleName})
+        return decodedJSON.results["volumes"]!.sorted(by: {$1.name > $0.name})
     }
     
     
@@ -63,7 +61,7 @@ class APICaller {
         let decoder             = JSONDecoder()
         guard let decodedJSON   = try? decoder.decode(APIIssuesResponse.self, from: data) else { throw COError.failedToGetData }
         
-        return decodedJSON.results["issues"]!.sorted(by: {$1.issueName > $0.issueName})
+        return decodedJSON.results["issues"]!.sorted(by: {$1.name > $0.name})
     }
     
     
