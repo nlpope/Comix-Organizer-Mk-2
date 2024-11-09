@@ -11,24 +11,24 @@ class COTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setVCs()
         configureTabBar()
+        setVCs()
     }
     
     
     func configureTabBar() { tabBar.tintColor = .label }
     
     
-    func setVCs() { viewControllers = [createStartNC(), createComixBinNC()] }
+    func setVCs() { viewControllers = [createSearchNC(), createComixBinNC()] }
     
     
-    func createStartNC() -> UINavigationController {
-        let startVC                 = SearchVC()
+    func createSearchNC() -> UINavigationController {
+        let searchVC                 = SearchVC()
         // ComixOrganizer word under search image not updating
-        startVC.title               = "Search"
-        startVC.tabBarItem.image    = SFSymbols.search
+        searchVC.title               = "Search"
+        searchVC.tabBarItem.image    = SFSymbols.search
         
-        return UINavigationController(rootViewController: startVC)
+        return UINavigationController(rootViewController: searchVC)
     }
     
     

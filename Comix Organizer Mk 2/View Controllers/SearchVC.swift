@@ -45,7 +45,7 @@ class SearchVC: UIViewController {
     
     func configureNavigation() {
         view.backgroundColor                        = .systemBackground
-        title = "ComixOrganizer"
+        title = "Search"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -54,9 +54,9 @@ class SearchVC: UIViewController {
     
     
     func configureLogoImageView() {
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        logoImageView.image                                     = Images.coLogo
-        logoImageView.layer.zPosition                           = -1
+        logoImageView.translatesAutoresizingMaskIntoConstraints     = false
+        logoImageView.image                                         = Images.coLogo
+        logoImageView.layer.zPosition                               = -1
         
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 950),
@@ -65,19 +65,13 @@ class SearchVC: UIViewController {
             logoImageView.heightAnchor.constraint(equalToConstant: 350)
         ])
         
+        // how does he come back down when backtracking?
         UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.logoImageView.transform    = CGAffineTransform(translationX: 0, y: -770)
+            self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
         }) { (_) in
-            UIImageView.animate(withDuration: 1, delay: 0, options: [.beginFromCurrentState, .repeat, .autoreverse]) {
+            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
                 self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
             }
-        }
-    }
-    
-    
-    func playHoverAnimation() {
-        UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
-            self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
         }
     }
     
@@ -116,19 +110,16 @@ class SearchVC: UIViewController {
     }
     
     
-   
-    
-    
     @objc func pushAllOrFilteredPublishersVC() {
-        //animate here shoot up
-        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.logoImageView.layer.removeAllAnimations()
-        }) { (_) in
-            self.logoImageView.transform    = CGAffineTransform(translationX: 0, y: -900)
-        }
-//        isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC()
-
+        view.endEditing(true)
+        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
+        }, completion: { (_) in
+            print("animation done")
+            self.isPublisherEntered ? self.pushFilteredPublishersVC() : self.pushAllPublishersVC()
+        })
     }
+    
     
     func pushFilteredPublishersVC() {
         let publisherName = publisherNameTextField.text!
@@ -148,7 +139,13 @@ class SearchVC: UIViewController {
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        isPublisherEntered ? pushFilteredPublishersVC() : pushAllPublishersVC()
+        view.endEditing(true)
+        UIImageView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
+            self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
+        }, completion: { (_) in
+            print("animation done")
+            self.isPublisherEntered ? self.pushFilteredPublishersVC() : self.pushAllPublishersVC()
+        })
         return true
     }
 }

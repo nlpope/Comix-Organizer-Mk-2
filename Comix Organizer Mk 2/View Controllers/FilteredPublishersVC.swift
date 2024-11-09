@@ -69,7 +69,7 @@ class FilteredPublishersVC: CODataLoadingVC {
     
     private func configureNavigationController() {
         view.backgroundColor    = .systemBackground
-        title                   = "Publishers"
+        title                   = "Results For: '\(publisherContainsName!)'"
         
         navigationController?.navigationBar.prefersLargeTitles      = true
         navigationController?.navigationItem.largeTitleDisplayMode  = .always
