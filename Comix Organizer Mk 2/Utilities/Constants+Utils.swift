@@ -7,20 +7,21 @@
 
 import UIKit
 
-enum NetworkCalls { static let API_KEY   = "b31d5105925e7fd811a07d63e82320578ba699f1" }
+enum NetworkCallKeys { static let API_KEY   = "b31d5105925e7fd811a07d63e82320578ba699f1" }
 
-enum SFSymbols {
+enum SFSymbolKeys {
     static let search               = UIImage(systemName: "magnifyingglass")
     static let bookShelf            = UIImage(systemName: "books.vertical.fill")
+    static let add                  = UIImage(systemName: "rectangle.stack.fill.badge.plus")
+    static let subtract             = UIImage(systemName: "rectangle.stack.fill.badge.minus")
 }
 
-
-enum Images {
+enum ImageKeys {
     static let coLogo               = UIImage(named: "co-logo")
     static let placeholder          = UIImage(named: "avatar-placeholder")
     static let emptyStateLogo       = UIImage(named: "empty-state-logo")
 }
 
-enum PlaceHolders {
+enum PlaceHolderKeys {
     static let searchPlaceHolder    = "Enter publisher or hit GO to see all"
 }

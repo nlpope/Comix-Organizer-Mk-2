@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>96</string>
+					<string>93</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>95</string>
+					<string>92</string>
 					<key>Timestamp</key>
-					<string>752524653.057373</string>
+					<string>752865267.243451</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>123</string>
+					<string>122</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>122</string>
+					<string>121</string>
 					<key>Timestamp</key>
-					<string>742610331.112267</string>
+					<string>752867376.709287</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -81,15 +81,14 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>        }
+				<string>    }
 </string>
 				<key>leading</key>
-				<string>        } catch {
-            return .failedToRecordCompletion
+				<string>            }
+        }
 </string>
 				<key>trailing</key>
-				<string>    }
-}
+				<string>}
 </string>
 			</dict>
 			<key>title</key>
@@ -105,13 +104,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>17</string>
+					<string>16</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>16</string>
+					<string>15</string>
 					<key>Timestamp</key>
-					<string>742612442.136634</string>
+					<string>752863664.170321</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -127,14 +126,14 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    var completedTitleIssues = [Issue]()
+				<string>    var completedTitleIssues    = [Issue]()
 </string>
 				<key>leading</key>
-				<string>    
-    // see note 19 in app delegate
+				<string>    var selectedTitleDetailsURL: String!
+    var titleAddedToBin         = false
 </string>
 				<key>trailing</key>
-				<string>    var selectedTitleIssues  = [Issue]()
+				<string>    var selectedTitleIssues     = [Issue]()
     var titleID: Int!
     
 </string>

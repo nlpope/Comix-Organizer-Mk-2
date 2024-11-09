@@ -26,7 +26,7 @@ class COTabBarController: UITabBarController {
         let searchVC                 = SearchVC()
         // ComixOrganizer word under search image not updating
         searchVC.title               = "Search"
-        searchVC.tabBarItem.image    = SFSymbols.search
+        searchVC.tabBarItem.image    = SFSymbolKeys.search
         
         return UINavigationController(rootViewController: searchVC)
     }
@@ -35,7 +35,7 @@ class COTabBarController: UITabBarController {
     func createComixBinNC() -> UINavigationController {
         let comixBinVC              = ComixBinVC()
         comixBinVC.title            = "ComixBin"
-        comixBinVC.tabBarItem.image = SFSymbols.bookShelf
+        comixBinVC.tabBarItem.image = SFSymbolKeys.bookShelf
 
         return UINavigationController(rootViewController: comixBinVC)
     }

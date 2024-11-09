@@ -7,6 +7,7 @@
 
 import UIKit
 
+// move inside?
 enum TitlePersistenceActiontype {
     case add, remove
 }
@@ -18,14 +19,16 @@ enum IssuePersistenceActiontype {
 enum PersistenceManager {
     
     static private let defaults = UserDefaults.standard
-    enum Keys {
+    
+    enum SaveKeys {
         static let bookmarx                 = "bookmarx"
         static let completedIssues          = "completedIssues"
     }
     
     
+    // MARK: TITLE PERSISTENCE
     static func updateWith(title: Title, actionType: TitlePersistenceActiontype, completed: @escaping (COError?) -> Void) {
-        retrieveBookmarx { result in
+        loadBookmarx { result in
             switch result {
             case .success(var bookmarx):
                 
@@ -49,8 +52,33 @@ enum PersistenceManager {
     }
     
     
+    static func save(bookMarx: [Title]) -> COError? {
+        let encoder             = JSONEncoder()
+        if let encodedBookmarx  = try? encoder.encode(bookMarx) {
+            defaults.set(encodedBookmarx, forKey: SaveKeys.bookmarx)
+            return nil
+        } else {
+            return .unableToBookmark
+        }
+    }
+    
+    
+    static func loadBookmarx(completed: @escaping (Result<[Title], COError>) -> Void) {
+        if let dataToDecode     = defaults.object(forKey: SaveKeys.bookmarx) as? Data {
+            do {
+                let decoder     = JSONDecoder()
+                let bookMarx    = try decoder.decode([Title].self, from: dataToDecode)
+                completed(.success(bookMarx))
+            } catch {
+                completed(.failure(.unableToLoadBookmarx))
+            }
+        }
+    }
+    
+    
+    // MARK: ISSUE PERSISTENCE
     static func updateWith(issue: Issue, actionType: IssuePersistenceActiontype, completed: @escaping (COError?) -> Void) {
-        retrieveCompletedIssues { result in
+        loadCompletedIssues { result in
             switch result {
             case .success(var issues):
                 
@@ -70,56 +98,26 @@ enum PersistenceManager {
     }
     
     
-    static func retrieveBookmarx(completed: @escaping (Result<[Title], COError>) -> Void) {
-        guard let bookmarxData = defaults.object(forKey: Keys.bookmarx) as? Data else {
-            completed(.success([]))
-            return
-        }
-        do {
-            let decoder = JSONDecoder()
-            let bookmarx = try decoder.decode([Title].self, from: bookmarxData)
-            completed(.success(bookmarx))
-        } catch {
-            completed(.failure(.unableToBookmark))
-        }
-    }
-    
-    
-    static func retrieveCompletedIssues(completed: @escaping (Result<[Issue], COError>) -> Void) {
-        guard let completedIssuesData = defaults.object(forKey: Keys.completedIssues) as? Data else {
-            completed(.success([]))
-            return
-        }
-        do {
-            let decoder = JSONDecoder()
-            let completedIssues = try decoder.decode([Issue].self, from: completedIssuesData)
-            completed(.success(completedIssues))
-        } catch {
-            completed(.failure(.failedToLoadProgress))
-        }
-    }
-    
-    
-    static func save(bookMarx: [Title]) -> COError? {
-        do {
-            let encoder = JSONEncoder()
-            let encodedBookmarx = try encoder.encode(bookMarx)
-            defaults.setValue(encodedBookmarx, forKey: Keys.bookmarx)
-            return nil
-        } catch {
-            return .unableToBookmark
-        }
-    }
-    
-    
     static func save(completedIssues: [Issue]) -> COError? {
-        do {
-            let encoder = JSONEncoder()
-            let encodedCompletedIssues = try encoder.encode(completedIssues)
-            defaults.setValue(encodedCompletedIssues, forKeyPath: Keys.completedIssues)
+        let encoder         = JSONEncoder()
+        if let encodedData  =  try? encoder.encode(completedIssues) {
+            defaults.set(encodedData, forKey: SaveKeys.completedIssues)
             return nil
-        } catch {
-            return .failedToRecordCompletion
+        } else {
+            return .failedToSaveProgress
+        }
+    }
+    
+    
+    static func loadCompletedIssues(completed: @escaping (Result<[Issue], COError>) -> Void) {
+        if let dataToDecode         = defaults.object(forKey: SaveKeys.completedIssues) as? Data {
+            let decoder             = JSONDecoder()
+            do {
+                let completedIssues = try decoder.decode([Issue].self, from: dataToDecode)
+                completed(.success(completedIssues))
+            } catch {
+                completed(.failure(.failedToLoadProgress))
+            }
         }
     }
 }

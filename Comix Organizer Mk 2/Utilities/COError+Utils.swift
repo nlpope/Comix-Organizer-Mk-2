@@ -12,8 +12,10 @@ enum COError: String, Error {
     case failedToGetData        = "Failed to get the data."
     #warning("replace error msgs in empty states with below")
     case unableToBookmark       = "There was a problem adding this title to your ComixBin. Please try again."
+    case unableToLoadBookmarx   = "There was a problem loading one or more titles from your ComixBin. Please try again."
     case alreadyInBookmarx      = "You've already added this title to your ComixBin."
-    case failedToRecordCompletion = "We were unable to record this completion. Please try again."
-    case failedToLoadProgress   = "We were unable to retrieve your progress from your last visit. Your progress will be reset. If the issue persists, please notify the developer."
+    
+    case failedToSaveProgress   = "We were unable to save your progress. Please try again."
+    case failedToLoadProgress   = "We were unable to load your progress from your last visit. Your progress will be reset. If the issue persists, please notify the developers."
     
 }

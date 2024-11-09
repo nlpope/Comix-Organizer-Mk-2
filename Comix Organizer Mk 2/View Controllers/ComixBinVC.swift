@@ -46,7 +46,7 @@ class ComixBinVC: CODataLoadingVC {
     
     
     func getSavedTitles() {
-        PersistenceManager.retrieveBookmarx { [weak self] result in
+        PersistenceManager.loadBookmarx { [weak self] result in
             guard let self = self else { return }
             
             switch result {

@@ -12,10 +12,9 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     var titleInQuestion: Title!
     var selectedTitleName: String!
     var selectedTitleDetailsURL: String!
-    
-    // see note 19 in app delegate
-    var completedTitleIssues = [Issue]()
-    var selectedTitleIssues  = [Issue]()
+    var titleAddedToBin         = false
+    var completedTitleIssues    = [Issue]()
+    var selectedTitleIssues     = [Issue]()
     var titleID: Int!
     
     var tableView: UITableView!
@@ -46,29 +45,27 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     
     func configureNavigationController() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        let addButton            = UIBarButtonItem(image: SFSymbolKeys.add, style: .plain, target: self, action: #selector(addButtonTapped))
+        let subtractButton       = UIBarButtonItem(image: SFSymbolKeys.subtract, style: .plain, target: self, action: #selector(subtractButtonTapped))
         
         title = "\(selectedTitleName!)"
         view.backgroundColor                                        = .systemBackground
         navigationItem.title                                        = "\(selectedTitleName!) Issues"
+        // ternary operator based on 'addedtobin'/loadprogress value
         navigationItem.rightBarButtonItem                           = addButton
         navigationController?.navigationBar.prefersLargeTitles      = true
         navigationController?.navigationItem.largeTitleDisplayMode  = .always
     }
     
     
-    func configureTableView() {
-        tableView                   = UITableView(frame: view.bounds)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
-        view.addSubview(tableView)
-        tableView.delegate          = self
-        tableView.dataSource        = self
-    }
+    @objc func addButtonTapped() { addToComixBin(withTitle: titleInQuestion) }
     
+    
+    @objc func subtractButtonTapped() { addToComixBin(withTitle: titleInQuestion) }
+
     
     func loadProgress() {
-        PersistenceManager.retrieveCompletedIssues { [weak self] result in
+        PersistenceManager.loadCompletedIssues { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -82,7 +79,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
             }
         }
     }
-    
+
     
     func getTitleIssues() {
         showLoadingView()
@@ -103,7 +100,14 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     }
     
     
-    @objc func addButtonTapped() { addToComixBin(withTitle: titleInQuestion) }
+    func configureTableView() {
+        tableView                   = UITableView(frame: view.bounds)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        view.addSubview(tableView)
+        tableView.delegate          = self
+        tableView.dataSource        = self
+    }
     
     
     func addToComixBin(withTitle title: Title) {

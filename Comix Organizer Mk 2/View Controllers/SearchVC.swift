@@ -33,19 +33,9 @@ class SearchVC: UIViewController {
     }
     
     
-    @objc func pushAllPublishersListVC() {
-        guard !isPublisherEntered else { return }
-        
-        publisherNameTextField.resignFirstResponder()
-        
-        let allPublisherListVC = AllPublishersVC()
-        navigationController?.pushViewController(allPublisherListVC, animated: true)
-    }
-    
-    
     func configureNavigation() {
         view.backgroundColor                        = .systemBackground
-        title = "Search"
+        title                                       = "Search"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -55,7 +45,7 @@ class SearchVC: UIViewController {
     
     func configureLogoImageView() {
         logoImageView.translatesAutoresizingMaskIntoConstraints     = false
-        logoImageView.image                                         = Images.coLogo
+        logoImageView.image                                         = ImageKeys.coLogo
         logoImageView.layer.zPosition                               = -1
         
         NSLayoutConstraint.activate([
@@ -79,7 +69,7 @@ class SearchVC: UIViewController {
     func configureTextField() {
         let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
         publisherNameTextField.delegate         = self
-        publisherNameTextField.placeholder      = PlaceHolders.searchPlaceHolder
+        publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
         publisherNameTextField.leftView         = paddingView
         publisherNameTextField.rightView        = paddingView
         publisherNameTextField.leftViewMode     = .always
@@ -122,6 +112,7 @@ class SearchVC: UIViewController {
     
     
     func pushFilteredPublishersVC() {
+        publisherNameTextField.resignFirstResponder()
         let publisherName = publisherNameTextField.text!
         Task { try await APICaller.shared.getFilteredPublishers(withName: publisherName, page: 0) }
         
@@ -131,9 +122,20 @@ class SearchVC: UIViewController {
     
     
     func pushAllPublishersVC() {
+        publisherNameTextField.resignFirstResponder()
         let allPublishersVC = AllPublishersVC()
         navigationController?.pushViewController(allPublishersVC, animated: true)
     }
+    
+    
+//    @objc func pushAllPublishersListVC() {
+//        guard !isPublisherEntered else { return }
+//        
+//        publisherNameTextField.resignFirstResponder()
+//        
+//        let allPublisherListVC = AllPublishersVC()
+//        navigationController?.pushViewController(allPublisherListVC, animated: true)
+//    }
 }
 
 

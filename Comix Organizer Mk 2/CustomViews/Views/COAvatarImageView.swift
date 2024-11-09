@@ -10,7 +10,7 @@ import UIKit
 class COAvatarImageView: UIImageView {
     
     let cache               = APICaller.shared.cache
-    let placeholderImage    = Images.placeholder
+    let placeholderImage    = ImageKeys.placeholder
     
     override init(frame: CGRect) {
         super.init(frame: frame)

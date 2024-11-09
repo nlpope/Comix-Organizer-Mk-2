@@ -16,7 +16,7 @@ class APICaller {
     
     // see notes 12a & 12b in app delegate
     func getAllPublishers(page: Int) async throws -> [Publisher] {
-        let endpoint            = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        let endpoint            = "\(baseURL)/publishers/?api_key=\(NetworkCallKeys.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
         
@@ -30,7 +30,7 @@ class APICaller {
     
     
     func getFilteredPublishers(withName name: String, page: Int) async throws -> [Publisher] {
-        let endpoint                = "\(baseURL)/publishers/?api_key=\(NetworkCalls.API_KEY)&filter=name:\(name)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
+        let endpoint                = "\(baseURL)/publishers/?api_key=\(NetworkCallKeys.API_KEY)&filter=name:\(name)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url               = URL(string: endpoint) else { throw COError.invalidURL }
         
@@ -44,7 +44,7 @@ class APICaller {
     
     // publisherTitles = volumes in API
     func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
-        let endpoint            = "\(publisherDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=volumes"
+        let endpoint            = "\(publisherDetailsURL)?api_key=\(NetworkCallKeys.API_KEY)&format=json&field_list=volumes"
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
                 
         let (data, _)           = try await URLSession.shared.data(from: url)
@@ -56,7 +56,7 @@ class APICaller {
     
     
     func getTitleIssues(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
-        let endpoint            = "\(titleDetailsURL)?api_key=\(NetworkCalls.API_KEY)&format=json&field_list=issues"
+        let endpoint            = "\(titleDetailsURL)?api_key=\(NetworkCallKeys.API_KEY)&format=json&field_list=issues"
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
         
         let (data, _)           = try await URLSession.shared.data(from: url)
