@@ -22,6 +22,10 @@ enum ImageKeys {
     static let emptyStateLogo       = UIImage(named: "empty-state-logo")
 }
 
+enum VideoKeys {
+    static let launchScreen         = "launchscreen"
+}
+
 enum PlaceHolderKeys {
     static let searchPlaceHolder    = "Enter publisher or hit GO to see all"
 }

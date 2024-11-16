@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "1x 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,11 +12,12 @@
           "value" : "dark"
         }
       ],
+      "filename" : "1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cleaner-logo-no-background.png",
+      "filename" : "2x 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -26,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cleaner-dark-logo-no-background.png",
+      "filename" : "2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cleaner-logo-no-background 1.png",
+      "filename" : "3x 1.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -42,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "cleaner-dark-logo-no-background 1.png",
+      "filename" : "3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

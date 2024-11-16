@@ -12,7 +12,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     var currentTitle: Title!
     var currentTitleIssues      = [Issue]()
     var completedTitleIssues    = [Issue]()
-    var titleSavedToBin         = true
+    var titleSavedToBin: Bool!
     var titleID: Int!
     
     var tableView: UITableView!
@@ -31,6 +31,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getSavedTitles()
         configureNavigationController()
         // load titles from persistence like in comixbin then use bool value to popul. rightbarbuttonitem
     }
@@ -65,7 +66,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
         title = "\(currentTitle!)"
         view.backgroundColor                                        = .systemBackground
         navigationItem.title                                        = "\(currentTitle.name) Issues"
-        #warning("bar button itme not changing based on 'savedToBin' status")
         navigationItem.rightBarButtonItem                           = titleSavedToBin ? subtractButton : addButton
         navigationController?.navigationBar.prefersLargeTitles      = true
         navigationController?.navigationItem.largeTitleDisplayMode  = .always
@@ -105,7 +105,6 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
                 self.currentTitleIssues += results.filter{$0.name != ""}
                 dismissLoadingView()
                 configureTableView()
-                
             } catch is COError {
                 showEmptyStateView(with: COError.failedToGetData.rawValue, in: self.view)
             }
@@ -131,6 +130,7 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
             self.titleSavedToBin    = true
             guard let error         = error else {
                 self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.titleAdded, buttonTitle: "Hooray!")
+                self.configureNavigationController()
                 return
             }
             
@@ -146,7 +146,8 @@ class SelectedTitleIssuesVC: CODataLoadingVC {
             self.dismissLoadingView()
             self.titleSavedToBin    = false
             guard let error         = error else {
-                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.titleRemoved, buttonTitle: "Hooray!")
+                self.presentCOAlertOnMainThread(alertTitle: "Success!", message: MessageKeys.titleRemoved, buttonTitle: "Ok")
+                self.configureNavigationController()
                 return
             }
             

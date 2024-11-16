@@ -18,7 +18,7 @@
 					<key>StartingLineNumber</key>
 					<string>106</string>
 					<key>Timestamp</key>
-					<string>752871677.043196</string>
+					<string>753123062.079154</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -41,9 +41,9 @@
                 dismissLoadingView()
 </string>
 				<key>trailing</key>
-				<string>                
-            } catch is COError {
+				<string>            } catch is COError {
                 showEmptyStateView(with: COError.failedToGetData.rawValue, in: self.view)
+            }
 </string>
 			</dict>
 			<key>title</key>
@@ -127,7 +127,7 @@
 			<dict>
 				<key>focused</key>
 				<string>    var completedTitleIssues    = [Issue]()
-    var titleSavedToBin         = true
+    var titleSavedToBin: Bool!
 </string>
 				<key>leading</key>
 				<string>    var currentTitle: Title!
@@ -158,7 +158,7 @@
 					<key>StartingLineNumber</key>
 					<string>80</string>
 					<key>Timestamp</key>
-					<string>752871677.0431449</string>
+					<string>753123062.079089</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>

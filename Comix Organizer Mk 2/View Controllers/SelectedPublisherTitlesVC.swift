@@ -13,10 +13,9 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     
     var selectedPublisherName: String!
     var selectedPublisherDetailsURL: String!
-    
-    // see note 16 in app delegate
     var titles                  = [Title]()
     var filteredTitles          = [Title]()
+    var savedTitles             = [Title]()
     var isSearching             = false
     
     var tableView: UITableView!
@@ -39,15 +38,20 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
         super.viewDidLoad()
         configureNavigationVC()
         configureSearchController()
-        configureTableView()
-        getPublisherTitles()
-        configureDataSource()
+//        configureTableView()
+//        getSavedTitles()
+//        getPublisherTitles()
+//        configureDataSource()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+        configureTableView()
+        getSavedTitles()
+        getPublisherTitles()
+        configureDataSource()
     }
     
     
@@ -92,9 +96,9 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     
     func configureDataSource() {
         dataSource = UITableViewDiffableDataSource<Section, Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = title.name
-            cell.accessoryType
+            let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text    = title.name
+            cell.accessoryType      = self.savedTitles.contains(title) ? .detailButton : .none
             
             return cell
         })
@@ -127,6 +131,21 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
+    func getSavedTitles() {
+        PersistenceManager.loadBookmarx { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let savedTitles):
+                self.savedTitles = savedTitles
+                
+            case .failure(let error):
+                self.presentCOAlertOnMainThread(alertTitle: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    }
+    
+    
     func getPublisherTitles() {
         showLoadingView()
         Task {
@@ -150,8 +169,6 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate {
         let activeArray                     = isSearching ? filteredTitles : titles
         let title                           = activeArray[indexPath.row]
         let destVC                          = SelectedTitleIssuesVC(forTitle: title)
-//        destVC.titleID                      = title.titleID
-//        destVC.currentTitle              = title
         
         self.navigationController?.pushViewController(destVC, animated: true)
     }
@@ -162,7 +179,7 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate {
 extension SelectedPublisherTitlesVC: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResults(for searchController: UISearchController) {
-        guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
+        guard let filter    = searchController.searchBar.text, !filter.isEmpty else { return }
         
         isSearching         = true
         filteredTitles      = titles.filter { $0.name.lowercased().contains(filter.lowercased()) }

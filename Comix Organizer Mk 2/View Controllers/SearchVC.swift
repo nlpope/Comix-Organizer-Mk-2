@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 
 class SearchVC: UIViewController {
     
@@ -27,9 +29,25 @@ class SearchVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        playVideo()
         configureLogoImageView()
         publisherNameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        playVideo()
+//    }
+    
+    
+    func playVideo() {
+        guard let path  = Bundle.main.path(forResource: VideoKeys.launchScreen, ofType: "mp4") else { debugPrint("launchscreen.mp4 not found"); return }
+        let player      = AVPlayer(url: URL(fileURLWithPath: path))
+        let playerController    = AVPlayerViewController()
+        playerController.player = player
+        present(playerController, animated: true) { player.play() }
     }
     
     
