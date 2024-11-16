@@ -11,6 +11,7 @@ import AVFoundation
 
 class SearchVC: UIViewController {
     
+    var playerController : AVPlayerViewController!
     let logoImageView           = UIImageView()
     let publisherNameTextField  = COTextField()
     let callToActionButton      = COButton(backgroundColor: .blue, title: "Get Publishers")
@@ -45,9 +46,22 @@ class SearchVC: UIViewController {
     func playVideo() {
         guard let path  = Bundle.main.path(forResource: VideoKeys.launchScreen, ofType: "mp4") else { debugPrint("launchscreen.mp4 not found"); return }
         let player      = AVPlayer(url: URL(fileURLWithPath: path))
-        let playerController    = AVPlayerViewController()
+        playerController    = AVPlayerViewController()
+
+        
         playerController.player = player
+        playerController.showsPlaybackControls  = false
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerDidFinishPlaying),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: playerController.player?.currentItem)
+
         present(playerController, animated: true) { player.play() }
+    }
+    
+    
+    @objc func playerDidFinishPlaying() {
+        self.playerController.dismiss(animated: true)
     }
     
     
