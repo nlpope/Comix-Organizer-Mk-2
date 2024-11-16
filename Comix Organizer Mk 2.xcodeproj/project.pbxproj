@@ -24,7 +24,6 @@
 		40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */; };
 		40A83A9D2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */; };
 		40A83A9F2AFA5F5E009F80D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */; };
-		40A83AA22AFA5F5E009F80D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */; };
 		40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AC92AFA617A009F80D3 /* APICaller.swift */; };
 		40A83ACC2AFA6187009F80D3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83ACB2AFA6187009F80D3 /* Publisher.swift */; };
 		40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */; };
@@ -63,7 +62,6 @@
 		40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPublishersVC.swift; sourceTree = "<group>"; };
 		40A83A9C2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Comix_Organizer_Mk_2.xcdatamodel; sourceTree = "<group>"; };
 		40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		40A83AA12AFA5F5E009F80D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40A83AA32AFA5F5E009F80D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A83AC92AFA617A009F80D3 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		40A83ACB2AFA6187009F80D3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				40A83A922AFA5F5B009F80D3 /* AppDelegate.swift */,
 				40A83A942AFA5F5B009F80D3 /* SceneDelegate.swift */,
 				40A83A9E2AFA5F5E009F80D3 /* Assets.xcassets */,
-				40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */,
 				40A83A9B2AFA5F5B009F80D3 /* Comix_Organizer_Mk_2.xcdatamodeld */,
 			);
 			path = "Supporting Files";
@@ -333,7 +330,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A83AA22AFA5F5E009F80D3 /* LaunchScreen.storyboard in Resources */,
 				40A83A9F2AFA5F5E009F80D3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -382,17 +378,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		40A83AA02AFA5F5E009F80D3 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40A83AA12AFA5F5E009F80D3 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		40A83ABA2AFA5F5E009F80D3 /* Debug */ = {

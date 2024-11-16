@@ -12,41 +12,43 @@ import AVFoundation
 class SearchVC: UIViewController {
     
     var playerController : AVPlayerViewController!
+    var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
+    var isInitialLoad           = true
     let logoImageView           = UIImageView()
     let publisherNameTextField  = COTextField()
     let callToActionButton      = COButton(backgroundColor: .blue, title: "Get Publishers")
-    var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .black
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if isInitialLoad { playLaunchAnimation() }
+        publisherNameTextField.text = ""
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         configureNavigation()
         addSubviews()
         configureTextField()
         configureCallToActionButton()
         setupKeyboardHiding()
         addKeyboardDismissOnTap()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        playVideo()
         configureLogoImageView()
-        publisherNameTextField.text = ""
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        playVideo()
-//    }
-    
-    
-    func playVideo() {
-        guard let path  = Bundle.main.path(forResource: VideoKeys.launchScreen, ofType: "mp4") else { debugPrint("launchscreen.mp4 not found"); return }
-        let player      = AVPlayer(url: URL(fileURLWithPath: path))
-        playerController    = AVPlayerViewController()
+    func playLaunchAnimation() {
+        isInitialLoad                           = false
+        guard let path                          = Bundle.main.path(forResource: VideoKeys.launchScreen, ofType: "mp4") else { debugPrint("launchscreen.mp4 not found"); return }
+        let player                              = AVPlayer(url: URL(fileURLWithPath: path))
+        playerController                        = AVPlayerViewController()
 
         
         playerController.player = player
@@ -56,12 +58,12 @@ class SearchVC: UIViewController {
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: playerController.player?.currentItem)
 
-        present(playerController, animated: true) { player.play() }
+        present(playerController, animated: false) { player.play() }
     }
     
     
     @objc func playerDidFinishPlaying() {
-        self.playerController.dismiss(animated: true)
+        self.playerController.dismiss(animated: false)
     }
     
     
