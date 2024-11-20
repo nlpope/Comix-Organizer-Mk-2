@@ -9,6 +9,10 @@ import UIKit
 import AVKit
 import AVFoundation
 
+#warning("use search and sort feature to do a mass search of anything user enters")
+// https://comicvine.gamespot.com/api/search/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&format=json&sort=name:asc&resources=issue&query=%22Master%20of%20kung%20fu%22
+// instructions: https://comicvine.gamespot.com/forums/api-developers-2334/simple-example-s-for-using-the-apis-1885345/
+
 class SearchVC: UIViewController
 {
     
@@ -50,6 +54,7 @@ class SearchVC: UIViewController
     }
     
     
+    #warning("if app enters background, vid pauses and is stuck on re-entry - fix")
     func playLaunchAnimation()
     {
         isInitialLoad                           = false
@@ -133,7 +138,7 @@ class SearchVC: UIViewController
     {
         let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
         publisherNameTextField.delegate         = self
-        publisherNameTextField.placeholder      = PlaceHolderKeys.publisherSearchPlaceHolder
+        publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
         publisherNameTextField.leftView         = paddingView
         publisherNameTextField.rightView        = paddingView
         publisherNameTextField.leftViewMode     = .always

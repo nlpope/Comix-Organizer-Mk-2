@@ -34,7 +34,6 @@
 		40ADE1442C33769100E2EEC9 /* PublisherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1432C33769100E2EEC9 /* PublisherCell.swift */; };
 		40ADE14A2C337EEB00E2EEC9 /* COAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */; };
 		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
-		40B3855A2CE907DC00D70E85 /* LaunchScreenPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B385592CE907DC00D70E85 /* LaunchScreenPlayer.swift */; };
 		40B3855C2CED1B7D00D70E85 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B3855B2CED1B7D00D70E85 /* String+Ext.swift */; };
 		40C0372D2C3732BC00A67B2D /* COEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */; };
 		40C1CE962C38A98000624DBE /* FilteredPublishersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C1CE952C38A98000624DBE /* FilteredPublishersVC.swift */; };
@@ -73,7 +72,6 @@
 		40ADE1432C33769100E2EEC9 /* PublisherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherCell.swift; sourceTree = "<group>"; };
 		40ADE1492C337EEB00E2EEC9 /* COAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COAvatarImageView.swift; sourceTree = "<group>"; };
 		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
-		40B385592CE907DC00D70E85 /* LaunchScreenPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenPlayer.swift; sourceTree = "<group>"; };
 		40B3855B2CED1B7D00D70E85 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COEmptyStateView.swift; sourceTree = "<group>"; };
 		40C1CE952C38A98000624DBE /* FilteredPublishersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredPublishersVC.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 		404BA7572B7C5BE600238FC9 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				40B385592CE907DC00D70E85 /* LaunchScreenPlayer.swift */,
 				40AD02702C2F355B000C53A2 /* SearchVC.swift */,
 				40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */,
 				40C1CE952C38A98000624DBE /* FilteredPublishersVC.swift */,
@@ -354,7 +351,6 @@
 				40C1CE962C38A98000624DBE /* FilteredPublishersVC.swift in Sources */,
 				40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
-				40B3855A2CE907DC00D70E85 /* LaunchScreenPlayer.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
 				40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */,

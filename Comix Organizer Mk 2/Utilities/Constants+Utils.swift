@@ -31,8 +31,7 @@ enum VideoKeys
 
 enum PlaceHolderKeys
 {
-    static let publisherSearchPlaceHolder    = "Enter publisher or leave blank to see all"
-    static let characterSearchPlaceHolder    = "Enter character or leave blank to see all"
+    static let searchPlaceHolder    = "Enter publisher, character, or title"
 }
 
 enum MessageKeys
