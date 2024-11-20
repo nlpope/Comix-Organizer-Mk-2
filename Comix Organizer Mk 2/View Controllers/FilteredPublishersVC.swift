@@ -7,7 +7,8 @@
 
 import UIKit
 
-class FilteredPublishersVC: CODataLoadingVC {
+class FilteredPublishersVC: CODataLoadingVC
+{
     
     enum Section { case main }
     
@@ -19,24 +20,22 @@ class FilteredPublishersVC: CODataLoadingVC {
     var isSearching             = false
     var isLoadingMorePublishers = false
     static var isFirstVisit     = true
-    
-    // see note 5 in app delegate
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
     
     
-    init(withName name: String) {
+    init(withName name: String)
+    {
         super.init(nibName: nil, bundle: nil)
         self.publisherContainsName = name
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureNavigationController()
         configureSearchController()
@@ -44,30 +43,32 @@ class FilteredPublishersVC: CODataLoadingVC {
         getFilteredPublishers()
         configureDataSource()
         presentListOrderAlert()
-        // see note 10 in app delegate
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     
-    // see note 15 in app delegate
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+    {
         super.viewDidAppear(animated)
         FilteredPublishersVC.isFirstVisit = false
     }
     
     
-    func presentListOrderAlert() {
+    func presentListOrderAlert()
+    {
         guard FilteredPublishersVC.isFirstVisit else { return }
         presentCOAlertOnMainThread(alertTitle: "Important", message: "The following list is loaded by popularity THEN alphabetically. So 'Z' may appear just before 'A' at the bottom when new publishers load. Happy searching 😁.", buttonTitle: "ok")
     }
     
     
-    private func configureNavigationController() {
+    private func configureNavigationController()
+    {
         view.backgroundColor    = .systemBackground
         title                   = "Results For: '\(publisherContainsName!)'"
         
@@ -76,7 +77,8 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
-    func configureSearchController() {
+    func configureSearchController()
+    {
         let mySearchController                                  = UISearchController()
         mySearchController.searchResultsUpdater                 = self
         mySearchController.searchBar.delegate                   = self
@@ -88,12 +90,11 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
-    func hideSearchController() {
-        navigationItem.searchController?.searchBar.isHidden = true
-    }
+    func hideSearchController() { navigationItem.searchController?.searchBar.isHidden = true }
     
     
-    func configureCollectionView() {
+    func configureCollectionView()
+    {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view))
         
         view.addSubview(collectionView)
@@ -103,7 +104,8 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
-    func configureDataSource() {
+    func configureDataSource()
+    {
         dataSource = UICollectionViewDiffableDataSource<Section, Publisher>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
             cell.set(publisher: publisher)
@@ -113,8 +115,8 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
-    // see note 12b in app delegate
-    func getFilteredPublishers() {
+    func getFilteredPublishers()
+    {
         showLoadingView()
         isLoadingMorePublishers = true
         Task {
@@ -131,11 +133,11 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
-    func updateUI(with publishers: [Publisher]) {
+    func updateUI(with publishers: [Publisher])
+    {
         if publishers.count < 100 { self.hasMorePublishers = false }
         self.publishers.append(contentsOf: publishers)
         
-        // test empty state
         // self.publishers = []
         if self.publishers.isEmpty {
             let message = "There are no publishers by the name \(publisherContainsName!) to display 😢."
@@ -149,7 +151,8 @@ class FilteredPublishersVC: CODataLoadingVC {
     }
     
     
-    func updateData(on publishers: [Publisher]) {
+    func updateData(on publishers: [Publisher])
+    {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Publisher>()
         snapshot.appendSections([.main])
         snapshot.appendItems(publishers)
@@ -159,10 +162,11 @@ class FilteredPublishersVC: CODataLoadingVC {
 
 
 //MARK: COLLECTIONVIEW DELEGATE METHODS
-extension FilteredPublishersVC: UICollectionViewDelegate {
+extension FilteredPublishersVC: UICollectionViewDelegate
+{
     
-    // see note 13 in app delegate
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
         let offsetY         = scrollView.contentOffset.y
         let contentHeight   = scrollView.contentSize.height
         let height          = scrollView.frame.size.height
@@ -175,7 +179,8 @@ extension FilteredPublishersVC: UICollectionViewDelegate {
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
         let activeArray     = isSearching ? filteredPublishers : publishers
         let publisher       = activeArray[indexPath.item]
         let destVC          = SelectedPublisherTitlesVC(underPublisher: publisher.name, withDetailsURL: publisher.publisherDetailsURL)
@@ -186,24 +191,27 @@ extension FilteredPublishersVC: UICollectionViewDelegate {
 
 
 // MARK: SEARCHBAR DELEGATE METHODS
-extension FilteredPublishersVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension FilteredPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
+{
     
-    func updateSearchResults(for searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController)
+    {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }
-        
         isSearching         = true
         filteredPublishers  = publishers.filter { $0.name.lowercased().contains(filter.lowercased()) }
         updateData(on: filteredPublishers)
     }
     
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    {
         isSearching = false
         updateData(on: publishers)
     }
     
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
         if searchText == "" {
             isSearching = false
             updateData(on: publishers)

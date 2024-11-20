@@ -7,12 +7,14 @@
 
 import UIKit
 
-class CODataLoadingVC: UIViewController {
+class CODataLoadingVC: UIViewController
+{
 
     var containerView: UIView!
 
 
-    func showLoadingView() {
+    func showLoadingView()
+    {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
         
@@ -35,7 +37,8 @@ class CODataLoadingVC: UIViewController {
     }
     
     
-    func dismissLoadingView() {
+    func dismissLoadingView()
+    {
         DispatchQueue.main.async {
             self.containerView.removeFromSuperview()
             self.containerView = nil
@@ -43,7 +46,8 @@ class CODataLoadingVC: UIViewController {
     }
     
     
-    func showEmptyStateView(with message: String, in view: UIView) {
+    func showEmptyStateView(with message: String, in view: UIView)
+    {
         let emptyStateView      = COEmptyStateView(message: message)
         emptyStateView.frame    = view.bounds
         view.addSubview(emptyStateView)

@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>107</string>
+					<string>112</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>106</string>
+					<string>111</string>
 					<key>Timestamp</key>
-					<string>753123062.079154</string>
+					<string>753766662.287276</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>121</string>
+					<string>135</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>120</string>
+					<string>134</string>
 					<key>Timestamp</key>
-					<string>752867543.55409</string>
+					<string>753764745.6407059</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -108,9 +108,9 @@
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>13</string>
+					<string>14</string>
 					<key>Timestamp</key>
-					<string>752870396.425283</string>
+					<string>753766574.280211</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -127,16 +127,15 @@
 			<dict>
 				<key>focused</key>
 				<string>    var completedTitleIssues    = [Issue]()
-    var titleSavedToBin: Bool!
 </string>
 				<key>leading</key>
 				<string>    var currentTitle: Title!
     var currentTitleIssues      = [Issue]()
 </string>
 				<key>trailing</key>
-				<string>    var titleID: Int!
+				<string>    var titleSavedToBin: Bool!
+    var titleID: Int!
     
-    var tableView: UITableView!
 </string>
 			</dict>
 			<key>title</key>
@@ -152,13 +151,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>81</string>
+					<string>84</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>80</string>
+					<string>83</string>
 					<key>Timestamp</key>
-					<string>753123062.079089</string>
+					<string>753766614.302603</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -174,7 +173,8 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>    func loadProgress() {
+				<string>    func loadProgress()
+    {
 </string>
 				<key>leading</key>
 				<string>
@@ -188,6 +188,799 @@
 			</dict>
 			<key>title</key>
 			<string>loadProgress is stored then matched against what's brought in from getTitleIssues for cell check accessory</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>45</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>44</string>
+					<key>Timestamp</key>
+					<string>753764280.34244</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/Managers/APICaller.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -&gt; [Title]
+</string>
+				<key>leading</key>
+				<string>
+    
+</string>
+				<key>trailing</key>
+				<string>    {
+        let endpoint            = "\(publisherDetailsURL)?api_key=\(NetworkCallKeys.API_KEY)&amp;format=json&amp;field_list=volumes"
+        guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
+</string>
+			</dict>
+			<key>title</key>
+			<string>publisherTitles = volumes in API</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>11</string>
+					<key>StartingColumnNumber</key>
+					<string>35</string>
+					<key>StartingLineNumber</key>
+					<string>10</string>
+					<key>Timestamp</key>
+					<string>753764853.710579</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/Models/Title.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>
+struct APITitlesResponse: Codable
+{</string>
+				<key>trailing</key>
+				<string>    let results: [String: [Title]]
+}
+
+</string>
+			</dict>
+			<key>title</key>
+			<string>title = volume in the API</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>41</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>40</string>
+					<key>Timestamp</key>
+					<string>753765105.0570821</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/CustomViews/ChildViewControllers/COAlertChildVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        view.addSubview(containerView)
+</string>
+				<key>leading</key>
+				<string>        super.viewDidLoad()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+</string>
+				<key>trailing</key>
+				<string>        containerView.addSubviews(titleLabel, messageLabel, actionButton)
+        configureContainerView()
+        configureTitleLabel()
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 18 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>64</string>
+					<key>StartingColumnNumber</key>
+					<string>62</string>
+					<key>StartingLineNumber</key>
+					<string>63</string>
+					<key>Timestamp</key>
+					<string>753765159.539789</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/CustomViews/ChildViewControllers/COAlertChildVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>    func configureTitleLabel()
+    {
+        titleLabel.text = alertTitle ?? "Something went wrong"</string>
+				<key>trailing</key>
+				<string>        
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: padding),
+</string>
+			</dict>
+			<key>title</key>
+			<string>for if alertTitle's custom init isn't used &amp; it comes up nil</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>41</string>
+					<key>EndingLineNumber</key>
+					<string>33</string>
+					<key>StartingColumnNumber</key>
+					<string>8</string>
+					<key>StartingLineNumber</key>
+					<string>33</string>
+					<key>Timestamp</key>
+					<string>753765411.8583061</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/CustomViews/Labels/COBodyLabel.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>adjustsFontForContentSizeCategory</string>
+				<key>leading</key>
+				<string>        textColor                                 = .secondaryLabel
+        font                                      = UIFont.preferredFont(forTextStyle: .body)
+        </string>
+				<key>trailing</key>
+				<string>         = true
+        adjustsFontSizeToFitWidth                 = true
+        minimumScaleFactor                        = 0.75
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 21 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>40</string>
+					<key>EndingLineNumber</key>
+					<string>22</string>
+					<key>StartingColumnNumber</key>
+					<string>24</string>
+					<key>StartingLineNumber</key>
+					<string>22</string>
+					<key>Timestamp</key>
+					<string>753765772.328292</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/AllPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>UICollectionView</string>
+				<key>leading</key>
+				<string>    static var isFirstVisit     = true
+    
+    var collectionView: </string>
+				<key>trailing</key>
+				<string>!
+    var dataSource: UICollectionViewDiffableDataSource&lt;Section, Publisher&gt;!
+    
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 5 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>42</string>
+					<key>EndingLineNumber</key>
+					<string>46</string>
+					<key>StartingColumnNumber</key>
+					<string>42</string>
+					<key>StartingLineNumber</key>
+					<string>46</string>
+					<key>Timestamp</key>
+					<string>753765793.927103</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/AllPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string>    
+    
+    override func viewDidAppear(_ animated</string>
+				<key>trailing</key>
+				<string>: Bool)
+    {
+        super.viewDidAppear(animated)
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 15 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>98</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>97</string>
+					<key>Timestamp</key>
+					<string>753765851.4237781</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/AllPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    func getPublishers(page: Int)
+    {
+</string>
+				<key>leading</key>
+				<string>    
+    
+</string>
+				<key>trailing</key>
+				<string>        showLoadingView()
+        isLoadingMorePublishers = true
+        Task {
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 12b in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>161</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>160</string>
+					<key>Timestamp</key>
+					<string>753765950.537578</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/AllPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+</string>
+				<key>leading</key>
+				<string>{
+    
+</string>
+				<key>trailing</key>
+				<string>    {
+        let offsetY         = scrollView.contentOffset.y
+        let contentHeight   = scrollView.contentSize.height
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 13 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>187</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>186</string>
+					<key>Timestamp</key>
+					<string>753766033.670261</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/AllPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
+</string>
+				<key>leading</key>
+				<string>
+// MARK: SEARCHBAR DELEGATE METHODS
+</string>
+				<key>trailing</key>
+				<string>{
+    
+    func updateSearchResults(for searchController: UISearchController)
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 4 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>23</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>22</string>
+					<key>Timestamp</key>
+					<string>753766086.2502199</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/FilteredPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>    var collectionView: UICollectionView!
+</string>
+				<key>leading</key>
+				<string>    var isLoadingMorePublishers = false
+    static var isFirstVisit     = true
+</string>
+				<key>trailing</key>
+				<string>    var dataSource: UICollectionViewDiffableDataSource&lt;Section, Publisher&gt;!
+    
+    
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 5 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>45</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>44</string>
+					<key>Timestamp</key>
+					<string>753766109.938277</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/FilteredPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        presentListOrderAlert()
+</string>
+				<key>leading</key>
+				<string>        getFilteredPublishers()
+        configureDataSource()
+</string>
+				<key>trailing</key>
+				<string>    }
+    
+    
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 10 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>34</string>
+					<key>EndingLineNumber</key>
+					<string>55</string>
+					<key>StartingColumnNumber</key>
+					<string>33</string>
+					<key>StartingLineNumber</key>
+					<string>55</string>
+					<key>Timestamp</key>
+					<string>753766139.607888</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/FilteredPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string> </string>
+				<key>leading</key>
+				<string>    
+    
+    override func viewDidAppear(_</string>
+				<key>trailing</key>
+				<string>animated: Bool)
+    {
+        super.viewDidAppear(animated)
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 15 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>30</string>
+					<key>EndingLineNumber</key>
+					<string>117</string>
+					<key>StartingColumnNumber</key>
+					<string>9</string>
+					<key>StartingLineNumber</key>
+					<string>117</string>
+					<key>Timestamp</key>
+					<string>753766215.688557</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/FilteredPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>getFilteredPublishers</string>
+				<key>leading</key>
+				<string>    
+    
+    func </string>
+				<key>trailing</key>
+				<string>()
+    {
+        showLoadingView()
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 12b in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>141</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>140</string>
+					<key>Timestamp</key>
+					<string>753766252.230806</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/FilteredPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        // self.publishers = []
+</string>
+				<key>leading</key>
+				<string>        self.publishers.append(contentsOf: publishers)
+        
+</string>
+				<key>trailing</key>
+				<string>        if self.publishers.isEmpty {
+            let message = "There are no publishers by the name \(publisherContainsName!) to display 😢."
+            DispatchQueue.main.async {
+</string>
+			</dict>
+			<key>title</key>
+			<string>test empty state</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>33</string>
+					<key>EndingLineNumber</key>
+					<string>167</string>
+					<key>StartingColumnNumber</key>
+					<string>9</string>
+					<key>StartingLineNumber</key>
+					<string>167</string>
+					<key>Timestamp</key>
+					<string>753766277.703269</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/FilteredPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>scrollViewDidEndDragging</string>
+				<key>leading</key>
+				<string>{
+    
+    func </string>
+				<key>trailing</key>
+				<string>(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        let offsetY         = scrollView.contentOffset.y
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 13 in app delegate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>15</string>
+					<key>EndingLineNumber</key>
+					<string>111</string>
+					<key>StartingColumnNumber</key>
+					<string>11</string>
+					<key>StartingLineNumber</key>
+					<string>111</string>
+					<key>Timestamp</key>
+					<string>753766504.127736</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/SelectedPublisherTitlesVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>self</string>
+				<key>leading</key>
+				<string>        self.titles.append(contentsOf: titles)
+        
+        // </string>
+				<key>trailing</key>
+				<string>.titles = []
+        if self.titles.isEmpty {
+            let message = EmptyStateKeys.noTitlesPublished
+</string>
+			</dict>
+			<key>title</key>
+			<string>test empty state</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

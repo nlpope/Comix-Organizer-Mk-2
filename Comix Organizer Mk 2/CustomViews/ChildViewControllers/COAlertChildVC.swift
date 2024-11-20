@@ -7,7 +7,8 @@
 
 import UIKit
 
-class COAlertChildVC: UIViewController {
+class COAlertChildVC: UIViewController
+{
     
     let containerView = COAlertContainerView()
     let titleLabel    = COTitleLabel(textAlignment: .center, fontSize: 20)
@@ -21,7 +22,8 @@ class COAlertChildVC: UIViewController {
     let padding: CGFloat = 20
     
     
-    init(alertTitle: String, message: String, buttonTitle: String) {
+    init(alertTitle: String, message: String, buttonTitle: String)
+    {
         super.init(nibName: nil, bundle: nil)
         self.alertTitle  = alertTitle
         self.message     = message
@@ -29,18 +31,15 @@ class COAlertChildVC: UIViewController {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        // see note 18 in app delegate
         view.addSubview(containerView)
         containerView.addSubviews(titleLabel, messageLabel, actionButton)
-        
         configureContainerView()
         configureTitleLabel()
         configureActionButton()
@@ -49,7 +48,8 @@ class COAlertChildVC: UIViewController {
     }
     
     
-    func configureContainerView() {
+    func configureContainerView()
+    {
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -59,8 +59,8 @@ class COAlertChildVC: UIViewController {
     }
     
     
-    func configureTitleLabel() {
-        // for if alertTitle's custom init isn't used & it comes up nil
+    func configureTitleLabel()
+    {
         titleLabel.text = alertTitle ?? "Something went wrong"
         
         NSLayoutConstraint.activate([
@@ -72,7 +72,8 @@ class COAlertChildVC: UIViewController {
     }
     
     
-    func configureMessageLabel() {
+    func configureMessageLabel()
+    {
         messageLabel.text          = message ?? "Unable to complete request"
         messageLabel.numberOfLines = 7
         
@@ -85,7 +86,8 @@ class COAlertChildVC: UIViewController {
     }
     
     
-    func configureActionButton() {
+    func configureActionButton()
+    {
         actionButton.setTitle(buttonTitle, for: .normal)
         actionButton.addTarget(self, action: #selector(dismissVC), for: .touchUpInside)
         
@@ -99,7 +101,5 @@ class COAlertChildVC: UIViewController {
     }
     
     
-    @objc func dismissVC() {
-        dismiss(animated: true)
-    }
+    @objc func dismissVC() { dismiss(animated: true) }
 }

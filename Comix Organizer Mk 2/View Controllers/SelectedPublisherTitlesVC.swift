@@ -7,7 +7,8 @@
 
 import UIKit
 
-class SelectedPublisherTitlesVC: CODataLoadingVC {
+class SelectedPublisherTitlesVC: CODataLoadingVC
+{
 
     enum Section { case main }
     
@@ -22,30 +23,27 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     var dataSource: UITableViewDiffableDataSource<Section, Title>!
     
     
-    init(underPublisher publisherName: String, withDetailsURL publisherDetailsURL: String) {
+    init(underPublisher publisherName: String, withDetailsURL publisherDetailsURL: String)
+    {
         super.init(nibName: nil, bundle: nil)
         self.selectedPublisherName = publisherName
         self.selectedPublisherDetailsURL = publisherDetailsURL
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureNavigationVC()
         configureSearchController()
-//        configureTableView()
-//        getSavedTitles()
-//        getPublisherTitles()
-//        configureDataSource()
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
         configureTableView()
@@ -55,7 +53,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func configureNavigationVC() {
+    func configureNavigationVC()
+    {
         if selectedPublisherName.contains("Comics") {
             selectedPublisherName   = selectedPublisherName.replacingOccurrences(of: "Comics", with: "Comix")
         }
@@ -67,7 +66,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func configureSearchController() {
+    func configureSearchController()
+    {
         let mySearchController                                  = UISearchController()
         mySearchController.searchResultsUpdater                 = self
         mySearchController.searchBar.delegate                   = self
@@ -79,12 +79,11 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func hideSearchController() {
-        navigationItem.searchController?.searchBar.isHidden = true
-    }
+    func hideSearchController() { navigationItem.searchController?.searchBar.isHidden = true }
     
     
-    func configureTableView() {
+    func configureTableView()
+    {
         tableView = UITableView(frame: view.bounds)
         
         view.addSubview(tableView)
@@ -94,7 +93,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func configureDataSource() {
+    func configureDataSource()
+    {
         dataSource = UITableViewDiffableDataSource<Section, Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
             let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text    = title.name
@@ -105,13 +105,13 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func updateUI(with titles: [Title]) {
+    func updateUI(with titles: [Title])
+    {
         self.titles.append(contentsOf: titles)
         
-        // test empty state
         // self.titles = []
         if self.titles.isEmpty {
-            let message = "There doesn't seem to be any titles under this publisher 😢."
+            let message = EmptyStateKeys.noTitlesPublished
             DispatchQueue.main.async {
                 self.hideSearchController()
                 self.showEmptyStateView(with: message, in: self.view)
@@ -122,7 +122,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func updateData(on titles: [Title]) {
+    func updateData(on titles: [Title])
+    {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Title>()
         snapshot.appendSections([.main])
         snapshot.appendItems(titles)
@@ -131,7 +132,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func getSavedTitles() {
+    func getSavedTitles()
+    {
         PersistenceManager.loadBookmarx { [weak self] result in
             guard let self = self else { return }
             
@@ -146,7 +148,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
     }
     
     
-    func getPublisherTitles() {
+    func getPublisherTitles()
+    {
         showLoadingView()
         Task {
             do {
@@ -163,9 +166,11 @@ class SelectedPublisherTitlesVC: CODataLoadingVC {
 
 
 //MARK: TABLEVIEW DELEGATE METHODS
-extension SelectedPublisherTitlesVC: UITableViewDelegate {
+extension SelectedPublisherTitlesVC: UITableViewDelegate
+{
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
         let activeArray                     = isSearching ? filteredTitles : titles
         let title                           = activeArray[indexPath.row]
         let destVC                          = SelectedTitleIssuesVC(forTitle: title)
@@ -176,9 +181,11 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate {
 
 
 // MARK: SEARCHBAR DELEGATE METHODS
-extension SelectedPublisherTitlesVC: UISearchResultsUpdating, UISearchBarDelegate {
+extension SelectedPublisherTitlesVC: UISearchResultsUpdating, UISearchBarDelegate
+{
     
-    func updateSearchResults(for searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController)
+    {
         guard let filter    = searchController.searchBar.text, !filter.isEmpty else { return }
         
         isSearching         = true
@@ -187,13 +194,15 @@ extension SelectedPublisherTitlesVC: UISearchResultsUpdating, UISearchBarDelegat
     }
     
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    {
         isSearching = false
         updateData(on: titles)
     }
     
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
         if searchText == "" {
             isSearching = false
             updateData(on: titles)

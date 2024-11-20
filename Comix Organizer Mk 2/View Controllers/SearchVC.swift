@@ -15,9 +15,10 @@ class SearchVC: UIViewController
     var playerController : AVPlayerViewController!
     var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
     var isInitialLoad           = true
+    var animationDidPause       = false
     let logoImageView           = UIImageView()
     let publisherNameTextField  = COTextField()
-    let callToActionButton      = COButton(backgroundColor: .blue, title: "Get Publishers")
+    let callToActionButton      = COButton()
     
     override func viewDidLoad()
     {
@@ -81,12 +82,17 @@ class SearchVC: UIViewController
     
     func configureNotifications()
     {
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeAnimation), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
     
     
+    @objc func pauseAnimation() { animationDidPause   = true }
+    
+    
     @objc func resumeAnimation()
     {
+        guard animationDidPause else { return }
         UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
         }) { (_) in
@@ -127,7 +133,7 @@ class SearchVC: UIViewController
     {
         let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
         publisherNameTextField.delegate         = self
-        publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
+        publisherNameTextField.placeholder      = PlaceHolderKeys.publisherSearchPlaceHolder
         publisherNameTextField.leftView         = paddingView
         publisherNameTextField.rightView        = paddingView
         publisherNameTextField.leftViewMode     = .always
@@ -143,8 +149,9 @@ class SearchVC: UIViewController
     }
     
     
-    func configureCallToActionButton() {
-        callToActionButton.backgroundColor  = .blue
+    func configureCallToActionButton()
+    {
+        callToActionButton.backgroundColor  = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1.0)
         callToActionButton.setTitle("GO", for: .normal)
         callToActionButton.addTarget(self, action: #selector(pushAllOrFilteredPublishersVC), for: .touchUpInside)
         
@@ -158,7 +165,8 @@ class SearchVC: UIViewController
     }
     
     
-    @objc func pushAllOrFilteredPublishersVC() {
+    @objc func pushAllOrFilteredPublishersVC()
+    {
         view.endEditing(true)
         UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
@@ -169,7 +177,8 @@ class SearchVC: UIViewController
     }
     
     
-    func pushFilteredPublishersVC() {
+    func pushFilteredPublishersVC()
+    {
         publisherNameTextField.resignFirstResponder()
         let publisherName           = publisherNameTextField.text!
         Task { try await APICaller.shared.getFilteredPublishers(withName: publisherName, page: 0) }
@@ -179,7 +188,8 @@ class SearchVC: UIViewController
     }
     
     
-    func pushAllPublishersVC() {
+    func pushAllPublishersVC()
+    {
         publisherNameTextField.resignFirstResponder()
         let allPublishersVC = AllPublishersVC()
         navigationController?.pushViewController(allPublishersVC, animated: true)
@@ -195,7 +205,6 @@ extension SearchVC: UITextFieldDelegate
         UIImageView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
         }, completion: { (_) in
-            print("animation done")
             self.isPublisherEntered ? self.pushFilteredPublishersVC() : self.pushAllPublishersVC()
         })
         return true

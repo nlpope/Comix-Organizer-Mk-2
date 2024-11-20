@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum COError: String, Error {
+enum COError: String, Error
+{
     case invalidURL             = "The URL passed is invalid."
     case failedToGetData        = "Failed to get the data."
-    #warning("replace error msgs in empty states with below")
     case unableToBookmark       = "There was a problem adding this title to your ComixBin. Please try again."
     case unableToLoadBookmarx   = "There was a problem loading one or more titles from your ComixBin. Please try again."
     case alreadyInBookmarx      = "You've already added this title to your ComixBin."

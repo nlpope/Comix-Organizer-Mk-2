@@ -7,37 +7,40 @@
 
 import UIKit
 
-class COEmptyStateView: UIView {
+class COEmptyStateView: UIView
+{
     
     let messageLabel    = COTitleLabel(textAlignment: .center, fontSize: 28)
     let logoImageView   = UIImageView()
     
     
-    override init(frame: CGRect) {
+    override init(frame: CGRect)
+    {
         super.init(frame: frame)
         addSubviews(messageLabel, logoImageView)
         configure()
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    convenience init(message: String) {
+    convenience init(message: String)
+    {
         self.init(frame: .zero)
         messageLabel.text = message
     }
     
     
-    private func configure() {
+    private func configure()
+    {
         configureMessageLabel()
         configureLogoImageView()
     }
     
     
-    private func configureMessageLabel() {
+    private func configureMessageLabel()
+    {
         messageLabel.numberOfLines  = 3
         messageLabel.textColor      = .secondaryLabel
         
@@ -51,7 +54,8 @@ class COEmptyStateView: UIView {
     }
     
     
-    private func configureLogoImageView() {
+    private func configureLogoImageView()
+    {
         logoImageView.image         = ImageKeys.emptyStateLogo
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         

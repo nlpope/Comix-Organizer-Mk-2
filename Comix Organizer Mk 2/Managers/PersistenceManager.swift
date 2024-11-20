@@ -7,33 +7,41 @@
 
 import UIKit
 
-enum PersistenceManager {
+enum PersistenceManager
+{
     
     static private let defaults = UserDefaults.standard
     
-    enum SaveKeys {
+    enum SaveKeys
+    {
         static let bookmarx                 = "bookmarx"
         static let completedIssues          = "completedIssues"
     }
     
-    enum TitlePersistenceActiontype {
+    enum TitlePersistenceActiontype
+    {
         case add, remove
     }
 
-    enum IssuePersistenceActiontype {
+    enum IssuePersistenceActiontype
+    {
         case check, uncheck
     }
     
     
     // MARK: TITLE PERSISTENCE
-    static func updateWith(title: Title, actionType: TitlePersistenceActiontype, completed: @escaping (COError?) -> Void) {
+    static func updateWith(title: Title, actionType: TitlePersistenceActiontype, completed: @escaping (COError?) -> Void)
+    {
         loadBookmarx { result in
             switch result {
             case .success(var bookmarx):
                 
-                switch actionType {
+                switch actionType
+                {
                 case .add:
-                    guard !bookmarx.contains(title) else {
+                    guard !bookmarx.contains(title)
+                    else
+                    {
                         completed(.alreadyInBookmarx)
                         return
                     }
@@ -51,7 +59,8 @@ enum PersistenceManager {
     }
     
     
-    static func save(bookMarx: [Title]) -> COError? {
+    static func save(bookMarx: [Title]) -> COError?
+    {
         let encoder             = JSONEncoder()
         if let encodedBookmarx  = try? encoder.encode(bookMarx) {
             defaults.set(encodedBookmarx, forKey: SaveKeys.bookmarx)
@@ -62,7 +71,8 @@ enum PersistenceManager {
     }
     
     
-    static func loadBookmarx(completed: @escaping (Result<[Title], COError>) -> Void) {
+    static func loadBookmarx(completed: @escaping (Result<[Title], COError>) -> Void)
+    {
         if let dataToDecode     = defaults.object(forKey: SaveKeys.bookmarx) as? Data {
             do {
                 let decoder     = JSONDecoder()
@@ -76,19 +86,21 @@ enum PersistenceManager {
     
     
     // MARK: ISSUE PERSISTENCE
-    static func updateWith(issue: Issue, actionType: IssuePersistenceActiontype, completed: @escaping (COError?) -> Void) {
+    static func updateWith(issue: Issue, actionType: IssuePersistenceActiontype, completed: @escaping (COError?) -> Void)
+    {
         loadCompletedIssues { result in
-            switch result {
+            switch result
+            {
             case .success(var issues):
                 
-                switch actionType {
+                switch actionType
+                {
                 case .check:
                     issues.append(issue)
                 case .uncheck:
                     issues.removeAll { $0.name == issue.name }
                 }
                 completed(save(completedIssues: issues))
-                
                 
             case .failure(let error):
                 completed(error)
@@ -97,7 +109,8 @@ enum PersistenceManager {
     }
     
     
-    static func save(completedIssues: [Issue]) -> COError? {
+    static func save(completedIssues: [Issue]) -> COError?
+    {
         let encoder         = JSONEncoder()
         if let encodedData  =  try? encoder.encode(completedIssues) {
             defaults.set(encodedData, forKey: SaveKeys.completedIssues)
@@ -108,7 +121,8 @@ enum PersistenceManager {
     }
     
     
-    static func loadCompletedIssues(completed: @escaping (Result<[Issue], COError>) -> Void) {
+    static func loadCompletedIssues(completed: @escaping (Result<[Issue], COError>) -> Void)
+    {
         if let dataToDecode         = defaults.object(forKey: SaveKeys.completedIssues) as? Data {
             let decoder             = JSONDecoder()
             do {

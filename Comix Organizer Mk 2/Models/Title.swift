@@ -8,23 +8,26 @@
 import Foundation
 import UIKit
 
-// title = volume in the API
-struct APITitlesResponse: Codable {
+struct APITitlesResponse: Codable
+{
     let results: [String: [Title]]
 }
 
-struct Title: Codable, Hashable {
+struct Title: Codable, Hashable
+{
     var name: String
     var id: Int
     var detailsURL: String
     
-    enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey
+    {
         case name          = "name"
         case id            = "id"
         case detailsURL    = "api_detail_url"
     }
     
-    init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws
+    {
         let container   = try decoder.container(keyedBy: CodingKeys.self)
         
         name            = try container.decode(String.self, forKey: .name)
@@ -32,7 +35,5 @@ struct Title: Codable, Hashable {
         detailsURL      = try container.decode(String.self, forKey: .detailsURL)
     }
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(name)
-    }
+    func hash(into hasher: inout Hasher) { hasher.combine(name) }
 }

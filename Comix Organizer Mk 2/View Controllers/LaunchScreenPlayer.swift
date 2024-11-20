@@ -8,7 +8,8 @@
 import UIKit
 import AVFoundation
 
-class LaunchScreenPlayer: UIViewController {
+class LaunchScreenPlayer: UIViewController
+{
     
     var player: AVPlayer?
     
@@ -21,11 +22,8 @@ class LaunchScreenPlayer: UIViewController {
     
     private func loadVideo()
     {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient)
-        } catch { }
-        
-//        if let path = Bundle.main.url(forResource: <#T##String?#>, withExtension: "mp4")
+        do { try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.ambient) }
+        catch { print("error loading launchscreen") }
     }
 }
 

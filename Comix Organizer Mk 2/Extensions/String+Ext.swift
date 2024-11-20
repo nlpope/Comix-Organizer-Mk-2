@@ -11,18 +11,21 @@ extension String
 {
     subscript(i: Int) -> String { return String(self[index(startIndex, offsetBy: i)]) }
     
-    var capitalizedFirst: String {
+    var capitalizedFirst: String
+    {
         guard let firstLetter   = self.first else { return "" }
         return firstLetter.uppercased() + self.dropFirst()
     }
     
-    func deletePrefix(_ prefix: String) -> String {
+    func deletePrefix(_ prefix: String) -> String
+    {
         guard self.hasPrefix(prefix) else { return self }
         return String(self.dropFirst(prefix.count))
     }
     
     
-    func deleteSuffix(_ suffix: String) -> String {
+    func deleteSuffix(_ suffix: String) -> String
+    {
         guard self.hasSuffix(suffix) else { return self }
         return String(self.dropLast(suffix.count))
     }

@@ -7,9 +7,11 @@
 
 import UIKit
 
-class COTabBarController: UITabBarController {
+class COTabBarController: UITabBarController
+{
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         configureTabBar()
         setVCs()
@@ -22,9 +24,9 @@ class COTabBarController: UITabBarController {
     func setVCs() { viewControllers = [createSearchNC(), createComixBinNC()] }
     
     
-    func createSearchNC() -> UINavigationController {
+    func createSearchNC() -> UINavigationController
+    {
         let searchVC                 = SearchVC()
-        // ComixOrganizer word under search image not updating
         searchVC.title               = "Search"
         searchVC.tabBarItem.image    = SFSymbolKeys.search
         
@@ -32,7 +34,8 @@ class COTabBarController: UITabBarController {
     }
     
     
-    func createComixBinNC() -> UINavigationController {
+    func createComixBinNC() -> UINavigationController
+    {
         let comixBinVC              = ComixBinVC()
         comixBinVC.title            = "ComixBin"
         comixBinVC.tabBarItem.image = SFSymbolKeys.bookShelf

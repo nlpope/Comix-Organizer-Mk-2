@@ -14,7 +14,8 @@ class APICaller {
     let cache         = NSCache<NSString, UIImage>()
     
     
-    func getAllPublishers(page: Int) async throws -> [Publisher] {
+    func getAllPublishers(page: Int) async throws -> [Publisher]
+    {
         let endpoint            = "\(baseURL)/publishers/?api_key=\(NetworkCallKeys.API_KEY)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
@@ -27,7 +28,8 @@ class APICaller {
     }
     
     
-    func getFilteredPublishers(withName name: String, page: Int) async throws -> [Publisher] {
+    func getFilteredPublishers(withName name: String, page: Int) async throws -> [Publisher]
+    {
         let endpoint                = "\(baseURL)/publishers/?api_key=\(NetworkCallKeys.API_KEY)&filter=name:\(name)&offset=\(page)&format=json&field_list=name,publisher,id,image,deck,birth,api_detail_url,aliases"
         
         guard let url               = URL(string: endpoint) else { throw COError.invalidURL }
@@ -40,8 +42,8 @@ class APICaller {
     }
 
     
-    // publisherTitles = volumes in API
-    func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title] {
+    func getPublisherTitles(withPublisherDetailsURL publisherDetailsURL: String) async throws -> [Title]
+    {
         let endpoint            = "\(publisherDetailsURL)?api_key=\(NetworkCallKeys.API_KEY)&format=json&field_list=volumes"
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
                 
@@ -53,7 +55,8 @@ class APICaller {
     }
     
     
-    func getTitleIssues(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue] {
+    func getTitleIssues(withTitleDetailsURL titleDetailsURL: String) async throws -> [Issue]
+    {
         let endpoint            = "\(titleDetailsURL)?api_key=\(NetworkCallKeys.API_KEY)&format=json&field_list=issues"
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
         
@@ -65,7 +68,8 @@ class APICaller {
     }
     
     
-    func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
+    func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void)
+    {
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) {
@@ -87,10 +91,10 @@ class APICaller {
                     return
                   }
                     
+            #warning("fix below error")
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }
-        
         task.resume()
     }
 }
