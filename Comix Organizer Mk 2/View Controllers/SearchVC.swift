@@ -9,7 +9,8 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class SearchVC: UIViewController {
+class SearchVC: UIViewController
+{
     
     var playerController : AVPlayerViewController!
     var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
@@ -18,13 +19,16 @@ class SearchVC: UIViewController {
     let publisherNameTextField  = COTextField()
     let callToActionButton      = COButton(backgroundColor: .blue, title: "Get Publishers")
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         view.backgroundColor = .black
+        configureNotifications()
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(animated)
         if isInitialLoad { playLaunchAnimation() }
         publisherNameTextField.text = ""
@@ -32,7 +36,8 @@ class SearchVC: UIViewController {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool)
+    {
         super.viewDidAppear(animated)
         configureNavigation()
         addSubviews()
@@ -44,7 +49,8 @@ class SearchVC: UIViewController {
     }
     
     
-    func playLaunchAnimation() {
+    func playLaunchAnimation()
+    {
         isInitialLoad                           = false
         guard let path                          = Bundle.main.path(forResource: VideoKeys.launchScreen, ofType: "mp4") else { debugPrint("launchscreen.mp4 not found"); return }
         let player                              = AVPlayer(url: URL(fileURLWithPath: path))
@@ -62,34 +68,25 @@ class SearchVC: UIViewController {
     }
     
     
-    @objc func playerDidFinishPlaying() {
-        self.playerController.dismiss(animated: false)
-    }
+    @objc func playerDidFinishPlaying() { self.playerController.dismiss(animated: false) }
     
     
-    func configureNavigation() {
+    func configureNavigation()
+    {
         view.backgroundColor                        = .systemBackground
         title                                       = "Search"
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     
-    func addSubviews() { view.addSubviews(logoImageView, publisherNameTextField, callToActionButton) }
+    func configureNotifications()
+    {
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeAnimation), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
     
     
-    func configureLogoImageView() {
-        logoImageView.translatesAutoresizingMaskIntoConstraints     = false
-        logoImageView.image                                         = ImageKeys.coLogo
-        logoImageView.layer.zPosition                               = -1
-        
-        NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 950),
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.widthAnchor.constraint(equalToConstant: 350),
-            logoImageView.heightAnchor.constraint(equalToConstant: 350)
-        ])
-        
-        // how does he come back down when backtracking?
+    @objc func resumeAnimation()
+    {
         UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
         }) { (_) in
@@ -100,7 +97,34 @@ class SearchVC: UIViewController {
     }
     
     
-    func configureTextField() {
+    func addSubviews() { view.addSubviews(logoImageView, publisherNameTextField, callToActionButton) }
+    
+    
+    func configureLogoImageView()
+    {
+        logoImageView.translatesAutoresizingMaskIntoConstraints     = false
+        logoImageView.image                                         = ImageKeys.coLogo
+        logoImageView.layer.zPosition                               = -1
+        
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 950),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.widthAnchor.constraint(equalToConstant: 350),
+            logoImageView.heightAnchor.constraint(equalToConstant: 350)
+        ])
+                
+        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
+        }) { (_) in
+            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
+                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
+            }
+        }
+    }
+    
+    
+    func configureTextField()
+    {
         let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
         publisherNameTextField.delegate         = self
         publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
@@ -147,10 +171,10 @@ class SearchVC: UIViewController {
     
     func pushFilteredPublishersVC() {
         publisherNameTextField.resignFirstResponder()
-        let publisherName = publisherNameTextField.text!
+        let publisherName           = publisherNameTextField.text!
         Task { try await APICaller.shared.getFilteredPublishers(withName: publisherName, page: 0) }
         
-        let filteredPublishersVC = FilteredPublishersVC(withName: publisherName)
+        let filteredPublishersVC    = FilteredPublishersVC(withName: publisherName)
         navigationController?.pushViewController(filteredPublishersVC, animated: true)
     }
     
@@ -160,21 +184,13 @@ class SearchVC: UIViewController {
         let allPublishersVC = AllPublishersVC()
         navigationController?.pushViewController(allPublishersVC, animated: true)
     }
-    
-    
-//    @objc func pushAllPublishersListVC() {
-//        guard !isPublisherEntered else { return }
-//        
-//        publisherNameTextField.resignFirstResponder()
-//        
-//        let allPublisherListVC = AllPublishersVC()
-//        navigationController?.pushViewController(allPublisherListVC, animated: true)
-//    }
 }
 
 
-extension SearchVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+extension SearchVC: UITextFieldDelegate
+{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
         view.endEditing(true)
         UIImageView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
