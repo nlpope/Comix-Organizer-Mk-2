@@ -40,6 +40,8 @@
 		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
 		40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99E2C35E2E10077808D /* COTextField.swift */; };
 		40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */; };
+		40C75BA52CEE51AE00625F81 /* AVPlayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C75BA42CEE51AE00625F81 /* AVPlayer+Ext.swift */; };
+		40C75BA72CEE520B00625F81 /* SearchVC+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C75BA62CEE520B00625F81 /* SearchVC+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		40C4F99E2C35E2E10077808D /* COTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTextField.swift; sourceTree = "<group>"; };
 		40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHelper+Utils.swift"; sourceTree = "<group>"; };
+		40C75BA42CEE51AE00625F81 /* AVPlayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Ext.swift"; sourceTree = "<group>"; };
+		40C75BA62CEE520B00625F81 /* SearchVC+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchVC+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -129,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				40A6E5522C303A8E008340B5 /* UIViewController+Ext.swift */,
+				40C75BA62CEE520B00625F81 /* SearchVC+Ext.swift */,
+				40C75BA42CEE51AE00625F81 /* AVPlayer+Ext.swift */,
 				40C4F99B2C35D2100077808D /* UIView+Ext.swift */,
 				40B3855B2CED1B7D00D70E85 /* String+Ext.swift */,
 			);
@@ -346,6 +352,7 @@
 				40C0372D2C3732BC00A67B2D /* COEmptyStateView.swift in Sources */,
 				40A1A1CA2B6EFA7C00DDF311 /* Issue.swift in Sources */,
 				40A1A1CC2B6EFB8500DDF311 /* Title.swift in Sources */,
+				40C75BA72CEE520B00625F81 /* SearchVC+Ext.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */,
 				40C1CE962C38A98000624DBE /* FilteredPublishersVC.swift in Sources */,
@@ -369,6 +376,7 @@
 				40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */,
 				40ADE1442C33769100E2EEC9 /* PublisherCell.swift in Sources */,
 				4006FDC22CDAA1AE0009BB11 /* UIResponder+Utils.swift in Sources */,
+				40C75BA52CEE51AE00625F81 /* AVPlayer+Ext.swift in Sources */,
 				40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

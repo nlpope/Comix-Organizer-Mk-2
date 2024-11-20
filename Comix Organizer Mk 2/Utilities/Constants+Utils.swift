@@ -46,3 +46,8 @@ enum EmptyStateKeys
 {
     static let noTitlesPublished    = "There doesn't seem to be any titles under this publisher 😢."
 }
+
+enum PlayerLayerKeys
+{
+    static let layerName          = "layerName"
+}

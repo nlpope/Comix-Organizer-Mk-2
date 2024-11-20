@@ -15,8 +15,8 @@ import AVFoundation
 
 class SearchVC: UIViewController
 {
-    
-    var playerController : AVPlayerViewController!
+    var player: AVPlayer?
+    var playerLayer: AVPlayerLayer?
     var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
     var isInitialLoad           = true
     var animationDidPause       = false
@@ -27,23 +27,42 @@ class SearchVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        maskSearchVC()
         configureNotifications()
-    }
-    
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        if isInitialLoad { playLaunchAnimation() }
-        publisherNameTextField.text = ""
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
+        if isInitialLoad { configureIntroPlayer() }
+        else { configureSearchVC() }
+    }
+    
+    
+    fileprivate func maskSearchVC() { view.backgroundColor = .black; self.tabBarController?.tabBar.isHidden = true }
+    
+    
+    @objc fileprivate func configureIntroPlayer()
+    {
+        guard let url              = Bundle.main.url(forResource: VideoKeys.launchScreen, withExtension: ".mp4") else { return }
+        player                     = AVPlayer.init(url: url)
+        playerLayer                = AVPlayerLayer(player: player)
+        playerLayer?.videoGravity  = AVLayerVideoGravity.resizeAspect
+        playerLayer?.frame         = view.layer.frame
+        playerLayer?.name          = PlayerLayerKeys.layerName
+        
+        player?.actionAtItemEnd    = AVPlayer.ActionAtItemEnd.none
+        player?.play()
+        
+        view.layer.insertSublayer(playerLayer!, at: 0)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+    }
+    
+    
+    func configureSearchVC()
+    {
         configureNavigation()
         addSubviews()
         configureTextField()
@@ -54,66 +73,90 @@ class SearchVC: UIViewController
     }
     
     
-    #warning("if app enters background, vid pauses and is stuck on re-entry - fix")
-    func playLaunchAnimation()
-    {
-        isInitialLoad                           = false
-        guard let path                          = Bundle.main.path(forResource: VideoKeys.launchScreen, ofType: "mp4") else { debugPrint("launchscreen.mp4 not found"); return }
-        let player                              = AVPlayer(url: URL(fileURLWithPath: path))
-        playerController                        = AVPlayerViewController()
-
-        
-        playerController.player = player
-        playerController.showsPlaybackControls  = false
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(playerDidFinishPlaying),
-                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-                                               object: playerController.player?.currentItem)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(playerWasInterrupted),
-//                                               name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime,
-//                                               object: playerController.player?.currentItem)
-
-        present(playerController, animated: false) { player.play() }
-    }
-    
-    
-//    @objc func playerWasInterrupted() { self.playerController.dismiss(animated: false)}
-    
-    
-    @objc func playerDidFinishPlaying()
-    {
-        self.playerController.dismiss(animated: false)
-    }
-    
-    
-    func configureNavigation()
-    {
-        view.backgroundColor                        = .systemBackground
-        title                                       = "Search"
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    
     func configureNotifications()
     {
+        // LOGO PLAYER
+        NotificationCenter.default.addObserver(self, selector: #selector(setPlayerLayerToNil), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reinitializePlayerLayer), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setPlayerLayerToNil), name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reinitializePlayerLayer), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
+        
+        // HERO HOVER
+        #warning("use a calayer approach here too?")
         NotificationCenter.default.addObserver(self, selector: #selector(pauseAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeAnimation), name: UIApplication.didBecomeActiveNotification, object: nil)
-        #warning("see below for logo interruption fix")
-        // https://stackoverflow.com/questions/48473144/swift-ios-avplayer-video-freezes-pauses-when-app-comes-back-from-background
-//        NotificationCenter.default.addObserver(self, selector: <#T##Selector#>, name: UIApplication.did, object: <#T##Any?#>)
     }
     
     
+    deinit
+    {
+        print("deinit reached")
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
+        removeAllAVPlayerLayers()
+        playerLayer        = nil
+    }
+    
+    
+    // MARK: AVPLAYER METHODS
+    fileprivate func removeAllAVPlayerLayers()
+    {
+        if let layers = view.layer.sublayers {
+            for (i, layer) in layers.enumerated() {
+                if layer.name == PlayerLayerKeys.layerName {
+                    layers[i].removeFromSuperlayer()
+                }
+            }
+        }
+    }
+    
+    
+    @objc fileprivate func setPlayerLayerToNil()
+    {
+        player?.pause()
+        playerLayer    = nil
+    }
+    
+    
+    @objc func reinitializePlayerLayer()
+    {
+        guard isInitialLoad else { return }
+        if let playerz      = player {
+            playerLayer     = AVPlayerLayer(player: playerz)
+            playerLayer?.name = PlayerLayerKeys.layerName
+            
+            if #available(iOS 10.0, *) { if playerz.timeControlStatus == .paused { playerz.play() } }
+            else { if playerz.isPlaying == false { playerz.play() }}
+        }
+    }
+    
+    
+    @objc fileprivate func playerDidFinishPlaying()
+    {
+        removeAllAVPlayerLayers()
+        isInitialLoad               = false
+        DispatchQueue.main.async { [weak self] in self?.configureSearchVC() }
+    }
+    
+    
+    // MARK: HERO HOVER METHODS
     @objc func pauseAnimation() { animationDidPause   = true }
     
     
     @objc func resumeAnimation()
     {
         guard animationDidPause else { return }
-        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIImageView.animate(withDuration: 1,
+                            delay: 0,
+                            usingSpringWithDamping: 1,
+                            initialSpringVelocity: 1,
+                            options: .curveEaseOut,
+                            animations: {
             self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
-        }) { (_) in
+        }) { _ in
             UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
                 self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
             }
@@ -121,7 +164,53 @@ class SearchVC: UIViewController
     }
     
     
+    func configureNavigation()
+    {
+        self.tabBarController?.tabBar.isHidden = false
+        publisherNameTextField.text = ""
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        view.backgroundColor                        = .systemBackground
+        title                                       = "Search"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    
     func addSubviews() { view.addSubviews(logoImageView, publisherNameTextField, callToActionButton) }
+    
+    
+    func configureTextField()
+    {
+        let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
+        publisherNameTextField.delegate         = self
+        publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
+        publisherNameTextField.leftView         = paddingView
+        publisherNameTextField.rightView        = paddingView
+        publisherNameTextField.leftViewMode     = .always
+        publisherNameTextField.rightViewMode    = .always
+        
+        NSLayoutConstraint.activate([
+            publisherNameTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
+            publisherNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            publisherNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            publisherNameTextField.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    
+    func configureCallToActionButton()
+    {
+        callToActionButton.backgroundColor  = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1.0)
+        callToActionButton.setTitle("GO", for: .normal)
+        callToActionButton.addTarget(self, action: #selector(pushAllOrFilteredPublishersVC), for: .touchUpInside)
+        
+        
+        NSLayoutConstraint.activate([
+            callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            callToActionButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
     
     
     func configureLogoImageView()
@@ -144,42 +233,6 @@ class SearchVC: UIViewController
                 self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
             }
         }
-    }
-    
-    
-    func configureTextField()
-    {
-        let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
-        publisherNameTextField.delegate         = self
-        publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
-        publisherNameTextField.leftView         = paddingView
-        publisherNameTextField.rightView        = paddingView
-        publisherNameTextField.leftViewMode     = .always
-        publisherNameTextField.rightViewMode    = .always
-        
-        NSLayoutConstraint.activate([
-            //48
-            publisherNameTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
-            publisherNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            publisherNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            publisherNameTextField.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    
-    
-    func configureCallToActionButton()
-    {
-        callToActionButton.backgroundColor  = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1.0)
-        callToActionButton.setTitle("GO", for: .normal)
-        callToActionButton.addTarget(self, action: #selector(pushAllOrFilteredPublishersVC), for: .touchUpInside)
-        
-        
-        NSLayoutConstraint.activate([
-            callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
-            callToActionButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            callToActionButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            callToActionButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
     }
     
     
@@ -215,19 +268,10 @@ class SearchVC: UIViewController
 }
 
 
-extension SearchVC: UITextFieldDelegate
-{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        view.endEditing(true)
-        UIImageView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-            self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
-        }, completion: { (_) in
-            self.isPublisherEntered ? self.pushFilteredPublishersVC() : self.pushAllPublishersVC()
-        })
-        return true
-    }
-}
+
+
+
+
 
 
 
