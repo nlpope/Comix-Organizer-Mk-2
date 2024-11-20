@@ -69,12 +69,22 @@ class SearchVC: UIViewController
                                                selector: #selector(playerDidFinishPlaying),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: playerController.player?.currentItem)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(playerWasInterrupted),
+//                                               name: NSNotification.Name.AVPlayerItemFailedToPlayToEndTime,
+//                                               object: playerController.player?.currentItem)
 
         present(playerController, animated: false) { player.play() }
     }
     
     
-    @objc func playerDidFinishPlaying() { self.playerController.dismiss(animated: false) }
+//    @objc func playerWasInterrupted() { self.playerController.dismiss(animated: false)}
+    
+    
+    @objc func playerDidFinishPlaying()
+    {
+        self.playerController.dismiss(animated: false)
+    }
     
     
     func configureNavigation()
@@ -89,6 +99,9 @@ class SearchVC: UIViewController
     {
         NotificationCenter.default.addObserver(self, selector: #selector(pauseAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeAnimation), name: UIApplication.didBecomeActiveNotification, object: nil)
+        #warning("see below for logo interruption fix")
+        // https://stackoverflow.com/questions/48473144/swift-ios-avplayer-video-freezes-pauses-when-app-comes-back-from-background
+//        NotificationCenter.default.addObserver(self, selector: <#T##Selector#>, name: UIApplication.did, object: <#T##Any?#>)
     }
     
     
