@@ -9,7 +9,8 @@ import UIKit
 import AVKit
 import AVFoundation
 
-#warning("use search and sort feature to do a mass search of anything user enters")
+#warning("use search and sort feature to do a mass search of anything user enters - would cut bottom 2 API calls")
+#warning("something about fully backgrounding the app (not appwillresign) is causing searchvc to miss the initial hero shooting up whats different about the app backgrounding and app will resign status - also jumpst to end of logo animation before missing the shoot up if fully backgrounded, that doesnt happen in appwillresign" )
 // https://comicvine.gamespot.com/api/search/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&format=json&sort=name:asc&resources=issue&query=%22Master%20of%20kung%20fu%22
 // instructions: https://comicvine.gamespot.com/forums/api-developers-2334/simple-example-s-for-using-the-apis-1885345/
 
