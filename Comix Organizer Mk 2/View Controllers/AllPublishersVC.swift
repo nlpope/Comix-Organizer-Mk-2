@@ -33,7 +33,6 @@ class AllPublishersVC: CODataLoadingVC
         getPublishers(page: page)
         configureDataSource()
         presentListOrderAlert()
-        // see note 10 in app delegate
     }
     
     

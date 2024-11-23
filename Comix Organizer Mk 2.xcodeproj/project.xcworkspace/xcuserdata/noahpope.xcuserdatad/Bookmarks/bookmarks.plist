@@ -477,15 +477,15 @@ struct APITitlesResponse: Codable
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>42</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
 					<string>46</string>
 					<key>StartingColumnNumber</key>
-					<string>42</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>46</string>
+					<string>45</string>
 					<key>Timestamp</key>
-					<string>753765793.927103</string>
+					<string>754032113.5885251</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -501,15 +501,16 @@ struct APITitlesResponse: Codable
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string></string>
+				<string>    override func viewDidAppear(_ animated: Bool)
+</string>
 				<key>leading</key>
 				<string>    
     
-    override func viewDidAppear(_ animated</string>
+</string>
 				<key>trailing</key>
-				<string>: Bool)
-    {
+				<string>    {
         super.viewDidAppear(animated)
+        AllPublishersVC.isFirstVisit = false
 </string>
 			</dict>
 			<key>title</key>
@@ -525,13 +526,13 @@ struct APITitlesResponse: Codable
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>98</string>
+					<string>97</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>97</string>
+					<string>96</string>
 					<key>Timestamp</key>
-					<string>753765851.4237781</string>
+					<string>754032113.588727</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -548,16 +549,15 @@ struct APITitlesResponse: Codable
 			<dict>
 				<key>focused</key>
 				<string>    func getPublishers(page: Int)
-    {
 </string>
 				<key>leading</key>
 				<string>    
     
 </string>
 				<key>trailing</key>
-				<string>        showLoadingView()
+				<string>    {
+        showLoadingView()
         isLoadingMorePublishers = true
-        Task {
 </string>
 			</dict>
 			<key>title</key>
@@ -573,13 +573,13 @@ struct APITitlesResponse: Codable
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>161</string>
+					<string>160</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>160</string>
+					<string>159</string>
 					<key>Timestamp</key>
-					<string>753765950.537578</string>
+					<string>754032113.588673</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -620,13 +620,13 @@ struct APITitlesResponse: Codable
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>187</string>
+					<string>186</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>186</string>
+					<string>185</string>
 					<key>Timestamp</key>
-					<string>753766033.670261</string>
+					<string>754032113.588763</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -981,6 +981,53 @@ struct APITitlesResponse: Codable
 			</dict>
 			<key>title</key>
 			<string>test empty state</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>35</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>34</string>
+					<key>Timestamp</key>
+					<string>754032123.723809</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>Comix Organizer Mk 2/View Controllers/AllPublishersVC.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        presentListOrderAlert()
+</string>
+				<key>leading</key>
+				<string>        getPublishers(page: page)
+        configureDataSource()
+</string>
+				<key>trailing</key>
+				<string>    }
+    
+    
+</string>
+			</dict>
+			<key>title</key>
+			<string>see note 10 in drive</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
