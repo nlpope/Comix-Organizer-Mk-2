@@ -5,19 +5,17 @@
 //  Created by Noah Pope on 7/1/24.
 //
 
+#warning("this file has too many lines")
 import UIKit
 
 class SelectedTitleIssuesVC: CODataLoadingVC
 {
-
     var currentTitle: Title!
     var currentTitleIssues      = [Issue]()
     var completedTitleIssues    = [Issue]()
     var titleSavedToBin: Bool!
     var titleID: Int!
-    
     var tableView: UITableView!
-    
     
     init(forTitle title: Title)
     {
@@ -197,11 +195,10 @@ class SelectedTitleIssuesVC: CODataLoadingVC
 }
 
 
-#warning("this file has too many lines")
 // MARK: DELEGATE & DATASOURCE METHODS
+
 extension SelectedTitleIssuesVC: UITableViewDelegate, UITableViewDataSource
 {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return currentTitleIssues.count }
     
     

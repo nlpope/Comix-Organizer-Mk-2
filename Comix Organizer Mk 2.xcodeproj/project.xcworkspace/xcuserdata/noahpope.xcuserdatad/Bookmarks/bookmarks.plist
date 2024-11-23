@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>112</string>
+					<string>110</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>111</string>
+					<string>109</string>
 					<key>Timestamp</key>
-					<string>753766662.287276</string>
+					<string>754049793.0012929</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>135</string>
+					<string>136</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>134</string>
+					<string>135</string>
 					<key>Timestamp</key>
-					<string>753764745.6407059</string>
+					<string>754049920.5171191</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -110,7 +110,7 @@
 					<key>StartingLineNumber</key>
 					<string>14</string>
 					<key>Timestamp</key>
-					<string>753766574.280211</string>
+					<string>754049793.001156</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -135,7 +135,7 @@
 				<key>trailing</key>
 				<string>    var titleSavedToBin: Bool!
     var titleID: Int!
-    
+    var tableView: UITableView!
 </string>
 			</dict>
 			<key>title</key>
@@ -151,13 +151,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>84</string>
+					<string>82</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>83</string>
+					<string>81</string>
 					<key>Timestamp</key>
-					<string>753766614.302603</string>
+					<string>754049793.001218</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -174,16 +174,15 @@
 			<dict>
 				<key>focused</key>
 				<string>    func loadProgress()
-    {
 </string>
 				<key>leading</key>
 				<string>
     
 </string>
 				<key>trailing</key>
-				<string>        PersistenceManager.loadCompletedIssues { [weak self] result in
+				<string>    {
+        PersistenceManager.loadCompletedIssues { [weak self] result in
             guard let self = self else { return }
-            
 </string>
 			</dict>
 			<key>title</key>
@@ -205,7 +204,7 @@
 					<key>StartingLineNumber</key>
 					<string>58</string>
 					<key>Timestamp</key>
-					<string>754045006.248614</string>
+					<string>754049282.479714</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -293,13 +292,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>41</string>
+					<string>40</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>40</string>
+					<string>39</string>
 					<key>Timestamp</key>
-					<string>753765105.0570821</string>
+					<string>754049364.535579</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -340,13 +339,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>64</string>
-					<key>StartingColumnNumber</key>
-					<string>62</string>
-					<key>StartingLineNumber</key>
 					<string>63</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>62</string>
 					<key>Timestamp</key>
-					<string>753765159.539789</string>
+					<string>754049364.535522</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -362,12 +361,12 @@ struct APITitlesResponse: Codable</string>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>        titleLabel.text = alertTitle ?? "Something went wrong"
 </string>
 				<key>leading</key>
 				<string>    func configureTitleLabel()
     {
-        titleLabel.text = alertTitle ?? "Something went wrong"</string>
+</string>
 				<key>trailing</key>
 				<string>        
         NSLayoutConstraint.activate([
@@ -385,15 +384,15 @@ struct APITitlesResponse: Codable</string>
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>41</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
 					<string>33</string>
 					<key>StartingColumnNumber</key>
-					<string>8</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>33</string>
+					<string>32</string>
 					<key>Timestamp</key>
-					<string>753765411.8583061</string>
+					<string>754049411.819847</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -409,15 +408,16 @@ struct APITitlesResponse: Codable</string>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>adjustsFontForContentSizeCategory</string>
+				<string>        adjustsFontForContentSizeCategory         = true
+</string>
 				<key>leading</key>
 				<string>        textColor                                 = .secondaryLabel
         font                                      = UIFont.preferredFont(forTextStyle: .body)
-        </string>
+</string>
 				<key>trailing</key>
-				<string>         = true
-        adjustsFontSizeToFitWidth                 = true
+				<string>        adjustsFontSizeToFitWidth                 = true
         minimumScaleFactor                        = 0.75
+        lineBreakMode                             = .byWordWrapping
 </string>
 			</dict>
 			<key>title</key>
@@ -431,15 +431,15 @@ struct APITitlesResponse: Codable</string>
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>40</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>22</string>
+					<string>21</string>
 					<key>StartingColumnNumber</key>
-					<string>24</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>22</string>
+					<string>20</string>
 					<key>Timestamp</key>
-					<string>753765772.328292</string>
+					<string>754049535.666623</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -455,15 +455,16 @@ struct APITitlesResponse: Codable</string>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>UICollectionView</string>
+				<string>    var collectionView: UICollectionView!
+</string>
 				<key>leading</key>
-				<string>    static var isFirstVisit     = true
-    
-    var collectionView: </string>
+				<string>    var isLoadingMorePublishers = false
+    static var isFirstVisit     = true
+</string>
 				<key>trailing</key>
-				<string>!
-    var dataSource: UICollectionViewDiffableDataSource&lt;Section, Publisher&gt;!
+				<string>    var dataSource: UICollectionViewDiffableDataSource&lt;Section, Publisher&gt;!
     
+    override func viewDidLoad()
 </string>
 			</dict>
 			<key>title</key>
@@ -479,13 +480,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>46</string>
+					<string>43</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>45</string>
+					<string>42</string>
 					<key>Timestamp</key>
-					<string>754032113.5885251</string>
+					<string>754049535.654498</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -526,13 +527,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>97</string>
+					<string>94</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>96</string>
+					<string>93</string>
 					<key>Timestamp</key>
-					<string>754032113.588727</string>
+					<string>754049535.666732</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -573,13 +574,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>160</string>
+					<string>156</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>159</string>
+					<string>155</string>
 					<key>Timestamp</key>
-					<string>754032113.588673</string>
+					<string>754049588.687233</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -598,8 +599,8 @@ struct APITitlesResponse: Codable</string>
 				<string>    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
 </string>
 				<key>leading</key>
-				<string>{
-    
+				<string>extension AllPublishersVC: UICollectionViewDelegate
+{
 </string>
 				<key>trailing</key>
 				<string>    {
@@ -620,13 +621,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>186</string>
+					<string>183</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>185</string>
+					<string>182</string>
 					<key>Timestamp</key>
-					<string>754032113.588763</string>
+					<string>754049934.723509</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -645,13 +646,13 @@ struct APITitlesResponse: Codable</string>
 				<string>extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
 </string>
 				<key>leading</key>
-				<string>
-// MARK: SEARCHBAR DELEGATE METHODS
+				<string>// MARK: SEARCHBAR DELEGATE METHODS
+
 </string>
 				<key>trailing</key>
 				<string>{
-    
     func updateSearchResults(for searchController: UISearchController)
+    {
 </string>
 			</dict>
 			<key>title</key>
@@ -667,13 +668,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>23</string>
+					<string>22</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>22</string>
+					<string>21</string>
 					<key>Timestamp</key>
-					<string>753766086.2502199</string>
+					<string>754049236.570974</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -698,7 +699,7 @@ struct APITitlesResponse: Codable</string>
 				<key>trailing</key>
 				<string>    var dataSource: UICollectionViewDiffableDataSource&lt;Section, Publisher&gt;!
     
-    
+    init(withName name: String)
 </string>
 			</dict>
 			<key>title</key>
@@ -714,13 +715,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>45</string>
+					<string>43</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>44</string>
+					<string>42</string>
 					<key>Timestamp</key>
-					<string>753766109.938277</string>
+					<string>754049652.0518759</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -759,15 +760,15 @@ struct APITitlesResponse: Codable</string>
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>34</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>55</string>
+					<string>54</string>
 					<key>StartingColumnNumber</key>
-					<string>33</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>55</string>
+					<string>53</string>
 					<key>Timestamp</key>
-					<string>753766139.607888</string>
+					<string>754049652.051895</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -783,15 +784,16 @@ struct APITitlesResponse: Codable</string>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string> </string>
+				<string>    override func viewDidAppear(_ animated: Bool)
+</string>
 				<key>leading</key>
 				<string>    
     
-    override func viewDidAppear(_</string>
+</string>
 				<key>trailing</key>
-				<string>animated: Bool)
-    {
+				<string>    {
         super.viewDidAppear(animated)
+        FilteredPublishersVC.isFirstVisit = false
 </string>
 			</dict>
 			<key>title</key>
@@ -807,13 +809,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>124</string>
+					<string>123</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>123</string>
+					<string>122</string>
 					<key>Timestamp</key>
-					<string>754045797.516132</string>
+					<string>754049661.960911</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -854,13 +856,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>147</string>
+					<string>146</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>146</string>
+					<string>145</string>
 					<key>Timestamp</key>
-					<string>754045797.516055</string>
+					<string>754049661.960827</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -901,13 +903,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>174</string>
+					<string>172</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>173</string>
+					<string>171</string>
 					<key>Timestamp</key>
-					<string>754045797.516096</string>
+					<string>754049679.708487</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -926,8 +928,8 @@ struct APITitlesResponse: Codable</string>
 				<string>    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
 </string>
 				<key>leading</key>
-				<string>{
-    
+				<string>extension FilteredPublishersVC: UICollectionViewDelegate
+{
 </string>
 				<key>trailing</key>
 				<string>    {
@@ -946,15 +948,15 @@ struct APITitlesResponse: Codable</string>
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>15</string>
+					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>111</string>
+					<string>109</string>
 					<key>StartingColumnNumber</key>
-					<string>11</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>111</string>
+					<string>108</string>
 					<key>Timestamp</key>
-					<string>753766504.127736</string>
+					<string>754049707.866577</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -970,15 +972,16 @@ struct APITitlesResponse: Codable</string>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>self</string>
+				<string>        // self.titles = []
+</string>
 				<key>leading</key>
 				<string>        self.titles.append(contentsOf: titles)
         
-        // </string>
+</string>
 				<key>trailing</key>
-				<string>.titles = []
-        if self.titles.isEmpty {
+				<string>        if self.titles.isEmpty {
             let message = EmptyStateKeys.noTitlesPublished
+            DispatchQueue.main.async {
 </string>
 			</dict>
 			<key>title</key>
@@ -994,13 +997,13 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>35</string>
+					<string>32</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>34</string>
+					<string>31</string>
 					<key>Timestamp</key>
-					<string>754032123.723809</string>
+					<string>754049535.666791</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>

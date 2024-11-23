@@ -9,7 +9,6 @@ import UIKit
 
 enum PersistenceManager
 {
-    
     static private let defaults = UserDefaults.standard
     
     enum SaveKeys
@@ -30,6 +29,7 @@ enum PersistenceManager
     
     
     // MARK: TITLE PERSISTENCE
+    
     static func updateWith(title: Title, actionType: TitlePersistenceActiontype, completed: @escaping (COError?) -> Void)
     {
         loadBookmarx { result in
@@ -86,6 +86,7 @@ enum PersistenceManager
     
     
     // MARK: ISSUE PERSISTENCE
+    
     static func updateWith(issue: Issue, actionType: IssuePersistenceActiontype, completed: @escaping (COError?) -> Void)
     {
         loadCompletedIssues { result in

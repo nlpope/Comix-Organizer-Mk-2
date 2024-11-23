@@ -9,7 +9,6 @@ import UIKit
 
 class COAlertChildVC: UIViewController
 {
-    
     let containerView = COAlertContainerView()
     let titleLabel    = COTitleLabel(textAlignment: .center, fontSize: 20)
     let messageLabel  = COBodyLabel(textAlignment: .center)

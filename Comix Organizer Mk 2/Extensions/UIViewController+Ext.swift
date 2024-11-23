@@ -9,7 +9,6 @@ import UIKit
 
 extension UIViewController
 {
-    
     func addKeyboardDismissOnTap()
     {
         let endEditingTapGesture                    = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing(_:)))
@@ -31,6 +30,7 @@ extension UIViewController
     
     
     // MARK: SOLVE FOR KEYBOARD BLOCKING TEXTFIELD
+    
     func setupKeyboardHiding()
     {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)

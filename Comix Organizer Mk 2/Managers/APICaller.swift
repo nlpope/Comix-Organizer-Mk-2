@@ -7,8 +7,8 @@
 
 import UIKit
 
-class APICaller {
-    
+class APICaller
+{
     static let shared = APICaller()
     let baseURL       = "https://comicvine.gamespot.com/api"
     let cache         = NSCache<NSString, UIImage>()

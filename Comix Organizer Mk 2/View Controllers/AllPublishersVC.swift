@@ -9,7 +9,6 @@ import UIKit
 
 class AllPublishersVC: CODataLoadingVC
 {
-    
     enum Section { case main }
     
     var publishers              = [Publisher]()
@@ -19,10 +18,8 @@ class AllPublishersVC: CODataLoadingVC
     var isSearching             = false
     var isLoadingMorePublishers = false
     static var isFirstVisit     = true
-    
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
-    
     
     override func viewDidLoad()
     {
@@ -156,7 +153,6 @@ class AllPublishersVC: CODataLoadingVC
 //MARK: COLLECTIONVIEW DELEGATE METHODS
 extension AllPublishersVC: UICollectionViewDelegate
 {
-    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     {
         let offsetY         = scrollView.contentOffset.y
@@ -183,9 +179,9 @@ extension AllPublishersVC: UICollectionViewDelegate
 
 
 // MARK: SEARCHBAR DELEGATE METHODS
+
 extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
 {
-    
     func updateSearchResults(for searchController: UISearchController)
     {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }

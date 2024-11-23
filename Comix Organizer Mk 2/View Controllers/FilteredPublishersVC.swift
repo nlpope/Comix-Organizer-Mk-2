@@ -9,7 +9,6 @@ import UIKit
 
 class FilteredPublishersVC: CODataLoadingVC
 {
-    
     enum Section { case main }
     
     var publisherContainsName: String!
@@ -22,7 +21,6 @@ class FilteredPublishersVC: CODataLoadingVC
     static var isFirstVisit     = true
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
-    
     
     init(withName name: String)
     {
@@ -78,7 +76,8 @@ class FilteredPublishersVC: CODataLoadingVC
     }
     
     
-    @objc func switchToCharacterView() {
+    @objc func switchToCharacterView()
+    {
         
     }
     
@@ -170,7 +169,6 @@ class FilteredPublishersVC: CODataLoadingVC
 //MARK: COLLECTIONVIEW DELEGATE METHODS
 extension FilteredPublishersVC: UICollectionViewDelegate
 {
-    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     {
         let offsetY         = scrollView.contentOffset.y
@@ -197,9 +195,9 @@ extension FilteredPublishersVC: UICollectionViewDelegate
 
 
 // MARK: SEARCHBAR DELEGATE METHODS
+
 extension FilteredPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
 {
-    
     func updateSearchResults(for searchController: UISearchController)
     {
         guard let filter = searchController.searchBar.text, !filter.isEmpty else { return }

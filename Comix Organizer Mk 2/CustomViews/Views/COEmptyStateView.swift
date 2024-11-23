@@ -9,10 +9,8 @@ import UIKit
 
 class COEmptyStateView: UIView
 {
-    
     let messageLabel    = COTitleLabel(textAlignment: .center, fontSize: 28)
     let logoImageView   = UIImageView()
-    
     
     override init(frame: CGRect)
     {

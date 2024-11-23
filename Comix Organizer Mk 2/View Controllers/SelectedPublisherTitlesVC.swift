@@ -9,7 +9,6 @@ import UIKit
 
 class SelectedPublisherTitlesVC: CODataLoadingVC
 {
-
     enum Section { case main }
     
     var selectedPublisherName: String!
@@ -18,10 +17,8 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
     var filteredTitles          = [Title]()
     var savedTitles             = [Title]()
     var isSearching             = false
-    
     var tableView: UITableView!
     var dataSource: UITableViewDiffableDataSource<Section, Title>!
-    
     
     init(underPublisher publisherName: String, withDetailsURL publisherDetailsURL: String)
     {
@@ -168,7 +165,6 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
 //MARK: TABLEVIEW DELEGATE METHODS
 extension SelectedPublisherTitlesVC: UITableViewDelegate
 {
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let activeArray                     = isSearching ? filteredTitles : titles
@@ -181,9 +177,9 @@ extension SelectedPublisherTitlesVC: UITableViewDelegate
 
 
 // MARK: SEARCHBAR DELEGATE METHODS
+
 extension SelectedPublisherTitlesVC: UISearchResultsUpdating, UISearchBarDelegate
 {
-    
     func updateSearchResults(for searchController: UISearchController)
     {
         guard let filter    = searchController.searchBar.text, !filter.isEmpty else { return }

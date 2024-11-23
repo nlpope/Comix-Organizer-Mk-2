@@ -107,6 +107,7 @@ class SearchVC: UIViewController
     
     
     // MARK: AVPLAYER METHODS
+    
     fileprivate func removeAllAVPlayerLayers()
     {
         if let layers = view.layer.sublayers {
@@ -148,6 +149,7 @@ class SearchVC: UIViewController
     
     
     // MARK: HERO HOVER METHODS
+    
     @objc func pauseAnimation() { animationDidPause   = true }
     
     

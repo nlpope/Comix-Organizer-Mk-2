@@ -9,11 +9,9 @@ import UIKit
 
 class ComixBinVC: CODataLoadingVC
 {
-    
     var tableView: UITableView!
     var savedTitles = [Title]()
 
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -82,7 +80,6 @@ class ComixBinVC: CODataLoadingVC
 
 extension ComixBinVC: UITableViewDelegate, UITableViewDataSource
 {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return savedTitles.count }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell

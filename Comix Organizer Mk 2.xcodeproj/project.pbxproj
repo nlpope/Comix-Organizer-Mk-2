@@ -167,7 +167,6 @@
 		40A83A862AFA5F5B009F80D3 = {
 			isa = PBXGroup;
 			children = (
-				40C75BA82CF1C1B400625F81 /* ResourceBundle.swift */,
 				40A83A912AFA5F5B009F80D3 /* Comix Organizer Mk 2 */,
 				40A83A902AFA5F5B009F80D3 /* Products */,
 			);
@@ -203,6 +202,7 @@
 				40A83ACB2AFA6187009F80D3 /* Publisher.swift */,
 				40A1A1CB2B6EFB8500DDF311 /* Title.swift */,
 				40A1A1C92B6EFA7C00DDF311 /* Issue.swift */,
+				40C75BA82CF1C1B400625F81 /* ResourceBundle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

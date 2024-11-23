@@ -9,7 +9,6 @@ import UIKit
 
 class COBodyLabel: UILabel
 {
-    
     override init(frame: CGRect)
     {
         super.init(frame: frame)

@@ -9,7 +9,6 @@ import UIKit
 
 class COButton: UIButton
 {
-    
     override init(frame: CGRect)
     {
         super.init(frame: frame)

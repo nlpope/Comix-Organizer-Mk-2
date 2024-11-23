@@ -9,7 +9,6 @@ import UIKit
 
 class COAvatarImageView: UIImageView
 {
-    
     let cache               = APICaller.shared.cache
     let placeholderImage    = ImageKeys.placeholder
     
