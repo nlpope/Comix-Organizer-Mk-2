@@ -9,9 +9,6 @@ import UIKit
 import AVKit
 import AVFoundation
 
-#warning("get player to stop interrupting music")
-// instructions: https://comicvine.gamespot.com/forums/api-developers-2334/simple-example-s-for-using-the-apis-1885345/
-
 class SearchVC: UIViewController
 {
     var player: AVPlayer?
