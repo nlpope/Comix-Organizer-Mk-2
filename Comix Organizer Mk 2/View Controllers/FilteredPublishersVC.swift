@@ -72,7 +72,7 @@ class FilteredPublishersVC: CODataLoadingVC
         
         navigationController?.navigationBar.prefersLargeTitles      = true
         navigationController?.navigationItem.largeTitleDisplayMode  = .always
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(switchToCharacterView))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .fastForward, target: self, action: #selector(switchToCharacterView))
     }
     
     
