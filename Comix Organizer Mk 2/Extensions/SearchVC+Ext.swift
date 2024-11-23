@@ -14,7 +14,7 @@ extension SearchVC: UITextFieldDelegate
         UIImageView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
         }, completion: { (_) in
-            self.isPublisherEntered ? self.pushFilteredPublishersVC() : self.pushAllPublishersVC()
+            self.isQueryEntered ? self.pushGenericSearchVC() : self.pushAllPublishersVC()
         })
         return true
     }

@@ -98,7 +98,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
         dataSource = UITableViewDiffableDataSource<Section, Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
             let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text    = title.name
-            cell.accessoryType      = self.savedTitles.contains(title) ? .detailButton : .none
+            cell.accessoryType      = self.savedTitles.contains(title) ? .checkmark : .none
             
             return cell
         })
@@ -126,9 +126,9 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
     {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Title>()
         snapshot.appendSections([.main])
+        #warning("below .appendItems fails when I enter this VC, click a title and navigate back. cell accessory not the reason")
         snapshot.appendItems(titles)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
-        
     }
     
     

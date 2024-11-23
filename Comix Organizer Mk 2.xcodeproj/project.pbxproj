@@ -42,6 +42,7 @@
 		40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */; };
 		40C75BA52CEE51AE00625F81 /* AVPlayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C75BA42CEE51AE00625F81 /* AVPlayer+Ext.swift */; };
 		40C75BA72CEE520B00625F81 /* SearchVC+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C75BA62CEE520B00625F81 /* SearchVC+Ext.swift */; };
+		40C75BA92CF1C1B400625F81 /* ResourceBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C75BA82CF1C1B400625F81 /* ResourceBundle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHelper+Utils.swift"; sourceTree = "<group>"; };
 		40C75BA42CEE51AE00625F81 /* AVPlayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Ext.swift"; sourceTree = "<group>"; };
 		40C75BA62CEE520B00625F81 /* SearchVC+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchVC+Ext.swift"; sourceTree = "<group>"; };
+		40C75BA82CF1C1B400625F81 /* ResourceBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -165,6 +167,7 @@
 		40A83A862AFA5F5B009F80D3 = {
 			isa = PBXGroup;
 			children = (
+				40C75BA82CF1C1B400625F81 /* ResourceBundle.swift */,
 				40A83A912AFA5F5B009F80D3 /* Comix Organizer Mk 2 */,
 				40A83A902AFA5F5B009F80D3 /* Products */,
 			);
@@ -355,6 +358,7 @@
 				40C75BA72CEE520B00625F81 /* SearchVC+Ext.swift in Sources */,
 				40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */,
+				40C75BA92CF1C1B400625F81 /* ResourceBundle.swift in Sources */,
 				40C1CE962C38A98000624DBE /* FilteredPublishersVC.swift in Sources */,
 				40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,

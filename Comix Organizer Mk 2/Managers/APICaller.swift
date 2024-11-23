@@ -13,6 +13,20 @@ class APICaller {
     let baseURL       = "https://comicvine.gamespot.com/api"
     let cache         = NSCache<NSString, UIImage>()
     
+    func getSearchResults(forQuery query: String, page: Int) async throws -> [ResourceBundle]
+    {
+        let urlReadyQuery       = query.replacingOccurrences(of: " ", with: "%20")
+        let endpoint            = "\(baseURL)/search/?api_key=\(NetworkCallKeys.API_KEY)&offset=\(page)&format=json&sort=name:asc&resources=publisher,character,volume&query=\(urlReadyQuery)"
+        
+        guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
+        
+        let (data, _)           = try await URLSession.shared.data(from: url)
+        let decoder             = JSONDecoder()
+        guard let decodedJSON   = try? decoder.decode(APIResourceBundleResponse.self, from: data) else { throw COError.failedToGetData }
+        
+        return decodedJSON.results.sorted(by: { $1.name > $0.name })
+    }
+    
     
     func getAllPublishers(page: Int) async throws -> [Publisher]
     {
@@ -24,7 +38,7 @@ class APICaller {
         let decoder             = JSONDecoder()
         guard let decodedJSON   = try? decoder.decode(APIPublishersResponse.self, from: data) else { throw COError.failedToGetData }
         
-        return decodedJSON.results.sorted(by: {$1.name > $0.name})
+        return decodedJSON.results.sorted(by: { $1.name > $0.name })
     }
     
     

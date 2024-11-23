@@ -9,20 +9,18 @@ import UIKit
 import AVKit
 import AVFoundation
 
-#warning("use search and sort feature to do a mass search of anything user enters - would cut bottom 2 API calls")
-#warning("something about fully backgrounding the app (not appwillresign) is causing searchvc to miss the initial hero shooting up whats different about the app backgrounding and app will resign status - also jumpst to end of logo animation before missing the shoot up if fully backgrounded, that doesnt happen in appwillresign" )
-// https://comicvine.gamespot.com/api/search/?api_key=b31d5105925e7fd811a07d63e82320578ba699f1&format=json&sort=name:asc&resources=issue&query=%22Master%20of%20kung%20fu%22
+#warning("get player to stop interrupting music")
 // instructions: https://comicvine.gamespot.com/forums/api-developers-2334/simple-example-s-for-using-the-apis-1885345/
 
 class SearchVC: UIViewController
 {
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
-    var isPublisherEntered: Bool { return !publisherNameTextField.text!.isEmpty }
+    var isQueryEntered: Bool { return !searchTextField.text!.isEmpty }
     var isInitialLoad           = true
     var animationDidPause       = false
     let logoImageView           = UIImageView()
-    let publisherNameTextField  = COTextField()
+    let searchTextField  = COTextField()
     let callToActionButton      = COButton()
     
     override func viewDidLoad()
@@ -41,7 +39,12 @@ class SearchVC: UIViewController
     }
     
     
-    fileprivate func maskSearchVC() { view.backgroundColor = .black; self.tabBarController?.tabBar.isHidden = true }
+    fileprivate func maskSearchVC()
+    {
+        view.backgroundColor = .black
+        self.tabBarController?.tabBar.isHidden              = true
+        self.navigationController?.navigationBar.isHidden   = true
+    }
     
     
     @objc fileprivate func configureIntroPlayer()
@@ -52,8 +55,12 @@ class SearchVC: UIViewController
         playerLayer?.videoGravity  = AVLayerVideoGravity.resizeAspect
         playerLayer?.frame         = view.layer.frame
         playerLayer?.name          = PlayerLayerKeys.layerName
-        
         player?.actionAtItemEnd    = AVPlayer.ActionAtItemEnd.none
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.mixWithOthers)
+        } catch {
+            print("unable to keep player from interrupting background music")
+        }
         player?.play()
         
         view.layer.insertSublayer(playerLayer!, at: 0)
@@ -167,33 +174,34 @@ class SearchVC: UIViewController
     
     func configureNavigation()
     {
-        self.tabBarController?.tabBar.isHidden = false
-        publisherNameTextField.text = ""
+        self.navigationController?.navigationBar.isHidden       = true
+        self.tabBarController?.tabBar.isHidden                  = false
+        searchTextField.text                             = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
-        view.backgroundColor                        = .systemBackground
-        title                                       = "Search"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor                                    = .systemBackground
+        title                                                   = "Search"
+        navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
     
-    func addSubviews() { view.addSubviews(logoImageView, publisherNameTextField, callToActionButton) }
+    func addSubviews() { view.addSubviews(logoImageView, searchTextField, callToActionButton) }
     
     
     func configureTextField()
     {
         let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
-        publisherNameTextField.delegate         = self
-        publisherNameTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
-        publisherNameTextField.leftView         = paddingView
-        publisherNameTextField.rightView        = paddingView
-        publisherNameTextField.leftViewMode     = .always
-        publisherNameTextField.rightViewMode    = .always
+        searchTextField.delegate         = self
+        searchTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
+        searchTextField.leftView         = paddingView
+        searchTextField.rightView        = paddingView
+        searchTextField.leftViewMode     = .always
+        searchTextField.rightViewMode    = .always
         
         NSLayoutConstraint.activate([
-            publisherNameTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
-            publisherNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            publisherNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            publisherNameTextField.heightAnchor.constraint(equalToConstant: 50)
+            searchTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
+            searchTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            searchTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            searchTextField.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -243,26 +251,24 @@ class SearchVC: UIViewController
         UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
             self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
         }, completion: { (_) in
-            print("animation done")
-            self.isPublisherEntered ? self.pushFilteredPublishersVC() : self.pushAllPublishersVC()
+            self.isQueryEntered ? self.pushGenericSearchVC() : self.pushAllPublishersVC()
         })
     }
     
     
-    func pushFilteredPublishersVC()
+    func pushGenericSearchVC()
     {
-        publisherNameTextField.resignFirstResponder()
-        let publisherName           = publisherNameTextField.text!
-        Task { try await APICaller.shared.getFilteredPublishers(withName: publisherName, page: 0) }
-        
-        let filteredPublishersVC    = FilteredPublishersVC(withName: publisherName)
+        searchTextField.resignFirstResponder()
+        let query           = searchTextField.text!
+//        Task { try await APICaller.shared.getSearchResults(forQuery: query, page: 0) }
+        let filteredPublishersVC    = FilteredPublishersVC(withName: query)
         navigationController?.pushViewController(filteredPublishersVC, animated: true)
     }
     
     
     func pushAllPublishersVC()
     {
-        publisherNameTextField.resignFirstResponder()
+        searchTextField.resignFirstResponder()
         let allPublishersVC = AllPublishersVC()
         navigationController?.pushViewController(allPublishersVC, animated: true)
     }
