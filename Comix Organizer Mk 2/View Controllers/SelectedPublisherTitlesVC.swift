@@ -126,7 +126,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
     {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Title>()
         snapshot.appendSections([.main])
-        #warning("below .appendItems fails when I enter this VC, click a title and navigate back. cell accessory not the reason")
+        #warning("below .appendItems fails/app crashing when I enter this VC, click a title and navigate back. cell accessory not the reason")
         snapshot.appendItems(titles)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
