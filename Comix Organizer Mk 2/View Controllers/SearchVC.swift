@@ -148,29 +148,6 @@ class SearchVC: UIViewController
     }
     
     
-    // MARK: HERO HOVER METHODS
-    
-    @objc func pauseAnimation() { animationDidPause   = true }
-    
-    
-    @objc func resumeAnimation()
-    {
-        guard animationDidPause else { return }
-        UIImageView.animate(withDuration: 1,
-                            delay: 0,
-                            usingSpringWithDamping: 1,
-                            initialSpringVelocity: 1,
-                            options: .curveEaseOut,
-                            animations: {
-            self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
-        }) { _ in
-            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
-                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
-            }
-        }
-    }
-    
-    
     func configureNavigation()
     {
         self.navigationController?.navigationBar.isHidden       = true
@@ -233,14 +210,37 @@ class SearchVC: UIViewController
             logoImageView.widthAnchor.constraint(equalToConstant: 350),
             logoImageView.heightAnchor.constraint(equalToConstant: 350)
         ])
-                
-        UIImageView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.logoImageView.transform                            = CGAffineTransform(translationX: 0, y: -770)
-        }) { (_) in
-            UIImageView.animate(withDuration: 1, delay: 0, options: [.repeat, .autoreverse]) {
-                self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: 40)
-            }
-        }
+        
+        heroFlyIn()
+    }
+    
+    
+    // MARK: HERO HOVER METHODS
+    
+    @objc func pauseAnimation() { animationDidPause   = true }
+    
+    
+    @objc func resumeAnimation(){ guard animationDidPause else { return }; heroFlyIn() }
+    
+    
+    func heroFlyIn()
+    {
+        UIImageView.animate(withDuration: 1,
+                            delay: 0,
+                            usingSpringWithDamping: 1,
+                            initialSpringVelocity: 1,
+                            options: .curveEaseOut,
+                            animations: { self.logoImageView.transform  = CGAffineTransform(translationX: 0, y: -770) },
+                            completion: { _ in self.heroHover(true)})
+    }
+    
+    
+    func heroHover(_ :Bool)
+    {
+        UIImageView.animate(withDuration: 1,
+                            delay: 0,
+                            options: [.repeat, .autoreverse],
+                            animations: { self.logoImageView.transform    = self.logoImageView.transform.translatedBy(x: 0, y: 50)})
     }
     
     
