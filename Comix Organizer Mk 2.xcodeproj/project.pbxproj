@@ -36,7 +36,7 @@
 		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
 		40B3855C2CED1B7D00D70E85 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B3855B2CED1B7D00D70E85 /* String+Ext.swift */; };
 		40C0372D2C3732BC00A67B2D /* COEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */; };
-		40C1CE962C38A98000624DBE /* FilteredPublishersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C1CE952C38A98000624DBE /* FilteredPublishersVC.swift */; };
+		40C1CE962C38A98000624DBE /* FilteredSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C1CE952C38A98000624DBE /* FilteredSearchVC.swift */; };
 		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
 		40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99E2C35E2E10077808D /* COTextField.swift */; };
 		40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */; };
@@ -77,7 +77,7 @@
 		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
 		40B3855B2CED1B7D00D70E85 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COEmptyStateView.swift; sourceTree = "<group>"; };
-		40C1CE952C38A98000624DBE /* FilteredPublishersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredPublishersVC.swift; sourceTree = "<group>"; };
+		40C1CE952C38A98000624DBE /* FilteredSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredSearchVC.swift; sourceTree = "<group>"; };
 		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		40C4F99E2C35E2E10077808D /* COTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTextField.swift; sourceTree = "<group>"; };
 		40C4F9A02C36423D0077808D /* UIHelper+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIHelper+Utils.swift"; sourceTree = "<group>"; };
@@ -113,8 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				40AD02702C2F355B000C53A2 /* SearchVC.swift */,
+				40C1CE952C38A98000624DBE /* FilteredSearchVC.swift */,
 				40A83A962AFA5F5B009F80D3 /* AllPublishersVC.swift */,
-				40C1CE952C38A98000624DBE /* FilteredPublishersVC.swift */,
 				40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */,
 				40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */,
 				40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */,
@@ -359,7 +359,7 @@
 				40A83AD12AFBB09E009F80D3 /* COTabBarController.swift in Sources */,
 				40A83A972AFA5F5B009F80D3 /* AllPublishersVC.swift in Sources */,
 				40C75BA92CF1C1B400625F81 /* ResourceBundle.swift in Sources */,
-				40C1CE962C38A98000624DBE /* FilteredPublishersVC.swift in Sources */,
+				40C1CE962C38A98000624DBE /* FilteredSearchVC.swift in Sources */,
 				40C4F9A12C36423D0077808D /* UIHelper+Utils.swift in Sources */,
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,

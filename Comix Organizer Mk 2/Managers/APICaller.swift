@@ -13,10 +13,10 @@ class APICaller
     let baseURL       = "https://comicvine.gamespot.com/api"
     let cache         = NSCache<NSString, UIImage>()
     
-    func getSearchResults(forQuery query: String, page: Int) async throws -> [ResourceBundle]
+    func getAllResults(forQuery query: String, page: Int) async throws -> [ResourceBundle]
     {
-        let urlReadyQuery       = query.replacingOccurrences(of: " ", with: "%20")
-        let endpoint            = "\(baseURL)/search/?api_key=\(NetworkCallKeys.API_KEY)&offset=\(page)&format=json&sort=name:asc&resources=publisher,character,volume&query=\(urlReadyQuery)"
+//        let urlReadyQuery       = query.replacingOccurrences(of: " ", with: "%20")
+        let endpoint            = "\(baseURL)/search/?api_key=\(NetworkCallKeys.API_KEY)&offset=\(page)&format=json&resources=publisher,character,volume&query=\(query)"
         
         guard let url           = URL(string: endpoint) else { throw COError.invalidURL }
         

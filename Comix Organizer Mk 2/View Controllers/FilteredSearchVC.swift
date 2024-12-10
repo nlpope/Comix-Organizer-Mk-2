@@ -1,5 +1,5 @@
 //
-//  FilteredPublishersVC.swift
+//  FilteredSearchVC.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 7/5/24.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class FilteredPublishersVC: CODataLoadingVC
+class FilteredSearchVC: CODataLoadingVC
 {
     enum Section { case main }
     
-    var publisherContainsName: String!
-    var publishers              = [Publisher]()
-    var filteredPublishers      = [Publisher]()
+    var queryContains: String!
+    var publishers              = [ResourceBundle]()
+    var filteredPublishers      = [ResourceBundle]()
     var page                    = 0
     var hasMorePublishers       = true
     var isSearching             = false
@@ -25,7 +25,7 @@ class FilteredPublishersVC: CODataLoadingVC
     init(withName name: String)
     {
         super.init(nibName: nil, bundle: nil)
-        self.publisherContainsName = name
+        self.queryContains = name
     }
     
     
@@ -54,13 +54,13 @@ class FilteredPublishersVC: CODataLoadingVC
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
-        FilteredPublishersVC.isFirstVisit = false
+        FilteredSearchVC.isFirstVisit = false
     }
     
     
     func presentListOrderAlert()
     {
-        guard FilteredPublishersVC.isFirstVisit else { return }
+        guard FilteredSearchVC.isFirstVisit else { return }
         presentCOAlertOnMainThread(alertTitle: "Important", message: "The following list is loaded by popularity THEN alphabetically. So 'Z' may appear just before 'A' at the bottom when new publishers load. Happy searching 😁.", buttonTitle: "ok")
     }
     
@@ -68,7 +68,7 @@ class FilteredPublishersVC: CODataLoadingVC
     private func configureNavigationController()
     {
         view.backgroundColor    = .systemBackground
-        title                   = "Results For: '\(publisherContainsName!)'"
+        title                   = "Results For: '\(queryContains!)'"
         
         navigationController?.navigationBar.prefersLargeTitles      = true
         navigationController?.navigationItem.largeTitleDisplayMode  = .always
@@ -125,15 +125,14 @@ class FilteredPublishersVC: CODataLoadingVC
         showLoadingView()
         isLoadingMorePublishers = true
         Task {
-            do {
-                let results = try await APICaller.shared.getFilteredPublishers(withName: publisherContainsName, page: page)
+            do
+            {
+                let results                     = try await APICaller.shared.getAllResults(forQuery: queryContains, page: 0)
                 dismissLoadingView()
                 updateUI(with: results)
-                self.isLoadingMorePublishers = false
-            } catch is COError {
-                showEmptyStateView(with: COError.invalidURL.rawValue, in: self.view)
-                print(COError.invalidURL.rawValue)
+                self.isLoadingMorePublishers    = false
             }
+            catch is COError { showEmptyStateView(with: COError.invalidURL.rawValue, in: self.view) }
         }
     }
     
@@ -145,7 +144,7 @@ class FilteredPublishersVC: CODataLoadingVC
         
         // self.publishers = []
         if self.publishers.isEmpty {
-            let message = "There are no publishers by the name \(publisherContainsName!) to display 😢."
+            let message = "There are no publishers by the name \(queryContains!) to display 😢."
             DispatchQueue.main.async {
                 self.hideSearchController()
                 self.showEmptyStateView(with: message, in: self.view)
@@ -167,7 +166,7 @@ class FilteredPublishersVC: CODataLoadingVC
 
 
 //MARK: COLLECTIONVIEW DELEGATE METHODS
-extension FilteredPublishersVC: UICollectionViewDelegate
+extension FilteredSearchVC: UICollectionViewDelegate
 {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     {
@@ -196,7 +195,7 @@ extension FilteredPublishersVC: UICollectionViewDelegate
 
 // MARK: SEARCHBAR DELEGATE METHODS
 
-extension FilteredPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
+extension FilteredSearchVC: UISearchResultsUpdating, UISearchBarDelegate
 {
     func updateSearchResults(for searchController: UISearchController)
     {
