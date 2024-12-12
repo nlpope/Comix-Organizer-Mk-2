@@ -435,11 +435,11 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingLineNumber</key>
 					<string>21</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>2</string>
 					<key>StartingLineNumber</key>
 					<string>20</string>
 					<key>Timestamp</key>
-					<string>754049535.666623</string>
+					<string>755721770.0985759</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -458,13 +458,13 @@ struct APITitlesResponse: Codable</string>
 				<string>    var collectionView: UICollectionView!
 </string>
 				<key>leading</key>
-				<string>    var isLoadingMorePublishers = false
-    static var isFirstVisit     = true
-</string>
+				<string>//    var isLoadingMorePublishers = false
+//    static var isFirstVisit     = true
+//</string>
 				<key>trailing</key>
-				<string>    var dataSource: UICollectionViewDiffableDataSource&lt;Section,Publisher&gt;!
-    
-    override func viewDidLoad()
+				<string>//    var dataSource: UICollectionViewDiffableDataSource&lt;Section,Publisher&gt;!
+//    
+//    override func viewDidLoad()
 </string>
 			</dict>
 			<key>title</key>
@@ -482,11 +482,11 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingLineNumber</key>
 					<string>43</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>2</string>
 					<key>StartingLineNumber</key>
 					<string>42</string>
 					<key>Timestamp</key>
-					<string>754049535.654498</string>
+					<string>755721770.09895</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -505,13 +505,13 @@ struct APITitlesResponse: Codable</string>
 				<string>    override func viewDidAppear(_ animated: Bool)
 </string>
 				<key>leading</key>
-				<string>    
-    
-</string>
+				<string>//    
+//    
+//</string>
 				<key>trailing</key>
-				<string>    {
-        super.viewDidAppear(animated)
-        AllPublishersVC.isFirstVisit = false
+				<string>//    {
+//        super.viewDidAppear(animated)
+//        AllPublishersVC.isFirstVisit = false
 </string>
 			</dict>
 			<key>title</key>
@@ -529,11 +529,11 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingLineNumber</key>
 					<string>94</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>2</string>
 					<key>StartingLineNumber</key>
 					<string>93</string>
 					<key>Timestamp</key>
-					<string>754049535.666732</string>
+					<string>755721770.098827</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -552,13 +552,13 @@ struct APITitlesResponse: Codable</string>
 				<string>    func getPublishers(page: Int)
 </string>
 				<key>leading</key>
-				<string>    
-    
-</string>
+				<string>//    
+//    
+//</string>
 				<key>trailing</key>
-				<string>    {
-        showLoadingView()
-        isLoadingMorePublishers = true
+				<string>//    {
+//        showLoadingView()
+//        isLoadingMorePublishers = true
 </string>
 			</dict>
 			<key>title</key>
@@ -576,11 +576,11 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingLineNumber</key>
 					<string>156</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>2</string>
 					<key>StartingLineNumber</key>
 					<string>155</string>
 					<key>Timestamp</key>
-					<string>754049588.687233</string>
+					<string>755721770.099013</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -599,13 +599,13 @@ struct APITitlesResponse: Codable</string>
 				<string>    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
 </string>
 				<key>leading</key>
-				<string>extension AllPublishersVC: UICollectionViewDelegate
-{
-</string>
+				<string>//extension AllPublishersVC: UICollectionViewDelegate
+//{
+//</string>
 				<key>trailing</key>
-				<string>    {
-        let offsetY         = scrollView.contentOffset.y
-        let contentHeight   = scrollView.contentSize.height
+				<string>//    {
+//        let offsetY         = scrollView.contentOffset.y
+//        let contentHeight   = scrollView.contentSize.height
 </string>
 			</dict>
 			<key>title</key>
@@ -623,11 +623,11 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingLineNumber</key>
 					<string>183</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>2</string>
 					<key>StartingLineNumber</key>
 					<string>182</string>
 					<key>Timestamp</key>
-					<string>754049934.723509</string>
+					<string>755721770.098467</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -646,13 +646,13 @@ struct APITitlesResponse: Codable</string>
 				<string>extension AllPublishersVC: UISearchResultsUpdating, UISearchBarDelegate
 </string>
 				<key>leading</key>
-				<string>// MARK: SEARCHBAR DELEGATE METHODS
-
-</string>
+				<string>//// MARK: SEARCHBAR DELEGATE METHODS
+//
+//</string>
 				<key>trailing</key>
-				<string>{
-    func updateSearchResults(for searchController: UISearchController)
-    {
+				<string>//{
+//    func updateSearchResults(for searchController: UISearchController)
+//    {
 </string>
 			</dict>
 			<key>title</key>
@@ -999,11 +999,11 @@ struct APITitlesResponse: Codable</string>
 					<key>EndingLineNumber</key>
 					<string>32</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>2</string>
 					<key>StartingLineNumber</key>
 					<string>31</string>
 					<key>Timestamp</key>
-					<string>754049535.666791</string>
+					<string>755721770.098308</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -1022,13 +1022,13 @@ struct APITitlesResponse: Codable</string>
 				<string>        presentListOrderAlert()
 </string>
 				<key>leading</key>
-				<string>        getPublishers(page: page)
-        configureDataSource()
-</string>
+				<string>//        getPublishers(page: page)
+//        configureDataSource()
+//</string>
 				<key>trailing</key>
-				<string>    }
-    
-    
+				<string>//    }
+//    
+//    
 </string>
 			</dict>
 			<key>title</key>

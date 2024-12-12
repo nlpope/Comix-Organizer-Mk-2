@@ -11,7 +11,7 @@ class PublisherCell: UICollectionViewCell
 {
     static let reuseID      = "PublisherCell"
     let avatarImageView     = COAvatarImageView(frame: .zero)
-    let publisherNameLabel  = COTitleLabel(textAlignment: .center, fontSize: 16)
+    let itemNameLabel  = COTitleLabel(textAlignment: .center, fontSize: 16)
     
     
     override init(frame: CGRect)
@@ -24,16 +24,16 @@ class PublisherCell: UICollectionViewCell
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    func set(publisher: Publisher)
+    func set(resourceBundle: ResourceBundle)
     {
-        publisherNameLabel.text = publisher.name
-        avatarImageView.downloadImage(fromURL: publisher.image.iconURL)
+        itemNameLabel.text = resourceBundle.name
+        avatarImageView.downloadImage(fromURL: resourceBundle.image.iconURL)
     }
     
     
     func configure()
     {
-        addSubviews(avatarImageView, publisherNameLabel)
+        addSubviews(avatarImageView, itemNameLabel)
         
         let padding: CGFloat = 8
         
@@ -43,10 +43,10 @@ class PublisherCell: UICollectionViewCell
             avatarImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
             
-            publisherNameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
-            publisherNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
-            publisherNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
-            publisherNameLabel.heightAnchor.constraint(equalToConstant: 20)
+            itemNameLabel.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: 12),
+            itemNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            itemNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            itemNameLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 }

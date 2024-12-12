@@ -20,7 +20,7 @@ class FilteredSearchVC: CODataLoadingVC
     var isLoadingMorePublishers = false
     static var isFirstVisit     = true
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section,Publisher>!
+    var dataSource: UICollectionViewDiffableDataSource<Section,ResourceBundle>!
     
     init(withName name: String)
     {
@@ -111,9 +111,11 @@ class FilteredSearchVC: CODataLoadingVC
     
     func configureDataSource()
     {
-        dataSource = UICollectionViewDiffableDataSource<Section,Publisher>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section,ResourceBundle>(
+            collectionView: collectionView,
+            cellProvider: { (collectionView, indexPath, resourceBundle) -> UICollectionViewCell? in
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
-            cell.set(publisher: publisher)
+            cell.set(resourceBundle: resourceBundle)
             
             return cell
         })
@@ -137,10 +139,10 @@ class FilteredSearchVC: CODataLoadingVC
     }
     
     
-    func updateUI(with publishers: [Publisher])
+    func updateUI(with resources: [ResourceBundle])
     {
-        if publishers.count < 100 { self.hasMorePublishers = false }
-        self.publishers.append(contentsOf: publishers)
+        if resources.count < 100 { self.hasMorePublishers = false }
+        self.publishers.append(contentsOf: resources)
         
         // self.publishers = []
         if self.publishers.isEmpty {
@@ -155,11 +157,11 @@ class FilteredSearchVC: CODataLoadingVC
     }
     
     
-    func updateData(on publishers: [Publisher])
+    func updateData(on resources: [ResourceBundle])
     {
-        var snapshot = NSDiffableDataSourceSnapshot<Section,Publisher>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section,ResourceBundle>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(publishers)
+        snapshot.appendItems(resources)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
     }
 }
@@ -184,11 +186,12 @@ extension FilteredSearchVC: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let activeArray     = isSearching ? filteredPublishers : publishers
-        let publisher       = activeArray[indexPath.item]
-        let destVC          = SelectedPublisherTitlesVC(underPublisher: publisher.name, withDetailsURL: publisher.publisherDetailsURL)
-        
-        navigationController?.pushViewController(destVC, animated: true)
+//        let activeArray     = isSearching ? filteredPublishers : publishers
+//        let publisher       = activeArray[indexPath.item]
+//        let destVC          = SelectedPublisherTitlesVC(underPublisher: publisher.name, withDetailsURL: publisher.publisherDetailsURL)
+//        
+//        navigationController?.pushViewController(destVC, animated: true)
+        print("working")
     }
 }
 
