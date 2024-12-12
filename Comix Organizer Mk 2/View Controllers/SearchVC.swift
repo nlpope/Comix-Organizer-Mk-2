@@ -17,7 +17,7 @@ class SearchVC: UIViewController
     var isInitialLoad           = true
     var animationDidPause       = false
     let logoImageView           = UIImageView()
-    let searchTextField  = COTextField()
+    let searchTextField         = COTextField()
     let callToActionButton      = COButton()
     
     override func viewDidLoad()
@@ -178,13 +178,3 @@ class SearchVC: UIViewController
         navigationController?.pushViewController(filteredPublishersVC, animated: true)
     }
 }
-
-
-
-
-
-
-
-
-
-

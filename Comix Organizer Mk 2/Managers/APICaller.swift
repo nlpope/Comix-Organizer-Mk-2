@@ -11,7 +11,7 @@ class APICaller
 {
     static let shared = APICaller()
     let baseURL       = "https://comicvine.gamespot.com/api"
-    let cache         = NSCache<NSString, UIImage>()
+    let cache         = NSCache<NSString,UIImage>()
     
     func getAllResults(forQuery query: String, page: Int) async throws -> [ResourceBundle]
     {
