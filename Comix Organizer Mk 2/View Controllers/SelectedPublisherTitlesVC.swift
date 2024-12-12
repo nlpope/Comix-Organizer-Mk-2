@@ -18,7 +18,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
     var savedTitles             = [Title]()
     var isSearching             = false
     var tableView: UITableView!
-    var dataSource: UITableViewDiffableDataSource<Section, Title>!
+    var dataSource: UITableViewDiffableDataSource<Section,Title>!
     
     init(underPublisher publisherName: String, withDetailsURL publisherDetailsURL: String)
     {
@@ -92,7 +92,7 @@ class SelectedPublisherTitlesVC: CODataLoadingVC
     
     func configureDataSource()
     {
-        dataSource = UITableViewDiffableDataSource<Section, Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
+        dataSource = UITableViewDiffableDataSource<Section,Title>(tableView: tableView, cellProvider: { (tableView, indexPath, title) -> UITableViewCell? in
             let cell                = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text    = title.name
             cell.accessoryType      = self.savedTitles.contains(title) ? .checkmark : .none

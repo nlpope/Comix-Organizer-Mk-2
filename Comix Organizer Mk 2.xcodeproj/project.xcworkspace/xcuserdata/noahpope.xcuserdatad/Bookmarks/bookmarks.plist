@@ -462,7 +462,7 @@ struct APITitlesResponse: Codable</string>
     static var isFirstVisit     = true
 </string>
 				<key>trailing</key>
-				<string>    var dataSource: UICollectionViewDiffableDataSource&lt;Section, Publisher&gt;!
+				<string>    var dataSource: UICollectionViewDiffableDataSource&lt;Section,Publisher&gt;!
     
     override func viewDidLoad()
 </string>

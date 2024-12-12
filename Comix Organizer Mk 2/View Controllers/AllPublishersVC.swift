@@ -19,7 +19,7 @@ class AllPublishersVC: CODataLoadingVC
     var isLoadingMorePublishers = false
     static var isFirstVisit     = true
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Publisher>!
+    var dataSource: UICollectionViewDiffableDataSource<Section,Publisher>!
     
     override func viewDidLoad()
     {
@@ -130,7 +130,7 @@ class AllPublishersVC: CODataLoadingVC
     
     func updateData(on publishers: [Publisher])
     {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Publisher>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section,Publisher>()
         snapshot.appendSections([.main])
         snapshot.appendItems(publishers)
         DispatchQueue.main.async { self.dataSource.apply(snapshot, animatingDifferences: true) }
@@ -139,7 +139,7 @@ class AllPublishersVC: CODataLoadingVC
     
     func configureDataSource()
     {
-        dataSource      = UICollectionViewDiffableDataSource<Section, Publisher>(collectionView: collectionView,
+        dataSource      = UICollectionViewDiffableDataSource<Section,Publisher>(collectionView: collectionView,
                                                                                  cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
             let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
             cell.set(publisher: publisher)

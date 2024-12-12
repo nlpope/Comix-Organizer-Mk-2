@@ -71,7 +71,7 @@ enum PersistenceManager
     }
     
     
-    static func loadBookmarx(completed: @escaping (Result<[Title], COError>) -> Void)
+    static func loadBookmarx(completed: @escaping (Result<[Title],COError>) -> Void)
     {
         if let dataToDecode     = defaults.object(forKey: SaveKeys.bookmarx) as? Data {
             do {
@@ -122,7 +122,7 @@ enum PersistenceManager
     }
     
     
-    static func loadCompletedIssues(completed: @escaping (Result<[Issue], COError>) -> Void)
+    static func loadCompletedIssues(completed: @escaping (Result<[Issue],COError>) -> Void)
     {
         if let dataToDecode         = defaults.object(forKey: SaveKeys.completedIssues) as? Data {
             let decoder             = JSONDecoder()
