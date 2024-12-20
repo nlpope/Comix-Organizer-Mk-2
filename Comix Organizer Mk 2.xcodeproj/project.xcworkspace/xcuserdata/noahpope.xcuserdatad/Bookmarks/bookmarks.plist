@@ -1097,7 +1097,7 @@ struct Issue: Codable, Comparable
 					<key>StartingLineNumber</key>
 					<string>167</string>
 					<key>Timestamp</key>
-					<string>755713914.958411</string>
+					<string>756404603.985927</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -1113,7 +1113,7 @@ struct Issue: Codable, Comparable
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>                            completion: { _ in self.isQueryEntered ? self.pushFilteredSearchVC() : print("nothing entered") })
+				<string>                            completion: { _ in self.pushFilteredSearchVC() })
 </string>
 				<key>leading</key>
 				<string>                            options: .curveEaseInOut,

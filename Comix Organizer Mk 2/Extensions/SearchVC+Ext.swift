@@ -11,11 +11,7 @@ extension SearchVC: UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         view.endEditing(true)
-        UIImageView.animate(withDuration: 1, delay: 1, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: .curveEaseInOut, animations: {
-            self.logoImageView.transform                        = self.logoImageView.transform.translatedBy(x: 0, y: -900)
-        }, completion: { (_) in
-            self.isQueryEntered ? self.pushFilteredSearchVC() : print("nothing entered")
-        })
+        animateHeroFlyOut()
         return true
     }
     
@@ -103,12 +99,12 @@ extension SearchVC: UITextFieldDelegate
         logoImageView.layer.zPosition                               = -1
         
         NSLayoutConstraint.activate([
-            logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 950),
+            logoImageView.topAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: -770),
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             logoImageView.widthAnchor.constraint(equalToConstant: 350),
             logoImageView.heightAnchor.constraint(equalToConstant: 350)
         ])
         
-        heroFlyIn()
+        heroLand()
     }
 }

@@ -131,17 +131,17 @@ class SearchVC: UIViewController
     @objc func pauseAnimation() { animationDidPause   = true }
     
     
-    @objc func resumeAnimation(){ guard animationDidPause else { return }; heroFlyIn() }
+    @objc func resumeAnimation(){ guard animationDidPause else { return }; heroLand() }
     
     
-    func heroFlyIn()
+    func heroLand()
     {
         UIImageView.animate(withDuration: 1,
                             delay: 0,
                             usingSpringWithDamping: 1,
                             initialSpringVelocity: 1,
                             options: .curveEaseOut,
-                            animations: { self.logoImageView.transform  = CGAffineTransform(translationX: 0, y: -770) },
+                            animations: { self.logoImageView.transform  = CGAffineTransform(translationX: 0, y: 950) },
                             completion: { _ in self.heroHover(true) })
     }
     
@@ -165,15 +165,15 @@ class SearchVC: UIViewController
                             initialSpringVelocity: 0.3,
                             options: .curveEaseInOut,
                             animations: { self.logoImageView.transform = self.logoImageView.transform.translatedBy(x: 0, y: -900) },
-                            completion: { _ in self.isQueryEntered ? self.pushFilteredSearchVC() : print("nothing entered") })
+                            completion: { _ in self.pushFilteredSearchVC() })
     }
     
     
     func pushFilteredSearchVC()
     {
         searchTextField.resignFirstResponder()
+        if !isQueryEntered { searchTextField.text = " " }
         let query           = searchTextField.text!
-//        Task { try await APICaller.shared.getAllResults(forQuery: query, page: 0) }
         let filteredPublishersVC    = FilteredSearchVC(withName: query)
         navigationController?.pushViewController(filteredPublishersVC, animated: true)
     }
