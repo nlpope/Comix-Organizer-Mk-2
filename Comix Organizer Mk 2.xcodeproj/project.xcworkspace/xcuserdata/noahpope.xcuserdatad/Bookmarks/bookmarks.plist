@@ -1091,13 +1091,13 @@ struct Issue: Codable, Comparable
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>168</string>
+					<string>164</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>167</string>
+					<string>163</string>
 					<key>Timestamp</key>
-					<string>756404603.985927</string>
+					<string>756409717.7061681</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -1113,16 +1113,16 @@ struct Issue: Codable, Comparable
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>                            completion: { _ in self.pushFilteredSearchVC() })
+				<string>    }
 </string>
 				<key>leading</key>
-				<string>                            options: .curveEaseInOut,
-                            animations: { self.logoImageView.transform = self.logoImageView.transform.translatedBy(x: 0, y: -900) },
+				<string>                            animations: { self.logoImageView.transform = self.logoImageView.transform.translatedBy(x: 0, y: -900) },
+                            completion: { _ in self.pushFilteredSearchVC() })
 </string>
 				<key>trailing</key>
-				<string>    }
+				<string>    
     
-    
+    func pushFilteredSearchVC()
 </string>
 			</dict>
 			<key>title</key>

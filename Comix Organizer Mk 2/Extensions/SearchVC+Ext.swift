@@ -8,15 +8,8 @@
 import UIKit
 extension SearchVC: UITextFieldDelegate
 {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        view.endEditing(true)
-        animateHeroFlyOut()
-        return true
-    }
-    
-    
     // MARK: CONFIGURATION LOGIC
+    
     func configureSearchVC()
     {
         configureNavigation()
@@ -33,10 +26,9 @@ extension SearchVC: UITextFieldDelegate
     {
         self.navigationController?.navigationBar.isHidden       = true
         self.tabBarController?.tabBar.isHidden                  = false
-        searchTextField.text                             = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
         view.backgroundColor                                    = .systemBackground
-        title                                                   = "Search"
+        navigationController?.navigationBar.backItem?.title     = "Search"
         navigationController?.navigationBar.prefersLargeTitles  = true
     }
     
@@ -59,13 +51,15 @@ extension SearchVC: UITextFieldDelegate
     
     func configureTextField()
     {
-        let paddingView: UIView                 = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
-        searchTextField.delegate         = self
-        searchTextField.placeholder      = PlaceHolderKeys.searchPlaceHolder
-        searchTextField.leftView         = paddingView
-        searchTextField.rightView        = paddingView
-        searchTextField.leftViewMode     = .always
-        searchTextField.rightViewMode    = .always
+        let paddingView: UIView         = UIView(frame: CGRect(x: 0, y: 0, width: 25, height: 40))
+        searchTextField.delegate        = self
+        searchTextField.placeholder     = PlaceHolderKeys.searchPlaceHolder
+        searchTextField.leftView        = paddingView
+        searchTextField.rightView       = paddingView
+        searchTextField.leftViewMode    = .always
+        searchTextField.rightViewMode   = .always
+        searchTextField.text            = ""
+        searchTextField.alpha           = 0
         
         NSLayoutConstraint.activate([
             searchTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
@@ -80,7 +74,9 @@ extension SearchVC: UITextFieldDelegate
     {
         callToActionButton.backgroundColor  = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1.0)
         callToActionButton.setTitle("GO", for: .normal)
-        callToActionButton.addTarget(self, action: #selector(animateHeroFlyOut), for: .touchUpInside)
+        callToActionButton.addTarget(self, action: #selector(fadeOutTextFieldAndGoButton), for: .touchUpInside)
+        callToActionButton.alpha = 0
+        
         
         
         NSLayoutConstraint.activate([
@@ -106,5 +102,34 @@ extension SearchVC: UITextFieldDelegate
         ])
         
         heroLand()
+    }
+    
+    
+    // MARK: TEXTFIELD DELEGATE & COMPLIMENTARY METHODS
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        view.endEditing(true)
+        fadeOutTextFieldAndGoButton()
+        return true
+    }
+    
+    
+    func fadeInTextField()
+    {
+        UITextField.animate(withDuration: 1,
+                            animations: { self.searchTextField.alpha = 1 },
+                            completion: {_ in self.fadeInGoButton()})
+    }
+    
+    
+    func fadeInGoButton() { UIButton.animate(withDuration: 1) { self.callToActionButton.alpha = 1 } }
+    
+    
+    @objc func fadeOutTextFieldAndGoButton()
+    {
+        defer { heroFlyUp() }
+        UITextField.animate(withDuration: 1) { self.searchTextField.alpha = 0 }
+        UIButton.animate(withDuration: 1) { self.callToActionButton.alpha = 0 }
     }
 }

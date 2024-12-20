@@ -95,19 +95,15 @@ class SearchVC: UIViewController
     }
     
     
-    @objc func setPlayerLayerToNil()
-    {
-        player?.pause()
-        playerLayer    = nil
-    }
+    @objc func setPlayerLayerToNil() { player?.pause(); playerLayer = nil }
     
     
     @objc func reinitializePlayerLayer()
     {
         guard isInitialLoad else { return }
         if let playerz      = player {
-            playerLayer     = AVPlayerLayer(player: playerz)
-            playerLayer?.name = PlayerLayerKeys.layerName
+            playerLayer         = AVPlayerLayer(player: playerz)
+            playerLayer?.name   = PlayerLayerKeys.layerName
             
             if #available(iOS 10.0, *) { if playerz.timeControlStatus == .paused { playerz.play() } }
             else { if playerz.isPlaying == false { playerz.play() }}
@@ -142,7 +138,7 @@ class SearchVC: UIViewController
                             initialSpringVelocity: 1,
                             options: .curveEaseOut,
                             animations: { self.logoImageView.transform  = CGAffineTransform(translationX: 0, y: 950) },
-                            completion: { _ in self.heroHover(true) })
+                            completion: { _ in self.heroHover(true); self.fadeInTextField() })
     }
     
     
@@ -155,8 +151,7 @@ class SearchVC: UIViewController
     }
     
     
-    #warning("if text field is empty, add a space for query to work with raw search press - @ final completion param")
-    @objc func animateHeroFlyOut()
+    @objc func heroFlyUp()
     {
         view.endEditing(true)
         UIImageView.animate(withDuration: 1,
