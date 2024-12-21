@@ -1091,13 +1091,13 @@ struct Issue: Codable, Comparable
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>164</string>
+					<string>145</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>163</string>
+					<string>144</string>
 					<key>Timestamp</key>
-					<string>756409717.7061681</string>
+					<string>756497363.751014</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -1117,7 +1117,7 @@ struct Issue: Codable, Comparable
 </string>
 				<key>leading</key>
 				<string>                            animations: { self.logoImageView.transform = self.logoImageView.transform.translatedBy(x: 0, y: -900) },
-                            completion: { _ in self.pushFilteredSearchVC() })
+                            completion: { _ in self.heroFlewUp = true; self.pushFilteredSearchVC() })
 </string>
 				<key>trailing</key>
 				<string>    

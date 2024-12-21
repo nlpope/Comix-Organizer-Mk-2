@@ -6,9 +6,39 @@
 //
 
 import UIKit
+import AVFoundation
 extension SearchVC: UITextFieldDelegate
 {
     // MARK: CONFIGURATION LOGIC
+    
+    @objc func configureIntroPlayer()
+    {
+        guard let url              = Bundle.main.url(forResource: VideoKeys.launchScreen, withExtension: ".mp4") else { return }
+        player                     = AVPlayer.init(url: url)
+        playerLayer                = AVPlayerLayer(player: player)
+        playerLayer?.videoGravity  = AVLayerVideoGravity.resizeAspect
+        playerLayer?.frame         = view.layer.frame
+        playerLayer?.name          = PlayerLayerKeys.layerName
+        player?.actionAtItemEnd    = AVPlayer.ActionAtItemEnd.none
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.mixWithOthers)
+        } catch {
+            print("unable to keep player from interrupting background music")
+        }
+        player?.play()
+        
+        view.layer.insertSublayer(playerLayer!, at: 0)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
+    }
+    
+    
+    @objc func playerDidFinishPlaying()
+    {
+        removeAllAVPlayerLayers()
+        DispatchQueue.main.async { [weak self] in self?.configureSearchVC() }
+    }
+    
     
     func configureSearchVC()
     {
@@ -43,7 +73,6 @@ extension SearchVC: UITextFieldDelegate
         
         
         // HERO HOVER
-        #warning("use a calayer approach here too?")
         NotificationCenter.default.addObserver(self, selector: #selector(pauseAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resumeAnimation), name: UIApplication.didBecomeActiveNotification, object: nil)
     }
@@ -59,7 +88,8 @@ extension SearchVC: UITextFieldDelegate
         searchTextField.leftViewMode    = .always
         searchTextField.rightViewMode   = .always
         searchTextField.text            = ""
-        searchTextField.alpha           = 0
+        
+        if heroFlewUp || isInitialLoad { searchTextField.alpha = 0 }
         
         NSLayoutConstraint.activate([
             searchTextField.topAnchor.constraint(equalTo: callToActionButton.topAnchor, constant: -75),
@@ -75,8 +105,8 @@ extension SearchVC: UITextFieldDelegate
         callToActionButton.backgroundColor  = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1.0)
         callToActionButton.setTitle("GO", for: .normal)
         callToActionButton.addTarget(self, action: #selector(fadeOutTextFieldAndGoButton), for: .touchUpInside)
-        callToActionButton.alpha = 0
-        
+        if heroFlewUp || isInitialLoad { callToActionButton.alpha = 0 }
+
         
         
         NSLayoutConstraint.activate([
@@ -115,11 +145,10 @@ extension SearchVC: UITextFieldDelegate
     }
     
     
-    func fadeInTextField()
+    func fadeInTextFieldAndGoButton()
     {
-        UITextField.animate(withDuration: 1,
-                            animations: { self.searchTextField.alpha = 1 },
-                            completion: {_ in self.fadeInGoButton()})
+        UITextField.animate(withDuration: 1) { self.searchTextField.alpha = 1 }
+        UIButton.animate(withDuration: 1) { self.callToActionButton.alpha = 1 }
     }
     
     

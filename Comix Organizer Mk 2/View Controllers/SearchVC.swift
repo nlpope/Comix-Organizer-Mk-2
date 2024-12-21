@@ -5,6 +5,7 @@
 //  Created by Noah Pope on 6/28/24.
 //
 
+#warning("comp logo flicker player playing on switching tabs, move isinitialLoad=false back to didfinishplaying or keep it where it is so the fade in happens (which it's still not)")
 import UIKit
 import AVKit
 import AVFoundation
@@ -16,6 +17,7 @@ class SearchVC: UIViewController
     var isQueryEntered: Bool { return !searchTextField.text!.isEmpty }
     var isInitialLoad           = true
     var animationDidPause       = false
+    var heroFlewUp              = false
     let logoImageView           = UIImageView()
     let searchTextField         = COTextField()
     let callToActionButton      = COButton()
@@ -42,31 +44,6 @@ class SearchVC: UIViewController
         self.tabBarController?.tabBar.isHidden              = true
         self.navigationController?.navigationBar.isHidden   = true
     }
-    
-    
-    @objc fileprivate func configureIntroPlayer()
-    {
-        guard let url              = Bundle.main.url(forResource: VideoKeys.launchScreen, withExtension: ".mp4") else { return }
-        player                     = AVPlayer.init(url: url)
-        playerLayer                = AVPlayerLayer(player: player)
-        playerLayer?.videoGravity  = AVLayerVideoGravity.resizeAspect
-        playerLayer?.frame         = view.layer.frame
-        playerLayer?.name          = PlayerLayerKeys.layerName
-        player?.actionAtItemEnd    = AVPlayer.ActionAtItemEnd.none
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback, options: AVAudioSession.CategoryOptions.mixWithOthers)
-        } catch {
-            print("unable to keep player from interrupting background music")
-        }
-        player?.play()
-        
-        view.layer.insertSublayer(playerLayer!, at: 0)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player?.currentItem)
-    }
-    
-    
-    
     
     
     deinit
@@ -111,14 +88,6 @@ class SearchVC: UIViewController
     }
     
     
-    @objc func playerDidFinishPlaying()
-    {
-        removeAllAVPlayerLayers()
-        isInitialLoad               = false
-        DispatchQueue.main.async { [weak self] in self?.configureSearchVC() }
-    }
-    
-    
     func addSubviews() { view.addSubviews(logoImageView, searchTextField, callToActionButton) }
     
     
@@ -127,7 +96,11 @@ class SearchVC: UIViewController
     @objc func pauseAnimation() { animationDidPause   = true }
     
     
-    @objc func resumeAnimation(){ guard animationDidPause else { return }; heroLand() }
+    @objc func resumeAnimation()
+    {
+        guard animationDidPause else { return }
+        heroLand()
+    }
     
     
     func heroLand()
@@ -138,7 +111,15 @@ class SearchVC: UIViewController
                             initialSpringVelocity: 1,
                             options: .curveEaseOut,
                             animations: { self.logoImageView.transform  = CGAffineTransform(translationX: 0, y: 950) },
-                            completion: { _ in self.heroHover(true); self.fadeInTextField() })
+                            completion: { _ in
+            self.heroHover(true)
+            if self.heroFlewUp
+            {
+                self.fadeInTextFieldAndGoButton()
+                self.heroFlewUp     = false
+                self.isInitialLoad  = false
+            }
+        })
     }
     
     
@@ -160,7 +141,7 @@ class SearchVC: UIViewController
                             initialSpringVelocity: 0.3,
                             options: .curveEaseInOut,
                             animations: { self.logoImageView.transform = self.logoImageView.transform.translatedBy(x: 0, y: -900) },
-                            completion: { _ in self.pushFilteredSearchVC() })
+                            completion: { _ in self.heroFlewUp = true; self.pushFilteredSearchVC() })
     }
     
     
