@@ -105,7 +105,7 @@ class FilteredSearchVC: CODataLoadingVC
         view.addSubview(collectionView)
         collectionView.delegate         = self
         collectionView.backgroundColor  = .systemBackground
-        collectionView.register(PublisherCell.self, forCellWithReuseIdentifier: PublisherCell.reuseID)
+        collectionView.register(COCell.self, forCellWithReuseIdentifier: COCell.reuseID)
     }
     
     
@@ -114,7 +114,7 @@ class FilteredSearchVC: CODataLoadingVC
         dataSource = UICollectionViewDiffableDataSource<Section,ResourceBundle>(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, resourceBundle) -> UICollectionViewCell? in
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: COCell.reuseID, for: indexPath) as! COCell
             cell.set(resourceBundle: resourceBundle)
             
             return cell

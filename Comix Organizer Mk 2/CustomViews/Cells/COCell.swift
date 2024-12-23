@@ -1,16 +1,16 @@
 //
-//  PublisherCell.swift
+//  COCell.swift
 //  Comix Organizer Mk 2
 //
 //  Created by Noah Pope on 7/1/24.
 //
 
-#warning("change name to COCell > create split via new pub/char/title tab bar")
+#warning("create split via new pub/char/title tab bar")
 import UIKit
 
-class PublisherCell: UICollectionViewCell
+class COCell: UICollectionViewCell
 {
-    static let reuseID      = "PublisherCell"
+    static let reuseID      = "COCell"
     let avatarImageView     = COAvatarImageView(frame: .zero)
     let itemNameLabel  = COTitleLabel(textAlignment: .center, fontSize: 16)
     

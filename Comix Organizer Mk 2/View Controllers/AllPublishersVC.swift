@@ -87,7 +87,7 @@
 //        view.addSubview(collectionView)
 //        collectionView.delegate         = self
 //        collectionView.backgroundColor  = .systemBackground
-//        collectionView.register(PublisherCell.self, forCellWithReuseIdentifier: PublisherCell.reuseID)
+//        collectionView.register(COCell.self, forCellWithReuseIdentifier: COCell.reuseID)
 //    }
 //    
 //    
@@ -141,7 +141,7 @@
 //    {
 //        dataSource      = UICollectionViewDiffableDataSource<Section,Publisher>(collectionView: collectionView,
 //                                                                                 cellProvider: { (collectionView, indexPath, publisher) -> UICollectionViewCell? in
-//            let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: PublisherCell.reuseID, for: indexPath) as! PublisherCell
+//            let cell    = collectionView.dequeueReusableCell(withReuseIdentifier: COCell.reuseID, for: indexPath) as! COCell
 //            cell.set(resourceBundle: publisher)
 //            
 //            return cell
