@@ -5,7 +5,6 @@
 //  Created by Noah Pope on 6/28/24.
 //
 
-#warning("comp logo flicker player playing on switching tabs, move isinitialLoad=false back to didfinishplaying or keep it where it is so the fade in happens (which it's still not)")
 import UIKit
 import AVKit
 import AVFoundation
@@ -78,7 +77,8 @@ class SearchVC: UIViewController
     @objc func reinitializePlayerLayer()
     {
         guard isInitialLoad else { return }
-        if let playerz      = player {
+        if let playerz      = player
+        {
             playerLayer         = AVPlayerLayer(player: playerz)
             playerLayer?.name   = PlayerLayerKeys.layerName
             
@@ -117,7 +117,6 @@ class SearchVC: UIViewController
             {
                 self.fadeInTextFieldAndGoButton()
                 self.heroFlewUp     = false
-                self.isInitialLoad  = false
             }
         })
     }

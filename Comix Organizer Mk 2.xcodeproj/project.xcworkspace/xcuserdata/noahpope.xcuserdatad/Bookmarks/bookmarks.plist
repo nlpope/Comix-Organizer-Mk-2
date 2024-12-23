@@ -1091,13 +1091,13 @@ struct Issue: Codable, Comparable
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>145</string>
+					<string>144</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>144</string>
+					<string>143</string>
 					<key>Timestamp</key>
-					<string>756497363.751014</string>
+					<string>756684817.143015</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>

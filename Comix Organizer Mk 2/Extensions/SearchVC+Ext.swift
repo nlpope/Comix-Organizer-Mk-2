@@ -36,6 +36,7 @@ extension SearchVC: UITextFieldDelegate
     @objc func playerDidFinishPlaying()
     {
         removeAllAVPlayerLayers()
+        isInitialLoad = false
         DispatchQueue.main.async { [weak self] in self?.configureSearchVC() }
     }
     
@@ -150,9 +151,6 @@ extension SearchVC: UITextFieldDelegate
         UITextField.animate(withDuration: 1) { self.searchTextField.alpha = 1 }
         UIButton.animate(withDuration: 1) { self.callToActionButton.alpha = 1 }
     }
-    
-    
-    func fadeInGoButton() { UIButton.animate(withDuration: 1) { self.callToActionButton.alpha = 1 } }
     
     
     @objc func fadeOutTextFieldAndGoButton()
