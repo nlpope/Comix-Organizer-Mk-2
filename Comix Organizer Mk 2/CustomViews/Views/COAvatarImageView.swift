@@ -5,6 +5,7 @@
 //  Created by Noah Pope on 7/1/24.
 //
 
+#warning("change blank img to hero logo - think it has sumn to do w the assets folder's avatarplaceholder")
 import UIKit
 
 class COAvatarImageView: UIImageView
@@ -33,7 +34,8 @@ class COAvatarImageView: UIImageView
     
     func downloadImage(fromURL url: String)
     {
-        APICaller.shared.downloadImage(from: url) { [weak self] image in
+        APICaller.shared.downloadImage(from: url)
+        { [weak self] image in
             guard let self = self else { return }
             DispatchQueue.main.async { self.image = image }
         }
