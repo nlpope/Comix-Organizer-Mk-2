@@ -14,7 +14,7 @@ class SearchVC: UIViewController
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
     var isQueryEntered: Bool { return !searchTextField.text!.isEmpty }
-    var isInitialLoad           = true
+    var isInitialLoad           = false
     var animationDidPause       = false
     var heroFlewUp              = false
     let logoImageView           = UIImageView()
@@ -148,8 +148,11 @@ class SearchVC: UIViewController
     {
         searchTextField.resignFirstResponder()
         if !isQueryEntered { searchTextField.text = " " }
-        let query           = searchTextField.text!
-        let filteredPublishersVC    = FilteredSearchVC(withName: query)
-        navigationController?.pushViewController(filteredPublishersVC, animated: true)
+        let query                   = searchTextField.text!
+        print("\(query)")
+        let coSearchTabBar          = COSearchTabBarController(withName: query)
+//        let filteredPublishersVC    = FilteredSearchVC(withName: query)
+//        navigationController?.pushViewController(coSearchTabBar, animated: true)
+        navigationController?.present(coSearchTabBar, animated: true)
     }
 }

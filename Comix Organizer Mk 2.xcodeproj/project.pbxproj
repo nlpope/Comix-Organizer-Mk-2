@@ -36,6 +36,11 @@
 		40ADE14D2C345AA700E2EEC9 /* COTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */; };
 		40B3855C2CED1B7D00D70E85 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B3855B2CED1B7D00D70E85 /* String+Ext.swift */; };
 		40B922B52D17307300FE77B3 /* PublishersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B922B42D17307300FE77B3 /* PublishersVC.swift */; };
+		40BD124E2D2C72F000AC4F7D /* COSearchTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD124D2D2C72F000AC4F7D /* COSearchTabBarController.swift */; };
+		40BD12522D2C74CD00AC4F7D /* CharacterSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD12512D2C74CD00AC4F7D /* CharacterSearchVC.swift */; };
+		40BD12542D2C76E300AC4F7D /* TitleSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD12532D2C76E300AC4F7D /* TitleSearchVC.swift */; };
+		40BD12562D2C78A600AC4F7D /* IssueSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD12552D2C78A600AC4F7D /* IssueSearchVC.swift */; };
+		40BD12582D2C790E00AC4F7D /* PublisherSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD12572D2C790E00AC4F7D /* PublisherSearchVC.swift */; };
 		40C0372D2C3732BC00A67B2D /* COEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */; };
 		40C1CE962C38A98000624DBE /* FilteredSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C1CE952C38A98000624DBE /* FilteredSearchVC.swift */; };
 		40C4F99C2C35D2100077808D /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C4F99B2C35D2100077808D /* UIView+Ext.swift */; };
@@ -78,6 +83,11 @@
 		40ADE14C2C345AA700E2EEC9 /* COTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COTitleLabel.swift; sourceTree = "<group>"; };
 		40B3855B2CED1B7D00D70E85 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		40B922B42D17307300FE77B3 /* PublishersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishersVC.swift; sourceTree = "<group>"; };
+		40BD124D2D2C72F000AC4F7D /* COSearchTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COSearchTabBarController.swift; sourceTree = "<group>"; };
+		40BD12512D2C74CD00AC4F7D /* CharacterSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSearchVC.swift; sourceTree = "<group>"; };
+		40BD12532D2C76E300AC4F7D /* TitleSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSearchVC.swift; sourceTree = "<group>"; };
+		40BD12552D2C78A600AC4F7D /* IssueSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueSearchVC.swift; sourceTree = "<group>"; };
+		40BD12572D2C790E00AC4F7D /* PublisherSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherSearchVC.swift; sourceTree = "<group>"; };
 		40C0372C2C3732BC00A67B2D /* COEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = COEmptyStateView.swift; sourceTree = "<group>"; };
 		40C1CE952C38A98000624DBE /* FilteredSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredSearchVC.swift; sourceTree = "<group>"; };
 		40C4F99B2C35D2100077808D /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -121,6 +131,10 @@
 				40ADE13D2C332FA300E2EEC9 /* SelectedPublisherTitlesVC.swift */,
 				40ADE1412C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift */,
 				40A1A1C72B6EF93400DDF311 /* ComixBinVC.swift */,
+				40BD12572D2C790E00AC4F7D /* PublisherSearchVC.swift */,
+				40BD12512D2C74CD00AC4F7D /* CharacterSearchVC.swift */,
+				40BD12532D2C76E300AC4F7D /* TitleSearchVC.swift */,
+				40BD12552D2C78A600AC4F7D /* IssueSearchVC.swift */,
 			);
 			name = Screens;
 			path = "View Controllers";
@@ -130,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				40A83AD02AFBB09E009F80D3 /* COTabBarController.swift */,
+				40BD124D2D2C72F000AC4F7D /* COSearchTabBarController.swift */,
 			);
 			path = "Tab Bar Controllers";
 			sourceTree = "<group>";
@@ -368,6 +383,9 @@
 				40A83A932AFA5F5B009F80D3 /* AppDelegate.swift in Sources */,
 				40A83A952AFA5F5B009F80D3 /* SceneDelegate.swift in Sources */,
 				40A83ACA2AFA617A009F80D3 /* APICaller.swift in Sources */,
+				40BD12582D2C790E00AC4F7D /* PublisherSearchVC.swift in Sources */,
+				40BD12522D2C74CD00AC4F7D /* CharacterSearchVC.swift in Sources */,
+				40BD124E2D2C72F000AC4F7D /* COSearchTabBarController.swift in Sources */,
 				40C4F99F2C35E2E10077808D /* COTextField.swift in Sources */,
 				40112D722C3787010029D91E /* COAlertChildVC.swift in Sources */,
 				40A6E55A2C30B572008340B5 /* COError+Utils.swift in Sources */,
@@ -384,7 +402,9 @@
 				40ADE1422C33715B00E2EEC9 /* SelectedTitleIssuesVC.swift in Sources */,
 				40ADE1442C33769100E2EEC9 /* COCell.swift in Sources */,
 				4006FDC22CDAA1AE0009BB11 /* UIResponder+Utils.swift in Sources */,
+				40BD12542D2C76E300AC4F7D /* TitleSearchVC.swift in Sources */,
 				40C75BA52CEE51AE00625F81 /* AVPlayer+Ext.swift in Sources */,
+				40BD12562D2C78A600AC4F7D /* IssueSearchVC.swift in Sources */,
 				40A6E5532C303A8E008340B5 /* UIViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

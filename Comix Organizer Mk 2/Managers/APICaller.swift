@@ -91,7 +91,6 @@ class APICaller
             return
         }
         
-        // see note 1 in app delegate
         guard let url = URL(string: urlString) else { return }
         
         // Network Call - where the image is downloaded
@@ -105,7 +104,6 @@ class APICaller
                     return
                   }
                     
-            #warning("fix below error")
             self.cache.setObject(image, forKey: cacheKey)
             completed(image)
         }

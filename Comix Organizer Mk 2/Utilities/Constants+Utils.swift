@@ -15,6 +15,10 @@ enum SFSymbolKeys
     static let bookShelf            = UIImage(systemName: "books.vertical.fill")
     static let add                  = UIImage(systemName: "rectangle.stack.fill.badge.plus")
     static let subtract             = UIImage(systemName: "rectangle.stack.fill.badge.minus")
+    static let publisher            = UIImage(systemName: "building.columns")
+    static let character            = UIImage(systemName: "person.fill")
+    static let title                = UIImage(systemName: "text.book.closed")
+    static let issue                = UIImage(systemName: "book.pages.fill")
 }
 
 enum ImageKeys
