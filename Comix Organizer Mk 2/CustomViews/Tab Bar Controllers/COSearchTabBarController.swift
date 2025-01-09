@@ -10,19 +10,19 @@ import UIKit
 class COSearchTabBarController: UITabBarController
 {
     
-    #warning("this is of type string but not being set. hard coded 'bat' loads fine")
     var queryContains: String!
     
-    init(withName name: String)
-    {
-        super.init(nibName: nil, bundle: nil)
-        self.queryContains = name
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    init(withName name: String)
+//    {
+//        defer { print("initializer reached and = \(queryContains)") }
+//        super.init(nibName: nil, bundle: nil)
+//        self.queryContains = name
+//    }
+//    
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
     
     
     override func viewDidLoad()
@@ -31,6 +31,7 @@ class COSearchTabBarController: UITabBarController
         self.hidesBottomBarWhenPushed = true
         configureTabBar()
         setVCs()
+        
     }
     
     
@@ -42,7 +43,9 @@ class COSearchTabBarController: UITabBarController
     
     func createPublisherSearchNC() -> UINavigationController
     {
-        let publisherSearchVC                 = PublisherSearchVC(withName: queryContains)
+        #warning("post-echo read into uitabbarcontroller docs & why global var cant reach here")
+        print("query containz = \(queryContains)")
+        let publisherSearchVC                 = PublisherSearchVC(withName: s)
         publisherSearchVC.title               = "Publishers"
         publisherSearchVC.tabBarItem.image    = SFSymbolKeys.publisher
         

@@ -9,7 +9,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class SearchVC: UIViewController
+class SearchVC: UIViewController, UITabBarControllerDelegate
 {
     var player: AVPlayer?
     var playerLayer: AVPlayerLayer?
@@ -20,6 +20,7 @@ class SearchVC: UIViewController
     let logoImageView           = UIImageView()
     let searchTextField         = COTextField()
     let callToActionButton      = COButton()
+    
     
     override func viewDidLoad()
     {
@@ -149,10 +150,12 @@ class SearchVC: UIViewController
         searchTextField.resignFirstResponder()
         if !isQueryEntered { searchTextField.text = " " }
         let query                   = searchTextField.text!
-        print("\(query)")
-        let coSearchTabBar          = COSearchTabBarController(withName: query)
+        let coSearchTabBar          = COSearchTabBarController()
+        var pubSearchVC = publishersearchv
+
+//        coSearchTabBar.delegate     = self
 //        let filteredPublishersVC    = FilteredSearchVC(withName: query)
 //        navigationController?.pushViewController(coSearchTabBar, animated: true)
-        navigationController?.present(coSearchTabBar, animated: true)
+        defer { navigationController?.present(coSearchTabBar, animated: true) }
     }
 }
