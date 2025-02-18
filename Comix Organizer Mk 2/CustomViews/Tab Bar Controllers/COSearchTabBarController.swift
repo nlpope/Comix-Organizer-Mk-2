@@ -45,7 +45,7 @@ class COSearchTabBarController: UITabBarController
     {
         #warning("post-echo read into uitabbarcontroller docs & why global var cant reach here")
         print("query containz = \(queryContains)")
-        let publisherSearchVC                 = PublisherSearchVC(withName: s)
+        let publisherSearchVC                 = PublisherSearchVC(withName: queryContains)
         publisherSearchVC.title               = "Publishers"
         publisherSearchVC.tabBarItem.image    = SFSymbolKeys.publisher
         
